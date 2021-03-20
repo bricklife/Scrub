@@ -17,10 +17,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let js = loadInjectCode()
+        let js = loadJS(filename: "inject-scratch-link")
         let script = WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
         webView.configuration.userContentController.addUserScript(script)
         webView.configuration.userContentController.add(self, name: "rpc")
+        webView.configuration.userContentController.add(self, name: "download")
         
         webView.navigationDelegate = self
         
@@ -29,8 +30,8 @@ class ViewController: UIViewController {
         webView.load(request)
     }
     
-    private func loadInjectCode() -> String {
-        guard let filepath = Bundle.main.path(forResource: "inject-scratch-link", ofType: "js") else { return "" }
+    private func loadJS(filename: String) -> String {
+        guard let filepath = Bundle.main.path(forResource: filename, ofType: "js") else { return "" }
         return (try? String(contentsOfFile: filepath)) ?? ""
     }
 }
@@ -40,10 +41,19 @@ extension ViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         print("loading", navigationAction.request)
         
-        if let urlString = navigationAction.request.url?.absoluteString {
-            let isEditor = urlString.hasPrefix("https://scratch.mit.edu/projects/editor/")
-            webView.scrollView.isScrollEnabled = !isEditor
+        guard let url = navigationAction.request.url else {
+            decisionHandler(.allow)
+            return
         }
+        
+        if url.scheme == "blob" {
+            webView.evaluateJavaScript(loadJS(filename: "download"));
+            decisionHandler(.cancel)
+            return
+        }
+        
+        let isEditor = url.absoluteString.hasPrefix("https://scratch.mit.edu/projects/editor/")
+        webView.scrollView.isScrollEnabled = !isEditor
         
         sessions.values.forEach { (session) in
             session.sessionWasClosed()
@@ -67,29 +77,51 @@ struct RPC: Codable {
     }
 }
 
+struct Download: Codable {
+    let filename: String
+    let filetype: String
+    let data: String
+}
+
 extension ViewController: WKScriptMessageHandler {
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         guard let jsonString = message.body as? String else { return }
         guard let jsonData = jsonString.data(using: .utf8) else { return }
-        guard let rpc = try? JSONDecoder().decode(RPC.self, from: jsonData) else { return }
         
-        let socketId = rpc.socketId
-        
-        switch rpc.method {
-        case .open:
-            let webSocket = WebSocket() { [weak self] (message) in
-                self?.sendJsonMessage(socketId: socketId, message: message)
+        switch message.name {
+        case "rpc":
+            guard let rpc = try? JSONDecoder().decode(RPC.self, from: jsonData) else { break }
+            
+            let socketId = rpc.socketId
+            
+            switch rpc.method {
+            case .open:
+                let webSocket = WebSocket() { [weak self] (message) in
+                    self?.sendJsonMessage(socketId: socketId, message: message)
+                }
+                sessions[socketId] = try? BLESession(withSocket: webSocket)
+                
+            case .close:
+                let session = sessions.removeValue(forKey: socketId)
+                session?.sessionWasClosed()
+                
+            case .send:
+                guard let jsonrpc = rpc.jsonrpc else { break }
+                sessions[socketId]?.didReceiveText(jsonrpc)
             }
-            sessions[socketId] = try? BLESession(withSocket: webSocket)
             
-        case .close:
-            let session = sessions.removeValue(forKey: socketId)
-            session?.sessionWasClosed()
+        case "download":
+            guard let download = try? JSONDecoder().decode(Download.self, from: jsonData) else { break }
+            guard let data = Data(base64Encoded: download.data) else { break }
             
-        case .send:
-            guard let jsonrpc = rpc.jsonrpc else { break }
-            sessions[socketId]?.didReceiveText(jsonrpc)
+            guard let docs = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else { break }
+            let path = docs.appendingPathComponent(download.filename)
+            FileManager.default.createFile(atPath: path.path, contents: data, attributes: nil)
+            print("Saved \(data.count) bytes at", path)
+            
+        default:
+            break;
         }
     }
     

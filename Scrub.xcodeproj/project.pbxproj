@@ -29,6 +29,7 @@
 		CBEDE23E2605EBB50071628C /* PerfectHTTP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBEDE2362605EB830071628C /* PerfectHTTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CBEDE23F2605EBB50071628C /* PerfectWebSockets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBEDE2382605EB830071628C /* PerfectWebSockets.framework */; };
 		CBEDE2402605EBB50071628C /* PerfectWebSockets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBEDE2382605EB830071628C /* PerfectWebSockets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CBEDE244260646F20071628C /* download.js in Resources */ = {isa = PBXBuildFile; fileRef = CBEDE243260646F20071628C /* download.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		CBEDE2222605E62C0071628C /* WebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
 		CBEDE2242605E74F0071628C /* inject-scratch-link.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "inject-scratch-link.js"; sourceTree = "<group>"; };
 		CBEDE22A2605EB830071628C /* DummyFrameworks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = DummyFrameworks.xcodeproj; sourceTree = "<group>"; };
+		CBEDE243260646F20071628C /* download.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = download.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				CBEDE2202605E5DE0071628C /* ScratchLink.swift */,
 				CBEDE2222605E62C0071628C /* WebSocket.swift */,
 				CBEDE2242605E74F0071628C /* inject-scratch-link.js */,
+				CBEDE243260646F20071628C /* download.js */,
 				CB3FBCF52605D98C008FE5C2 /* Main.storyboard */,
 				CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */,
 				CB3FBCFA2605D98C008FE5C2 /* LaunchScreen.storyboard */,
@@ -262,6 +265,7 @@
 				CB3FBCF92605D98C008FE5C2 /* Assets.xcassets in Resources */,
 				CBEDE2252605E7500071628C /* inject-scratch-link.js in Resources */,
 				CB3FBCF72605D98C008FE5C2 /* Main.storyboard in Resources */,
+				CBEDE244260646F20071628C /* download.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
