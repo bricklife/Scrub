@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         webView.configuration.userContentController.addUserScript(script)
         webView.configuration.userContentController.add(self, name: "rpc")
         
-        webView.scrollView.isScrollEnabled = false
+        webView.navigationDelegate = self
         
         let url = URL(string: "https://scratch.mit.edu/projects/editor/")!
         let request = URLRequest(url: url)
@@ -32,6 +32,25 @@ class ViewController: UIViewController {
     private func loadInjectCode() -> String {
         guard let filepath = Bundle.main.path(forResource: "inject-scratch-link", ofType: "js") else { return "" }
         return (try? String(contentsOfFile: filepath)) ?? ""
+    }
+}
+
+extension ViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        print("loading", navigationAction.request)
+        
+        if let urlString = navigationAction.request.url?.absoluteString {
+            let isEditor = urlString.hasPrefix("https://scratch.mit.edu/projects/editor/")
+            webView.scrollView.isScrollEnabled = !isEditor
+        }
+        
+        sessions.values.forEach { (session) in
+            session.sessionWasClosed()
+        }
+        sessions.removeAll()
+        
+        decisionHandler(.allow)
     }
 }
 
