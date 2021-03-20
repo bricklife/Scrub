@@ -1,0 +1,3 @@
+[submodule "Scrub/scratch-link"]
+	path = Scrub/scratch-link
+	url = https://github.com/LLK/scratch-link.git
