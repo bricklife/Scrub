@@ -52,9 +52,6 @@ extension ViewController: WKNavigationDelegate {
             return
         }
         
-        let isEditor = url.absoluteString.hasPrefix("https://scratch.mit.edu/projects/editor/")
-        webView.scrollView.isScrollEnabled = !isEditor
-        
         sessions.values.forEach { (session) in
             session.sessionWasClosed()
         }
@@ -62,6 +59,20 @@ extension ViewController: WKNavigationDelegate {
         
         decisionHandler(.allow)
     }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        guard let url = webView.url else { return }
+        
+        let isEditor = url.absoluteString.hasPrefix("https://scratch.mit.edu/projects/editor/")
+        if isEditor {
+            webView.scrollView.isScrollEnabled = false
+            webView.evaluateJavaScript("document.documentElement.style.webkitUserSelect='none'")
+            webView.evaluateJavaScript("document.documentElement.style.webkitTouchCallout='none'")
+        } else {
+            webView.scrollView.isScrollEnabled = true
+        }
+    }
+    
 }
 
 struct RPC: Codable {
