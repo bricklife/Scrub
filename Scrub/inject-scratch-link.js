@@ -1,6 +1,10 @@
 class ScratchLink {
 
     constructor(url) {
+        if (!url.startsWith('wss://device-manager.scratch.mit.edu:20110/scratch/')) {
+            return new ScratchLink.WebSocket(url);
+        }
+
         this.url = url;
         this._open();
     }
@@ -54,4 +58,10 @@ class ScratchLink {
 ScratchLink.socketId = 0;
 ScratchLink.sockets = new Map();
 
+ScratchLink.CONNECTING = window.WebSocket.CONNECTING;
+ScratchLink.OPEN = window.WebSocket.OPEN;
+ScratchLink.CLOSING = window.WebSocket.CLOSING;
+ScratchLink.CLOSED = window.WebSocket.CLOSED;
+
+ScratchLink.WebSocket = window.WebSocket;
 window.WebSocket = ScratchLink;
