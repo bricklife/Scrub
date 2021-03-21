@@ -7,22 +7,22 @@
 
 import Foundation
 
-public class WebSocket {
+class WebSocket {
     
     let callback: (String) -> Void
     
-    public init(callback: @escaping (String) -> Void) {
+    init(callback: @escaping (String) -> Void) {
         self.callback = callback
     }
     
-    public func readStringMessage(continuation: @escaping (String?, _ opcode: Any, _ final: Bool) -> ()) {
+    func readStringMessage(continuation: @escaping (String?, _ opcode: Any, _ final: Bool) -> ()) {
     }
     
-    public func sendStringMessage(string: String, final: Bool, completion: @escaping () -> ()) {
+    func sendStringMessage(string: String, final: Bool, completion: @escaping () -> ()) {
         self.callback(string)
         completion()
     }
     
-    public func close() {
+    func close() {
     }
 }
