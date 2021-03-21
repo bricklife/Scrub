@@ -13,6 +13,7 @@
 		CB3FBCF72605D98C008FE5C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3FBCF52605D98C008FE5C2 /* Main.storyboard */; };
 		CB3FBCF92605D98C008FE5C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */; };
 		CB3FBCFC2605D98C008FE5C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3FBCFA2605D98C008FE5C2 /* LaunchScreen.storyboard */; };
+		CB853BD32606F08D005A2772 /* BTSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB853BD22606F08D005A2772 /* BTSession.swift */; };
 		CBEDE2122605E57D0071628C /* BLESession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDE2042605E57D0071628C /* BLESession.swift */; };
 		CBEDE2132605E57D0071628C /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDE2052605E57D0071628C /* Session.swift */; };
 		CBEDE2142605E57D0071628C /* JSONRPCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDE2062605E57D0071628C /* JSONRPCError.swift */; };
@@ -73,6 +74,7 @@
 		CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB3FBCFB2605D98C008FE5C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB3FBCFD2605D98C008FE5C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB853BD22606F08D005A2772 /* BTSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTSession.swift; sourceTree = "<group>"; };
 		CBEDE2042605E57D0071628C /* BLESession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLESession.swift; sourceTree = "<group>"; };
 		CBEDE2052605E57D0071628C /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		CBEDE2062605E57D0071628C /* JSONRPCError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONRPCError.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				CB3FBCF32605D98B008FE5C2 /* ViewController.swift */,
 				CBEDE2202605E5DE0071628C /* ScratchLink.swift */,
 				CBEDE2222605E62C0071628C /* WebSocket.swift */,
+				CB853BD22606F08D005A2772 /* BTSession.swift */,
 				CBEDE2242605E74F0071628C /* inject-scratch-link.js */,
 				CBEDE243260646F20071628C /* download.js */,
 				CB3FBCF52605D98C008FE5C2 /* Main.storyboard */,
@@ -283,6 +286,7 @@
 				CB3FBCF02605D98B008FE5C2 /* AppDelegate.swift in Sources */,
 				CBEDE2182605E57D0071628C /* GATTHelpers.swift in Sources */,
 				CBEDE21D2605E57D0071628C /* EncodingHelpers.swift in Sources */,
+				CB853BD32606F08D005A2772 /* BTSession.swift in Sources */,
 				CBEDE2122605E57D0071628C /* BLESession.swift in Sources */,
 				CBEDE2172605E57D0071628C /* DispatchSemaphore.swift in Sources */,
 				CB3FBCF22605D98B008FE5C2 /* SceneDelegate.swift in Sources */,

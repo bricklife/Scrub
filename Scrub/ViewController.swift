@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var webView: WKWebView!
     
-    private var sessions = [Int: BLESession]()
+    private var sessions = [Int: Session]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,10 +108,16 @@ extension ViewController: WKScriptMessageHandler {
             
             switch rpc.method {
             case .open:
+                guard let url = rpc.url else { break }
                 let webSocket = WebSocket() { [weak self] (message) in
                     self?.sendJsonMessage(socketId: socketId, message: message)
                 }
-                sessions[socketId] = try? BLESession(withSocket: webSocket)
+                if url.hasSuffix("/ble") {
+                    sessions[socketId] = try? BLESession(withSocket: webSocket)
+                }
+                if url.hasSuffix("/bt") {
+                    sessions[socketId] = try? BTSession(withSocket: webSocket)
+                }
                 
             case .close:
                 let session = sessions.removeValue(forKey: socketId)
