@@ -115,11 +115,11 @@ class BTSession: Session {
         self.connectedSession = session
         
         session.inputStream?.delegate = self.streamDelegateHelper
-        session.inputStream?.schedule(in: RunLoop.current, forMode: .default)
+        session.inputStream?.schedule(in: .main, forMode: .default)
         session.inputStream?.open()
         
         session.outputStream?.delegate = self.streamDelegateHelper
-        session.outputStream?.schedule(in: RunLoop.current, forMode: .default)
+        session.outputStream?.schedule(in: .main, forMode: .default)
         session.outputStream?.open()
         
         self.state = .connected

@@ -26,7 +26,7 @@ class SessionManager {
     
     private var sessions = [Int: Session]()
     
-    private let sessionQueue = DispatchQueue(label: "com.bricklife.scrub.SessionManager")
+    private let sessionQueue = DispatchQueue.global(qos: .userInitiated)
     
     func handleRequest(data: Data) {
         guard let rpc = try? JSONDecoder().decode(RPC.self, from: data) else { return }
