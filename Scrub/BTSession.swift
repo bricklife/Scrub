@@ -65,11 +65,11 @@ class BTSession: Session {
     
     override func sessionWasClosed() {
         connectedSession?.inputStream?.close()
-        connectedSession?.inputStream?.remove(from: RunLoop.current, forMode:  .default)
+        connectedSession?.inputStream?.remove(from: .main, forMode: .default)
         connectedSession?.inputStream?.delegate = nil
         
         connectedSession?.outputStream?.close()
-        connectedSession?.outputStream?.remove(from: RunLoop.current, forMode: .default)
+        connectedSession?.outputStream?.remove(from: .main, forMode: .default)
         connectedSession?.outputStream?.delegate = nil
         
         connectedSession = nil
