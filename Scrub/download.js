@@ -1,30 +1,17 @@
-(function () {
-    function arrayBufferToBase64(buffer) {
-        let binary = '';
-        let bytes = new Uint8Array(buffer);
-        let len = bytes.byteLength;
-        for (let i = 0; i < len; i++) {
-            binary += String.fromCharCode(bytes[i]);
-        }
-        return window.btoa(binary);
-    }
+// ref: https://stackoverflow.com/questions/61702414/wkwebview-how-to-handle-blob-url/61703086
 
-    document.body.querySelectorAll('a').forEach((el) => {
+(function () {
+    document.querySelectorAll('a').forEach(async (el) => {
         let url = el.getAttribute('href');
         if (url.indexOf('blob:') === 0) {
             let filename = el.getAttribute('download');
-            let filetype = el.getAttribute('type');
-            fetch(url)
-                .then(response => response.blob())
-                .then(function (blob) {
-                    let filereader = new FileReader();
-                    filereader.onload = function (e) {
-                        let data = arrayBufferToBase64(e.target.result);
-                        let json = { filename: filename, filetype: filetype, data: data }
-                        webkit.messageHandlers.download.postMessage(JSON.stringify(json));
-                    }
-                    filereader.readAsArrayBuffer(blob);
-                });
+            let blob = await fetch(url).then(r => r.blob());
+            let reader = new FileReader();
+            reader.onload = function (e) {
+                let json = { filename: filename, dataUri: e.target.result };
+                webkit.messageHandlers.download.postMessage(JSON.stringify(json));
+            };
+            reader.readAsDataURL(blob);
         }
     });
 })();

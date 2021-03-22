@@ -87,8 +87,7 @@ struct RPC: Codable {
 
 struct Download: Codable {
     let filename: String
-    let filetype: String
-    let data: String
+    let dataUri: URL
 }
 
 extension ViewController: WKScriptMessageHandler {
@@ -127,7 +126,7 @@ extension ViewController: WKScriptMessageHandler {
             
         case "download":
             guard let download = try? JSONDecoder().decode(Download.self, from: jsonData) else { break }
-            guard let data = Data(base64Encoded: download.data) else { break }
+            guard let data = try? Data(contentsOf: download.dataUri) else { break }
             
             guard let docs = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else { break }
             let path = docs.appendingPathComponent(download.filename)
