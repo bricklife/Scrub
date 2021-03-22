@@ -39,7 +39,7 @@ class ViewController: UIViewController {
 extension ViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        print("loading", navigationAction.request)
+        print("Requested", navigationAction.request)
         
         guard let url = navigationAction.request.url else {
             decisionHandler(.allow)
