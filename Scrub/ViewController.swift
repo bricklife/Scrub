@@ -128,10 +128,19 @@ extension ViewController: WKScriptMessageHandler {
             guard let download = try? JSONDecoder().decode(Download.self, from: jsonData) else { break }
             guard let data = try? Data(contentsOf: download.dataUri) else { break }
             
-            guard let docs = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else { break }
+            guard let docs = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else { break }
             let path = docs.appendingPathComponent(download.filename)
             FileManager.default.createFile(atPath: path.path, contents: data, attributes: nil)
             print("Saved \(data.count) bytes at", path)
+            
+            let vc: UIDocumentPickerViewController
+            if #available(iOS 14.0, *) {
+                vc = UIDocumentPickerViewController(forExporting: [path])
+            } else {
+                vc = UIDocumentPickerViewController(url: path, in: .exportToService)
+            }
+            vc.shouldShowFileExtensions = true
+            present(vc, animated: true)
             
         default:
             break;
