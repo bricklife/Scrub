@@ -13,6 +13,7 @@
 		CB3FBCF72605D98C008FE5C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3FBCF52605D98C008FE5C2 /* Main.storyboard */; };
 		CB3FBCF92605D98C008FE5C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */; };
 		CB3FBCFC2605D98C008FE5C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3FBCFA2605D98C008FE5C2 /* LaunchScreen.storyboard */; };
+		CB6B38882608D6F300D148C5 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B38872608D6F300D148C5 /* SessionManager.swift */; };
 		CB853BD32606F08D005A2772 /* BTSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB853BD22606F08D005A2772 /* BTSession.swift */; };
 		CBEDE2122605E57D0071628C /* BLESession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDE2042605E57D0071628C /* BLESession.swift */; };
 		CBEDE2132605E57D0071628C /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDE2052605E57D0071628C /* Session.swift */; };
@@ -74,6 +75,7 @@
 		CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB3FBCFB2605D98C008FE5C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB3FBCFD2605D98C008FE5C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB6B38872608D6F300D148C5 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		CB853BD22606F08D005A2772 /* BTSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTSession.swift; sourceTree = "<group>"; };
 		CBEDE2042605E57D0071628C /* BLESession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLESession.swift; sourceTree = "<group>"; };
 		CBEDE2052605E57D0071628C /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				CBEDE2202605E5DE0071628C /* ScratchLink.swift */,
 				CBEDE2222605E62C0071628C /* WebSocket.swift */,
 				CB853BD22606F08D005A2772 /* BTSession.swift */,
+				CB6B38872608D6F300D148C5 /* SessionManager.swift */,
 				CBEDE2242605E74F0071628C /* inject-scratch-link.js */,
 				CBEDE243260646F20071628C /* download.js */,
 				CB3FBCF52605D98C008FE5C2 /* Main.storyboard */,
@@ -293,6 +296,7 @@
 				CBEDE21F2605E57D0071628C /* CBPeripheralDelegateHelper.swift in Sources */,
 				CBEDE21C2605E57D0071628C /* CBCentralManagerDelegateHelper.swift in Sources */,
 				CBEDE2212605E5DE0071628C /* ScratchLink.swift in Sources */,
+				CB6B38882608D6F300D148C5 /* SessionManager.swift in Sources */,
 				CBEDE2232605E62C0071628C /* WebSocket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

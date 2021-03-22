@@ -12,10 +12,12 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var webView: WKWebView!
     
-    private var sessions = [Int: Session]()
+    private let sessinManager = SessionManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        sessinManager.delegate = self
         
         let js = loadJS(filename: "inject-scratch-link")
         let script = WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
@@ -52,10 +54,7 @@ extension ViewController: WKNavigationDelegate {
             return
         }
         
-        sessions.values.forEach { (session) in
-            session.sessionWasClosed()
-        }
-        sessions.removeAll()
+        sessinManager.closeAllSessions()
         
         decisionHandler(.allow)
     }
@@ -72,19 +71,6 @@ extension ViewController: WKNavigationDelegate {
     
 }
 
-struct RPC: Codable {
-    let method: Method
-    let socketId: Int
-    let url: URL?
-    let jsonrpc: String?
-    
-    enum Method: String, Codable {
-        case open
-        case close
-        case send
-    }
-}
-
 struct Download: Codable {
     let filename: String
     let dataUri: URL
@@ -98,31 +84,7 @@ extension ViewController: WKScriptMessageHandler {
         
         switch message.name {
         case "rpc":
-            guard let rpc = try? JSONDecoder().decode(RPC.self, from: jsonData) else { break }
-            
-            let socketId = rpc.socketId
-            
-            switch rpc.method {
-            case .open:
-                guard let url = rpc.url else { break }
-                let webSocket = WebSocket() { [weak self] (message) in
-                    self?.sendJsonMessage(socketId: socketId, message: message)
-                }
-                if url.lastPathComponent == "ble" {
-                    sessions[socketId] = try? BLESession(withSocket: webSocket)
-                }
-                if url.lastPathComponent == "bt" {
-                    sessions[socketId] = try? BTSession(withSocket: webSocket)
-                }
-                
-            case .close:
-                let session = sessions.removeValue(forKey: socketId)
-                session?.sessionWasClosed()
-                
-            case .send:
-                guard let jsonrpc = rpc.jsonrpc else { break }
-                sessions[socketId]?.didReceiveText(jsonrpc)
-            }
+            sessinManager.handleRequest(data: jsonData)
             
         case "download":
             guard let download = try? JSONDecoder().decode(Download.self, from: jsonData) else { break }
@@ -145,8 +107,10 @@ extension ViewController: WKScriptMessageHandler {
             break;
         }
     }
-    
-    private func sendJsonMessage(socketId: Int, message: String) {
+}
+
+extension ViewController: SessionManagerDelegate {
+    func recieveMessage(_ message: String, socketId: Int) {
         let js = "ScratchLink.sockets.get(\(socketId)).handleMessage('" + message + "')"
         webView.evaluateJavaScript(js)
     }
