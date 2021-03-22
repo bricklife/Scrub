@@ -17,6 +17,8 @@ class BTSession: Session {
     
     private var messageQueue: [(Data, JSONRPCCompletionHandler)] = []
     
+    private var didRegisterForLocalNotifications = false
+    
     private enum SessionState {
         case initial
         case discovery
@@ -28,6 +30,12 @@ class BTSession: Session {
         self.ouiPrefix = ""
         try super.init(withSocket: webSocket)
         self.streamDelegateHelper.delegate = self
+    }
+    
+    deinit {
+        if didRegisterForLocalNotifications {
+            EAAccessoryManager.shared().unregisterForLocalNotifications()
+        }
     }
     
     override func didReceiveCall(_ method: String, withParams params: [String: Any], completion: @escaping JSONRPCCompletionHandler) throws {
@@ -78,6 +86,20 @@ class BTSession: Session {
     }
     
     private func discover(inMajorDeviceClass major: UInt, inMinorDeviceClass minor: UInt, completion: @escaping JSONRPCCompletionHandler) {
+        sendDiscoveredPeripherals()
+        
+        if !didRegisterForLocalNotifications {
+            didRegisterForLocalNotifications = true
+            EAAccessoryManager.shared().registerForLocalNotifications()
+            NotificationCenter.default.addObserver(forName: .EAAccessoryDidConnect, object: nil, queue: .main) { [weak self] _ in
+                self?.sendDiscoveredPeripherals()
+            }
+        }
+        
+        completion(nil, nil)
+    }
+    
+    private func sendDiscoveredPeripherals() {
         let connectedAccessories = EAAccessoryManager.shared().connectedAccessories
         
         for accessory in connectedAccessories {
@@ -97,8 +119,6 @@ class BTSession: Session {
                 self.sendRemoteRequest("didDiscoverPeripheral", withParams: peripheralData)
             }
         }
-        
-        completion(nil, nil)
     }
     
     private func connect(toDevice deviceId: Int, completion: @escaping JSONRPCCompletionHandler) {
