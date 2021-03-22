@@ -63,7 +63,7 @@ extension ViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         guard let url = webView.url else { return }
         
-        let isEditor = url.absoluteString.hasPrefix("https://scratch.mit.edu/projects/editor/")
+        let isEditor = url.absoluteString.hasPrefix("https://scratch.mit.edu/projects/")
         if isEditor {
             webView.evaluateJavaScript("document.documentElement.style.webkitUserSelect='none'")
             webView.evaluateJavaScript("document.documentElement.style.webkitTouchCallout='none'")
