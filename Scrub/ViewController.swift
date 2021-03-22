@@ -75,7 +75,7 @@ extension ViewController: WKNavigationDelegate {
 struct RPC: Codable {
     let method: Method
     let socketId: Int
-    let url: String?
+    let url: URL?
     let jsonrpc: String?
     
     enum Method: String, Codable {
@@ -108,10 +108,10 @@ extension ViewController: WKScriptMessageHandler {
                 let webSocket = WebSocket() { [weak self] (message) in
                     self?.sendJsonMessage(socketId: socketId, message: message)
                 }
-                if url.hasSuffix("/ble") {
+                if url.lastPathComponent == "ble" {
                     sessions[socketId] = try? BLESession(withSocket: webSocket)
                 }
-                if url.hasSuffix("/bt") {
+                if url.lastPathComponent == "bt" {
                     sessions[socketId] = try? BTSession(withSocket: webSocket)
                 }
                 
