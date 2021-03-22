@@ -45,7 +45,7 @@ class BTSession: Session {
             }
         case .discovery:
             if method == "connect" {
-                if let peripheralId = params["peripheralId"] as? String {
+                if let peripheralId = params["peripheralId"] as? Int {
                     connect(toDevice: peripheralId, completion: completion)
                 } else {
                     completion(nil, JSONRPCError.invalidParams(data: "peripheralId required"))
@@ -89,7 +89,7 @@ class BTSession: Session {
             }
             
             let peripheralData: [String: Any] = [
-                "peripheralId": String(accessory.connectionID),
+                "peripheralId": accessory.connectionID,
                 "name": name,
                 "rssi": RSSI.unsupported.rawValue ?? 0
             ]
@@ -101,11 +101,10 @@ class BTSession: Session {
         completion(nil, nil)
     }
     
-    private func connect(toDevice deviceId: String, completion: @escaping JSONRPCCompletionHandler) {
+    private func connect(toDevice deviceId: Int, completion: @escaping JSONRPCCompletionHandler) {
         let connectedAccessories = EAAccessoryManager.shared().connectedAccessories
         
-        guard let connectionID = Int(deviceId),
-              let accessory = connectedAccessories.first(where: {$0.connectionID == connectionID}),
+        guard let accessory = connectedAccessories.first(where: {$0.connectionID == deviceId}),
               let protocolString = accessory.protocolStrings.first,
               let session = EASession(accessory: accessory, forProtocol: protocolString) else {
             completion(nil, JSONRPCError.invalidRequest(data: "Device \(deviceId) not available for connection"))
