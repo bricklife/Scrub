@@ -65,11 +65,8 @@ extension ViewController: WKNavigationDelegate {
         
         let isEditor = url.absoluteString.hasPrefix("https://scratch.mit.edu/projects/editor/")
         if isEditor {
-            webView.scrollView.isScrollEnabled = false
             webView.evaluateJavaScript("document.documentElement.style.webkitUserSelect='none'")
             webView.evaluateJavaScript("document.documentElement.style.webkitTouchCallout='none'")
-        } else {
-            webView.scrollView.isScrollEnabled = true
         }
     }
     
