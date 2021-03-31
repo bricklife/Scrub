@@ -18,6 +18,9 @@ class ViewController: UIViewController {
     
     private var cancellables: Set<AnyCancellable> = []
     
+    @Published private(set) var url: URL? = nil
+    @Published private(set) var isLoading: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,7 +40,10 @@ class ViewController: UIViewController {
             self?.present(vc, animated: true)
         }
         
-        webView.publisher(for: \.url).compactMap({$0}).sink() { [weak self] (url) in
+        webView.publisher(for: \.url).assign(to: \.url, on: self).store(in: &cancellables)
+        webView.publisher(for: \.isLoading).assign(to: \.isLoading, on: self).store(in: &cancellables)
+        
+        $url.compactMap({$0}).sink() { [weak self] (url) in
             print("url:", url)
             if self?.webView.isLoading == false {
                 self?.changeWebViewStyles()
