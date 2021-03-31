@@ -45,7 +45,7 @@ class ScratchLink {
     }
 
     _postMessage(message) {
-        webkit.messageHandlers.rpc.postMessage(JSON.stringify(message));
+        webkit.messageHandlers.scratchLink.postMessage(JSON.stringify(message));
     }
 
     handleMessage(message) {

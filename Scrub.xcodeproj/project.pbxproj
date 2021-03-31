@@ -13,8 +13,9 @@
 		CB3FBCF72605D98C008FE5C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3FBCF52605D98C008FE5C2 /* Main.storyboard */; };
 		CB3FBCF92605D98C008FE5C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */; };
 		CB3FBCFC2605D98C008FE5C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3FBCFA2605D98C008FE5C2 /* LaunchScreen.storyboard */; };
-		CB6B38882608D6F300D148C5 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B38872608D6F300D148C5 /* SessionManager.swift */; };
 		CB853BD32606F08D005A2772 /* BTSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB853BD22606F08D005A2772 /* BTSession.swift */; };
+		CBB76FEF261477C40045CE7E /* BlobDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB76FEE261477C40045CE7E /* BlobDownloader.swift */; };
+		CBB76FF1261479F10045CE7E /* JavaScriptLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB76FF0261479F10045CE7E /* JavaScriptLoader.swift */; };
 		CBEDE2122605E57D0071628C /* BLESession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDE2042605E57D0071628C /* BLESession.swift */; };
 		CBEDE2132605E57D0071628C /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDE2052605E57D0071628C /* Session.swift */; };
 		CBEDE2142605E57D0071628C /* JSONRPCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDE2062605E57D0071628C /* JSONRPCError.swift */; };
@@ -31,7 +32,7 @@
 		CBEDE23E2605EBB50071628C /* PerfectHTTP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBEDE2362605EB830071628C /* PerfectHTTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CBEDE23F2605EBB50071628C /* PerfectWebSockets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBEDE2382605EB830071628C /* PerfectWebSockets.framework */; };
 		CBEDE2402605EBB50071628C /* PerfectWebSockets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBEDE2382605EB830071628C /* PerfectWebSockets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CBEDE244260646F20071628C /* download.js in Resources */ = {isa = PBXBuildFile; fileRef = CBEDE243260646F20071628C /* download.js */; };
+		CBEDE244260646F20071628C /* download-blob.js in Resources */ = {isa = PBXBuildFile; fileRef = CBEDE243260646F20071628C /* download-blob.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,8 +76,9 @@
 		CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB3FBCFB2605D98C008FE5C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB3FBCFD2605D98C008FE5C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CB6B38872608D6F300D148C5 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		CB853BD22606F08D005A2772 /* BTSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTSession.swift; sourceTree = "<group>"; };
+		CBB76FEE261477C40045CE7E /* BlobDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlobDownloader.swift; sourceTree = "<group>"; };
+		CBB76FF0261479F10045CE7E /* JavaScriptLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptLoader.swift; sourceTree = "<group>"; };
 		CBEDE2042605E57D0071628C /* BLESession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLESession.swift; sourceTree = "<group>"; };
 		CBEDE2052605E57D0071628C /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		CBEDE2062605E57D0071628C /* JSONRPCError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONRPCError.swift; sourceTree = "<group>"; };
@@ -90,7 +92,7 @@
 		CBEDE2222605E62C0071628C /* WebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
 		CBEDE2242605E74F0071628C /* inject-scratch-link.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "inject-scratch-link.js"; sourceTree = "<group>"; };
 		CBEDE22A2605EB830071628C /* DummyFrameworks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = DummyFrameworks.xcodeproj; sourceTree = "<group>"; };
-		CBEDE243260646F20071628C /* download.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = download.js; sourceTree = "<group>"; };
+		CBEDE243260646F20071628C /* download-blob.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "download-blob.js"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,11 +134,12 @@
 				CB3FBCF12605D98B008FE5C2 /* SceneDelegate.swift */,
 				CB3FBCF32605D98B008FE5C2 /* ViewController.swift */,
 				CBEDE2202605E5DE0071628C /* ScratchLink.swift */,
+				CBB76FEE261477C40045CE7E /* BlobDownloader.swift */,
+				CBB76FF0261479F10045CE7E /* JavaScriptLoader.swift */,
 				CBEDE2222605E62C0071628C /* WebSocket.swift */,
 				CB853BD22606F08D005A2772 /* BTSession.swift */,
-				CB6B38872608D6F300D148C5 /* SessionManager.swift */,
 				CBEDE2242605E74F0071628C /* inject-scratch-link.js */,
-				CBEDE243260646F20071628C /* download.js */,
+				CBEDE243260646F20071628C /* download-blob.js */,
 				CB3FBCF52605D98C008FE5C2 /* Main.storyboard */,
 				CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */,
 				CB3FBCFA2605D98C008FE5C2 /* LaunchScreen.storyboard */,
@@ -271,7 +274,7 @@
 				CB3FBCF92605D98C008FE5C2 /* Assets.xcassets in Resources */,
 				CBEDE2252605E7500071628C /* inject-scratch-link.js in Resources */,
 				CB3FBCF72605D98C008FE5C2 /* Main.storyboard in Resources */,
-				CBEDE244260646F20071628C /* download.js in Resources */,
+				CBEDE244260646F20071628C /* download-blob.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,10 +296,11 @@
 				CBEDE2122605E57D0071628C /* BLESession.swift in Sources */,
 				CBEDE2172605E57D0071628C /* DispatchSemaphore.swift in Sources */,
 				CB3FBCF22605D98B008FE5C2 /* SceneDelegate.swift in Sources */,
+				CBB76FF1261479F10045CE7E /* JavaScriptLoader.swift in Sources */,
 				CBEDE21F2605E57D0071628C /* CBPeripheralDelegateHelper.swift in Sources */,
 				CBEDE21C2605E57D0071628C /* CBCentralManagerDelegateHelper.swift in Sources */,
+				CBB76FEF261477C40045CE7E /* BlobDownloader.swift in Sources */,
 				CBEDE2212605E5DE0071628C /* ScratchLink.swift in Sources */,
-				CB6B38882608D6F300D148C5 /* SessionManager.swift in Sources */,
 				CBEDE2232605E62C0071628C /* WebSocket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
