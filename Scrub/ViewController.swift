@@ -37,9 +37,10 @@ class ViewController: UIViewController {
             self?.present(vc, animated: true)
         }
         
-        webView.publisher(for: \.url).sink() { [weak self] (url) in
-            if url != nil, self?.webView.isLoading == false {
-                self?.setStyles()
+        webView.publisher(for: \.url).compactMap({$0}).sink() { [weak self] (url) in
+            print("url:", url)
+            if self?.webView.isLoading == false {
+                self?.changeWebViewStyles()
             }
         }.store(in: &cancellables)
         
@@ -50,7 +51,7 @@ class ViewController: UIViewController {
         webView.load(request)
     }
     
-    private func setStyles() {
+    private func changeWebViewStyles() {
         webView.evaluateJavaScript("document.getElementsByClassName('blocklyToolboxDiv').length > 0") { [weak self] (result, error) in
             let isScratchEditor = result as? Bool ?? false
             print("isScratchEditor:", isScratchEditor)
@@ -84,6 +85,6 @@ extension ViewController: WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        setStyles()
+        changeWebViewStyles()
     }
 }
