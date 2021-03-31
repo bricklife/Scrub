@@ -29,7 +29,7 @@ class ScratchLink {
         this._postMessage({
             method: 'close',
             socketId: this.socketId
-        })
+        });
 
         this.onclose();
 
