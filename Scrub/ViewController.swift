@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     private let scratchLink = ScratchLink()
     private let blobDownloader = BlobDownloader()
     
-    var cancellables: Set<AnyCancellable> = []
+    private var cancellables: Set<AnyCancellable> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,20 +70,17 @@ extension ViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         print("Requested", navigationAction.request)
         
-        guard let url = navigationAction.request.url else {
-            decisionHandler(.allow)
-            return
-        }
-        
-        if url.scheme == "blob" {
+        if let url = navigationAction.request.url, url.scheme == "blob" {
             blobDownloader.downloadBlob()
             decisionHandler(.cancel)
             return
         }
         
-        scratchLink.closeAllSessions()
-        
         decisionHandler(.allow)
+    }
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        scratchLink.closeAllSessions()
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
