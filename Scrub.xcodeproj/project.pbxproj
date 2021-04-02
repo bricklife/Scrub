@@ -7,13 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CB3FBCF02605D98B008FE5C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3FBCEF2605D98B008FE5C2 /* AppDelegate.swift */; };
-		CB3FBCF22605D98B008FE5C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3FBCF12605D98B008FE5C2 /* SceneDelegate.swift */; };
-		CB3FBCF42605D98B008FE5C2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3FBCF32605D98B008FE5C2 /* ViewController.swift */; };
-		CB3FBCF72605D98C008FE5C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3FBCF52605D98C008FE5C2 /* Main.storyboard */; };
 		CB3FBCF92605D98C008FE5C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */; };
 		CB3FBCFC2605D98C008FE5C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3FBCFA2605D98C008FE5C2 /* LaunchScreen.storyboard */; };
 		CB6F7A3E2616E49F007C2230 /* ScratchWebKit in Frameworks */ = {isa = PBXBuildFile; productRef = CB6F7A3D2616E49F007C2230 /* ScratchWebKit */; };
+		CB7D42DB2617096C005C86D0 /* ScrubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D42DA2617096C005C86D0 /* ScrubApp.swift */; };
+		CB7D42F9261709F4005C86D0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D42F8261709F4005C86D0 /* ContentView.swift */; };
+		CB7D42FB26170A9E005C86D0 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D42FA26170A9E005C86D0 /* WebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,14 +30,13 @@
 
 /* Begin PBXFileReference section */
 		CB3FBCEC2605D98B008FE5C2 /* Scrub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scrub.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CB3FBCEF2605D98B008FE5C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CB3FBCF12605D98B008FE5C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CB3FBCF32605D98B008FE5C2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CB3FBCF62605D98C008FE5C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB3FBCFB2605D98C008FE5C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB3FBCFD2605D98C008FE5C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB6F7A3C2616E44E007C2230 /* ScratchWebKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ScratchWebKit; sourceTree = "<group>"; };
+		CB7D42DA2617096C005C86D0 /* ScrubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubApp.swift; sourceTree = "<group>"; };
+		CB7D42F8261709F4005C86D0 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CB7D42FA26170A9E005C86D0 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,10 +72,9 @@
 		CB3FBCEE2605D98B008FE5C2 /* Scrub */ = {
 			isa = PBXGroup;
 			children = (
-				CB3FBCEF2605D98B008FE5C2 /* AppDelegate.swift */,
-				CB3FBCF12605D98B008FE5C2 /* SceneDelegate.swift */,
-				CB3FBCF32605D98B008FE5C2 /* ViewController.swift */,
-				CB3FBCF52605D98C008FE5C2 /* Main.storyboard */,
+				CB7D42DA2617096C005C86D0 /* ScrubApp.swift */,
+				CB7D42F8261709F4005C86D0 /* ContentView.swift */,
+				CB7D42FA26170A9E005C86D0 /* WebView.swift */,
 				CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */,
 				CB3FBCFA2605D98C008FE5C2 /* LaunchScreen.storyboard */,
 				CB3FBCFD2605D98C008FE5C2 /* Info.plist */,
@@ -127,6 +124,7 @@
 				TargetAttributes = {
 					CB3FBCEB2605D98B008FE5C2 = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 				};
 			};
@@ -155,7 +153,6 @@
 			files = (
 				CB3FBCFC2605D98C008FE5C2 /* LaunchScreen.storyboard in Resources */,
 				CB3FBCF92605D98C008FE5C2 /* Assets.xcassets in Resources */,
-				CB3FBCF72605D98C008FE5C2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,23 +163,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB3FBCF42605D98B008FE5C2 /* ViewController.swift in Sources */,
-				CB3FBCF02605D98B008FE5C2 /* AppDelegate.swift in Sources */,
-				CB3FBCF22605D98B008FE5C2 /* SceneDelegate.swift in Sources */,
+				CB7D42FB26170A9E005C86D0 /* WebView.swift in Sources */,
+				CB7D42F9261709F4005C86D0 /* ContentView.swift in Sources */,
+				CB7D42DB2617096C005C86D0 /* ScrubApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CB3FBCF52605D98C008FE5C2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CB3FBCF62605D98C008FE5C2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CB3FBCFA2605D98C008FE5C2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -315,15 +304,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UV6TAX3ANB;
 				INFOPLIST_FILE = Scrub/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bricklife.scrub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -334,9 +326,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UV6TAX3ANB;
 				INFOPLIST_FILE = Scrub/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
