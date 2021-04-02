@@ -18,6 +18,8 @@ public class ScratchWebViewController: UIViewController {
     
     private var cancellables: Set<AnyCancellable> = []
     
+    public weak var delegate: ScratchWebViewControllerDelegate?
+    
     @Published public private(set) var url: URL? = nil
     @Published public private(set) var isLoading: Bool = false
     
@@ -79,19 +81,6 @@ public class ScratchWebViewController: UIViewController {
             }
         }
     }
-    
-    private func downloadBlob() {
-        blobDownloader.downloadBlob() { [weak self] (url) in
-            let vc: UIDocumentPickerViewController
-            if #available(iOS 14.0, *) {
-                vc = UIDocumentPickerViewController(forExporting: [url])
-            } else {
-                vc = UIDocumentPickerViewController(url: url, in: .exportToService)
-            }
-            vc.shouldShowFileExtensions = true
-            self?.present(vc, animated: true)
-        }
-    }
 }
 
 extension ScratchWebViewController: WKNavigationDelegate {
@@ -100,7 +89,9 @@ extension ScratchWebViewController: WKNavigationDelegate {
         print("Requested", navigationAction.request)
         
         if let url = navigationAction.request.url, url.scheme == "blob" {
-            downloadBlob()
+            blobDownloader.downloadBlob { [weak self] (url) in
+                self?.delegate?.didDownloadFile(at: url)
+            }
             decisionHandler(.cancel)
             return
         }
@@ -115,4 +106,8 @@ extension ScratchWebViewController: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         changeWebViewStyles()
     }
+}
+
+@objc public protocol ScratchWebViewControllerDelegate {
+    @objc func didDownloadFile(at url: URL)
 }

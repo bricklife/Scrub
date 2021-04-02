@@ -20,6 +20,8 @@ class ViewController: UIViewController {
         
         addWebViewController()
         
+        webViewController.delegate = self
+        
         webViewController.$isLoading.sink { (isLoading) in
             print("isLoading", isLoading)
         }.store(in: &cancellables)
@@ -42,5 +44,19 @@ class ViewController: UIViewController {
         ])
         
         webViewController.didMove(toParent: self)
+    }
+}
+
+extension ViewController: ScratchWebViewControllerDelegate {
+    
+    func didDownloadFile(at url: URL) {
+        let vc: UIDocumentPickerViewController
+        if #available(iOS 14.0, *) {
+            vc = UIDocumentPickerViewController(forExporting: [url])
+        } else {
+            vc = UIDocumentPickerViewController(url: url, in: .exportToService)
+        }
+        vc.shouldShowFileExtensions = true
+        present(vc, animated: true)
     }
 }
