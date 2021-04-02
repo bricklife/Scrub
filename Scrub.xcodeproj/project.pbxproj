@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,44 +13,8 @@
 		CB3FBCF72605D98C008FE5C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3FBCF52605D98C008FE5C2 /* Main.storyboard */; };
 		CB3FBCF92605D98C008FE5C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */; };
 		CB3FBCFC2605D98C008FE5C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3FBCFA2605D98C008FE5C2 /* LaunchScreen.storyboard */; };
-		CB853BD32606F08D005A2772 /* BTSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB853BD22606F08D005A2772 /* BTSession.swift */; };
-		CBB76FEF261477C40045CE7E /* BlobDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB76FEE261477C40045CE7E /* BlobDownloader.swift */; };
-		CBB76FF1261479F10045CE7E /* JavaScriptLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB76FF0261479F10045CE7E /* JavaScriptLoader.swift */; };
-		CBEDE2122605E57D0071628C /* BLESession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDE2042605E57D0071628C /* BLESession.swift */; };
-		CBEDE2132605E57D0071628C /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDE2052605E57D0071628C /* Session.swift */; };
-		CBEDE2142605E57D0071628C /* JSONRPCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDE2062605E57D0071628C /* JSONRPCError.swift */; };
-		CBEDE2152605E57D0071628C /* RSSI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDE2072605E57D0071628C /* RSSI.swift */; };
-		CBEDE2172605E57D0071628C /* DispatchSemaphore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDE2092605E57D0071628C /* DispatchSemaphore.swift */; };
-		CBEDE2182605E57D0071628C /* GATTHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDE20A2605E57D0071628C /* GATTHelpers.swift */; };
-		CBEDE21C2605E57D0071628C /* CBCentralManagerDelegateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDE20E2605E57D0071628C /* CBCentralManagerDelegateHelper.swift */; };
-		CBEDE21D2605E57D0071628C /* EncodingHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDE20F2605E57D0071628C /* EncodingHelpers.swift */; };
-		CBEDE21F2605E57D0071628C /* CBPeripheralDelegateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDE2112605E57D0071628C /* CBPeripheralDelegateHelper.swift */; };
-		CBEDE2212605E5DE0071628C /* ScratchLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDE2202605E5DE0071628C /* ScratchLink.swift */; };
-		CBEDE2232605E62C0071628C /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDE2222605E62C0071628C /* WebSocket.swift */; };
-		CBEDE2252605E7500071628C /* inject-scratch-link.js in Resources */ = {isa = PBXBuildFile; fileRef = CBEDE2242605E74F0071628C /* inject-scratch-link.js */; };
-		CBEDE23D2605EBB50071628C /* PerfectHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBEDE2362605EB830071628C /* PerfectHTTP.framework */; };
-		CBEDE23E2605EBB50071628C /* PerfectHTTP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBEDE2362605EB830071628C /* PerfectHTTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CBEDE23F2605EBB50071628C /* PerfectWebSockets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBEDE2382605EB830071628C /* PerfectWebSockets.framework */; };
-		CBEDE2402605EBB50071628C /* PerfectWebSockets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBEDE2382605EB830071628C /* PerfectWebSockets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CBEDE244260646F20071628C /* download-blob.js in Resources */ = {isa = PBXBuildFile; fileRef = CBEDE243260646F20071628C /* download-blob.js */; };
+		CB6F7A3E2616E49F007C2230 /* ScratchWebKit in Frameworks */ = {isa = PBXBuildFile; productRef = CB6F7A3D2616E49F007C2230 /* ScratchWebKit */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		CBEDE2352605EB830071628C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CBEDE22A2605EB830071628C /* DummyFrameworks.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CBA5B54E2605E248009B670E;
-			remoteInfo = PerfectHTTP;
-		};
-		CBEDE2372605EB830071628C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CBEDE22A2605EB830071628C /* DummyFrameworks.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CBA5B55B2605E25C009B670E;
-			remoteInfo = PerfectWebSockets;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		CBEDE2022605E4D20071628C /* Embed Frameworks */ = {
@@ -59,8 +23,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CBEDE2402605EBB50071628C /* PerfectWebSockets.framework in Embed Frameworks */,
-				CBEDE23E2605EBB50071628C /* PerfectHTTP.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,23 +38,7 @@
 		CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB3FBCFB2605D98C008FE5C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB3FBCFD2605D98C008FE5C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CB853BD22606F08D005A2772 /* BTSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTSession.swift; sourceTree = "<group>"; };
-		CBB76FEE261477C40045CE7E /* BlobDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlobDownloader.swift; sourceTree = "<group>"; };
-		CBB76FF0261479F10045CE7E /* JavaScriptLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptLoader.swift; sourceTree = "<group>"; };
-		CBEDE2042605E57D0071628C /* BLESession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLESession.swift; sourceTree = "<group>"; };
-		CBEDE2052605E57D0071628C /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		CBEDE2062605E57D0071628C /* JSONRPCError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONRPCError.swift; sourceTree = "<group>"; };
-		CBEDE2072605E57D0071628C /* RSSI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSI.swift; sourceTree = "<group>"; };
-		CBEDE2092605E57D0071628C /* DispatchSemaphore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchSemaphore.swift; sourceTree = "<group>"; };
-		CBEDE20A2605E57D0071628C /* GATTHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GATTHelpers.swift; sourceTree = "<group>"; };
-		CBEDE20E2605E57D0071628C /* CBCentralManagerDelegateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCentralManagerDelegateHelper.swift; sourceTree = "<group>"; };
-		CBEDE20F2605E57D0071628C /* EncodingHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingHelpers.swift; sourceTree = "<group>"; };
-		CBEDE2112605E57D0071628C /* CBPeripheralDelegateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBPeripheralDelegateHelper.swift; sourceTree = "<group>"; };
-		CBEDE2202605E5DE0071628C /* ScratchLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScratchLink.swift; sourceTree = "<group>"; };
-		CBEDE2222605E62C0071628C /* WebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
-		CBEDE2242605E74F0071628C /* inject-scratch-link.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "inject-scratch-link.js"; sourceTree = "<group>"; };
-		CBEDE22A2605EB830071628C /* DummyFrameworks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = DummyFrameworks.xcodeproj; sourceTree = "<group>"; };
-		CBEDE243260646F20071628C /* download-blob.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "download-blob.js"; sourceTree = "<group>"; };
+		CB6F7A3C2616E44E007C2230 /* ScratchWebKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ScratchWebKit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBEDE23F2605EBB50071628C /* PerfectWebSockets.framework in Frameworks */,
-				CBEDE23D2605EBB50071628C /* PerfectHTTP.framework in Frameworks */,
+				CB6F7A3E2616E49F007C2230 /* ScratchWebKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,7 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				CB3FBCEE2605D98B008FE5C2 /* Scrub */,
-				CBEDE2292605EB830071628C /* DummyFrameworks */,
+				CB6F7A3C2616E44E007C2230 /* ScratchWebKit */,
 				CB3FBCED2605D98B008FE5C2 /* Products */,
 				CBEDE1EA2605E3F30071628C /* Frameworks */,
 			);
@@ -129,17 +74,9 @@
 		CB3FBCEE2605D98B008FE5C2 /* Scrub */ = {
 			isa = PBXGroup;
 			children = (
-				CBEDE2032605E57D0071628C /* scratch-link */,
 				CB3FBCEF2605D98B008FE5C2 /* AppDelegate.swift */,
 				CB3FBCF12605D98B008FE5C2 /* SceneDelegate.swift */,
 				CB3FBCF32605D98B008FE5C2 /* ViewController.swift */,
-				CBEDE2202605E5DE0071628C /* ScratchLink.swift */,
-				CBB76FEE261477C40045CE7E /* BlobDownloader.swift */,
-				CBB76FF0261479F10045CE7E /* JavaScriptLoader.swift */,
-				CBEDE2222605E62C0071628C /* WebSocket.swift */,
-				CB853BD22606F08D005A2772 /* BTSession.swift */,
-				CBEDE2242605E74F0071628C /* inject-scratch-link.js */,
-				CBEDE243260646F20071628C /* download-blob.js */,
 				CB3FBCF52605D98C008FE5C2 /* Main.storyboard */,
 				CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */,
 				CB3FBCFA2605D98C008FE5C2 /* LaunchScreen.storyboard */,
@@ -153,40 +90,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		CBEDE2032605E57D0071628C /* scratch-link */ = {
-			isa = PBXGroup;
-			children = (
-				CBEDE2042605E57D0071628C /* BLESession.swift */,
-				CBEDE2052605E57D0071628C /* Session.swift */,
-				CBEDE2062605E57D0071628C /* JSONRPCError.swift */,
-				CBEDE2072605E57D0071628C /* RSSI.swift */,
-				CBEDE2092605E57D0071628C /* DispatchSemaphore.swift */,
-				CBEDE20A2605E57D0071628C /* GATTHelpers.swift */,
-				CBEDE20E2605E57D0071628C /* CBCentralManagerDelegateHelper.swift */,
-				CBEDE20F2605E57D0071628C /* EncodingHelpers.swift */,
-				CBEDE2112605E57D0071628C /* CBPeripheralDelegateHelper.swift */,
-			);
-			name = "scratch-link";
-			path = "scratch-link/macOS/Sources/scratch-link";
-			sourceTree = "<group>";
-		};
-		CBEDE2292605EB830071628C /* DummyFrameworks */ = {
-			isa = PBXGroup;
-			children = (
-				CBEDE22A2605EB830071628C /* DummyFrameworks.xcodeproj */,
-			);
-			path = DummyFrameworks;
-			sourceTree = "<group>";
-		};
-		CBEDE22B2605EB830071628C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				CBEDE2362605EB830071628C /* PerfectHTTP.framework */,
-				CBEDE2382605EB830071628C /* PerfectWebSockets.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,6 +109,9 @@
 			dependencies = (
 			);
 			name = Scrub;
+			packageProductDependencies = (
+				CB6F7A3D2616E49F007C2230 /* ScratchWebKit */,
+			);
 			productName = Scrub;
 			productReference = CB3FBCEC2605D98B008FE5C2 /* Scrub.app */;
 			productType = "com.apple.product-type.application";
@@ -235,35 +141,12 @@
 			mainGroup = CB3FBCE32605D98B008FE5C2;
 			productRefGroup = CB3FBCED2605D98B008FE5C2 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = CBEDE22B2605EB830071628C /* Products */;
-					ProjectRef = CBEDE22A2605EB830071628C /* DummyFrameworks.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				CB3FBCEB2605D98B008FE5C2 /* Scrub */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		CBEDE2362605EB830071628C /* PerfectHTTP.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = PerfectHTTP.framework;
-			remoteRef = CBEDE2352605EB830071628C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		CBEDE2382605EB830071628C /* PerfectWebSockets.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = PerfectWebSockets.framework;
-			remoteRef = CBEDE2372605EB830071628C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		CB3FBCEA2605D98B008FE5C2 /* Resources */ = {
@@ -272,9 +155,7 @@
 			files = (
 				CB3FBCFC2605D98C008FE5C2 /* LaunchScreen.storyboard in Resources */,
 				CB3FBCF92605D98C008FE5C2 /* Assets.xcassets in Resources */,
-				CBEDE2252605E7500071628C /* inject-scratch-link.js in Resources */,
 				CB3FBCF72605D98C008FE5C2 /* Main.storyboard in Resources */,
-				CBEDE244260646F20071628C /* download-blob.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,23 +166,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBEDE2142605E57D0071628C /* JSONRPCError.swift in Sources */,
-				CBEDE2152605E57D0071628C /* RSSI.swift in Sources */,
-				CBEDE2132605E57D0071628C /* Session.swift in Sources */,
 				CB3FBCF42605D98B008FE5C2 /* ViewController.swift in Sources */,
 				CB3FBCF02605D98B008FE5C2 /* AppDelegate.swift in Sources */,
-				CBEDE2182605E57D0071628C /* GATTHelpers.swift in Sources */,
-				CBEDE21D2605E57D0071628C /* EncodingHelpers.swift in Sources */,
-				CB853BD32606F08D005A2772 /* BTSession.swift in Sources */,
-				CBEDE2122605E57D0071628C /* BLESession.swift in Sources */,
-				CBEDE2172605E57D0071628C /* DispatchSemaphore.swift in Sources */,
 				CB3FBCF22605D98B008FE5C2 /* SceneDelegate.swift in Sources */,
-				CBB76FF1261479F10045CE7E /* JavaScriptLoader.swift in Sources */,
-				CBEDE21F2605E57D0071628C /* CBPeripheralDelegateHelper.swift in Sources */,
-				CBEDE21C2605E57D0071628C /* CBCentralManagerDelegateHelper.swift in Sources */,
-				CBB76FEF261477C40045CE7E /* BlobDownloader.swift in Sources */,
-				CBEDE2212605E5DE0071628C /* ScratchLink.swift in Sources */,
-				CBEDE2232605E62C0071628C /* WebSocket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +370,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CB6F7A3D2616E49F007C2230 /* ScratchWebKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ScratchWebKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CB3FBCE42605D98B008FE5C2 /* Project object */;
 }

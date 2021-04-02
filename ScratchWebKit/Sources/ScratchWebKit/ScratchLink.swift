@@ -17,7 +17,7 @@ enum SerializationError: Error {
     case internalError(String)
 }
 
-class ScratchLink: NSObject {
+public class ScratchLink: NSObject {
     
     private struct Message: Codable {
         let method: Method
@@ -32,20 +32,20 @@ class ScratchLink: NSObject {
         }
     }
     
-    weak var webView: WKWebView?
+    public weak var webView: WKWebView?
     
     private var sessions = [Int: Session]()
     
     private let sessionQueue = DispatchQueue.global(qos: .userInitiated)
     
-    func setup(configuration: WKWebViewConfiguration) {
+    public func setup(configuration: WKWebViewConfiguration) {
         let js = JavaScriptLoader.load(filename: "inject-scratch-link")
         let script = WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
         configuration.userContentController.addUserScript(script)
         configuration.userContentController.add(self, name: "scratchLink")
     }
     
-    func closeAllSessions() {
+    public func closeAllSessions() {
         sessions.values.forEach { (session) in
             session.sessionWasClosed()
         }
@@ -55,7 +55,7 @@ class ScratchLink: NSObject {
 
 extension ScratchLink: WKScriptMessageHandler {
     
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+    public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         guard let jsonString = message.body as? String else { return }
         guard let jsonData = jsonString.data(using: .utf8) else { return }
         

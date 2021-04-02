@@ -8,6 +8,7 @@
 import UIKit
 import WebKit
 import Combine
+import ScratchWebKit
 
 class ViewController: UIViewController {
     

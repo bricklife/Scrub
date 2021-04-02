@@ -8,21 +8,21 @@
 import Foundation
 import WebKit
 
-class BlobDownloader: NSObject {
+public class BlobDownloader: NSObject {
     
     private struct Message: Codable {
         let filename: String
         let dataUri: URL
     }
     
-    weak var webView: WKWebView?
-    var downloadCompletion: ((URL) -> Void)?
+    public weak var webView: WKWebView?
+    public var downloadCompletion: ((URL) -> Void)?
     
-    func setup(configuration: WKWebViewConfiguration) {
+    public func setup(configuration: WKWebViewConfiguration) {
         configuration.userContentController.add(self, name: "download")
     }
     
-    func downloadBlob() {
+    public func downloadBlob() {
         let js = JavaScriptLoader.load(filename: "download-blob")
         webView?.evaluateJavaScript(js)
     }
@@ -30,7 +30,7 @@ class BlobDownloader: NSObject {
 
 extension BlobDownloader: WKScriptMessageHandler {
     
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+    public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         guard let jsonString = message.body as? String else { return }
         guard let jsonData = jsonString.data(using: .utf8) else { return }
         
