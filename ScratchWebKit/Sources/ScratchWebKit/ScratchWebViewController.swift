@@ -45,21 +45,8 @@ public class ScratchWebViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        scratchLink.setup(configuration: webView.configuration)
-        scratchLink.webView = webView
-        
-        blobDownloader.setup(configuration: webView.configuration)
-        blobDownloader.webView = webView
-        blobDownloader.downloadCompletion = { [weak self] (url) in
-            let vc: UIDocumentPickerViewController
-            if #available(iOS 14.0, *) {
-                vc = UIDocumentPickerViewController(forExporting: [url])
-            } else {
-                vc = UIDocumentPickerViewController(url: url, in: .exportToService)
-            }
-            vc.shouldShowFileExtensions = true
-            self?.present(vc, animated: true)
-        }
+        scratchLink.setup(webView: webView)
+        blobDownloader.setup(webView: webView)
         
         webView.publisher(for: \.url).assign(to: \.url, on: self).store(in: &cancellables)
         webView.publisher(for: \.isLoading).assign(to: \.isLoading, on: self).store(in: &cancellables)
@@ -92,6 +79,19 @@ public class ScratchWebViewController: UIViewController {
             }
         }
     }
+    
+    private func downloadBlob() {
+        blobDownloader.downloadBlob() { [weak self] (url) in
+            let vc: UIDocumentPickerViewController
+            if #available(iOS 14.0, *) {
+                vc = UIDocumentPickerViewController(forExporting: [url])
+            } else {
+                vc = UIDocumentPickerViewController(url: url, in: .exportToService)
+            }
+            vc.shouldShowFileExtensions = true
+            self?.present(vc, animated: true)
+        }
+    }
 }
 
 extension ScratchWebViewController: WKNavigationDelegate {
@@ -100,7 +100,7 @@ extension ScratchWebViewController: WKNavigationDelegate {
         print("Requested", navigationAction.request)
         
         if let url = navigationAction.request.url, url.scheme == "blob" {
-            blobDownloader.downloadBlob()
+            downloadBlob()
             decisionHandler(.cancel)
             return
         }

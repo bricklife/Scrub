@@ -32,17 +32,18 @@ public class ScratchLink: NSObject {
         }
     }
     
-    public weak var webView: WKWebView?
+    private weak var webView: WKWebView?
     
     private var sessions = [Int: Session]()
     
     private let sessionQueue = DispatchQueue.global(qos: .userInitiated)
     
-    public func setup(configuration: WKWebViewConfiguration) {
+    public func setup(webView: WKWebView) {
         let js = JavaScriptLoader.load(filename: "inject-scratch-link")
         let script = WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
-        configuration.userContentController.addUserScript(script)
-        configuration.userContentController.add(self, name: "scratchLink")
+        webView.configuration.userContentController.addUserScript(script)
+        webView.configuration.userContentController.add(self, name: "scratchLink")
+        self.webView = webView
     }
     
     public func closeAllSessions() {
