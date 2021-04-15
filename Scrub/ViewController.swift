@@ -50,12 +50,7 @@ class ViewController: UIViewController {
 extension ViewController: ScratchWebViewControllerDelegate {
     
     func didDownloadFile(at url: URL) {
-        let vc: UIDocumentPickerViewController
-        if #available(iOS 14.0, *) {
-            vc = UIDocumentPickerViewController(forExporting: [url])
-        } else {
-            vc = UIDocumentPickerViewController(url: url, in: .exportToService)
-        }
+        let vc = UIDocumentPickerViewController(forExporting: [url])
         vc.shouldShowFileExtensions = true
         present(vc, animated: true)
     }

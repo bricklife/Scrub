@@ -50,8 +50,8 @@ public class ScratchWebViewController: UIViewController {
         scratchLink.setup(webView: webView)
         blobDownloader.setup(webView: webView)
         
-        webView.publisher(for: \.url).assign(to: \.url, on: self).store(in: &cancellables)
-        webView.publisher(for: \.isLoading).assign(to: \.isLoading, on: self).store(in: &cancellables)
+        webView.publisher(for: \.url).assign(to: &$url)
+        webView.publisher(for: \.isLoading).assign(to: &$isLoading)
         
         $url.compactMap({$0}).sink() { [weak self] (url) in
             print("url:", url)
