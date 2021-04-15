@@ -11,7 +11,7 @@ import Combine
 
 public class ScratchWebViewController: UIViewController {
     
-    private var webView: WKWebView!
+    private let webView: WKWebView
     
     private let scratchLink = ScratchLink()
     private let blobDownloader = BlobDownloader()
@@ -24,6 +24,15 @@ public class ScratchWebViewController: UIViewController {
     @Published public private(set) var isLoading: Bool = false
     
     public init() {
+        let configuration = WKWebViewConfiguration()
+        configuration.allowsAirPlayForMediaPlayback = false
+        configuration.allowsInlineMediaPlayback = true
+        configuration.allowsPictureInPictureMediaPlayback = false
+        configuration.mediaTypesRequiringUserActionForPlayback = []
+        configuration.dataDetectorTypes = []
+        
+        self.webView = WKWebView(frame: .zero, configuration: configuration)
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -32,15 +41,6 @@ public class ScratchWebViewController: UIViewController {
     }
     
     public override func loadView() {
-        let configuration = WKWebViewConfiguration()
-        configuration.allowsAirPlayForMediaPlayback = false
-        configuration.allowsInlineMediaPlayback = true
-        configuration.allowsPictureInPictureMediaPlayback = false
-        configuration.mediaTypesRequiringUserActionForPlayback = []
-        configuration.dataDetectorTypes = []
-        
-        webView = WKWebView(frame: .zero, configuration: configuration)
-        
         view = webView
     }
     
