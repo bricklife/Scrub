@@ -39,7 +39,7 @@ class Preferences: ObservableObject {
             UserDefaults.standard.setEnum(value, forKey: "launchingUrl")
         }.store(in: &cancellables)
         $customUrl.sink { (value) in
-            UserDefaults.standard.setValue(value, forKey: "$customUrl")
+            UserDefaults.standard.setValue(value, forKey: "customUrl")
         }.store(in: &cancellables)
     }
 }
