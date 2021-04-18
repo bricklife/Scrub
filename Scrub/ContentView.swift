@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject private var preferences: Preferences
+    
     var body: some View {
-        WebView(url: URL(string: "https://scratch.mit.edu/projects/editor/")!)
+        WebView(url: preferences.initialUrl)
     }
 }
 

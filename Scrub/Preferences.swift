@@ -12,7 +12,7 @@ class Preferences: ObservableObject {
     
     enum HomeUrl: String {
         case scratchHome
-        case customUrl
+        case custom
         case documentsFolder
     }
     
@@ -21,6 +21,9 @@ class Preferences: ObservableObject {
         case lastUrl
     }
     
+    let initialUrl: URL
+    let scratchHomeUrl = URL(string: "https://scratch.mit.edu/projects/editor/")!
+    
     @Published var homeUrl: HomeUrl
     @Published var launchingUrl: LaunchingUrl
     @Published var customUrl: String?
@@ -28,9 +31,26 @@ class Preferences: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     
     init() {
-        self.homeUrl = UserDefaults.standard.getEnum(forKey: "homeUrl") ?? .scratchHome
-        self.launchingUrl = UserDefaults.standard.getEnum(forKey: "launchingUrl") ?? .lastUrl
-        self.customUrl = UserDefaults.standard.string(forKey: "customUrl")
+        let homeUrl: HomeUrl = UserDefaults.standard.getEnum(forKey: "homeUrl") ?? .scratchHome
+        let launchingUrl: LaunchingUrl = UserDefaults.standard.getEnum(forKey: "launchingUrl") ?? .lastUrl
+        let customUrl = UserDefaults.standard.string(forKey: "customUrl")
+        
+        switch homeUrl {
+        case .scratchHome:
+            self.initialUrl = scratchHomeUrl
+        case .custom:
+            if let urlString = customUrl, let url = URL(string: urlString) {
+                self.initialUrl = url
+            } else {
+                self.initialUrl = scratchHomeUrl
+            }
+        case .documentsFolder:
+            self.initialUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("index.html")
+        }
+        
+        self.homeUrl = homeUrl
+        self.launchingUrl = launchingUrl
+        self.customUrl = customUrl
         
         $homeUrl.sink { (value) in
             UserDefaults.standard.setEnum(value, forKey: "homeUrl")

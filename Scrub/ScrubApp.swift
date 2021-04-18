@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct ScrubApp: App {
+    @StateObject private var preferences = Preferences()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(preferences)
         }
     }
 }
