@@ -8,6 +8,8 @@
 import Foundation
 import Combine
 
+private let ScratchHomeUrl = URL(string: "https://scratch.mit.edu/projects/editor/")!
+
 class Preferences: ObservableObject {
     
     enum HomeUrl: String {
@@ -22,28 +24,23 @@ class Preferences: ObservableObject {
     }
     
     let initialUrl: URL
-    let scratchHomeUrl = URL(string: "https://scratch.mit.edu/projects/editor/")!
     
     @Published var homeUrl: HomeUrl
     @Published var launchingUrl: LaunchingUrl
-    @Published var customUrl: String?
+    @Published var customUrl: String
     
     private var cancellables: Set<AnyCancellable> = []
     
     init() {
         let homeUrl: HomeUrl = UserDefaults.standard.getEnum(forKey: "homeUrl") ?? .scratchHome
         let launchingUrl: LaunchingUrl = UserDefaults.standard.getEnum(forKey: "launchingUrl") ?? .lastUrl
-        let customUrl = UserDefaults.standard.string(forKey: "customUrl")
+        let customUrl: String = UserDefaults.standard.string(forKey: "customUrl") ?? ""
         
         switch homeUrl {
         case .scratchHome:
-            self.initialUrl = scratchHomeUrl
+            self.initialUrl = ScratchHomeUrl
         case .custom:
-            if let urlString = customUrl, let url = URL(string: urlString) {
-                self.initialUrl = url
-            } else {
-                self.initialUrl = scratchHomeUrl
-            }
+            self.initialUrl = URL(string: customUrl) ?? ScratchHomeUrl
         case .documentsFolder:
             self.initialUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("index.html")
         }
