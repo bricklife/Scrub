@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import Combine
 import ScratchWebKit
 
 struct WebView: UIViewControllerRepresentable {
     
-    let url: URL
+    @ObservedObject var viewModel: WebViewModel
     
     private let webViewController = ScratchWebViewController()
     
@@ -22,7 +23,7 @@ struct WebView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> ScratchWebViewController {
         print(#function)
         webViewController.delegate = context.coordinator
-        webViewController.load(url: url)
+        webViewController.load(url: viewModel.initialUrl)
         return webViewController
     }
     
@@ -37,8 +38,14 @@ extension WebView {
         
         private let parent : WebView
         
+        private var cancellables: Set<AnyCancellable> = []
+        
         init(_ parent: WebView) {
             self.parent = parent
+            
+            parent.viewModel.requestedUrl.sink { (url) in
+                parent.webViewController.load(url: url)
+            }.store(in: &cancellables)
         }
         
         func didDownloadFile(at url: URL) {

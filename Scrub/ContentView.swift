@@ -10,13 +10,15 @@ import SwiftUI
 struct ContentView: View {
     
     @ObservedObject private var preferences: Preferences
+    @StateObject private var webViewModel: WebViewModel
     
     init(preferences: Preferences) {
         self.preferences = preferences
+        self._webViewModel = StateObject(wrappedValue: WebViewModel(preferences: preferences))
     }
     
     var body: some View {
-        WebView(url: preferences.initialUrl)
+        WebView(viewModel: webViewModel)
     }
 }
 
