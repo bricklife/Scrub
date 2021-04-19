@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject private var preferences: Preferences
+    
+    @ObservedObject private var preferences: Preferences
+    
+    init(preferences: Preferences) {
+        self.preferences = preferences
+    }
     
     var body: some View {
         WebView(url: preferences.initialUrl)
@@ -17,7 +22,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-            .environmentObject(Preferences())
+        ContentView(preferences: Preferences())
     }
 }
