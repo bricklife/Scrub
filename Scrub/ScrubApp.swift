@@ -14,7 +14,7 @@ struct ScrubApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView(preferences: preferences)
+            MainView(preferences: preferences)
         }
     }
 }

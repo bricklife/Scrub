@@ -13,7 +13,7 @@
 		CB3FBCFC2605D98C008FE5C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3FBCFA2605D98C008FE5C2 /* LaunchScreen.storyboard */; };
 		CB6F7A3E2616E49F007C2230 /* ScratchWebKit in Frameworks */ = {isa = PBXBuildFile; productRef = CB6F7A3D2616E49F007C2230 /* ScratchWebKit */; };
 		CB7D42DB2617096C005C86D0 /* ScrubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D42DA2617096C005C86D0 /* ScrubApp.swift */; };
-		CB7D42F9261709F4005C86D0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D42F8261709F4005C86D0 /* ContentView.swift */; };
+		CB7D42F9261709F4005C86D0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D42F8261709F4005C86D0 /* MainView.swift */; };
 		CB7D42FB26170A9E005C86D0 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D42FA26170A9E005C86D0 /* WebView.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,7 +39,7 @@
 		CB3FBCFD2605D98C008FE5C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB6F7A3C2616E44E007C2230 /* ScratchWebKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ScratchWebKit; sourceTree = "<group>"; };
 		CB7D42DA2617096C005C86D0 /* ScrubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubApp.swift; sourceTree = "<group>"; };
-		CB7D42F8261709F4005C86D0 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CB7D42F8261709F4005C86D0 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CB7D42FA26170A9E005C86D0 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,7 +78,7 @@
 			children = (
 				CB7D42DA2617096C005C86D0 /* ScrubApp.swift */,
 				CB0A07722629E4D4001EF560 /* Preferences.swift */,
-				CB7D42F8261709F4005C86D0 /* ContentView.swift */,
+				CB7D42F8261709F4005C86D0 /* MainView.swift */,
 				CB7D42FA26170A9E005C86D0 /* WebView.swift */,
 				CB1DAA50262D6EB0007F5531 /* WebViewModel.swift */,
 				CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */,
@@ -170,7 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB7D42FB26170A9E005C86D0 /* WebView.swift in Sources */,
-				CB7D42F9261709F4005C86D0 /* ContentView.swift in Sources */,
+				CB7D42F9261709F4005C86D0 /* MainView.swift in Sources */,
 				CB0A07732629E4D4001EF560 /* Preferences.swift in Sources */,
 				CB1DAA51262D6EB0007F5531 /* WebViewModel.swift in Sources */,
 				CB7D42DB2617096C005C86D0 /* ScrubApp.swift in Sources */,

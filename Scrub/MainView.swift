@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MainView.swift
 //  Scrub
 //
 //  Created by Shinichiro Oba on 2021/04/15.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainView: View {
     
     @ObservedObject private var preferences: Preferences
     @StateObject private var webViewModel: WebViewModel
@@ -24,6 +24,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(preferences: Preferences())
+        MainView(preferences: Preferences())
     }
 }
