@@ -27,7 +27,7 @@ struct WebView: UIViewControllerRepresentable {
         return webViewController
     }
     
-    func updateUIViewController(_ uiViewController: ScratchWebViewController, context: UIViewControllerRepresentableContext<WebView>) {
+    func updateUIViewController(_ uiViewController: ScratchWebViewController, context: Context) {
         print(#function)
     }
 }
