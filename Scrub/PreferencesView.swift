@@ -10,48 +10,60 @@ import SwiftUI
 struct PreferencesView: View {
     
     @ObservedObject var preferences: Preferences
-
+    
     var body: some View {
         Form {
             Section(header: Text("Home URL")) {
-            Button(action: {
-                preferences.homeUrl = .scratchHome
-            }) {
-                HStack {
-                    Text("Scratch Home").foregroundColor(.black)
-                    Spacer()
-                    if preferences.homeUrl == .scratchHome {
-                        Image(systemName: "checkmark")
-                    }
-                }
-            }
-            Button(action: {
-                preferences.homeUrl = .custom
-            }) {
-                VStack {
+                Button(action: {
+                    closeKeyboard()
+                    preferences.homeUrl = .scratchHome
+                }) {
                     HStack {
-                        Text("Custom").foregroundColor(.black)
+                        Text("Scratch Home").foregroundColor(.black)
                         Spacer()
-                        if preferences.homeUrl == .custom {
+                        if preferences.homeUrl == .scratchHome {
                             Image(systemName: "checkmark")
                         }
                     }
-                    TextField("https://", text: $preferences.customUrl)
                 }
-            }
-            Button(action: {
-                preferences.homeUrl = .documentsFolder
-            }) {
-                HStack {
-                    Text("Local Documents Folder").foregroundColor(.black)
-                    Spacer()
-                    if preferences.homeUrl == .documentsFolder {
-                        Image(systemName: "checkmark")
+                Button(action: {
+                    closeKeyboard()
+                    preferences.homeUrl = .custom
+                }) {
+                    VStack {
+                        HStack {
+                            Text("Custom").foregroundColor(.black)
+                            Spacer()
+                            if preferences.homeUrl == .custom {
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                        TextField("https://", text: $preferences.customUrl, onCommit: {
+                            preferences.homeUrl = .custom
+                        })
+                        .keyboardType(.URL)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
+                    }
+                }
+                Button(action: {
+                    closeKeyboard()
+                    preferences.homeUrl = .documentsFolder
+                }) {
+                    HStack {
+                        Text("Local Documents Folder").foregroundColor(.black)
+                        Spacer()
+                        if preferences.homeUrl == .documentsFolder {
+                            Image(systemName: "checkmark")
+                        }
                     }
                 }
             }
-            }
         }
+    }
+    
+    private func closeKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
 
