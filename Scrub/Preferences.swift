@@ -30,7 +30,7 @@ class Preferences: ObservableObject {
     init() {
         self.homeUrl = UserDefaults.standard.getEnum(forKey: "homeUrl") ?? .scratchHome
         self.launchingUrl = UserDefaults.standard.getEnum(forKey: "launchingUrl") ?? .lastUrl
-        self.customUrl = UserDefaults.standard.string(forKey: "customUrl") ?? ""
+        self.customUrl = UserDefaults.standard.string(forKey: "customUrl") ?? "https://"
         
         $homeUrl.sink { (value) in
             UserDefaults.standard.setEnum(value, forKey: "homeUrl")
