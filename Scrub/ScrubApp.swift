@@ -15,7 +15,6 @@ struct ScrubApp: App {
     var body: some Scene {
         WindowGroup {
             MainView(preferences: preferences)
-                .edgesIgnoringSafeArea([.bottom, .horizontal])
         }
     }
 }

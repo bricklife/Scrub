@@ -35,7 +35,9 @@ struct MainView: View {
                             }
                     }
                 }
+                .edgesIgnoringSafeArea([.bottom, .horizontal])
             VStack(spacing: 10) {
+                Spacer()
                 Button(action: { webViewModel.apply(inputs: .goHome) }) {
                     Image(systemName: "house")
                 }
@@ -45,10 +47,11 @@ struct MainView: View {
                 Button(action: { webViewModel.apply(inputs: .goForward) }) {
                     Image(systemName: "chevron.forward")
                 }.disabled(!webViewModel.canGoForward)
+                Spacer()
                 Button(action: { isShowingPreferences = true }) {
                     Image(systemName: "gear")
                 }
-            }
+            }.edgesIgnoringSafeArea([.horizontal])
         }
     }
 }
