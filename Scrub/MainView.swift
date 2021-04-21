@@ -43,7 +43,7 @@ struct MainView: View {
                     Image(systemName: "gear")
                 }
             }
-        }.edgesIgnoringSafeArea(.trailing)
+        }
     }
 }
 

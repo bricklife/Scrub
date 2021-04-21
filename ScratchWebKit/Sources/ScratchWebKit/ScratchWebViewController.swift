@@ -61,6 +61,7 @@ public class ScratchWebViewController: UIViewController {
         }.store(in: &cancellables)
         
         webView.navigationDelegate = self
+        webView.scrollView.contentInsetAdjustmentBehavior = .never
     }
     
     public func load(url: URL) {
