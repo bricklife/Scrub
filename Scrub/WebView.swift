@@ -55,6 +55,10 @@ extension WebView {
                     parent.webViewController.load(url: url)
                 }
             }.store(in: &cancellables)
+            
+            parent.webViewController.$isLoading.assign(to: &parent.viewModel.$isLoading)
+            parent.webViewController.$canGoBack.assign(to: &parent.viewModel.$canGoBack)
+            parent.webViewController.$canGoForward.assign(to: &parent.viewModel.$canGoForward)
         }
         
         func didDownloadFile(at url: URL) {

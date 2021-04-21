@@ -41,10 +41,10 @@ struct MainView: View {
                 }
                 Button(action: { webViewModel.apply(inputs: .goBack) }) {
                     Image(systemName: "chevron.backward")
-                }
+                }.disabled(!webViewModel.canGoBack)
                 Button(action: { webViewModel.apply(inputs: .goForward) }) {
                     Image(systemName: "chevron.forward")
-                }
+                }.disabled(!webViewModel.canGoForward)
                 Button(action: { isShowingPreferences = true }) {
                     Image(systemName: "gear")
                 }
