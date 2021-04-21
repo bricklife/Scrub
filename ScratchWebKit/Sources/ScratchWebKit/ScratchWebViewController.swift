@@ -64,11 +64,6 @@ public class ScratchWebViewController: UIViewController {
         webView.scrollView.contentInsetAdjustmentBehavior = .never
     }
     
-    public func load(url: URL) {
-        let request = URLRequest(url: url)
-        webView.load(request)
-    }
-    
     private func changeWebViewStyles() {
         webView.evaluateJavaScript("document.getElementsByClassName('blocklyToolboxDiv').length > 0") { [weak self] (result, error) in
             let isScratchEditor = result as? Bool ?? false
@@ -81,6 +76,30 @@ public class ScratchWebViewController: UIViewController {
                 self?.webView.evaluateJavaScript("document.documentElement.style.webkitTouchCallout='inherit'")
             }
         }
+    }
+}
+
+extension ScratchWebViewController {
+    
+    public func load(url: URL) {
+        let request = URLRequest(url: url)
+        webView.load(request)
+    }
+    
+    public func goBack() {
+        webView.goBack()
+    }
+    
+    public func goForward() {
+        webView.goForward()
+    }
+    
+    public func reload() {
+        webView.reload()
+    }
+    
+    public func stopLoading() {
+        webView.stopLoading()
     }
 }
 

@@ -39,6 +39,12 @@ struct MainView: View {
                 Button(action: { webViewModel.apply(inputs: .goHome) }) {
                     Image(systemName: "house")
                 }
+                Button(action: { webViewModel.apply(inputs: .goBack) }) {
+                    Image(systemName: "chevron.backward")
+                }
+                Button(action: { webViewModel.apply(inputs: .goForward) }) {
+                    Image(systemName: "chevron.forward")
+                }
                 Button(action: { isShowingPreferences = true }) {
                     Image(systemName: "gear")
                 }

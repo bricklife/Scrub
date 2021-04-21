@@ -43,8 +43,17 @@ extension WebView {
         init(_ parent: WebView) {
             self.parent = parent
             
-            parent.viewModel.requestedUrl.sink { (url) in
-                parent.webViewController.load(url: url)
+            parent.viewModel.inputs.sink { (inputs) in
+                switch inputs {
+                case .goHome:
+                    parent.webViewController.load(url: parent.viewModel.homeUrl)
+                case .goBack:
+                    parent.webViewController.goBack()
+                case .goForward:
+                    parent.webViewController.goForward()
+                case .load(url: let url):
+                    parent.webViewController.load(url: url)
+                }
             }.store(in: &cancellables)
         }
         

@@ -23,23 +23,25 @@ private func getHomeUrl(from preferences: Preferences) -> URL {
 
 class WebViewModel: ObservableObject {
     
-    let initialUrl: URL
-    let requestedUrl: AnyPublisher<URL, Never>
-    
-    private let preferences: Preferences
-    private let requestedUrlSubject: PassthroughSubject<URL, Never>
-    
     enum Inputs {
         case goHome
+        case goBack
+        case goForward
         case load(url: URL)
     }
+    
+    let initialUrl: URL
+    let inputs: AnyPublisher<Inputs, Never>
+    
+    private let preferences: Preferences
+    private let inputsSubject: PassthroughSubject<Inputs, Never>
     
     init(preferences: Preferences) {
         self.preferences = preferences
         self.initialUrl = getHomeUrl(from: preferences)
         
-        self.requestedUrlSubject = PassthroughSubject<URL, Never>()
-        self.requestedUrl = requestedUrlSubject.eraseToAnyPublisher()
+        self.inputsSubject = PassthroughSubject<Inputs, Never>()
+        self.inputs = inputsSubject.eraseToAnyPublisher()
     }
     
     var homeUrl: URL {
@@ -47,11 +49,6 @@ class WebViewModel: ObservableObject {
     }
     
     func apply(inputs: Inputs) {
-        switch inputs {
-        case .goHome:
-            requestedUrlSubject.send(homeUrl)
-        case .load(let url):
-            requestedUrlSubject.send(url)
-        }
+        inputsSubject.send(inputs)
     }
 }
