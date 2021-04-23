@@ -61,6 +61,7 @@ extension WebView {
             }.store(in: &cancellables)
             
             parent.webViewController.$isLoading.assign(to: &parent.viewModel.$isLoading)
+            parent.webViewController.$estimatedProgress.assign(to: &parent.viewModel.$estimatedProgress)
             parent.webViewController.$canGoBack.assign(to: &parent.viewModel.$canGoBack)
             parent.webViewController.$canGoForward.assign(to: &parent.viewModel.$canGoForward)
         }

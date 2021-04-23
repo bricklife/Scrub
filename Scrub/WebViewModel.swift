@@ -36,6 +36,7 @@ class WebViewModel: ObservableObject {
     let inputs: AnyPublisher<Inputs, Never>
     
     @Published public var isLoading: Bool = false
+    @Published public var estimatedProgress: Double = 0.0
     @Published public var canGoBack: Bool = false
     @Published public var canGoForward: Bool = false
     

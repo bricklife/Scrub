@@ -22,6 +22,7 @@ public class ScratchWebViewController: UIViewController {
     
     @Published public private(set) var url: URL? = nil
     @Published public private(set) var isLoading: Bool = false
+    @Published public private(set) var estimatedProgress: Double = 0.0
     @Published public private(set) var canGoBack: Bool = false
     @Published public private(set) var canGoForward: Bool = false
     
@@ -56,6 +57,7 @@ public class ScratchWebViewController: UIViewController {
         webView.publisher(for: \.isLoading).assign(to: &$isLoading)
         webView.publisher(for: \.canGoBack).assign(to: &$canGoBack)
         webView.publisher(for: \.canGoForward).assign(to: &$canGoForward)
+        webView.publisher(for: \.estimatedProgress).assign(to: &$estimatedProgress)
         
         $url.compactMap({$0}).sink() { [weak self] (url) in
             print("url:", url)
