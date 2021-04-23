@@ -12,6 +12,7 @@
 		CB1DAA51262D6EB0007F5531 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1DAA50262D6EB0007F5531 /* WebViewModel.swift */; };
 		CB3FBCF92605D98C008FE5C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */; };
 		CB3FBCFC2605D98C008FE5C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3FBCFA2605D98C008FE5C2 /* LaunchScreen.storyboard */; };
+		CB47F3BB2632DF5600C0A7ED /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB47F3BA2632DF5600C0A7ED /* CircleProgressView.swift */; };
 		CB6F7A3E2616E49F007C2230 /* ScratchWebKit in Frameworks */ = {isa = PBXBuildFile; productRef = CB6F7A3D2616E49F007C2230 /* ScratchWebKit */; };
 		CB7D42DB2617096C005C86D0 /* ScrubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D42DA2617096C005C86D0 /* ScrubApp.swift */; };
 		CB7D42F9261709F4005C86D0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D42F8261709F4005C86D0 /* MainView.swift */; };
@@ -39,6 +40,7 @@
 		CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB3FBCFB2605D98C008FE5C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB3FBCFD2605D98C008FE5C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB47F3BA2632DF5600C0A7ED /* CircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		CB6F7A3C2616E44E007C2230 /* ScratchWebKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ScratchWebKit; sourceTree = "<group>"; };
 		CB7D42DA2617096C005C86D0 /* ScrubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubApp.swift; sourceTree = "<group>"; };
 		CB7D42F8261709F4005C86D0 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				CB7D42F8261709F4005C86D0 /* MainView.swift */,
 				CB7D42FA26170A9E005C86D0 /* WebView.swift */,
 				CB1DAA50262D6EB0007F5531 /* WebViewModel.swift */,
+				CB47F3BA2632DF5600C0A7ED /* CircleProgressView.swift */,
 				CB0A0776262DC19C001EF560 /* PreferencesView.swift */,
 				CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */,
 				CB3FBCFA2605D98C008FE5C2 /* LaunchScreen.storyboard */,
@@ -175,6 +178,7 @@
 				CB7D42FB26170A9E005C86D0 /* WebView.swift in Sources */,
 				CB0A0777262DC19C001EF560 /* PreferencesView.swift in Sources */,
 				CB7D42F9261709F4005C86D0 /* MainView.swift in Sources */,
+				CB47F3BB2632DF5600C0A7ED /* CircleProgressView.swift in Sources */,
 				CB0A07732629E4D4001EF560 /* Preferences.swift in Sources */,
 				CB1DAA51262D6EB0007F5531 /* WebViewModel.swift in Sources */,
 				CB7D42DB2617096C005C86D0 /* ScrubApp.swift in Sources */,
