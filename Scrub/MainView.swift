@@ -37,13 +37,19 @@ struct MainView: View {
                 }
                 .edgesIgnoringSafeArea([.bottom, .horizontal])
             VStack(spacing: 10) {
-                if webViewModel.isLoading {
-                    Button(action: { webViewModel.apply(inputs: .stopLoading) }) {
-                        Image(systemName: "xmark")
-                    }
-                } else {
-                    Button(action: { webViewModel.apply(inputs: .reload) }) {
-                        Image(systemName: "arrow.clockwise")
+                ZStack {
+                    CircleProgressView(progress: webViewModel.estimatedProgress)
+                        .foregroundColor(.accentColor)
+                        .opacity(webViewModel.isLoading ? 0.5 : 0.0)
+                        .frame(width: 24, height: 24)
+                    if webViewModel.isLoading {
+                        Button(action: { webViewModel.apply(inputs: .stopLoading) }) {
+                            Image(systemName: "xmark")
+                        }
+                    } else {
+                        Button(action: { webViewModel.apply(inputs: .reload) }) {
+                            Image(systemName: "arrow.clockwise")
+                        }
                     }
                 }
                 Spacer()
