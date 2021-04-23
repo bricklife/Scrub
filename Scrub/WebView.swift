@@ -53,6 +53,10 @@ extension WebView {
                     parent.webViewController.goForward()
                 case .load(url: let url):
                     parent.webViewController.load(url: url)
+                case .reload:
+                    parent.webViewController.reload()
+                case .stopLoading:
+                    parent.webViewController.stopLoading()
                 }
             }.store(in: &cancellables)
             

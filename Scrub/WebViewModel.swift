@@ -28,6 +28,8 @@ class WebViewModel: ObservableObject {
         case goBack
         case goForward
         case load(url: URL)
+        case reload
+        case stopLoading
     }
     
     let initialUrl: URL

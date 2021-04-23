@@ -37,6 +37,15 @@ struct MainView: View {
                 }
                 .edgesIgnoringSafeArea([.bottom, .horizontal])
             VStack(spacing: 10) {
+                if webViewModel.isLoading {
+                    Button(action: { webViewModel.apply(inputs: .stopLoading) }) {
+                        Image(systemName: "xmark")
+                    }
+                } else {
+                    Button(action: { webViewModel.apply(inputs: .reload) }) {
+                        Image(systemName: "arrow.clockwise")
+                    }
+                }
                 Spacer()
                 Button(action: { webViewModel.apply(inputs: .goHome) }) {
                     Image(systemName: "house")
