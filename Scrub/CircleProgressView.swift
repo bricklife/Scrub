@@ -12,7 +12,7 @@ struct CircleProgressView : Shape {
     let progress: Double
     
     func path(in rect: CGRect) -> Path {
-        let r = min(rect.width, rect.height) / 2
+        let r = min(rect.width, rect.height) / 2 - 1
         
         var p = Path()
         
