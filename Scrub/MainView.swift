@@ -34,14 +34,12 @@ struct MainView: View {
                                 }
                             }
                     }
-                }
-                .edgesIgnoringSafeArea([.bottom, .horizontal])
+                }.edgesIgnoringSafeArea([.bottom, .horizontal])
             VStack(spacing: 10) {
                 ZStack {
                     CircleProgressView(progress: webViewModel.estimatedProgress)
                         .foregroundColor(.accentColor)
                         .opacity(webViewModel.isLoading ? 0.5 : 0.0)
-                        .frame(width: 24, height: 24)
                     if webViewModel.isLoading {
                         Button(action: { webViewModel.apply(inputs: .stopLoading) }) {
                             Image(systemName: "xmark")
@@ -51,7 +49,7 @@ struct MainView: View {
                             Image(systemName: "arrow.clockwise")
                         }
                     }
-                }
+                }.frame(width: 24, height: 24)
                 Spacer()
                 Button(action: { webViewModel.apply(inputs: .goHome) }) {
                     Image(systemName: "house")
@@ -66,7 +64,7 @@ struct MainView: View {
                 Button(action: { isShowingPreferences = true }) {
                     Image(systemName: "gear")
                 }
-            }.edgesIgnoringSafeArea([.horizontal])
+            }.frame(width: 24).edgesIgnoringSafeArea([.horizontal])
         }
     }
 }
