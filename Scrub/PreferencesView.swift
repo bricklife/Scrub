@@ -13,6 +13,32 @@ struct PreferencesView: View {
     
     var body: some View {
         Form {
+            Section(header: Text("Initial URL")) {
+                Button(action: {
+                    closeKeyboard()
+                    preferences.launchingUrl = .homeUrl
+                }) {
+                    HStack {
+                        Text("Home URL").foregroundColor(.black)
+                        Spacer()
+                        if preferences.launchingUrl == .homeUrl {
+                            Image(systemName: "checkmark")
+                        }
+                    }
+                }
+                Button(action: {
+                    closeKeyboard()
+                    preferences.launchingUrl = .lastUrl
+                }) {
+                    HStack {
+                        Text("Last Visited URL").foregroundColor(.black)
+                        Spacer()
+                        if preferences.launchingUrl == .lastUrl {
+                            Image(systemName: "checkmark")
+                        }
+                    }
+                }
+            }
             Section(header: Text("Home URL")) {
                 Button(action: {
                     closeKeyboard()
