@@ -46,7 +46,7 @@ class WebViewModel: ObservableObject {
     init(preferences: Preferences) {
         self.preferences = preferences
         
-        if preferences.launchingUrl == .lastUrl,
+        if preferences.initialUrl == .lastUrl,
            let lastUrl = UserDefaults.standard.url(forKey: "lastUrl") {
             self.initialUrl = lastUrl
         } else {
