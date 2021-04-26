@@ -45,7 +45,13 @@ class WebViewModel: ObservableObject {
     
     init(preferences: Preferences) {
         self.preferences = preferences
-        self.initialUrl = getHomeUrl(from: preferences)
+        
+        if preferences.launchingUrl == .lastUrl,
+           let lastUrl = UserDefaults.standard.url(forKey: "lastUrl") {
+            self.initialUrl = lastUrl
+        } else {
+            self.initialUrl = getHomeUrl(from: preferences)
+        }
         
         self.inputsSubject = PassthroughSubject<Inputs, Never>()
         self.inputs = inputsSubject.eraseToAnyPublisher()
@@ -53,6 +59,10 @@ class WebViewModel: ObservableObject {
     
     var homeUrl: URL {
         return getHomeUrl(from: preferences)
+    }
+    
+    func updateLastUrl(_ url: URL?) {
+        UserDefaults.standard.set(url, forKey: "lastUrl")
     }
     
     func apply(inputs: Inputs) {

@@ -60,6 +60,10 @@ extension WebView {
                 }
             }.store(in: &cancellables)
             
+            parent.webViewController.$url.sink { (url) in
+                parent.viewModel.updateLastUrl(url)
+            }.store(in: &cancellables)
+            
             parent.webViewController.$isLoading.assign(to: &parent.viewModel.$isLoading)
             parent.webViewController.$estimatedProgress.assign(to: &parent.viewModel.$estimatedProgress)
             parent.webViewController.$canGoBack.assign(to: &parent.viewModel.$canGoBack)
