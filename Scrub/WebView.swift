@@ -12,6 +12,7 @@ import ScratchWebKit
 struct WebView: UIViewControllerRepresentable {
     
     @ObservedObject var viewModel: WebViewModel
+    @Binding var lastUrl: URL?
     
     private let webViewController = ScratchWebViewController()
     
@@ -23,7 +24,13 @@ struct WebView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> ScratchWebViewController {
         print(#function)
         webViewController.delegate = context.coordinator
-        webViewController.load(url: viewModel.initialUrl)
+        
+        if viewModel.shoudUseLastUrl, let lastUrl = lastUrl {
+            webViewController.load(url: lastUrl)
+        } else {
+            webViewController.load(url: viewModel.homeUrl)
+        }
+        
         return webViewController
     }
     
@@ -61,7 +68,9 @@ extension WebView {
             }.store(in: &cancellables)
             
             parent.webViewController.$url.sink { (url) in
-                parent.viewModel.updateLastUrl(url)
+                DispatchQueue.main.async {
+                    parent.lastUrl = url
+                }
             }.store(in: &cancellables)
             
             parent.webViewController.$isLoading.assign(to: &parent.viewModel.$isLoading)

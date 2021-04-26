@@ -11,6 +11,7 @@ struct MainView: View {
     
     @ObservedObject private var preferences: Preferences
     @StateObject private var webViewModel: WebViewModel
+    @SceneStorage("lastUrl") var lastUrl: URL?
     
     @State private var isShowingPreferences = false
     
@@ -21,7 +22,7 @@ struct MainView: View {
     
     var body: some View {
         HStack(spacing: 0) {
-            WebView(viewModel: webViewModel)
+            WebView(viewModel: webViewModel, lastUrl: $lastUrl)
                 .sheet(isPresented: $isShowingPreferences) {
                     NavigationView {
                         PreferencesView(preferences: preferences)

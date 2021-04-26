@@ -32,7 +32,6 @@ class WebViewModel: ObservableObject {
         case stopLoading
     }
     
-    let initialUrl: URL
     let inputs: AnyPublisher<Inputs, Never>
     
     @Published var isLoading: Bool = false
@@ -46,23 +45,16 @@ class WebViewModel: ObservableObject {
     init(preferences: Preferences) {
         self.preferences = preferences
         
-        if preferences.initialUrl == .lastUrl,
-           let lastUrl = UserDefaults.standard.url(forKey: "lastUrl") {
-            self.initialUrl = lastUrl
-        } else {
-            self.initialUrl = getHomeUrl(from: preferences)
-        }
-        
         self.inputsSubject = PassthroughSubject<Inputs, Never>()
         self.inputs = inputsSubject.eraseToAnyPublisher()
     }
     
-    var homeUrl: URL {
-        return getHomeUrl(from: preferences)
+    var shoudUseLastUrl: Bool {
+        return preferences.initialUrl == .lastUrl
     }
     
-    func updateLastUrl(_ url: URL?) {
-        UserDefaults.standard.set(url, forKey: "lastUrl")
+    var homeUrl: URL {
+        return getHomeUrl(from: preferences)
     }
     
     func apply(inputs: Inputs) {
