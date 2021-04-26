@@ -16,27 +16,27 @@ class Preferences: ObservableObject {
         case documentsFolder
     }
     
-    enum LaunchingUrl: String {
+    enum InitialUrl: String {
         case homeUrl
         case lastUrl
     }
     
     @Published var homeUrl: HomeUrl
-    @Published var launchingUrl: LaunchingUrl
+    @Published var initialUrl: InitialUrl
     @Published var customUrl: String
     
     private var cancellables: Set<AnyCancellable> = []
     
     init() {
         self.homeUrl = UserDefaults.standard.getEnum(forKey: "homeUrl") ?? .scratchHome
-        self.launchingUrl = UserDefaults.standard.getEnum(forKey: "launchingUrl") ?? .lastUrl
+        self.initialUrl = UserDefaults.standard.getEnum(forKey: "initialUrl") ?? .lastUrl
         self.customUrl = UserDefaults.standard.string(forKey: "customUrl") ?? "https://"
         
         $homeUrl.sink { (value) in
             UserDefaults.standard.setEnum(value, forKey: "homeUrl")
         }.store(in: &cancellables)
-        $launchingUrl.sink { (value) in
-            UserDefaults.standard.setEnum(value, forKey: "launchingUrl")
+        $initialUrl.sink { (value) in
+            UserDefaults.standard.setEnum(value, forKey: "initialUrl")
         }.store(in: &cancellables)
         $customUrl.sink { (value) in
             UserDefaults.standard.setValue(value, forKey: "customUrl")

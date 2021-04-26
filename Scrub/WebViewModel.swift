@@ -35,10 +35,10 @@ class WebViewModel: ObservableObject {
     let initialUrl: URL
     let inputs: AnyPublisher<Inputs, Never>
     
-    @Published public var isLoading: Bool = false
-    @Published public var estimatedProgress: Double = 0.0
-    @Published public var canGoBack: Bool = false
-    @Published public var canGoForward: Bool = false
+    @Published var isLoading: Bool = false
+    @Published var estimatedProgress: Double = 0.0
+    @Published var canGoBack: Bool = false
+    @Published var canGoForward: Bool = false
     
     private let preferences: Preferences
     private let inputsSubject: PassthroughSubject<Inputs, Never>
