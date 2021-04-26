@@ -10,8 +10,9 @@ import SwiftUI
 struct MainView: View {
     
     @ObservedObject private var preferences: Preferences
+    
     @StateObject private var webViewModel: WebViewModel
-    @SceneStorage("lastUrl") var lastUrl: URL?
+    @SceneStorage("lastUrl") private var lastUrl: URL?
     
     @State private var isShowingPreferences = false
     

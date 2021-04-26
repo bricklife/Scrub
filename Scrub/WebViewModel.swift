@@ -10,17 +10,6 @@ import Combine
 
 private let ScratchHomeUrl = URL(string: "https://scratch.mit.edu/projects/editor/")!
 
-private func getHomeUrl(from preferences: Preferences) -> URL {
-    switch preferences.homeUrl {
-    case .scratchHome:
-        return ScratchHomeUrl
-    case .custom:
-        return URL(string: preferences.customUrl) ?? ScratchHomeUrl
-    case .documentsFolder:
-        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("index.html")
-    }
-}
-
 class WebViewModel: ObservableObject {
     
     enum Inputs {
@@ -54,7 +43,14 @@ class WebViewModel: ObservableObject {
     }
     
     var homeUrl: URL {
-        return getHomeUrl(from: preferences)
+        switch preferences.homeUrl {
+        case .scratchHome:
+            return ScratchHomeUrl
+        case .custom:
+            return URL(string: preferences.customUrl) ?? ScratchHomeUrl
+        case .documentsFolder:
+            return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("index.html")
+        }
     }
     
     func apply(inputs: Inputs) {
