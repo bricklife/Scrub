@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "ScratchWebKit",
     platforms: [
-        .iOS(.v14)
+        .iOS("14.5")
     ],
     products: [
         .library(

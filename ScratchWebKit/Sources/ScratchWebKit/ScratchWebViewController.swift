@@ -14,7 +14,6 @@ public class ScratchWebViewController: UIViewController {
     private let webView: WKWebView
     
     private let scratchLink = ScratchLink()
-    private let blobDownloader = BlobDownloader()
     private var downloadingUrl: URL? = nil
     
     private var cancellables: Set<AnyCancellable> = []
@@ -52,11 +51,6 @@ public class ScratchWebViewController: UIViewController {
         super.viewDidLoad()
         
         scratchLink.setup(webView: webView)
-        if #available(iOS 14.5, *) {
-            // Use WKDownload instead of BlobDownloader
-        } else {
-            blobDownloader.setup(webView: webView)
-        }
         
         webView.publisher(for: \.url).assign(to: &$url)
         webView.publisher(for: \.isLoading).assign(to: &$isLoading)
@@ -119,25 +113,13 @@ extension ScratchWebViewController: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         print("Requested", navigationAction.request)
         
-        if #available(iOS 14.5, *) {
-            if navigationAction.shouldPerformDownload {
-                decisionHandler(.download)
-                return
-            }
+        if navigationAction.shouldPerformDownload {
+            decisionHandler(.download)
         } else {
-            if let url = navigationAction.request.url, url.scheme == "blob" {
-                blobDownloader.downloadBlob { [weak self] (url) in
-                    self?.delegate?.didDownloadFile(at: url)
-                }
-                decisionHandler(.cancel)
-                return
-            }
+            decisionHandler(.allow)
         }
-        
-        decisionHandler(.allow)
     }
     
-    @available(iOS 14.5, *)
     public func webView(_ webView: WKWebView, navigationAction: WKNavigationAction, didBecome download: WKDownload) {
         download.delegate = self
     }
@@ -151,7 +133,6 @@ extension ScratchWebViewController: WKNavigationDelegate {
     }
 }
 
-@available(iOS 14.5, *)
 extension ScratchWebViewController: WKDownloadDelegate {
     
     public func download(_ download: WKDownload, decideDestinationUsing response: URLResponse, suggestedFilename: String, completionHandler: @escaping (URL?) -> Void) {
