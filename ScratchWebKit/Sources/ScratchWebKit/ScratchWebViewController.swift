@@ -15,6 +15,7 @@ public class ScratchWebViewController: UIViewController {
     
     private let scratchLink = ScratchLink()
     private let blobDownloader = BlobDownloader()
+    private var downloadingUrl: URL? = nil
     
     private var cancellables: Set<AnyCancellable> = []
     
@@ -51,7 +52,11 @@ public class ScratchWebViewController: UIViewController {
         super.viewDidLoad()
         
         scratchLink.setup(webView: webView)
-        blobDownloader.setup(webView: webView)
+        if #available(iOS 14.5, *) {
+            // Use WKDownload instead of BlobDownloader
+        } else {
+            blobDownloader.setup(webView: webView)
+        }
         
         webView.publisher(for: \.url).assign(to: &$url)
         webView.publisher(for: \.isLoading).assign(to: &$isLoading)
@@ -114,15 +119,27 @@ extension ScratchWebViewController: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         print("Requested", navigationAction.request)
         
-        if let url = navigationAction.request.url, url.scheme == "blob" {
-            blobDownloader.downloadBlob { [weak self] (url) in
-                self?.delegate?.didDownloadFile(at: url)
+        if #available(iOS 14.5, *) {
+            if navigationAction.shouldPerformDownload {
+                decisionHandler(.download)
+                return
             }
-            decisionHandler(.cancel)
-            return
+        } else {
+            if let url = navigationAction.request.url, url.scheme == "blob" {
+                blobDownloader.downloadBlob { [weak self] (url) in
+                    self?.delegate?.didDownloadFile(at: url)
+                }
+                decisionHandler(.cancel)
+                return
+            }
         }
         
         decisionHandler(.allow)
+    }
+    
+    @available(iOS 14.5, *)
+    public func webView(_ webView: WKWebView, navigationAction: WKNavigationAction, didBecome download: WKDownload) {
+        download.delegate = self
     }
     
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
@@ -131,6 +148,24 @@ extension ScratchWebViewController: WKNavigationDelegate {
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         changeWebViewStyles()
+    }
+}
+
+@available(iOS 14.5, *)
+extension ScratchWebViewController: WKDownloadDelegate {
+    
+    public func download(_ download: WKDownload, decideDestinationUsing response: URLResponse, suggestedFilename: String, completionHandler: @escaping (URL?) -> Void) {
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent(suggestedFilename)
+        self.downloadingUrl = url
+        completionHandler(url)
+    }
+    
+    public func downloadDidFinish(_ download: WKDownload) {
+        if let url = downloadingUrl {
+            print("Saved at", url.path)
+            self.downloadingUrl = nil
+            delegate?.didDownloadFile(at: url)
+        }
     }
 }
 
