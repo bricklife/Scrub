@@ -38,6 +38,11 @@ struct MainView: View {
                     }
                 }.edgesIgnoringSafeArea([.bottom, .horizontal])
             VStack(spacing: 10) {
+                Button(action: {
+                    print(lastUrl ?? "nil")
+                }) {
+                    Image(systemName: "square.and.arrow.up")
+                }
                 ZStack {
                     CircleProgressView(progress: webViewModel.estimatedProgress)
                         .foregroundColor(.accentColor)
