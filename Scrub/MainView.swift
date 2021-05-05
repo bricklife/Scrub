@@ -15,6 +15,7 @@ struct MainView: View {
     @SceneStorage("lastUrl") private var lastUrl: URL?
     
     @State private var isShowingPreferences = false
+    @State private var isShowingActivityView = false
     
     init(preferences: Preferences) {
         self.preferences = preferences
@@ -36,10 +37,16 @@ struct MainView: View {
                                 }
                             }
                     }
-                }.edgesIgnoringSafeArea([.bottom, .horizontal])
+                }
+                .sheet(isPresented: $isShowingActivityView) {
+                    if let url = lastUrl {
+                        ActivityView(activityItems: [url], applicationActivities: nil)
+                    }
+                }
+                .edgesIgnoringSafeArea([.bottom, .horizontal])
             VStack(spacing: 10) {
                 Button(action: {
-                    print(lastUrl ?? "nil")
+                    isShowingActivityView = true
                 }) {
                     Image(systemName: "square.and.arrow.up")
                 }
