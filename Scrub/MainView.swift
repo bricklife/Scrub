@@ -49,7 +49,7 @@ struct MainView: View {
                     isShowingActivityView = true
                 }) {
                     Image(systemName: "square.and.arrow.up")
-                }
+                }.disabled(lastUrl?.scheme == "file")
                 ZStack {
                     CircleProgressView(progress: webViewModel.estimatedProgress)
                         .foregroundColor(.accentColor)
