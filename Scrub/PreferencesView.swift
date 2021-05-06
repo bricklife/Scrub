@@ -13,32 +13,6 @@ struct PreferencesView: View {
     
     var body: some View {
         Form {
-            Section(header: Text("Initial URL")) {
-                Button(action: {
-                    closeKeyboard()
-                    preferences.initialUrl = .homeUrl
-                }) {
-                    HStack {
-                        Text("Home URL").foregroundColor(.black)
-                        Spacer()
-                        if preferences.initialUrl == .homeUrl {
-                            Image(systemName: "checkmark")
-                        }
-                    }
-                }
-                Button(action: {
-                    closeKeyboard()
-                    preferences.initialUrl = .lastUrl
-                }) {
-                    HStack {
-                        Text("Last Visited URL").foregroundColor(.black)
-                        Spacer()
-                        if preferences.initialUrl == .lastUrl {
-                            Image(systemName: "checkmark")
-                        }
-                    }
-                }
-            }
             Section(header: Text("Home URL")) {
                 Button(action: {
                     closeKeyboard()
@@ -80,6 +54,32 @@ struct PreferencesView: View {
                         Text("Local Documents Folder").foregroundColor(.black)
                         Spacer()
                         if preferences.homeUrl == .documentsFolder {
+                            Image(systemName: "checkmark")
+                        }
+                    }
+                }
+            }
+            Section(header: Text("Initial URL")) {
+                Button(action: {
+                    closeKeyboard()
+                    preferences.initialUrl = .homeUrl
+                }) {
+                    HStack {
+                        Text("Home URL").foregroundColor(.black)
+                        Spacer()
+                        if preferences.initialUrl == .homeUrl {
+                            Image(systemName: "checkmark")
+                        }
+                    }
+                }
+                Button(action: {
+                    closeKeyboard()
+                    preferences.initialUrl = .lastUrl
+                }) {
+                    HStack {
+                        Text("Last Visited URL").foregroundColor(.black)
+                        Spacer()
+                        if preferences.initialUrl == .lastUrl {
                             Image(systemName: "checkmark")
                         }
                     }
