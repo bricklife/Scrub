@@ -40,7 +40,7 @@ struct MainView: View {
                 }
                 .sheet(isPresented: $isShowingActivityView) {
                     if let url = lastUrl {
-                        ActivityView(activityItems: [url], applicationActivities: nil)
+                        ActivityView(preferences: preferences, activityItems: [url])
                     }
                 }
                 .edgesIgnoringSafeArea([.bottom, .horizontal])
