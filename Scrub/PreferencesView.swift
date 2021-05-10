@@ -87,7 +87,7 @@ struct PreferencesView: View {
             }
             Section {
                 HStack {
-                    Text("Version:")
+                    Text("Version")
                     Spacer()
                     Text(versionString())
                 }
