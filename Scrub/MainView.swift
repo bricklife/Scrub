@@ -70,10 +70,10 @@ struct MainView: View {
                 }
                 Button(action: { webViewModel.apply(inputs: .goBack) }) {
                     Image(systemName: "chevron.backward")
-                }.disabled(!webViewModel.canGoBack)
+                }.opacity(webViewModel.canGoBack ? 1.0 : 0.4)
                 Button(action: { webViewModel.apply(inputs: .goForward) }) {
                     Image(systemName: "chevron.forward")
-                }.disabled(!webViewModel.canGoForward)
+                }.opacity(webViewModel.canGoForward ? 1.0 : 0.4)
                 Spacer()
                 Button(action: { isShowingPreferences = true }) {
                     Image(systemName: "gear")
