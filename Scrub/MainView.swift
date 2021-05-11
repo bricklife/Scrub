@@ -53,7 +53,7 @@ struct MainView: View {
                 ZStack {
                     CircleProgressView(progress: webViewModel.estimatedProgress)
                         .foregroundColor(.accentColor)
-                        .opacity(webViewModel.isLoading ? 0.5 : 0.0)
+                        .opacity(webViewModel.isLoading ? 0.4 : 0.0)
                     if webViewModel.isLoading {
                         Button(action: { webViewModel.apply(inputs: .stopLoading) }) {
                             Image(systemName: "xmark")
