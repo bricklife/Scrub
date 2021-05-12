@@ -17,6 +17,11 @@ struct MainView: View {
     @State private var isShowingPreferences = false
     @State private var isShowingActivityView = false
     
+    @State private var alertString: String? = nil
+    private var isShowingAlert: Binding<Bool> {
+        return Binding<Bool>(get: { alertString != nil }, set: { _ in alertString = nil })
+    }
+    
     init(preferences: Preferences) {
         self.preferences = preferences
         self._webViewModel = StateObject(wrappedValue: WebViewModel(preferences: preferences))
@@ -42,6 +47,9 @@ struct MainView: View {
                     if let url = lastUrl {
                         ActivityView(preferences: preferences, activityItems: [url])
                     }
+                }
+                .alert(isPresented: isShowingAlert) {
+                    Alert(title: Text("Alert"), message: alertString.flatMap(Text.init))
                 }
                 .edgesIgnoringSafeArea([.bottom, .horizontal])
             VStack(spacing: 10) {
