@@ -84,5 +84,9 @@ extension WebView {
             vc.shouldShowFileExtensions = true
             parent.webViewController.present(vc, animated: true)
         }
+        
+        func didFail(error: Error) {
+            // ToDo: Add error handling
+        }
     }
 }

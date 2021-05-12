@@ -131,6 +131,10 @@ extension ScratchWebViewController: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         changeWebViewStyles()
     }
+    
+    public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        delegate?.didFail(error: error)
+    }
 }
 
 extension ScratchWebViewController: WKDownloadDelegate {
@@ -148,8 +152,13 @@ extension ScratchWebViewController: WKDownloadDelegate {
             delegate?.didDownloadFile(at: url)
         }
     }
+    
+    public func download(_ download: WKDownload, didFailWithError error: Error, resumeData: Data?) {
+        delegate?.didFail(error: error)
+    }
 }
 
 @objc public protocol ScratchWebViewControllerDelegate {
     @objc func didDownloadFile(at url: URL)
+    @objc func didFail(error: Error)
 }
