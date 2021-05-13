@@ -29,7 +29,7 @@ struct MainView: View {
     
     var body: some View {
         HStack(spacing: 0) {
-            WebView(viewModel: webViewModel, lastUrl: $lastUrl)
+            WebView(viewModel: webViewModel, lastUrl: $lastUrl, alertString: $alertString)
                 .sheet(isPresented: $isShowingPreferences) {
                     NavigationView {
                         PreferencesView(preferences: preferences)

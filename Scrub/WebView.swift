@@ -13,6 +13,7 @@ struct WebView: UIViewControllerRepresentable {
     
     @ObservedObject var viewModel: WebViewModel
     @Binding var lastUrl: URL?
+    @Binding var alertString: String?
     
     private let webViewController = ScratchWebViewController()
     
@@ -86,7 +87,7 @@ extension WebView {
         }
         
         func didFail(error: Error) {
-            // ToDo: Add error handling
+            parent.alertString = error.localizedDescription
         }
     }
 }
