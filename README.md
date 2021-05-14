@@ -6,8 +6,12 @@ Web browser app for Scratch 3.0 and Bluetooth devices.
 
 - Scratch Link funcion for communication with Bluetooth devices
 - Project importing / exporting
-- Local file loading
+- Local HTML file loading
 - and more
+
+## Requirements
+
+- iPadOS 14.5 or higher
 
 ## Special Thanks
 
