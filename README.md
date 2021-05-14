@@ -2,9 +2,9 @@
 
 Web browser app for Scratch 3.0 and Bluetooth devices.
 
-## Feature
+## Features
 
-- Scratch Link funcion for communication with Bluetooth devices
+- Scratch Link funcion to communicate with Bluetooth devices
 - Project importing / exporting
 - Local HTML file loading
 - and more
@@ -12,6 +12,15 @@ Web browser app for Scratch 3.0 and Bluetooth devices.
 ## Requirements
 
 - iPadOS 14.5 or higher
+
+## Supported Devices
+
+- micro:bit
+- LEGO MINDSTORMS EV3
+- LEGO BOOST
+- LEGO Education WeDo 2.0
+- Go Direct Force & Acceleratioon
+- and other BLE devices
 
 ## Special Thanks
 
