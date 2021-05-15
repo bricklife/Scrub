@@ -7,6 +7,7 @@
 
 import Foundation
 import WebKit
+import CoreBluetooth
 
 typealias uint8 = UInt8
 typealias uint16 = UInt16
@@ -15,6 +16,22 @@ typealias uint32 = UInt32
 enum SerializationError: Error {
     case invalid(String)
     case internalError(String)
+}
+
+@objc public enum SessionType: Int {
+    case ble
+    case bt
+    
+    init?(url: URL) {
+        switch url.lastPathComponent {
+        case "ble":
+            self = .ble
+        case "bt":
+            self = .bt
+        default:
+            return nil
+        }
+    }
 }
 
 public class ScratchLink: NSObject {
@@ -32,11 +49,20 @@ public class ScratchLink: NSObject {
         }
     }
     
+    public weak var delegate: ScratchLinkDelegate?
+    
     private weak var webView: WKWebView?
     
     private var sessions = [Int: Session]()
     
     private let sessionQueue = DispatchQueue.global(qos: .userInitiated)
+    
+    private let bluetoothConnectionChecker: CBCentralManager
+    
+    public override init() {
+        self.bluetoothConnectionChecker = CBCentralManager()
+        super.init()
+    }
     
     public func setup(webView: WKWebView) {
         let js = JavaScriptLoader.load(filename: "inject-scratch-link")
@@ -67,20 +93,27 @@ extension ScratchLink: WKScriptMessageHandler {
         switch message.method {
         case .open:
             guard let url = message.url else { break }
+            guard let type = SessionType(url: url) else { break }
+            
+            guard bluetoothConnectionChecker.state == .poweredOn else {
+                delegate?.didFailStartingSession(type: type)
+                break
+            }
+            
             let webSocket = WebSocket() { [weak self] (message) in
                 DispatchQueue.main.async {
                     let js = "ScratchLink.sockets.get(\(socketId)).handleMessage('" + message + "')"
                     self?.webView?.evaluateJavaScript(js)
                 }
             }
-            switch url.lastPathComponent {
-            case "ble":
+            switch type {
+            case .ble:
                 sessions[socketId] = try? BLESession(withSocket: webSocket)
-            case "bt":
+            case .bt:
                 sessions[socketId] = try? BTSession(withSocket: webSocket)
-            default:
-                break
             }
+            
+            delegate?.didStartSession(type: type)
             
         case .close:
             let session = sessions.removeValue(forKey: socketId)
@@ -96,4 +129,9 @@ extension ScratchLink: WKScriptMessageHandler {
             }
         }
     }
+}
+
+@objc public protocol ScratchLinkDelegate {
+    @objc func didStartSession(type: SessionType)
+    @objc func didFailStartingSession(type: SessionType)
 }

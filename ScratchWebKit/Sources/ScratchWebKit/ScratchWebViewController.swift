@@ -51,6 +51,7 @@ public class ScratchWebViewController: UIViewController {
         super.viewDidLoad()
         
         scratchLink.setup(webView: webView)
+        scratchLink.delegate = self
         
         webView.publisher(for: \.url).assign(to: &$url)
         webView.publisher(for: \.isLoading).assign(to: &$isLoading)
@@ -159,6 +160,19 @@ extension ScratchWebViewController: WKDownloadDelegate {
     
     public func download(_ download: WKDownload, didFailWithError error: Error, resumeData: Data?) {
         delegate?.didFail(error: error)
+    }
+}
+
+extension ScratchWebViewController: ScratchLinkDelegate {
+    
+    public func didStartSession(type: SessionType) {
+        // ToDo: Notify when session starting
+        print(#function)
+    }
+    
+    public func didFailStartingSession(type: SessionType) {
+        // ToDo: Alert
+        print(#function)
     }
 }
 
