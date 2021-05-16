@@ -7,21 +7,15 @@
 
 import SwiftUI
 
-struct CircleProgressView : Shape {
+struct CircleProgressView: View {
     
     let progress: Double
     
-    func path(in rect: CGRect) -> Path {
-        let r = min(rect.width, rect.height) / 2 - 1
-        
-        var p = Path()
-        
-        p.addArc(center: CGPoint(x: rect.midX, y:rect.midY),
-                 radius: r,
-                 startAngle: .degrees(-90),
-                 endAngle: .degrees(360 * progress - 90),
-                 clockwise: false)
-        
-        return p.strokedPath(.init(lineWidth: 1))
+    var body: some View {
+        Circle()
+            .inset(by: 1.5)
+            .trim(from: 0.0, to: CGFloat(progress))
+            .stroke(Color.accentColor, lineWidth: 1.0)
+            .rotationEffect(Angle(degrees: -90))
     }
 }

@@ -60,8 +60,8 @@ struct MainView: View {
                 }.disabled(lastUrl?.scheme == "file")
                 ZStack {
                     CircleProgressView(progress: webViewModel.estimatedProgress)
-                        .foregroundColor(.accentColor)
                         .opacity(webViewModel.isLoading ? 0.4 : 0.0)
+                        .animation(.easeInOut(duration: 0.2))
                     if webViewModel.isLoading {
                         Button(action: { webViewModel.apply(inputs: .stopLoading) }) {
                             Image(systemName: "xmark")
