@@ -60,6 +60,7 @@ struct MainView: View {
                     Image(systemName: "square.and.arrow.up")
                 }
                 .disabled(url?.scheme == "file")
+                .opacity(url?.scheme == "file" ? 0.4 : 1.0)
                 ZStack {
                     CircleProgressView(progress: webViewModel.estimatedProgress)
                         .opacity(webViewModel.isLoading ? 0.4 : 0.0)
