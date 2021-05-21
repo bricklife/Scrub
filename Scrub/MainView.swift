@@ -52,12 +52,14 @@ struct MainView: View {
                     Alert(title: Text("Alert"), message: alertString.flatMap(Text.init))
                 }
                 .edgesIgnoringSafeArea([.bottom, .horizontal])
+            
             VStack(spacing: 8) {
                 Button(action: {
                     isShowingActivityView = true
                 }) {
                     Image(systemName: "square.and.arrow.up")
-                }.disabled(url?.scheme == "file")
+                }
+                .disabled(url?.scheme == "file")
                 ZStack {
                     CircleProgressView(progress: webViewModel.estimatedProgress)
                         .opacity(webViewModel.isLoading ? 0.4 : 0.0)
@@ -71,22 +73,31 @@ struct MainView: View {
                             Image(systemName: "arrow.clockwise")
                         }
                     }
-                }.frame(width: 24, height: 24)
+                }
+                .frame(width: 24, height: 24)
+                
                 Spacer()
+                
                 Button(action: { webViewModel.apply(inputs: .goHome) }) {
                     Image(systemName: "house")
                 }
                 Button(action: { webViewModel.apply(inputs: .goBack) }) {
                     Image(systemName: "chevron.backward")
-                }.opacity(webViewModel.canGoBack ? 1.0 : 0.4)
+                }
+                .opacity(webViewModel.canGoBack ? 1.0 : 0.4)
                 Button(action: { webViewModel.apply(inputs: .goForward) }) {
                     Image(systemName: "chevron.forward")
-                }.opacity(webViewModel.canGoForward ? 1.0 : 0.4)
+                }
+                .opacity(webViewModel.canGoForward ? 1.0 : 0.4)
+                
                 Spacer()
+                
                 Button(action: { isShowingPreferences = true }) {
                     Image(systemName: "gear")
                 }
-            }.padding(4).edgesIgnoringSafeArea([.horizontal])
+            }
+            .padding(4)
+            .edgesIgnoringSafeArea([.horizontal])
         }
     }
 }
