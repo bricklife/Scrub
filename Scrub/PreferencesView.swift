@@ -59,32 +59,6 @@ struct PreferencesView: View {
                     }
                 }
             }
-            Section(header: Text("Initial URL")) {
-                Button(action: {
-                    closeKeyboard()
-                    preferences.initialUrl = .homeUrl
-                }) {
-                    HStack {
-                        Text("Home URL").foregroundColor(.black)
-                        Spacer()
-                        if preferences.initialUrl == .homeUrl {
-                            Image(systemName: "checkmark")
-                        }
-                    }
-                }
-                Button(action: {
-                    closeKeyboard()
-                    preferences.initialUrl = .lastUrl
-                }) {
-                    HStack {
-                        Text("Last Visited URL").foregroundColor(.black)
-                        Spacer()
-                        if preferences.initialUrl == .lastUrl {
-                            Image(systemName: "checkmark")
-                        }
-                    }
-                }
-            }
             Section {
                 HStack {
                     Text("Version")

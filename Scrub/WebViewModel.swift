@@ -38,10 +38,6 @@ class WebViewModel: ObservableObject {
         self.inputs = inputsSubject.eraseToAnyPublisher()
     }
     
-    var shoudUseLastUrl: Bool {
-        return preferences.initialUrl == .lastUrl
-    }
-    
     var homeUrl: URL {
         switch preferences.homeUrl {
         case .scratchHome:

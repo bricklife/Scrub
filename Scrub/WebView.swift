@@ -26,11 +26,7 @@ struct WebView: UIViewControllerRepresentable {
         print(#function)
         webViewController.delegate = context.coordinator
         
-        if viewModel.shoudUseLastUrl, let lastUrl = lastUrl {
-            webViewController.load(url: lastUrl)
-        } else {
-            webViewController.load(url: viewModel.homeUrl)
-        }
+        webViewController.load(url: lastUrl ?? viewModel.homeUrl)
         
         return webViewController
     }
