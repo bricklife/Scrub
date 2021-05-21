@@ -24,7 +24,7 @@ class Preferences: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     
     init() {
-        self.homeUrl = UserDefaults.standard.getEnum(forKey: "homeUrl") ?? .scratchHome
+        self.homeUrl = UserDefaults.standard.getEnum(forKey: "homeUrl") ?? .scratchEditor
         self.customUrl = UserDefaults.standard.string(forKey: "customUrl") ?? "https://"
         
         $homeUrl.sink { (value) in
