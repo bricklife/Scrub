@@ -26,7 +26,9 @@ struct WebView: UIViewControllerRepresentable {
         print(#function)
         webViewController.delegate = context.coordinator
         
-        if let url = url ?? viewModel.homeUrl {
+        if let url = url, url.scheme != "file" {
+            webViewController.load(url: url)
+        } else if let url = viewModel.homeUrl {
             webViewController.load(url: url)
         } else {
             alertString = NSLocalizedString("Invalid URL", comment: "Invalid URL")
