@@ -28,6 +28,30 @@ struct PreferencesView: View {
                 }
                 Button(action: {
                     closeKeyboard()
+                    preferences.homeUrl = .scratchEditor
+                }) {
+                    HStack {
+                        Text("Scratch Editor (Create New Project)").foregroundColor(.primary)
+                        Spacer()
+                        if preferences.homeUrl == .scratchEditor {
+                            Image(systemName: "checkmark")
+                        }
+                    }
+                }
+                Button(action: {
+                    closeKeyboard()
+                    preferences.homeUrl = .scratchMyStuff
+                }) {
+                    HStack {
+                        Text("Scratch My Stuff").foregroundColor(.primary)
+                        Spacer()
+                        if preferences.homeUrl == .scratchMyStuff {
+                            Image(systemName: "checkmark")
+                        }
+                    }
+                }
+                Button(action: {
+                    closeKeyboard()
                     preferences.homeUrl = .custom
                 }) {
                     VStack {

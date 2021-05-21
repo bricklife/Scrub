@@ -12,6 +12,8 @@ class Preferences: ObservableObject {
     
     enum HomeUrl: String {
         case scratchHome
+        case scratchEditor
+        case scratchMyStuff
         case custom
         case documentsFolder
     }

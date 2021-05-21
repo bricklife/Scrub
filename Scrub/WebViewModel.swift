@@ -8,8 +8,6 @@
 import Foundation
 import Combine
 
-private let ScratchHomeUrl = URL(string: "https://scratch.mit.edu/projects/editor/")
-
 class WebViewModel: ObservableObject {
     
     enum Inputs {
@@ -41,7 +39,11 @@ class WebViewModel: ObservableObject {
     var homeUrl: URL? {
         switch preferences.homeUrl {
         case .scratchHome:
-            return ScratchHomeUrl
+            return URL(string: "https://scratch.mit.edu/")
+        case .scratchEditor:
+            return URL(string: "https://scratch.mit.edu/projects/editor/")
+        case .scratchMyStuff:
+            return URL(string: "https://scratch.mit.edu/mystuff/")
         case .custom:
             return URL(string: preferences.customUrl)
         case .documentsFolder:
