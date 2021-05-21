@@ -10,11 +10,21 @@ import SwiftUI
 @main
 struct ScrubApp: App {
     
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     @StateObject private var preferences = Preferences()
     
     var body: some Scene {
         WindowGroup {
             MainView(preferences: preferences)
         }
+    }
+}
+
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        LocalDocumentsManager.copyIndexHtmlIfNeeded()
+        return true
     }
 }
