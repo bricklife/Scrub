@@ -12,7 +12,7 @@ struct MainView: View {
     @ObservedObject private var preferences: Preferences
     
     @StateObject private var webViewModel: WebViewModel
-    @SceneStorage("lastUrl") private var lastUrl: URL?
+    @SceneStorage("lastUrl") private var url: URL?
     
     @State private var isShowingPreferences = false
     @State private var isShowingActivityView = false
@@ -29,7 +29,7 @@ struct MainView: View {
     
     var body: some View {
         HStack(spacing: 0) {
-            WebView(viewModel: webViewModel, lastUrl: $lastUrl, alertString: $alertString)
+            WebView(viewModel: webViewModel, url: $url, alertString: $alertString)
                 .sheet(isPresented: $isShowingPreferences) {
                     NavigationView {
                         PreferencesView(preferences: preferences)
@@ -44,7 +44,7 @@ struct MainView: View {
                     }
                 }
                 .sheet(isPresented: $isShowingActivityView) {
-                    if let url = lastUrl {
+                    if let url = url {
                         ActivityView(preferences: preferences, activityItems: [url])
                     }
                 }
@@ -57,7 +57,7 @@ struct MainView: View {
                     isShowingActivityView = true
                 }) {
                     Image(systemName: "square.and.arrow.up")
-                }.disabled(lastUrl?.scheme == "file")
+                }.disabled(url?.scheme == "file")
                 ZStack {
                     CircleProgressView(progress: webViewModel.estimatedProgress)
                         .opacity(webViewModel.isLoading ? 0.4 : 0.0)
