@@ -47,7 +47,7 @@ class WebViewModel: ObservableObject {
         case .custom:
             return URL(string: preferences.customUrl)
         case .documentsFolder:
-            return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("index.html")
+            return LocalDocumentsManager.indexHtmlUrl
         }
     }
     
