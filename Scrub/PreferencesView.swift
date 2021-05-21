@@ -19,7 +19,7 @@ struct PreferencesView: View {
                     preferences.homeUrl = .scratchHome
                 }) {
                     HStack {
-                        Text("Scratch Home").foregroundColor(.black)
+                        Text("Scratch Home").foregroundColor(.primary)
                         Spacer()
                         if preferences.homeUrl == .scratchHome {
                             Image(systemName: "checkmark")
@@ -32,7 +32,7 @@ struct PreferencesView: View {
                 }) {
                     VStack {
                         HStack {
-                            Text("Custom").foregroundColor(.black)
+                            Text("Custom").foregroundColor(.primary)
                             Spacer()
                             if preferences.homeUrl == .custom {
                                 Image(systemName: "checkmark")
@@ -41,6 +41,7 @@ struct PreferencesView: View {
                         TextField("https://", text: $preferences.customUrl, onCommit: {
                             preferences.homeUrl = .custom
                         })
+                        .foregroundColor(.secondary)
                         .keyboardType(.URL)
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
@@ -51,7 +52,7 @@ struct PreferencesView: View {
                     preferences.homeUrl = .documentsFolder
                 }) {
                     HStack {
-                        Text("Local Documents Folder").foregroundColor(.black)
+                        Text("Local Documents Folder").foregroundColor(.primary)
                         Spacer()
                         if preferences.homeUrl == .documentsFolder {
                             Image(systemName: "checkmark")
