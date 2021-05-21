@@ -71,7 +71,7 @@ struct MainView: View {
                             Image(systemName: "arrow.clockwise")
                         }
                     }
-                }.frame(width: 24, height: 24)
+                }.frame(width: 32, height: 32)
                 Spacer()
                 Button(action: { webViewModel.apply(inputs: .goHome) }) {
                     Image(systemName: "house")
@@ -86,7 +86,7 @@ struct MainView: View {
                 Button(action: { isShowingPreferences = true }) {
                     Image(systemName: "gear")
                 }
-            }.frame(width: 24).edgesIgnoringSafeArea([.horizontal])
+            }.frame(width: 32).edgesIgnoringSafeArea([.horizontal])
         }
     }
 }
