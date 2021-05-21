@@ -52,7 +52,7 @@ struct MainView: View {
                     Alert(title: Text("Alert"), message: alertString.flatMap(Text.init))
                 }
                 .edgesIgnoringSafeArea([.bottom, .horizontal])
-            VStack(spacing: 10) {
+            VStack(spacing: 8) {
                 Button(action: {
                     isShowingActivityView = true
                 }) {
@@ -71,7 +71,7 @@ struct MainView: View {
                             Image(systemName: "arrow.clockwise")
                         }
                     }
-                }.frame(width: 32, height: 32)
+                }.frame(width: 24, height: 24)
                 Spacer()
                 Button(action: { webViewModel.apply(inputs: .goHome) }) {
                     Image(systemName: "house")
@@ -86,7 +86,7 @@ struct MainView: View {
                 Button(action: { isShowingPreferences = true }) {
                     Image(systemName: "gear")
                 }
-            }.frame(width: 32).edgesIgnoringSafeArea([.horizontal])
+            }.padding(4).edgesIgnoringSafeArea([.horizontal])
         }
     }
 }
