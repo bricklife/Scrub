@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+        window.onload = function () {
+            function showText(text) {
+                document.getElementById("section").innerText = text;
+            }
+            if (navigator.language == 'ja') {
+                showText('この機能を使うには、表示したいindex.htmlファイルをiPadにコピーして、このHTMLファイルを上書きしてください。');
+            } else {
+                showText('To use this function, please copy your index.html to your iPad and repalce this HTML file with it.');
+            }
+        };
+    </script>
+    <style>
+        section {
+            color: black;
+            border: 2px solid;
+            border-radius: 1em;
+            padding: 1em;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section id="section"></section>
+
+</body>
+
+</html>
