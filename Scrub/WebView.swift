@@ -26,7 +26,11 @@ struct WebView: UIViewControllerRepresentable {
         print(#function)
         webViewController.delegate = context.coordinator
         
-        webViewController.load(url: url ?? viewModel.homeUrl)
+        if let url = url ?? viewModel.homeUrl {
+            webViewController.load(url: url)
+        } else {
+            alertString = NSLocalizedString("Invalid URL", comment: "Invalid URL")
+        }
         
         return webViewController
     }
@@ -50,7 +54,11 @@ extension WebView {
             parent.viewModel.inputs.sink { (inputs) in
                 switch inputs {
                 case .goHome:
-                    parent.webViewController.load(url: parent.viewModel.homeUrl)
+                    if let url = parent.viewModel.homeUrl {
+                        parent.webViewController.load(url: url)
+                    } else {
+                        parent.alertString = NSLocalizedString("Invalid URL", comment: "Invalid URL")
+                    }
                 case .goBack:
                     parent.webViewController.goBack()
                 case .goForward:

@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-private let ScratchHomeUrl = URL(string: "https://scratch.mit.edu/projects/editor/")!
+private let ScratchHomeUrl = URL(string: "https://scratch.mit.edu/projects/editor/")
 
 class WebViewModel: ObservableObject {
     
@@ -38,12 +38,12 @@ class WebViewModel: ObservableObject {
         self.inputs = inputsSubject.eraseToAnyPublisher()
     }
     
-    var homeUrl: URL {
+    var homeUrl: URL? {
         switch preferences.homeUrl {
         case .scratchHome:
             return ScratchHomeUrl
         case .custom:
-            return URL(string: preferences.customUrl) ?? ScratchHomeUrl
+            return URL(string: preferences.customUrl)
         case .documentsFolder:
             return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("index.html")
         }
