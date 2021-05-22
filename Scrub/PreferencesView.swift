@@ -100,6 +100,10 @@ struct PreferencesView: View {
                     }
                 }
             }
+            Section(footer: VStack(alignment: .leading, spacing: 8) {
+                Text("Scratch is a project of the Scratch Foundation, in collaboration with the Lifelong Kindergarten Group at the MIT Media Lab. It is available for free at https://scratch.mit.edu.")
+                Text("\"toio\" is a registered trademark of Sony Interactive Entertainment Inc.")
+            }) {}
         }
     }
     
