@@ -91,6 +91,15 @@ struct PreferencesView: View {
                     Text(versionString())
                 }
             }
+            Section(header: Text("Special Thanks"), footer: Text("The implementation of Scratch Link function is inspired by toio Do iPad app.")) {
+                Link(destination: URL(string: "https://toio.io/special/do/")!) {
+                    HStack {
+                        Text("toio Do")
+                        Spacer()
+                        Image(systemName: "globe")
+                    }
+                }
+            }
         }
     }
     
