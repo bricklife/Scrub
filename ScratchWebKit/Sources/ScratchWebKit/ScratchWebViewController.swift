@@ -170,9 +170,8 @@ extension ScratchWebViewController: ScratchLinkDelegate {
         print(#function)
     }
     
-    public func didFailStartingSession(type: SessionType) {
-        // ToDo: Alert
-        print(#function)
+    public func didFailStartingSession(type: SessionType, error: Error) {
+        delegate?.didFail(error: error)
     }
 }
 

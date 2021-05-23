@@ -18,6 +18,20 @@ enum SerializationError: Error {
     case internalError(String)
 }
 
+enum SessionError: Error {
+    case bluetoothIsNotAvailable
+}
+
+extension SessionError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .bluetoothIsNotAvailable:
+            return "Bluetooth is not available."
+        }
+    }
+}
+
+
 @objc public enum SessionType: Int {
     case ble
     case bt
@@ -96,7 +110,7 @@ extension ScratchLink: WKScriptMessageHandler {
             guard let type = SessionType(url: url) else { break }
             
             guard bluetoothConnectionChecker.state == .poweredOn else {
-                delegate?.didFailStartingSession(type: type)
+                delegate?.didFailStartingSession(type: type, error: SessionError.bluetoothIsNotAvailable)
                 break
             }
             
@@ -133,5 +147,5 @@ extension ScratchLink: WKScriptMessageHandler {
 
 @objc public protocol ScratchLinkDelegate {
     @objc func didStartSession(type: SessionType)
-    @objc func didFailStartingSession(type: SessionType)
+    @objc func didFailStartingSession(type: SessionType, error: Error)
 }
