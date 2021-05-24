@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "ScratchWebKit",
+    defaultLocalization: "en",
     platforms: [
         .iOS("14.5")
     ],

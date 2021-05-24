@@ -1,0 +1,8 @@
+/* 
+  Localizable.strings
+  Scrub
+
+  Created by Shinichiro Oba on 2021/05/24.
+  
+*/
+"Bluetooth is not available." = "Bluetoothが無効になっています。";
