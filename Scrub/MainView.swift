@@ -49,7 +49,7 @@ struct MainView: View {
                     }
                 }
                 .alert(isPresented: isShowingAlert) {
-                    return Alert(title: Text("Alert"), message: alertError.flatMap { Text($0.localizedDescription) })
+                    Alert(title: Text("Alert"), message: alertError.flatMap { Text($0.localizedDescription) })
                 }
                 .edgesIgnoringSafeArea([.bottom, .horizontal])
             
