@@ -26,11 +26,10 @@ extension SessionError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .bluetoothIsNotAvailable:
-            return "Bluetooth is not available."
+            return NSLocalizedString("Bluetooth is not available.", bundle: Bundle.module, comment: "Bluetooth is not available.")
         }
     }
 }
-
 
 @objc public enum SessionType: Int {
     case ble
