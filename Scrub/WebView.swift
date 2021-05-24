@@ -9,11 +9,24 @@ import SwiftUI
 import Combine
 import ScratchWebKit
 
+enum WebViewError: Error {
+    case invalidUrl
+}
+
+extension WebViewError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .invalidUrl:
+            return NSLocalizedString("Invalid URL", comment: "Invalid URL")
+        }
+    }
+}
+
 struct WebView: UIViewControllerRepresentable {
     
     @ObservedObject var viewModel: WebViewModel
     @Binding var url: URL?
-    @Binding var alertString: String?
+    @Binding var alertError: Error?
     
     private let webViewController = ScratchWebViewController()
     
@@ -31,7 +44,7 @@ struct WebView: UIViewControllerRepresentable {
         } else if let url = viewModel.homeUrl {
             webViewController.load(url: url)
         } else {
-            alertString = NSLocalizedString("Invalid URL", comment: "Invalid URL")
+            alertError = WebViewError.invalidUrl
         }
         
         return webViewController
@@ -59,7 +72,7 @@ extension WebView {
                     if let url = parent.viewModel.homeUrl {
                         parent.webViewController.load(url: url)
                     } else {
-                        parent.alertString = NSLocalizedString("Invalid URL", comment: "Invalid URL")
+                        parent.alertError = WebViewError.invalidUrl
                     }
                 case .goBack:
                     parent.webViewController.goBack()
@@ -93,7 +106,7 @@ extension WebView {
         }
         
         func didFail(error: Error) {
-            parent.alertString = error.localizedDescription
+            parent.alertError = error
         }
     }
 }

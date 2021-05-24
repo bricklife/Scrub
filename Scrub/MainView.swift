@@ -17,9 +17,9 @@ struct MainView: View {
     @State private var isShowingPreferences = false
     @State private var isShowingActivityView = false
     
-    @State private var alertString: String? = nil
+    @State private var alertError: Error? = nil
     private var isShowingAlert: Binding<Bool> {
-        return Binding<Bool>(get: { alertString != nil }, set: { _ in alertString = nil })
+        return Binding<Bool>(get: { alertError != nil }, set: { _ in alertError = nil })
     }
     
     init(preferences: Preferences) {
@@ -29,7 +29,7 @@ struct MainView: View {
     
     var body: some View {
         HStack(spacing: 0) {
-            WebView(viewModel: webViewModel, url: $url, alertString: $alertString)
+            WebView(viewModel: webViewModel, url: $url, alertError: $alertError)
                 .sheet(isPresented: $isShowingPreferences) {
                     NavigationView {
                         PreferencesView(preferences: preferences)
@@ -49,7 +49,7 @@ struct MainView: View {
                     }
                 }
                 .alert(isPresented: isShowingAlert) {
-                    Alert(title: Text("Alert"), message: alertString.flatMap(Text.init))
+                    return Alert(title: Text("Alert"), message: alertError.flatMap { Text($0.localizedDescription) })
                 }
                 .edgesIgnoringSafeArea([.bottom, .horizontal])
             
