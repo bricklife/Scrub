@@ -21,7 +21,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>App requires access to Bluetooth to connect to devices.</string>
+	<string>App requires access to Bluetooth to communicate with external devices.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>App requires access to the camera for sensing.</string>
 	<key>NSMicrophoneUsageDescription</key>
