@@ -31,7 +31,7 @@ class HomeUrlActivity: UIActivity {
     }
     
     override var activityTitle: String? {
-        return "Set as Home URL"
+        return NSLocalizedString("Set as Home URL", comment: "Set as Home URL")
     }
     
     override var activityImage: UIImage? {
@@ -70,7 +70,7 @@ class SafariActivity: UIActivity {
     var url: URL? = nil
     
     override var activityTitle: String? {
-        return "Open in Web Browser"
+        return NSLocalizedString("Open in Web Browser", comment: "Open in Web Browser")
     }
     
     override var activityImage: UIImage? {
