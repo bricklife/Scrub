@@ -6,3 +6,18 @@
   
 */
 "Done" = "Done";
+"Alert" = "Alert";
+
+"Invalid URL" = "Invalid URL";
+
+"Set as Home URL" = "Set as Home URL";
+"Open in Web Browser" = "Open in Web Browser";
+
+"Preferences" = "Preferences";
+"Home URL" = "Home URL";
+"Scratch Home" = "Scratch Home";
+"Scratch Editor (Create New Project)" = "Scratch Editor (Create New Project)";
+"Scratch My Stuff" = "Scratch My Stuff";
+"Custom" = "Custom";
+"Local Documents Folder" = "Local Documents Folder";
+"Version" = "Version";

@@ -6,3 +6,18 @@
   
 */
 "Done" = "完了";
+"Alert" = "アラート";
+
+"Invalid URL" = "不正なURLです";
+
+"Set as Home URL" = "ホームURLに設定する";
+"Open in Web Browser" = "Webブラウザで開く";
+
+"Preferences" = "設定";
+"Home URL" = "ホームURL";
+"Scratch Home" = "Scratch ホーム";
+"Scratch Editor (Create New Project)" = "Scratch エディタ (新しいプロジェクト)";
+"Scratch My Stuff" = "Scratch 私の作品";
+"Custom" = "カスタム";
+"Local Documents Folder" = "ローカルフォルダ";
+"Version" = "バージョン";
