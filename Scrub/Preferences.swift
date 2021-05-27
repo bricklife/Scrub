@@ -20,18 +20,23 @@ class Preferences: ObservableObject {
     
     @Published var homeUrl: HomeUrl
     @Published var customUrl: String
+    @Published var didShowBluetoothParingDialog: Bool
     
     private var cancellables: Set<AnyCancellable> = []
     
     init() {
         self.homeUrl = UserDefaults.standard.getEnum(forKey: "homeUrl") ?? .scratchEditor
         self.customUrl = UserDefaults.standard.string(forKey: "customUrl") ?? "https://"
+        self.didShowBluetoothParingDialog = UserDefaults.standard.bool(forKey: "didShowBluetoothParingDialog")
         
         $homeUrl.sink { (value) in
             UserDefaults.standard.setEnum(value, forKey: "homeUrl")
         }.store(in: &cancellables)
         $customUrl.sink { (value) in
             UserDefaults.standard.setValue(value, forKey: "customUrl")
+        }.store(in: &cancellables)
+        $didShowBluetoothParingDialog.sink { (value) in
+            UserDefaults.standard.setValue(value, forKey: "didShowBluetoothParingDialog")
         }.store(in: &cancellables)
     }
 }
