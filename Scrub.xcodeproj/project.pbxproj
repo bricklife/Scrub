@@ -13,6 +13,7 @@
 		CB1DAA51262D6EB0007F5531 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1DAA50262D6EB0007F5531 /* WebViewModel.swift */; };
 		CB2F32E62657B3690097ED27 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = CB2F32E52657B3690097ED27 /* index.html */; };
 		CB2F32EB2657CAFB0097ED27 /* LocalDocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F32EA2657CAFB0097ED27 /* LocalDocumentsManager.swift */; };
+		CB3EE8D4266082D100005ECC /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3EE8D3266082D100005ECC /* AlertController.swift */; };
 		CB3FBCF92605D98C008FE5C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */; };
 		CB47F3BB2632DF5600C0A7ED /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB47F3BA2632DF5600C0A7ED /* CircleProgressView.swift */; };
 		CB4D940A265772BA007C59AB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CB4D9409265772BA007C59AB /* Settings.bundle */; };
@@ -45,6 +46,7 @@
 		CB1DAA50262D6EB0007F5531 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		CB2F32E52657B3690097ED27 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		CB2F32EA2657CAFB0097ED27 /* LocalDocumentsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDocumentsManager.swift; sourceTree = "<group>"; };
+		CB3EE8D3266082D100005ECC /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		CB3FBCEC2605D98B008FE5C2 /* Scrub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scrub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB3FBCFD2605D98C008FE5C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				CB7D42DA2617096C005C86D0 /* ScrubApp.swift */,
 				CB0A07722629E4D4001EF560 /* Preferences.swift */,
 				CB7D42F8261709F4005C86D0 /* MainView.swift */,
+				CB3EE8D3266082D100005ECC /* AlertController.swift */,
 				CB7D42FA26170A9E005C86D0 /* WebView.swift */,
 				CB1DAA50262D6EB0007F5531 /* WebViewModel.swift */,
 				CB52568E26419776009EE660 /* ActivityView.swift */,
@@ -202,6 +205,7 @@
 				CB47F3BB2632DF5600C0A7ED /* CircleProgressView.swift in Sources */,
 				CB0A07732629E4D4001EF560 /* Preferences.swift in Sources */,
 				CB2F32EB2657CAFB0097ED27 /* LocalDocumentsManager.swift in Sources */,
+				CB3EE8D4266082D100005ECC /* AlertController.swift in Sources */,
 				CB52568F26419776009EE660 /* ActivityView.swift in Sources */,
 				CB1DAA51262D6EB0007F5531 /* WebViewModel.swift in Sources */,
 				CB7D42DB2617096C005C86D0 /* ScrubApp.swift in Sources */,

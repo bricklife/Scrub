@@ -26,7 +26,8 @@ struct WebView: UIViewControllerRepresentable {
     
     @ObservedObject var viewModel: WebViewModel
     @Binding var url: URL?
-    @Binding var alertError: Error?
+    
+    @EnvironmentObject private var alertController: AlertController
     
     private let webViewController = ScratchWebViewController()
     
@@ -44,7 +45,7 @@ struct WebView: UIViewControllerRepresentable {
         } else if let url = viewModel.homeUrl {
             webViewController.load(url: url)
         } else {
-            alertError = WebViewError.invalidUrl
+            alertController.showAlert(error: WebViewError.invalidUrl)
         }
         
         return webViewController
@@ -72,7 +73,7 @@ extension WebView {
                     if let url = parent.viewModel.homeUrl {
                         parent.webViewController.load(url: url)
                     } else {
-                        parent.alertError = WebViewError.invalidUrl
+                        parent.alertController.showAlert(error: WebViewError.invalidUrl)
                     }
                 case .goBack:
                     parent.webViewController.goBack()
@@ -106,7 +107,7 @@ extension WebView {
         }
         
         func didFail(error: Error) {
-            parent.alertError = error
+            parent.alertController.showAlert(error: error)
         }
     }
 }

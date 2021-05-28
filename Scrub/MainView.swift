@@ -10,17 +10,13 @@ import SwiftUI
 struct MainView: View {
     
     @ObservedObject private var preferences: Preferences
+    @StateObject private var alertController = AlertController()
     
     @StateObject private var webViewModel: WebViewModel
     @SceneStorage("lastUrl") private var url: URL?
     
     @State private var isShowingPreferences = false
     @State private var isShowingActivityView = false
-    
-    @State private var alertError: Error? = nil
-    private var isShowingAlert: Binding<Bool> {
-        return Binding<Bool>(get: { alertError != nil }, set: { _ in alertError = nil })
-    }
     
     init(preferences: Preferences) {
         self.preferences = preferences
@@ -29,7 +25,7 @@ struct MainView: View {
     
     var body: some View {
         HStack(spacing: 0) {
-            WebView(viewModel: webViewModel, url: $url, alertError: $alertError)
+            WebView(viewModel: webViewModel, url: $url)
                 .sheet(isPresented: $isShowingPreferences) {
                     NavigationView {
                         PreferencesView(preferences: preferences)
@@ -48,9 +44,10 @@ struct MainView: View {
                         ActivityView(preferences: preferences, activityItems: [url])
                     }
                 }
-                .alert(isPresented: isShowingAlert) {
-                    Alert(title: Text("Alert"), message: alertError.flatMap { Text($0.localizedDescription) })
+                .alert(isPresented: alertController.isShowingAlert) {
+                    alertController.makeAlert()
                 }
+                .environmentObject(alertController)
                 .edgesIgnoringSafeArea([.bottom, .horizontal])
             
             VStack(spacing: 8) {
