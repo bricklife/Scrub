@@ -60,7 +60,6 @@ public class ScratchWebViewController: UIViewController {
         webView.publisher(for: \.estimatedProgress).assign(to: &$estimatedProgress)
         
         $url.compactMap({$0}).sink() { [weak self] (url) in
-            print("url:", url)
             if self?.webView.isLoading == false {
                 self?.changeWebViewStyles()
             }
@@ -73,7 +72,6 @@ public class ScratchWebViewController: UIViewController {
     private func changeWebViewStyles() {
         webView.evaluateJavaScript("document.getElementsByClassName('blocklyToolboxDiv').length > 0") { [weak self] (result, error) in
             let isScratchEditor = result as? Bool ?? false
-            print("isScratchEditor:", isScratchEditor)
             if isScratchEditor {
                 self?.webView.evaluateJavaScript("document.documentElement.style.webkitUserSelect='none'")
                 self?.webView.evaluateJavaScript("document.documentElement.style.webkitTouchCallout='none'")
@@ -112,8 +110,6 @@ extension ScratchWebViewController {
 extension ScratchWebViewController: WKNavigationDelegate {
     
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        print("Requested", navigationAction.request)
-        
         if navigationAction.shouldPerformDownload {
             decisionHandler(.download)
         } else {
@@ -152,7 +148,6 @@ extension ScratchWebViewController: WKDownloadDelegate {
     
     public func downloadDidFinish(_ download: WKDownload) {
         if let url = downloadingUrl {
-            print("Saved at", url.path)
             self.downloadingUrl = nil
             delegate?.didDownloadFile(at: url)
         }

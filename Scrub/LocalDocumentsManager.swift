@@ -17,7 +17,6 @@ final class LocalDocumentsManager {
         do {
             try FileManager.default.copyItem(at: originalUrl, to: indexHtmlUrl)
         } catch {
-            print(error)
         }
     }
 }

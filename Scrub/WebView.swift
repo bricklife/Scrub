@@ -32,12 +32,10 @@ struct WebView: UIViewControllerRepresentable {
     private let webViewController = ScratchWebViewController()
     
     func makeCoordinator() -> WebView.Coodinator {
-        print(#function)
         return Coodinator(self)
     }
     
     func makeUIViewController(context: Context) -> ScratchWebViewController {
-        print(#function)
         webViewController.delegate = context.coordinator
         
         if let url = url, url.scheme != "file" {
@@ -52,7 +50,6 @@ struct WebView: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: ScratchWebViewController, context: Context) {
-        print(#function)
     }
 }
 
