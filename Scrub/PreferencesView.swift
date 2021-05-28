@@ -85,6 +85,27 @@ struct PreferencesView: View {
                 }
             }
             Section {
+                NavigationLink("Support", destination:
+                                Form {
+                                    Section {
+                                        Link(destination: URL(string: "https://github.com/bricklife/Scrub")!) {
+                                            HStack {
+                                                Text("GitHub")
+                                                Spacer()
+                                                Image(systemName: "globe")
+                                            }
+                                        }
+                                        Link(destination: URL(string: "https://twitter.com/ooba")!) {
+                                            HStack {
+                                                Text("Twitter: @ooba")
+                                                Spacer()
+                                                Image(systemName: "globe")
+                                            }
+                                        }
+                                    }
+                                }
+                                .navigationTitle(Text("Support"))
+                )
                 NavigationLink("Special Thanks", destination:
                                 Form {
                                     Section(footer: Text("This implementation of Scratch Link function is inspired by toio Do app.")) {
