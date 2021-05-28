@@ -9,6 +9,19 @@ import UIKit
 import WebKit
 import Combine
 
+enum ScratchWebViewError: Error {
+    case forbiddenAccess
+}
+
+extension ScratchWebViewError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .forbiddenAccess:
+            return NSLocalizedString("Not allowed to access this URL.", bundle: Bundle.module, comment: "Not allowed to access this URL.")
+        }
+    }
+}
+
 public class ScratchWebViewController: UIViewController {
     
     private let webView: WKWebView
@@ -61,7 +74,7 @@ public class ScratchWebViewController: UIViewController {
         
         $url.compactMap({$0}).sink() { [weak self] (url) in
             if self?.webView.isLoading == false {
-                self?.changeWebViewStyles()
+                self?.didChangeUrl()
             }
         }.store(in: &cancellables)
         
@@ -69,16 +82,31 @@ public class ScratchWebViewController: UIViewController {
         webView.scrollView.contentInsetAdjustmentBehavior = .never
     }
     
-    private func changeWebViewStyles() {
+    private func didChangeUrl() {
         webView.evaluateJavaScript("document.getElementsByClassName('blocklyToolboxDiv').length > 0") { [weak self] (result, error) in
             let isScratchEditor = result as? Bool ?? false
-            if isScratchEditor {
-                self?.webView.evaluateJavaScript("document.documentElement.style.webkitUserSelect='none'")
-                self?.webView.evaluateJavaScript("document.documentElement.style.webkitTouchCallout='none'")
+            let isScratchSite = self?.url?.host == "scratch.mit.edu"
+            let isLocal = self?.url?.scheme == "file"
+            
+            if isScratchEditor || isScratchSite || isLocal {
+                self?.webView.isUserInteractionEnabled = true
+                self?.webView.alpha = 1.0
+                self?.changeWebViewStyle(isScratchEditor: isScratchEditor)
             } else {
-                self?.webView.evaluateJavaScript("document.documentElement.style.webkitUserSelect='auto'")
-                self?.webView.evaluateJavaScript("document.documentElement.style.webkitTouchCallout='inherit'")
+                self?.webView.isUserInteractionEnabled = false
+                self?.webView.alpha = 0.4
+                self?.delegate?.didFail(error: ScratchWebViewError.forbiddenAccess)
             }
+        }
+    }
+    
+    private func changeWebViewStyle(isScratchEditor: Bool) {
+        if isScratchEditor {
+            webView.evaluateJavaScript("document.documentElement.style.webkitUserSelect='none'")
+            webView.evaluateJavaScript("document.documentElement.style.webkitTouchCallout='none'")
+        } else {
+            webView.evaluateJavaScript("document.documentElement.style.webkitUserSelect='auto'")
+            webView.evaluateJavaScript("document.documentElement.style.webkitTouchCallout='inherit'")
         }
     }
 }
@@ -126,7 +154,7 @@ extension ScratchWebViewController: WKNavigationDelegate {
     }
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        changeWebViewStyles()
+        didChangeUrl()
     }
     
     public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
