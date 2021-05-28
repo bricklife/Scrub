@@ -85,19 +85,21 @@ struct PreferencesView: View {
                 }
             }
             Section {
-                NavigationLink("Special Thanks", destination: Form {
-                    Section(footer: Text("This implementation of Scratch Link function is inspired by toio Do app.")) {
-                        Link(destination: URL(string: "https://toio.io/special/do/")!) {
-                            HStack {
-                                Text("toio Do")
-                                Spacer()
-                                Image(systemName: "globe")
-                            }
-                        }
-                    }
-                    Section(footer: Text("\"toio\" is a trademark or registered trademark of Sony Interactive Entertainment Inc.")) {}
-                }
-                .navigationTitle(Text("Special Thanks")))
+                NavigationLink("Special Thanks", destination:
+                                Form {
+                                    Section(footer: Text("This implementation of Scratch Link function is inspired by toio Do app.")) {
+                                        Link(destination: URL(string: "https://toio.io/special/do/")!) {
+                                            HStack {
+                                                Text("toio Do")
+                                                Spacer()
+                                                Image(systemName: "globe")
+                                            }
+                                        }
+                                    }
+                                    Section(footer: Text("\"toio\" is a trademark or registered trademark of Sony Interactive Entertainment Inc.")) {}
+                                }
+                                .navigationTitle(Text("Special Thanks"))
+                )
             }
             Section {
                 HStack {
