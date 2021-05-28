@@ -7,8 +7,12 @@
 */
 "Done" = "完了";
 "Alert" = "アラート";
+"Error" = "エラー";
 
 "Invalid URL" = "不正なURLです";
+
+"How to Use" = "使い方";
+"Please pair your Bluetooth device on Settings app before using this extension." = "この拡張機能を使う前に、設定アプリでBluetoothデバイスをペアリングしてください。";
 
 "Set as Home URL" = "ホームURLに設定する";
 "Open in Web Browser" = "Webブラウザで開く";
@@ -20,4 +24,10 @@
 "Scratch My Stuff" = "Scratch 私の作品";
 "Custom" = "カスタム";
 "Local Documents Folder" = "ローカルフォルダ";
+"Special Thanks" = "謝辞";
 "Version" = "バージョン";
+
+"Scratch is a project of the Scratch Foundation, in collaboration with the Lifelong Kindergarten Group at the MIT Media Lab. It is available for free at https://scratch.mit.edu." = "Scratchは、MITメディア・ラボのライフロング・キンダーガーテン・グループの協力により、Scratch財団が進めているプロジェクトです。https://scratch.mit.edu から自由に入手できます。";
+
+"This implementation of Scratch Link function is inspired by toio Do app." = "Scratch Link機能の実装はtoio Doアプリを参考にさせて頂きました。";
+"\"toio\" is a trademark or registered trademark of Sony Interactive Entertainment Inc." = "\"toio\"は、株式会社ソニー・インタラクティブエンタテインメントの登録商標または商標です。";

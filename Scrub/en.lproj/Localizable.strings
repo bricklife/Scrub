@@ -7,8 +7,12 @@
 */
 "Done" = "Done";
 "Alert" = "Alert";
+"Error" = "Error";
 
 "Invalid URL" = "Invalid URL";
+
+"How to Use" = "How to Use";
+"Please pair your Bluetooth device on Settings app before using this extension." = "Please pair your Bluetooth device on Settings app before using this extension.";
 
 "Set as Home URL" = "Set as Home URL";
 "Open in Web Browser" = "Open in Web Browser";
@@ -20,4 +24,10 @@
 "Scratch My Stuff" = "Scratch My Stuff";
 "Custom" = "Custom";
 "Local Documents Folder" = "Local Documents Folder";
+"Special Thanks" = "Special Thanks";
 "Version" = "Version";
+
+"Scratch is a project of the Scratch Foundation, in collaboration with the Lifelong Kindergarten Group at the MIT Media Lab. It is available for free at https://scratch.mit.edu." = "Scratch is a project of the Scratch Foundation, in collaboration with the Lifelong Kindergarten Group at the MIT Media Lab. It is available for free at https://scratch.mit.edu.";
+
+"This implementation of Scratch Link function is inspired by toio Do app." = "This implementation of Scratch Link function is inspired by toio Do app.";
+"\"toio\" is a trademark or registered trademark of Sony Interactive Entertainment Inc." = "\"toio\" is a trademark or registered trademark of Sony Interactive Entertainment Inc.";
