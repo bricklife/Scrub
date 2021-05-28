@@ -23,7 +23,8 @@ Web browser app for Scratch 3.0 and Bluetooth devices.
 - and other BLE devices
 
 ## Demo
-https://youtu.be/5GmfSICEFa4
+
+- Programming LEGO BOOST with Scratch 3.0 on iPad https://youtu.be/5GmfSICEFa4
 
 ## Special Thanks
 
