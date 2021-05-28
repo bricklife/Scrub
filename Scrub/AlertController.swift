@@ -9,21 +9,29 @@ import SwiftUI
 
 class AlertController: ObservableObject {
     
-    private var alertError: Error? = nil {
+    private struct Content {
+        let title: Text
+        let message: Text
+        let completion: () -> Void
+    }
+    
+    private var alertContent: Content? = nil {
         willSet {
             objectWillChange.send()
         }
     }
     
     var isShowingAlert: Binding<Bool> {
-        return Binding<Bool>(get: { self.alertError != nil }, set: { _ in self.alertError = nil })
+        return Binding<Bool>(get: { self.alertContent != nil }, set: { _ in self.alertContent = nil })
     }
     
     func showAlert(error: Error) {
-        self.alertError = error
+        self.alertContent = Content(title: Text("Error"), message: Text(error.localizedDescription), completion: {})
     }
 
     func makeAlert() -> Alert {
-        return Alert(title: Text("Alert"), message: alertError.flatMap { Text($0.localizedDescription) })
+        return Alert(title: alertContent?.title ?? Text("Alert"),
+                     message: alertContent?.message,
+                     dismissButton: .default(Text("OK"), action: alertContent?.completion))
     }
 }
