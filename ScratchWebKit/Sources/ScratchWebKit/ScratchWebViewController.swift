@@ -166,8 +166,7 @@ extension ScratchWebViewController: WKDownloadDelegate {
 extension ScratchWebViewController: ScratchLinkDelegate {
     
     public func didStartSession(type: SessionType) {
-        // ToDo: Notify when session starting
-        print(#function)
+        delegate?.didStartSession(type: type)
     }
     
     public func didFailStartingSession(type: SessionType, error: Error) {
@@ -177,5 +176,6 @@ extension ScratchWebViewController: ScratchLinkDelegate {
 
 @objc public protocol ScratchWebViewControllerDelegate {
     @objc func didDownloadFile(at url: URL)
+    @objc func didStartSession(type: SessionType)
     @objc func didFail(error: Error)
 }

@@ -55,3 +55,14 @@ class WebViewModel: ObservableObject {
         inputsSubject.send(inputs)
     }
 }
+
+extension WebViewModel {
+    
+    var shouldShowBluetoothParingDialog: Bool {
+        return !preferences.didShowBluetoothParingDialog
+    }
+    
+    func didShowBluetoothParingDialog() {
+        preferences.didShowBluetoothParingDialog = true
+    }
+}

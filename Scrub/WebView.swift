@@ -106,6 +106,14 @@ extension WebView {
             parent.webViewController.present(vc, animated: true)
         }
         
+        func didStartSession(type: SessionType) {
+            if type == .bt, parent.viewModel.shouldShowBluetoothParingDialog {
+                parent.alertController.showAlert(howTo: Text("Please pair your Bluetooth device on Settings app before using.")) { [weak self] in
+                    self?.parent.viewModel.didShowBluetoothParingDialog()
+                }
+            }
+        }
+        
         func didFail(error: Error) {
             parent.alertController.showAlert(error: error)
         }
