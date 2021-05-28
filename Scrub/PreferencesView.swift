@@ -85,25 +85,28 @@ struct PreferencesView: View {
                 }
             }
             Section {
+                NavigationLink("Special Thanks", destination: Form {
+                    Section(footer: Text("This implementation of Scratch Link function is inspired by toio Do iPad app.")) {
+                        Link(destination: URL(string: "https://toio.io/special/do/")!) {
+                            HStack {
+                                Text("toio Do")
+                                Spacer()
+                                Image(systemName: "globe")
+                            }
+                        }
+                    }
+                    Section(footer: Text("\"toio\" is a registered trademark of Sony Interactive Entertainment Inc.")) {}
+                }
+                .navigationTitle(Text("Special Thanks")))
+            }
+            Section {
                 HStack {
                     Text("Version")
                     Spacer()
                     Text(versionString())
                 }
             }
-            Section(header: Text("Special Thanks"), footer: Text("The implementation of Scratch Link function is inspired by toio Do iPad app.")) {
-                Link(destination: URL(string: "https://toio.io/special/do/")!) {
-                    HStack {
-                        Text("toio Do")
-                        Spacer()
-                        Image(systemName: "globe")
-                    }
-                }
-            }
-            Section(footer: VStack(alignment: .leading, spacing: 8) {
-                Text("Scratch is a project of the Scratch Foundation, in collaboration with the Lifelong Kindergarten Group at the MIT Media Lab. It is available for free at https://scratch.mit.edu.")
-                Text("\"toio\" is a registered trademark of Sony Interactive Entertainment Inc.")
-            }) {}
+            Section(footer: Text("Scratch is a project of the Scratch Foundation, in collaboration with the Lifelong Kindergarten Group at the MIT Media Lab. It is available for free at https://scratch.mit.edu.")) {}
         }
     }
     
