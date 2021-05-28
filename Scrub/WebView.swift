@@ -17,7 +17,7 @@ extension WebViewError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .invalidUrl:
-            return NSLocalizedString("Invalid URL", comment: "Invalid URL")
+            return NSLocalizedString("Invalid URL.", comment: "Invalid URL.")
         }
     }
 }

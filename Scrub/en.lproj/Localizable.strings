@@ -9,7 +9,7 @@
 "Alert" = "Alert";
 "Error" = "Error";
 
-"Invalid URL" = "Invalid URL";
+"Invalid URL." = "Invalid URL.";
 
 "How to Use" = "How to Use";
 "Please pair your Bluetooth device on Settings app before using this extension." = "Please pair your Bluetooth device on Settings app before using this extension.";
