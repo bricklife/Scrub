@@ -22,6 +22,9 @@ Web browser app for Scratch 3.0 and Bluetooth devices.
 - Go Direct Force & Acceleratioon
 - and other BLE devices
 
+## Demo
+https://youtu.be/5GmfSICEFa4
+
 ## Special Thanks
 
 This implementation of Scratch Link function is inspired by [toio Do](https://toio.io/special/do/) iPad app. Special thanks to toio Do team!
