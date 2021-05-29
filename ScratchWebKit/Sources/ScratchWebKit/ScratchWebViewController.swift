@@ -83,12 +83,10 @@ public class ScratchWebViewController: UIViewController {
     }
     
     private func didChangeUrl() {
-        webView.evaluateJavaScript("document.getElementsByClassName('blocklyToolboxDiv').length > 0") { [weak self] (result, error) in
-            let isScratchEditor = result as? Bool ?? false
-            let isScratchSite = self?.url?.host == "scratch.mit.edu"
-            let isLocal = self?.url?.scheme == "file"
-            
-            if isScratchEditor || isScratchSite || isLocal {
+        let isScratchSite = url?.host == "scratch.mit.edu"
+        let isLocal = url?.scheme == "file"
+        detectScratchEditor { [weak self] (isScratchEditor) in
+            if isScratchSite || isLocal || isScratchEditor {
                 self?.webView.isUserInteractionEnabled = true
                 self?.webView.alpha = 1.0
                 self?.changeWebViewStyle(isScratchEditor: isScratchEditor)
@@ -97,6 +95,13 @@ public class ScratchWebViewController: UIViewController {
                 self?.webView.alpha = 0.4
                 self?.delegate?.didFail(error: ScratchWebViewError.forbiddenAccess)
             }
+        }
+    }
+    
+    private func detectScratchEditor(completion: @escaping (Bool) -> Void) {
+        webView.evaluateJavaScript("document.getElementsByClassName('blocklyToolboxDiv').length > 0") { (result, error) in
+            let isScratchEditor = result as? Bool ?? false
+            completion(isScratchEditor)
         }
     }
     
