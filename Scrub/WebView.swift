@@ -97,6 +97,16 @@ extension WebView {
             parent.webViewController.$canGoForward.assign(to: &parent.viewModel.$canGoForward)
         }
         
+        func decidePolicyFor(url: URL, isScratchEditor: Bool, decisionHandler: @escaping (WebFilterPolicy) -> Void) {
+            let isScratchSite = url.host == "scratch.mit.edu"
+            let isLocal = url.scheme == "file"
+            if isScratchSite || isLocal || isScratchEditor {
+                decisionHandler(.allow)
+            } else {
+                decisionHandler(.deny)
+            }
+        }
+        
         func didDownloadFile(at url: URL) {
             let vc = UIDocumentPickerViewController(forExporting: [url])
             vc.shouldShowFileExtensions = true
