@@ -17,7 +17,7 @@ extension ScratchWebViewError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .forbiddenAccess:
-            return NSLocalizedString("Not allowed to access this URL.", bundle: Bundle.module, comment: "Not allowed to access this URL.")
+            return NSLocalizedString("Not allowed to access this URL", bundle: Bundle.module, comment: "Not allowed to access this URL")
         }
     }
 }

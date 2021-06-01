@@ -9,7 +9,7 @@
 "Alert" = "アラート";
 "Error" = "エラー";
 
-"Invalid URL." = "不正なURLです。";
+"Invalid URL" = "不正なURLです";
 
 "How to Use" = "使い方";
 "Please pair your Bluetooth device on Settings app before using this extension." = "この拡張機能を使う前に、設定アプリでBluetoothデバイスをペアリングしてください。";
