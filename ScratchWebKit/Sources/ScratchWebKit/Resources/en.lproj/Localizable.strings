@@ -5,5 +5,5 @@
   Created by Shinichiro Oba on 2021/05/24.
   
 */
-"Bluetooth is not available." = "Bluetooth is not available.";
-"Not allowed to access this URL." = "Not allowed to access this URL.";
+"Bluetooth is not available" = "Bluetooth is not available";
+"Not allowed to access this URL" = "Not allowed to access this URL";

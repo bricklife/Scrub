@@ -32,7 +32,11 @@ class AlertController: ObservableObject {
     func showAlert(howTo message: Text, completion: @escaping () -> Void = {}) {
         self.alertContent = Content(title: Text("How to Use"), message: message, completion: completion)
     }
-
+    
+    func showAlert(sorry message: Text) {
+        self.alertContent = Content(title: Text("Sorry"), message: message, completion: {})
+    }
+    
     func makeAlert() -> Alert {
         return Alert(title: alertContent?.title ?? Text("Alert"),
                      message: alertContent?.message,

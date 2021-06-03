@@ -5,5 +5,5 @@
   Created by Shinichiro Oba on 2021/05/24.
   
 */
-"Bluetooth is not available." = "Bluetoothが無効になっています。";
-"Not allowed to access this URL." = "このURLへのアクセスは許可されていません。";
+"Bluetooth is not available" = "Bluetoothが無効になっています";
+"Not allowed to access this URL" = "このURLへのアクセスは許可されていません";

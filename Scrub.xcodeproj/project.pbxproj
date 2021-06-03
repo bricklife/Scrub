@@ -49,7 +49,6 @@
 		CB3EE8D3266082D100005ECC /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		CB3FBCEC2605D98B008FE5C2 /* Scrub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scrub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CB3FBCFD2605D98C008FE5C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB47F3BA2632DF5600C0A7ED /* CircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		CB4D9409265772BA007C59AB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		CB52568E26419776009EE660 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
@@ -59,6 +58,8 @@
 		CB7D42FA26170A9E005C86D0 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		CB9DA457264826F400459625 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CB9DA4592648274000459625 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CBF579B726686AEE00D35D6A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CBF579B926686AEE00D35D6A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +108,8 @@
 				CB9DA458264826F400459625 /* Localizable.strings */,
 				CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */,
 				CB2F32E52657B3690097ED27 /* index.html */,
-				CB3FBCFD2605D98C008FE5C2 /* Info.plist */,
+				CBF579B826686AEE00D35D6A /* Debug */,
+				CBF579B626686AEE00D35D6A /* Release */,
 				CB1980C3265CEBF900FC9D3D /* InfoPlist.strings */,
 				CB4D9409265772BA007C59AB /* Settings.bundle */,
 			);
@@ -119,6 +121,22 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CBF579B626686AEE00D35D6A /* Release */ = {
+			isa = PBXGroup;
+			children = (
+				CBF579B726686AEE00D35D6A /* Info.plist */,
+			);
+			path = Release;
+			sourceTree = "<group>";
+		};
+		CBF579B826686AEE00D35D6A /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				CBF579B926686AEE00D35D6A /* Info.plist */,
+			);
+			path = Debug;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,7 +381,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = UV6TAX3ANB;
-				INFOPLIST_FILE = Scrub/Info.plist;
+				INFOPLIST_FILE = Scrub/Debug/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -387,7 +405,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = UV6TAX3ANB;
-				INFOPLIST_FILE = Scrub/Info.plist;
+				INFOPLIST_FILE = Scrub/Release/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

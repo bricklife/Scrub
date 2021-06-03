@@ -17,7 +17,7 @@ extension WebViewError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .invalidUrl:
-            return NSLocalizedString("Invalid URL.", comment: "Invalid URL.")
+            return NSLocalizedString("Invalid URL", comment: "Invalid URL")
         }
     }
 }
@@ -97,6 +97,16 @@ extension WebView {
             parent.webViewController.$canGoForward.assign(to: &parent.viewModel.$canGoForward)
         }
         
+        func decidePolicyFor(url: URL, isScratchEditor: Bool, decisionHandler: @escaping (WebFilterPolicy) -> Void) {
+            let isScratchSite = url.host == "scratch.mit.edu"
+            let isLocal = url.scheme == "file"
+            if isScratchSite || isLocal || isScratchEditor {
+                decisionHandler(.allow)
+            } else {
+                decisionHandler(.deny)
+            }
+        }
+        
         func didDownloadFile(at url: URL) {
             let vc = UIDocumentPickerViewController(forExporting: [url])
             vc.shouldShowFileExtensions = true
@@ -104,10 +114,16 @@ extension WebView {
         }
         
         func didStartSession(type: SessionType) {
-            if type == .bt, parent.viewModel.shouldShowBluetoothParingDialog {
-                parent.alertController.showAlert(howTo: Text("Please pair your Bluetooth device on Settings app before using this extension.")) { [weak self] in
-                    self?.parent.viewModel.didShowBluetoothParingDialog()
+            if type == .bt {
+                #if DEBUG
+                if parent.viewModel.shouldShowBluetoothParingDialog {
+                    parent.alertController.showAlert(howTo: Text("Please pair your Bluetooth device on Settings app before using this extension.")) { [weak self] in
+                        self?.parent.viewModel.didShowBluetoothParingDialog()
+                    }
                 }
+                #else
+                parent.alertController.showAlert(sorry: Text("This extension is not supported🙇🏻"))
+                #endif
             }
         }
         

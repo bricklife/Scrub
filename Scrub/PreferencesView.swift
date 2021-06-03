@@ -13,55 +13,32 @@ struct PreferencesView: View {
     
     var body: some View {
         Form {
+            // Home URL
             Section(header: Text("Home URL")) {
                 Button(action: {
                     closeKeyboard()
                     preferences.homeUrl = .scratchHome
                 }) {
-                    HStack {
-                        Text("Scratch Home").foregroundColor(.primary)
-                        Spacer()
-                        if preferences.homeUrl == .scratchHome {
-                            Image(systemName: "checkmark")
-                        }
-                    }
+                    CheckmarkText(title: Text("Scratch Home"), checked: preferences.homeUrl == .scratchHome)
                 }
                 Button(action: {
                     closeKeyboard()
                     preferences.homeUrl = .scratchEditor
                 }) {
-                    HStack {
-                        Text("Scratch Editor (Create New Project)").foregroundColor(.primary)
-                        Spacer()
-                        if preferences.homeUrl == .scratchEditor {
-                            Image(systemName: "checkmark")
-                        }
-                    }
+                    CheckmarkText(title: Text("Scratch Editor (Create New Project)"), checked: preferences.homeUrl == .scratchEditor)
                 }
                 Button(action: {
                     closeKeyboard()
                     preferences.homeUrl = .scratchMyStuff
                 }) {
-                    HStack {
-                        Text("Scratch My Stuff").foregroundColor(.primary)
-                        Spacer()
-                        if preferences.homeUrl == .scratchMyStuff {
-                            Image(systemName: "checkmark")
-                        }
-                    }
+                    CheckmarkText(title: Text("Scratch My Stuff"), checked: preferences.homeUrl == .scratchMyStuff)
                 }
                 Button(action: {
                     closeKeyboard()
                     preferences.homeUrl = .custom
                 }) {
                     VStack {
-                        HStack {
-                            Text("Custom").foregroundColor(.primary)
-                            Spacer()
-                            if preferences.homeUrl == .custom {
-                                Image(systemName: "checkmark")
-                            }
-                        }
+                        CheckmarkText(title: Text("Custom"), checked: preferences.homeUrl == .custom)
                         TextField("https://", text: $preferences.customUrl, onCommit: {
                             preferences.homeUrl = .custom
                         })
@@ -75,33 +52,17 @@ struct PreferencesView: View {
                     closeKeyboard()
                     preferences.homeUrl = .documentsFolder
                 }) {
-                    HStack {
-                        Text("Local Documents Folder").foregroundColor(.primary)
-                        Spacer()
-                        if preferences.homeUrl == .documentsFolder {
-                            Image(systemName: "checkmark")
-                        }
-                    }
+                    CheckmarkText(title: Text("Local Documents Folder"), checked: preferences.homeUrl == .documentsFolder)
                 }
             }
+            
+            // Support, Special Thanks
             Section {
                 NavigationLink("Support", destination:
                                 Form {
                                     Section {
-                                        Link(destination: URL(string: "https://github.com/bricklife/Scrub")!) {
-                                            HStack {
-                                                Text("GitHub")
-                                                Spacer()
-                                                Image(systemName: "globe")
-                                            }
-                                        }
-                                        Link(destination: URL(string: "https://twitter.com/ooba")!) {
-                                            HStack {
-                                                Text("Twitter: @ooba")
-                                                Spacer()
-                                                Image(systemName: "globe")
-                                            }
-                                        }
+                                        WebLink(title: Text("GitHub"), destination: URL(string: "https://github.com/bricklife/Scrub")!)
+                                        WebLink(title: Text("Twitter: @ooba"), destination: URL(string: "https://twitter.com/ooba")!)
                                     }
                                 }
                                 .navigationTitle(Text("Support"))
@@ -109,19 +70,15 @@ struct PreferencesView: View {
                 NavigationLink("Special Thanks", destination:
                                 Form {
                                     Section(footer: Text("This implementation of Scratch Link function is inspired by toio Do app.")) {
-                                        Link(destination: URL(string: "https://toio.io/special/do/")!) {
-                                            HStack {
-                                                Text("toio Do")
-                                                Spacer()
-                                                Image(systemName: "globe")
-                                            }
-                                        }
+                                        WebLink(title: Text("toio Do"), destination: URL(string: "https://toio.io/special/do/")!)
                                     }
                                     Section(footer: Text("\"toio\" is a trademark or registered trademark of Sony Interactive Entertainment Inc.")) {}
                                 }
                                 .navigationTitle(Text("Special Thanks"))
                 )
             }
+            
+            // Version
             Section {
                 HStack {
                     Text("Version")
@@ -129,6 +86,8 @@ struct PreferencesView: View {
                     Text(versionString())
                 }
             }
+            
+            // Footer
             Section(footer: Text("Scratch is a project of the Scratch Foundation, in collaboration with the Lifelong Kindergarten Group at the MIT Media Lab. It is available for free at https://scratch.mit.edu.")) {}
         }
     }
@@ -143,6 +102,38 @@ struct PreferencesView: View {
     
     private func closeKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+
+private struct CheckmarkText: View {
+    
+    let title: Text
+    let checked: Bool
+    
+    var body: some View {
+        HStack {
+            title.foregroundColor(.primary)
+            Spacer()
+            if checked {
+                Image(systemName: "checkmark")
+            }
+        }
+    }
+}
+
+private struct WebLink: View {
+    
+    let title: Text
+    let destination: URL
+    
+    var body: some View {
+        Link(destination: destination) {
+            HStack {
+                title
+                Spacer()
+                Image(systemName: "globe")
+            }
+        }
     }
 }
 

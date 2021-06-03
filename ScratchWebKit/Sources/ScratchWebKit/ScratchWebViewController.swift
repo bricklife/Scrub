@@ -17,7 +17,7 @@ extension ScratchWebViewError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .forbiddenAccess:
-            return NSLocalizedString("Not allowed to access this URL.", bundle: Bundle.module, comment: "Not allowed to access this URL.")
+            return NSLocalizedString("Not allowed to access this URL", bundle: Bundle.module, comment: "Not allowed to access this URL")
         }
     }
 }
@@ -74,7 +74,7 @@ public class ScratchWebViewController: UIViewController {
         
         $url.compactMap({$0}).sink() { [weak self] (url) in
             if self?.webView.isLoading == false {
-                self?.didChangeUrl()
+                self?.didChangeUrl(url)
             }
         }.store(in: &cancellables)
         
@@ -82,21 +82,27 @@ public class ScratchWebViewController: UIViewController {
         webView.scrollView.contentInsetAdjustmentBehavior = .never
     }
     
-    private func didChangeUrl() {
-        webView.evaluateJavaScript("document.getElementsByClassName('blocklyToolboxDiv').length > 0") { [weak self] (result, error) in
-            let isScratchEditor = result as? Bool ?? false
-            let isScratchSite = self?.url?.host == "scratch.mit.edu"
-            let isLocal = self?.url?.scheme == "file"
-            
-            if isScratchEditor || isScratchSite || isLocal {
-                self?.webView.isUserInteractionEnabled = true
-                self?.webView.alpha = 1.0
-                self?.changeWebViewStyle(isScratchEditor: isScratchEditor)
-            } else {
-                self?.webView.isUserInteractionEnabled = false
-                self?.webView.alpha = 0.4
-                self?.delegate?.didFail(error: ScratchWebViewError.forbiddenAccess)
+    private func didChangeUrl(_ url: URL) {
+        detectScratchEditor { [weak self] (isScratchEditor) in
+            self?.delegate?.decidePolicyFor(url: url, isScratchEditor: isScratchEditor) { (policy) in
+                switch policy {
+                case .allow:
+                    self?.webView.isUserInteractionEnabled = true
+                    self?.webView.alpha = 1.0
+                    self?.changeWebViewStyle(isScratchEditor: isScratchEditor)
+                case .deny:
+                    self?.webView.isUserInteractionEnabled = false
+                    self?.webView.alpha = 0.4
+                    self?.delegate?.didFail(error: ScratchWebViewError.forbiddenAccess)
+                }
             }
+        }
+    }
+    
+    private func detectScratchEditor(completion: @escaping (Bool) -> Void) {
+        webView.evaluateJavaScript("document.getElementsByClassName('blocklyToolboxDiv').length > 0") { (result, error) in
+            let isScratchEditor = result as? Bool ?? false
+            completion(isScratchEditor)
         }
     }
     
@@ -154,7 +160,9 @@ extension ScratchWebViewController: WKNavigationDelegate {
     }
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        didChangeUrl()
+        if let url = webView.url {
+            didChangeUrl(url)
+        }
     }
     
     public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
@@ -197,7 +205,13 @@ extension ScratchWebViewController: ScratchLinkDelegate {
     }
 }
 
+@objc public enum WebFilterPolicy: Int {
+    case allow
+    case deny
+}
+
 @objc public protocol ScratchWebViewControllerDelegate {
+    @objc func decidePolicyFor(url: URL, isScratchEditor: Bool, decisionHandler: @escaping (WebFilterPolicy) -> Void)
     @objc func didDownloadFile(at url: URL)
     @objc func didStartSession(type: SessionType)
     @objc func didFail(error: Error)

@@ -22,6 +22,18 @@ Web browser app for Scratch 3.0 and Bluetooth devices.
 - Go Direct Force & Acceleratioon
 - and other BLE devices
 
+## Demo
+
+- Programming LEGO BOOST with Scratch 3.0 on iPad https://youtu.be/5GmfSICEFa4
+
+## How to Connect LEGO MINDSTORMS EV3
+
+Work in progress...
+
+## How to Load Local Files
+
+Work in progress...
+
 ## Special Thanks
 
 This implementation of Scratch Link function is inspired by [toio Do](https://toio.io/special/do/) iPad app. Special thanks to toio Do team!
