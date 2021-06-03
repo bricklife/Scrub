@@ -114,10 +114,16 @@ extension WebView {
         }
         
         func didStartSession(type: SessionType) {
-            if type == .bt, parent.viewModel.shouldShowBluetoothParingDialog {
-                parent.alertController.showAlert(howTo: Text("Please pair your Bluetooth device on Settings app before using this extension.")) { [weak self] in
-                    self?.parent.viewModel.didShowBluetoothParingDialog()
+            if type == .bt {
+                #if DEBUG
+                if parent.viewModel.shouldShowBluetoothParingDialog {
+                    parent.alertController.showAlert(howTo: Text("Please pair your Bluetooth device on Settings app before using this extension.")) { [weak self] in
+                        self?.parent.viewModel.didShowBluetoothParingDialog()
+                    }
                 }
+                #else
+                parent.alertController.showAlert(sorry: Text("This extension is not supported🙇🏻"))
+                #endif
             }
         }
         
