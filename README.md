@@ -26,6 +26,7 @@ Web browser app for Scratch 3.0 and Bluetooth devices.
 ## Demo
 
 - Programming LEGO BOOST with Scratch 3.0 on iPad https://youtu.be/5GmfSICEFa4
+- Programming Sony toio and LEGO BOOST on iPad https://youtu.be/wp1vV8gZvfw
 
 ## How to Connect LEGO MINDSTORMS EV3
 
