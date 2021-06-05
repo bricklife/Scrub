@@ -1,6 +1,9 @@
 # Scrub
 
-Web browser app for Scratch 3.0 and Bluetooth devices.
+iPad Web browser app for Scratch 3.0 and Bluetooth devices. 
+
+## App Store
+https://apps.apple.com/us/app/scrub-web-browser/id1569777095
 
 ## Features
 
