@@ -9,10 +9,10 @@ import SwiftUI
 
 class AlertController: ObservableObject {
     
-    private struct Content {
-        let title: Text
-        let message: Text
-        let completion: () -> Void
+    private enum Content {
+        case error(error: Error)
+        case howTo(message: Text, completion: () -> Void)
+        case sorry(message: Text)
     }
     
     private var alertContent: Content? = nil {
@@ -26,20 +26,30 @@ class AlertController: ObservableObject {
     }
     
     func showAlert(error: Error) {
-        self.alertContent = Content(title: Text("Error"), message: Text(error.localizedDescription), completion: {})
+        self.alertContent = .error(error: error)
     }
     
     func showAlert(howTo message: Text, completion: @escaping () -> Void = {}) {
-        self.alertContent = Content(title: Text("How to Use"), message: message, completion: completion)
+        self.alertContent = .howTo(message: message, completion: completion)
     }
     
     func showAlert(sorry message: Text) {
-        self.alertContent = Content(title: Text("Sorry"), message: message, completion: {})
+        self.alertContent = .sorry(message: message)
     }
     
     func makeAlert() -> Alert {
-        return Alert(title: alertContent?.title ?? Text("Alert"),
-                     message: alertContent?.message,
-                     dismissButton: .default(Text("OK"), action: alertContent?.completion))
+        switch alertContent {
+        case let .error(error: error):
+            return Alert(title: Text("Error"), message: Text(error.localizedDescription))
+            
+        case let .howTo(message: message, completion: completion):
+            return Alert(title: Text("How to Use"), message: message, dismissButton: .default(Text("OK"), action: completion))
+            
+        case let .sorry(message: message):
+            return Alert(title: Text("Sorry"), message: message)
+            
+        case .none:
+            return Alert(title: Text("Alert"), message: Text("An unexpected error has occurred."))
+        }
     }
 }
