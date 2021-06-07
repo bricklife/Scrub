@@ -69,10 +69,11 @@ struct PreferencesView: View {
                 )
                 NavigationLink("Special Thanks", destination:
                                 Form {
-                                    Section(footer: Text("This implementation of Scratch Link function is inspired by toio Do app.")) {
+                                    Section(header: Text("This implementation of Scratch Link function is inspired by toio Do iPad app."),
+                                            footer: Text("\"toio\" is a trademark or registered trademark of Sony Interactive Entertainment Inc.")) {
                                         WebLink(title: Text("toio Do"), destination: URL(string: "https://toio.io/special/do/")!)
                                     }
-                                    Section(footer: Text("\"toio\" is a trademark or registered trademark of Sony Interactive Entertainment Inc.")) {}
+                                    .textCase(nil)
                                 }
                                 .navigationTitle(Text("Special Thanks"))
                 )
