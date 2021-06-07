@@ -128,7 +128,12 @@ extension WebView {
         }
         
         func didFail(error: Error) {
-            parent.alertController.showAlert(error: error)
+            switch error as? ScratchWebViewError {
+            case let .forbiddenAccess(url: url):
+                parent.alertController.showAlert(forbiddenAccess: Text("This app can only open the official Scratch website or any Scratch Editor."), url: url)
+            case .none:
+                parent.alertController.showAlert(error: error)
+            }
         }
     }
 }
