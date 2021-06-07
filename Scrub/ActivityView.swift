@@ -70,7 +70,7 @@ class SafariActivity: UIActivity {
     var url: URL? = nil
     
     override var activityTitle: String? {
-        return NSLocalizedString("Open in Web Browser", comment: "Open in Web Browser")
+        return NSLocalizedString("Open in Safari", comment: "Open in Safari")
     }
     
     override var activityImage: UIImage? {
