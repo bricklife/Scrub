@@ -18,12 +18,12 @@ enum SerializationError: Error {
     case internalError(String)
 }
 
-enum SessionError: Error {
+public enum SessionError: Error {
     case bluetoothIsNotAvailable
 }
 
 extension SessionError: LocalizedError {
-    var errorDescription: String? {
+    public var errorDescription: String? {
         switch self {
         case .bluetoothIsNotAvailable:
             return NSLocalizedString("Bluetooth is not available", bundle: Bundle.module, comment: "Bluetooth is not available")
