@@ -9,18 +9,18 @@
                 document.getElementById("text").innerText = text;
             }
             if (navigator.language == 'ja') {
-                showText('この機能を使うには、iPad内の以下の場所にあるこのHTMLファイルを、表示したいindex.htmlファイルに入れ替えてください。');
+                showText('この機能を使うには、iPad内の以下の場所にあるこのindex.htmlファイルを、表示したいファイルに入れ替えてください。');
             } else {
-                showText('To use this function, please repalce this HTML file at the following location in your iPad with your index.html.');
+                showText('To use this function, please repalce this index.html at the following location in your iPad with your file.');
             }
         };
     </script>
     <style>
         div {
             color: black;
-            border: 2px dotted;
+            border: 1px dotted;
             border-radius: 1em;
-            padding: 1em;
+            padding: 2em;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -30,8 +30,9 @@
 
         p {
             margin: 0;
-            margin-bottom: 1em;
+            margin-bottom: 1.4em;
             width: 400px;
+            line-height: 1.4em;
         }
 
         img {
