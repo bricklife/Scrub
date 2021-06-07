@@ -10,7 +10,7 @@ import WebKit
 import Combine
 
 public enum ScratchWebViewError: Error {
-    case forbiddenAccess
+    case forbiddenAccess(url: URL)
 }
 
 extension ScratchWebViewError: LocalizedError {
@@ -95,7 +95,7 @@ public class ScratchWebViewController: UIViewController {
                 case .deny:
                     self?.webView.isUserInteractionEnabled = false
                     self?.webView.alpha = 0.4
-                    self?.delegate?.didFail(error: ScratchWebViewError.forbiddenAccess)
+                    self?.delegate?.didFail(error: ScratchWebViewError.forbiddenAccess(url: url))
                 }
             }
         }
