@@ -11,6 +11,8 @@ struct PreferencesView: View {
     
     @ObservedObject var preferences: Preferences
     
+    @State private var isEditing = false
+    
     var body: some View {
         Form {
             // Home URL
@@ -39,13 +41,25 @@ struct PreferencesView: View {
                 }) {
                     VStack {
                         CheckmarkText(title: Text("Custom"), checked: preferences.homeUrl == .custom)
-                        TextField("https://", text: $preferences.customUrl, onCommit: {
-                            preferences.homeUrl = .custom
-                        })
-                        .foregroundColor(.secondary)
-                        .keyboardType(.URL)
-                        .autocapitalization(.none)
-                        .disableAutocorrection(true)
+                        HStack {
+                            TextField("https://", text: $preferences.customUrl, onEditingChanged: { isEditing in
+                                self.isEditing = isEditing
+                            }, onCommit: {
+                                preferences.homeUrl = .custom
+                            })
+                            .foregroundColor(.secondary)
+                            .keyboardType(.URL)
+                            .autocapitalization(.none)
+                            .disableAutocorrection(true)
+                            if isEditing && !preferences.customUrl.isEmpty {
+                                Button(action: {
+                                    preferences.customUrl = ""
+                                }) {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .foregroundColor(.secondary)
+                                }
+                            }
+                        }
                     }
                 }
                 Button(action: {
