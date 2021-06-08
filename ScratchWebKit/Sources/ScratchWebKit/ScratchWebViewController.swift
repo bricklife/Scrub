@@ -39,6 +39,8 @@ public class ScratchWebViewController: UIViewController {
     @Published public private(set) var canGoBack: Bool = false
     @Published public private(set) var canGoForward: Bool = false
     
+    private var sizeConstraints: [NSLayoutConstraint] = []
+    
     public init() {
         let configuration = WKWebViewConfiguration()
         configuration.allowsAirPlayForMediaPlayback = false
@@ -57,7 +59,16 @@ public class ScratchWebViewController: UIViewController {
     }
     
     public override func loadView() {
-        view = webView
+        super.loadView()
+        
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(webView)
+        
+        NSLayoutConstraint.activate([
+            webView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            webView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
+        updateSizeConstraints(multiplier: 1)
     }
     
     public override func viewDidLoad() {
@@ -82,6 +93,21 @@ public class ScratchWebViewController: UIViewController {
         webView.uiDelegate = self
         
         webView.scrollView.contentInsetAdjustmentBehavior = .never
+    }
+    
+    public override func viewWillLayoutSubviews() {
+        let multiplier = max(1.0, 1024.0 / view.bounds.width)
+        updateSizeConstraints(multiplier: multiplier)
+        webView.transform = CGAffineTransform(scaleX: 1.0 / multiplier, y: 1.0 / multiplier)
+    }
+    
+    private func updateSizeConstraints(multiplier: CGFloat) {
+        NSLayoutConstraint.deactivate(sizeConstraints)
+        self.sizeConstraints = [
+            webView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: multiplier),
+            webView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: multiplier),
+        ]
+        NSLayoutConstraint.activate(sizeConstraints)
     }
     
     private func didChangeUrl(_ url: URL) {
