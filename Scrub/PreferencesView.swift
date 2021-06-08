@@ -14,7 +14,7 @@ struct PreferencesView: View {
     var body: some View {
         Form {
             // Home URL
-            Section(header: Text("Home URL")) {
+            Section(header: Label("Home URL", systemImage: "house")) {
                 Button(action: {
                     closeKeyboard()
                     preferences.homeUrl = .scratchHome
