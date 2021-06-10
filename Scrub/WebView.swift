@@ -98,6 +98,9 @@ extension WebView {
         }
         
         func decidePolicyFor(url: URL, isScratchEditor: Bool, decisionHandler: @escaping (WebFilterPolicy) -> Void) {
+            #if DEBUG
+            decisionHandler(.allow)
+            #else
             let isScratchSite = url.host == "scratch.mit.edu"
             let isLocal = url.scheme == "file"
             if isScratchSite || isLocal || isScratchEditor {
@@ -105,6 +108,7 @@ extension WebView {
             } else {
                 decisionHandler(.deny)
             }
+            #endif
         }
         
         func didDownloadFile(at url: URL) {
