@@ -11,8 +11,6 @@ struct PreferencesView: View {
     
     @ObservedObject var preferences: Preferences
     
-    @State private var isEditing = false
-    
     var body: some View {
         Form {
             // Home URL
