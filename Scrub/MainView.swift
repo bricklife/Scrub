@@ -42,21 +42,14 @@ struct MainView: View {
                 }
                 .disabled(!canShareUrl)
                 .opacity(canShareUrl ? 1.0 : 0.4)
-                ZStack {
-                    CircleProgressView(progress: webViewModel.estimatedProgress)
-                        .opacity(webViewModel.isLoading ? 0.4 : 0.0)
-                        .animation(.easeInOut(duration: 0.2))
+                
+                ReloadAndStopButton(progress: webViewModel.estimatedProgress, isLoading: webViewModel.isLoading) {
                     if webViewModel.isLoading {
-                        Button(action: { webViewModel.apply(inputs: .stopLoading) }) {
-                            Image(systemName: "xmark")
-                        }
+                        webViewModel.apply(inputs: .stopLoading)
                     } else {
-                        Button(action: { webViewModel.apply(inputs: .reload) }) {
-                            Image(systemName: "arrow.clockwise")
-                        }
+                        webViewModel.apply(inputs: .reload)
                     }
                 }
-                .frame(width: 24, height: 24)
                 
                 Spacer()
                 
@@ -102,6 +95,29 @@ struct MainView: View {
         .alert(isPresented: alertController.isShowingAlert) {
             alertController.makeAlert()
         }
+    }
+}
+
+struct ReloadAndStopButton: View {
+    
+    let progress: Double
+    let isLoading: Bool
+    let action: () -> Void
+    
+    var body: some View {
+        ZStack {
+            CircleProgressView(progress: progress)
+                .opacity(isLoading ? 0.4 : 0.0)
+                .animation(.easeInOut(duration: 0.2))
+            Button(action: action) {
+                if isLoading {
+                    Image(systemName: "xmark")
+                } else {
+                    Image(systemName: "arrow.clockwise")
+                }
+            }
+        }
+        .frame(width: 24, height: 24)
     }
 }
 
