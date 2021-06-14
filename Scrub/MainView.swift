@@ -31,27 +31,6 @@ struct MainView: View {
     var body: some View {
         HStack(spacing: 0) {
             WebView(viewModel: webViewModel, url: $url)
-                .sheet(isPresented: $isShowingPreferences) {
-                    NavigationView {
-                        PreferencesView(preferences: preferences)
-                            .navigationTitle(Text("Preferences"))
-                            .toolbar {
-                                ToolbarItem(placement: .navigationBarTrailing){
-                                    Button("Done") {
-                                        isShowingPreferences = false
-                                    }
-                                }
-                            }
-                    }
-                }
-                .sheet(isPresented: $isShowingActivityView) {
-                    if let url = url {
-                        ActivityView(preferences: preferences, activityItems: [url])
-                    }
-                }
-                .alert(isPresented: alertController.isShowingAlert) {
-                    alertController.makeAlert()
-                }
                 .environmentObject(alertController)
                 .edgesIgnoringSafeArea([.bottom, .horizontal])
             
@@ -101,6 +80,27 @@ struct MainView: View {
             }
             .padding(4)
             .edgesIgnoringSafeArea([.horizontal])
+        }
+        .sheet(isPresented: $isShowingPreferences) {
+            NavigationView {
+                PreferencesView(preferences: preferences)
+                    .navigationTitle(Text("Preferences"))
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing){
+                            Button("Done") {
+                                isShowingPreferences = false
+                            }
+                        }
+                    }
+            }
+        }
+        .sheet(isPresented: $isShowingActivityView) {
+            if let url = url {
+                ActivityView(preferences: preferences, activityItems: [url])
+            }
+        }
+        .alert(isPresented: alertController.isShowingAlert) {
+            alertController.makeAlert()
         }
     }
 }
