@@ -18,6 +18,11 @@ struct MainView: View {
     @State private var isShowingPreferences = false
     @State private var isShowingActivityView = false
     
+    private var canShareUrl: Bool {
+        guard let url = url else { return false }
+        return url.scheme == "http" || url.scheme == "https"
+    }
+    
     init(preferences: Preferences) {
         self.preferences = preferences
         self._webViewModel = StateObject(wrappedValue: WebViewModel(preferences: preferences))
@@ -56,8 +61,8 @@ struct MainView: View {
                 }) {
                     Image(systemName: "square.and.arrow.up")
                 }
-                .disabled(url?.scheme == "file")
-                .opacity(url?.scheme == "file" ? 0.4 : 1.0)
+                .disabled(!canShareUrl)
+                .opacity(canShareUrl ? 1.0 : 0.4)
                 ZStack {
                     CircleProgressView(progress: webViewModel.estimatedProgress)
                         .opacity(webViewModel.isLoading ? 0.4 : 0.0)
