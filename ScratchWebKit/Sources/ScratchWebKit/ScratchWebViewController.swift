@@ -250,6 +250,9 @@ extension ScratchWebViewController: WKDownloadDelegate {
     
     public func download(_ download: WKDownload, decideDestinationUsing response: URLResponse, suggestedFilename: String, completionHandler: @escaping (URL?) -> Void) {
         let url = FileManager.default.temporaryDirectory.appendingPathComponent(suggestedFilename)
+        if FileManager.default.fileExists(atPath: url.path) {
+            try? FileManager.default.removeItem(atPath: url.path)
+        }
         self.downloadingUrl = url
         completionHandler(url)
     }
