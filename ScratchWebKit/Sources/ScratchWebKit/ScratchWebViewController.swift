@@ -49,6 +49,8 @@ public class ScratchWebViewController: UIViewController {
         configuration.mediaTypesRequiringUserActionForPlayback = []
         configuration.dataDetectorTypes = []
         
+        configuration.preferences.javaScriptCanOpenWindowsAutomatically = true
+        
         self.webView = WKWebView(frame: .zero, configuration: configuration)
         
         super.init(nibName: nil, bundle: nil)
@@ -203,6 +205,34 @@ extension ScratchWebViewController: WKNavigationDelegate {
 }
 
 extension ScratchWebViewController: WKUIDelegate {
+    
+    public func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        guard navigationAction.targetFrame?.isMainFrame != true else { return nil }
+        
+        let newWebView = WKWebView(frame: webView.bounds, configuration: configuration)
+        newWebView.translatesAutoresizingMaskIntoConstraints = false
+        
+        UIView.transition(with: view, duration: 0.2, options: [.transitionCrossDissolve], animations: {
+            webView.addSubview(newWebView)
+        })
+        
+        NSLayoutConstraint.activate([
+            newWebView.centerXAnchor.constraint(equalTo: webView.centerXAnchor),
+            newWebView.centerYAnchor.constraint(equalTo: webView.centerYAnchor),
+            newWebView.widthAnchor.constraint(equalTo: webView.widthAnchor),
+            newWebView.heightAnchor.constraint(equalTo: webView.heightAnchor),
+        ])
+        
+        newWebView.uiDelegate = self
+        
+        return newWebView
+    }
+    
+    public func webViewDidClose(_ webView: WKWebView) {
+        UIView.transition(with: view, duration: 0.2, options: [.transitionCrossDissolve], animations: {
+            webView.removeFromSuperview()
+        })
+    }
     
     public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
         let alertController = UIAlertController(title: "", message: message, preferredStyle: .alert)
