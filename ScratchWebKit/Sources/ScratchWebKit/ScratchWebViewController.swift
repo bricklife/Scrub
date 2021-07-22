@@ -41,6 +41,8 @@ public class ScratchWebViewController: UIViewController {
     
     private var sizeConstraints: [NSLayoutConstraint] = []
     
+    private var queue: [UIViewController] = []
+    
     public init() {
         let configuration = WKWebViewConfiguration()
         configuration.allowsAirPlayForMediaPlayback = false
@@ -52,6 +54,15 @@ public class ScratchWebViewController: UIViewController {
         configuration.preferences.javaScriptCanOpenWindowsAutomatically = true
         
         self.webView = WKWebView(frame: .zero, configuration: configuration)
+        
+        super.init(nibName: nil, bundle: nil)
+        
+        scratchLink.setup(webView: webView)
+        scratchLink.delegate = self
+    }
+    
+    public init(webView: WKWebView) {
+        self.webView = webView
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -75,9 +86,6 @@ public class ScratchWebViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
-        scratchLink.setup(webView: webView)
-        scratchLink.delegate = self
         
         webView.publisher(for: \.url).assign(to: &$url)
         webView.publisher(for: \.isLoading).assign(to: &$isLoading)
@@ -114,7 +122,7 @@ public class ScratchWebViewController: UIViewController {
     
     private func didChangeUrl(_ url: URL) {
         detectScratchEditor { [weak self] (isScratchEditor) in
-            self?.delegate?.decidePolicyFor(url: url, isScratchEditor: isScratchEditor) { (policy) in
+            self?.delegate?.decidePolicyFor?(url: url, isScratchEditor: isScratchEditor) { (policy) in
                 switch policy {
                 case .allow:
                     self?.webView.isUserInteractionEnabled = true
@@ -123,7 +131,7 @@ public class ScratchWebViewController: UIViewController {
                 case .deny:
                     self?.webView.isUserInteractionEnabled = false
                     self?.webView.alpha = 0.4
-                    self?.delegate?.didFail(error: ScratchWebViewError.forbiddenAccess(url: url))
+                    self?.delegate?.didFail?(error: ScratchWebViewError.forbiddenAccess(url: url))
                 }
             }
         }
@@ -143,6 +151,21 @@ public class ScratchWebViewController: UIViewController {
         } else {
             webView.evaluateJavaScript("document.documentElement.style.webkitUserSelect='auto'")
             webView.evaluateJavaScript("document.documentElement.style.webkitTouchCallout='inherit'")
+        }
+    }
+    
+    private func presentOrQueue(_ viewController: UIViewController) {
+        if presentedViewController != nil {
+            queue.append(viewController)
+        } else {
+            present(viewController, animated: true)
+        }
+    }
+    
+    private func presentQueueingViewController() {
+        if queue.isEmpty == false {
+            let vc = queue.removeFirst()
+            present(vc, animated: true)
         }
     }
 }
@@ -196,11 +219,11 @@ extension ScratchWebViewController: WKNavigationDelegate {
     }
     
     public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        delegate?.didFail(error: error)
+        delegate?.didFail?(error: error)
     }
     
     public func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        delegate?.didFail(error: error)
+        delegate?.didFail?(error: error)
     }
 }
 
@@ -210,52 +233,46 @@ extension ScratchWebViewController: WKUIDelegate {
         guard navigationAction.targetFrame?.isMainFrame != true else { return nil }
         
         let newWebView = WKWebView(frame: webView.bounds, configuration: configuration)
-        newWebView.translatesAutoresizingMaskIntoConstraints = false
+        let vc = ScratchWebViewController(webView: newWebView)
+        vc.presentationController?.delegate = self
+        vc.delegate = self
         
-        UIView.transition(with: view, duration: 0.2, options: [.transitionCrossDissolve], animations: {
-            webView.addSubview(newWebView)
-        })
-        
-        NSLayoutConstraint.activate([
-            newWebView.centerXAnchor.constraint(equalTo: webView.centerXAnchor),
-            newWebView.centerYAnchor.constraint(equalTo: webView.centerYAnchor),
-            newWebView.widthAnchor.constraint(equalTo: webView.widthAnchor),
-            newWebView.heightAnchor.constraint(equalTo: webView.heightAnchor),
-        ])
-        
-        newWebView.uiDelegate = self
+        presentOrQueue(vc)
         
         return newWebView
     }
     
     public func webViewDidClose(_ webView: WKWebView) {
-        UIView.transition(with: view, duration: 0.2, options: [.transitionCrossDissolve], animations: {
-            webView.removeFromSuperview()
-        })
+        dismiss(animated: true) { [weak self] in
+            self?.delegate?.didClose?()
+        }
     }
     
     public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
         let alertController = UIAlertController(title: "", message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: NSLocalizedString("OK", bundle: Bundle.module, comment: "OK"), style: .default) { _ in
+        let okAction = UIAlertAction(title: NSLocalizedString("OK", bundle: Bundle.module, comment: "OK"), style: .default) { [weak self] _ in
             completionHandler()
+            self?.presentQueueingViewController()
         }
         alertController.addAction(okAction)
         
-        present(alertController, animated: true)
+        presentOrQueue(alertController)
     }
     
     public func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
         let alertController = UIAlertController(title: "", message: message, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", bundle: Bundle.module, comment: "Cancel"), style: .cancel) { _ in
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", bundle: Bundle.module, comment: "Cancel"), style: .cancel) { [weak self] _ in
             completionHandler(false)
+            self?.presentQueueingViewController()
         }
-        let okAction = UIAlertAction(title: NSLocalizedString("OK", bundle: Bundle.module, comment: "OK"), style: .default) { _ in
+        let okAction = UIAlertAction(title: NSLocalizedString("OK", bundle: Bundle.module, comment: "OK"), style: .default) { [weak self] _ in
             completionHandler(true)
+            self?.presentQueueingViewController()
         }
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
         
-        present(alertController, animated: true)
+        presentOrQueue(alertController)
     }
     
     public func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
@@ -263,16 +280,25 @@ extension ScratchWebViewController: WKUIDelegate {
         alertController.addTextField() { textField in
             textField.text = defaultText
         }
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", bundle: Bundle.module, comment: "Cancel"), style: .cancel) { _ in
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", bundle: Bundle.module, comment: "Cancel"), style: .cancel) { [weak self] _ in
             completionHandler(nil)
+            self?.presentQueueingViewController()
         }
-        let okAction = UIAlertAction(title: NSLocalizedString("OK", bundle: Bundle.module, comment: "OK"), style: .default) { [weak alertController] _ in
+        let okAction = UIAlertAction(title: NSLocalizedString("OK", bundle: Bundle.module, comment: "OK"), style: .default) { [weak self, weak alertController] _ in
             completionHandler(alertController?.textFields?.first?.text)
+            self?.presentQueueingViewController()
         }
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
         
-        present(alertController, animated: true)
+        presentOrQueue(alertController)
+    }
+}
+
+extension ScratchWebViewController: UIAdaptivePresentationControllerDelegate {
+    
+    public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        presentQueueingViewController()
     }
 }
 
@@ -290,23 +316,30 @@ extension ScratchWebViewController: WKDownloadDelegate {
     public func downloadDidFinish(_ download: WKDownload) {
         if let url = downloadingUrl {
             self.downloadingUrl = nil
-            delegate?.didDownloadFile(at: url)
+            delegate?.didDownloadFile?(at: url)
         }
     }
     
     public func download(_ download: WKDownload, didFailWithError error: Error, resumeData: Data?) {
-        delegate?.didFail(error: error)
+        delegate?.didFail?(error: error)
     }
 }
 
 extension ScratchWebViewController: ScratchLinkDelegate {
     
     public func didStartSession(type: SessionType) {
-        delegate?.didStartSession(type: type)
+        delegate?.didStartSession?(type: type)
     }
     
     public func didFailStartingSession(type: SessionType, error: Error) {
-        delegate?.didFail(error: error)
+        delegate?.didFail?(error: error)
+    }
+}
+
+extension ScratchWebViewController: ScratchWebViewControllerDelegate {
+    
+    public func didClose() {
+        presentQueueingViewController()
     }
 }
 
@@ -316,8 +349,9 @@ extension ScratchWebViewController: ScratchLinkDelegate {
 }
 
 @objc public protocol ScratchWebViewControllerDelegate {
-    @objc func decidePolicyFor(url: URL, isScratchEditor: Bool, decisionHandler: @escaping (WebFilterPolicy) -> Void)
-    @objc func didDownloadFile(at url: URL)
-    @objc func didStartSession(type: SessionType)
-    @objc func didFail(error: Error)
+    @objc optional func decidePolicyFor(url: URL, isScratchEditor: Bool, decisionHandler: @escaping (WebFilterPolicy) -> Void)
+    @objc optional func didDownloadFile(at url: URL)
+    @objc optional func didStartSession(type: SessionType)
+    @objc optional func didFail(error: Error)
+    @objc optional func didClose()
 }
