@@ -12,9 +12,7 @@ import Combine
 
 public class WebViewController: UIViewController {
     
-    private let webView: WKWebView
-    
-    private var cancellables: Set<AnyCancellable> = []
+    internal let webView: WKWebView
     
     public weak var delegate: WebViewControllerDelegate?
     
