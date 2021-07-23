@@ -14,7 +14,7 @@ public class WebViewController: UIViewController {
     
     internal let webView: WKWebView
     
-    public weak var delegate: WebViewControllerDelegate?
+    public var didClose: (() -> Void)?
     
     @Published public private(set) var url: URL? = nil
     @Published public private(set) var isLoading: Bool = false
@@ -113,7 +113,9 @@ extension WebViewController: WKUIDelegate {
         let newWebView = WKWebView(frame: webView.bounds, configuration: configuration)
         let vc = WebViewController(webView: newWebView)
         vc.presentationController?.delegate = self
-        vc.delegate = self
+        vc.didClose = { [weak self] in
+            self?.presentQueueingViewController()
+        }
         
         presentOrQueue(vc)
         
@@ -122,7 +124,7 @@ extension WebViewController: WKUIDelegate {
     
     public func webViewDidClose(_ webView: WKWebView) {
         dismiss(animated: true) { [weak self] in
-            self?.delegate?.didClose?()
+            self?.didClose?()
         }
     }
     
@@ -178,15 +180,4 @@ extension WebViewController: UIAdaptivePresentationControllerDelegate {
     public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         presentQueueingViewController()
     }
-}
-
-extension WebViewController: WebViewControllerDelegate {
-    
-    public func didClose() {
-        presentQueueingViewController()
-    }
-}
-
-@objc public protocol WebViewControllerDelegate {
-    @objc optional func didClose()
 }

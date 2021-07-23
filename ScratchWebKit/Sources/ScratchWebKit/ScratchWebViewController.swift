@@ -24,16 +24,14 @@ extension ScratchWebViewError: LocalizedError {
 
 public class ScratchWebViewController: WebViewController {
     
+    public weak var delegate: ScratchWebViewControllerDelegate?
+    
     private let scratchLink = ScratchLink()
     private var downloadingUrl: URL? = nil
     
     private var cancellables: Set<AnyCancellable> = []
     
     private var sizeConstraints: [NSLayoutConstraint] = []
-    
-    private var scratchDelegate: ScratchWebViewControllerDelegate? {
-        return delegate as? ScratchWebViewControllerDelegate
-    }
     
     public override init() {
         super.init()
@@ -90,7 +88,7 @@ public class ScratchWebViewController: WebViewController {
     
     private func didChangeUrl(_ url: URL) {
         detectScratchEditor { [weak self] (isScratchEditor) in
-            self?.scratchDelegate?.decidePolicyFor?(url: url, isScratchEditor: isScratchEditor) { (policy) in
+            self?.delegate?.decidePolicyFor?(url: url, isScratchEditor: isScratchEditor) { (policy) in
                 switch policy {
                 case .allow:
                     self?.webView.isUserInteractionEnabled = true
@@ -99,7 +97,7 @@ public class ScratchWebViewController: WebViewController {
                 case .deny:
                     self?.webView.isUserInteractionEnabled = false
                     self?.webView.alpha = 0.4
-                    self?.scratchDelegate?.didFail?(error: ScratchWebViewError.forbiddenAccess(url: url))
+                    self?.delegate?.didFail?(error: ScratchWebViewError.forbiddenAccess(url: url))
                 }
             }
         }
@@ -148,11 +146,11 @@ extension ScratchWebViewController: WKNavigationDelegate {
     }
     
     public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        scratchDelegate?.didFail?(error: error)
+        delegate?.didFail?(error: error)
     }
     
     public func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        scratchDelegate?.didFail?(error: error)
+        delegate?.didFail?(error: error)
     }
 }
 
@@ -170,23 +168,23 @@ extension ScratchWebViewController: WKDownloadDelegate {
     public func downloadDidFinish(_ download: WKDownload) {
         if let url = downloadingUrl {
             self.downloadingUrl = nil
-            scratchDelegate?.didDownloadFile?(at: url)
+            delegate?.didDownloadFile?(at: url)
         }
     }
     
     public func download(_ download: WKDownload, didFailWithError error: Error, resumeData: Data?) {
-        scratchDelegate?.didFail?(error: error)
+        delegate?.didFail?(error: error)
     }
 }
 
 extension ScratchWebViewController: ScratchLinkDelegate {
     
     public func didStartSession(type: SessionType) {
-        scratchDelegate?.didStartSession?(type: type)
+        delegate?.didStartSession?(type: type)
     }
     
     public func didFailStartingSession(type: SessionType, error: Error) {
-        scratchDelegate?.didFail?(error: error)
+        delegate?.didFail?(error: error)
     }
 }
 
@@ -195,7 +193,7 @@ extension ScratchWebViewController: ScratchLinkDelegate {
     case deny
 }
 
-@objc public protocol ScratchWebViewControllerDelegate: WebViewControllerDelegate {
+@objc public protocol ScratchWebViewControllerDelegate {
     @objc optional func decidePolicyFor(url: URL, isScratchEditor: Bool, decisionHandler: @escaping (WebFilterPolicy) -> Void)
     @objc optional func didDownloadFile(at url: URL)
     @objc optional func didStartSession(type: SessionType)
