@@ -233,7 +233,7 @@ extension ScratchWebViewController: WKUIDelegate {
         guard navigationAction.targetFrame?.isMainFrame != true else { return nil }
         
         let newWebView = WKWebView(frame: webView.bounds, configuration: configuration)
-        let vc = ScratchWebViewController(webView: newWebView)
+        let vc = WebViewController(webView: newWebView)
         vc.presentationController?.delegate = self
         vc.delegate = self
         
@@ -336,7 +336,7 @@ extension ScratchWebViewController: ScratchLinkDelegate {
     }
 }
 
-extension ScratchWebViewController: ScratchWebViewControllerDelegate {
+extension ScratchWebViewController: WebViewControllerDelegate {
     
     public func didClose() {
         presentQueueingViewController()
@@ -348,10 +348,9 @@ extension ScratchWebViewController: ScratchWebViewControllerDelegate {
     case deny
 }
 
-@objc public protocol ScratchWebViewControllerDelegate {
+@objc public protocol ScratchWebViewControllerDelegate: WebViewControllerDelegate {
     @objc optional func decidePolicyFor(url: URL, isScratchEditor: Bool, decisionHandler: @escaping (WebFilterPolicy) -> Void)
     @objc optional func didDownloadFile(at url: URL)
     @objc optional func didStartSession(type: SessionType)
     @objc optional func didFail(error: Error)
-    @objc optional func didClose()
 }
