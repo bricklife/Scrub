@@ -1,4 +1,4 @@
-NSBluetoothAlwaysUsageDescription="App requires access to Bluetooth to communicate with external devices.";
-NSBluetoothPeripheralUsageDescription="App requires access to Bluetooth to communicate with external devices.";
-NSCameraUsageDescription="App requires access to the camera for sensing.";
-NSMicrophoneUsageDescription="App requires access to the microphone to record sound.";
+NSBluetoothAlwaysUsageDescription="App uses Bluetooth to communicate with external devices.";
+NSBluetoothPeripheralUsageDescription="App uses Bluetooth to communicate with external devices.";
+NSCameraUsageDescription="App uses the camera to get images.";
+NSMicrophoneUsageDescription="App uses the microphone to get sounds.";

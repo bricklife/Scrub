@@ -23,13 +23,13 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>App requires access to Bluetooth to communicate with external devices.</string>
+	<string>App uses Bluetooth to communicate with external devices.</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>App requires access to Bluetooth to communicate with external devices.</string>
+	<string>App uses Bluetooth to communicate with external devices.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>App requires access to the camera for sensing.</string>
+	<string>App uses the camera to get images.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>App requires access to the microphone to record sound.</string>
+	<string>App uses the microphone to get sounds.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
