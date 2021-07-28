@@ -2,3 +2,4 @@ NSBluetoothAlwaysUsageDescription="App uses Bluetooth to communicate with extern
 NSBluetoothPeripheralUsageDescription="App uses Bluetooth to communicate with external devices.";
 NSCameraUsageDescription="App uses the camera to get images.";
 NSMicrophoneUsageDescription="App uses the microphone to get sounds.";
+NSSpeechRecognitionUsageDescription="App uses Speech Recognition to recognize your voice.";

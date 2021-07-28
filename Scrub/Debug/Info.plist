@@ -30,6 +30,8 @@
 	<string>App uses the camera to get images.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>App uses the microphone to get sounds.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>App uses Speech Recognition to recognize your voice.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

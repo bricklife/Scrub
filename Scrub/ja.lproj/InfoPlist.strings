@@ -2,3 +2,4 @@ NSBluetoothAlwaysUsageDescription="外部デバイスとの接続にBluetoothを
 NSBluetoothPeripheralUsageDescription="外部デバイスとの接続にBluetoothを利用します。";
 NSCameraUsageDescription="映像の取得にカメラを利用します。";
 NSMicrophoneUsageDescription="音声の取得にマイクを利用します。";
+NSSpeechRecognitionUsageDescription="声を認識するために音声認識を利用します。";
