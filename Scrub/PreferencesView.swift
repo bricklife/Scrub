@@ -39,8 +39,10 @@ struct PreferencesView: View {
                 }) {
                     VStack {
                         CheckmarkText(title: Text("Custom"), checked: preferences.homeUrl == .custom)
-                        URLTextField(text: $preferences.customUrl, onCommit: {
-                            preferences.homeUrl = .custom
+                        URLTextField(text: $preferences.customUrl, onEditingChanged: { isEditing in
+                            if isEditing {
+                                preferences.homeUrl = .custom
+                            }
                         })
                     }
                 }
@@ -121,7 +123,7 @@ private struct CheckmarkText: View {
 private struct URLTextField: View {
     
     @Binding var text: String
-    let onCommit: () -> Void
+    let onEditingChanged: (Bool) -> Void
     
     @State private var isEditing = false
     
@@ -129,7 +131,8 @@ private struct URLTextField: View {
         HStack {
             TextField("https://", text: $text, onEditingChanged: { isEditing in
                 self.isEditing = isEditing
-            }, onCommit: onCommit)
+                onEditingChanged(isEditing)
+            })
             .foregroundColor(.secondary)
             .keyboardType(.URL)
             .autocapitalization(.none)
