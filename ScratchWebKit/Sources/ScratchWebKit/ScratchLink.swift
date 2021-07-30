@@ -108,7 +108,10 @@ extension ScratchLink: WKScriptMessageHandler {
             
             bluetoothConnectionChecker.publisher(for: \.state).first(where: { $0 != .unknown }).sink { [weak self] state in
                 if state == .poweredOn {
-                    self?.open(socketId: socketId, type: type)
+                    do {
+                        try self?.open(socketId: socketId, type: type)
+                        self?.delegate?.didStartSession(type: type)
+                    } catch {}
                 } else {
                     self?.delegate?.didFailStartingSession(type: type, error: .bluetoothIsNotAvailable)
                 }
@@ -129,7 +132,7 @@ extension ScratchLink: WKScriptMessageHandler {
         }
     }
     
-    private func open(socketId: Int, type: SessionType) {
+    private func open(socketId: Int, type: SessionType) throws {
         let webSocket = WebSocket() { [weak self] (message) in
             DispatchQueue.main.async {
                 let js = "ScratchLink.sockets.get(\(socketId)).handleMessage('" + message + "')"
@@ -139,14 +142,11 @@ extension ScratchLink: WKScriptMessageHandler {
         
         switch type {
         case .ble:
-            sessions[socketId] = try? BLESession(withSocket: webSocket)
+            sessions[socketId] = try BLESession(withSocket: webSocket)
         case .bt:
-            sessions[socketId] = try? BTSession(withSocket: webSocket)
+            sessions[socketId] = try BTSession(withSocket: webSocket)
         }
-        
-        delegate?.didStartSession(type: type)
     }
-    
 }
 
 public protocol ScratchLinkDelegate: AnyObject {
