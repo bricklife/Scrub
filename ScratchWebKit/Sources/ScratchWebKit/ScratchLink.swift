@@ -104,6 +104,7 @@ extension ScratchLink: WKScriptMessageHandler {
         case .open:
             guard let url = message.url else { break }
             guard let type = SessionType(url: url) else { break }
+            guard delegate?.canStartSession(type: type) == true else { break }
             
             bluetoothConnectionChecker.publisher(for: \.state).first(where: { $0 != .unknown }).sink { [weak self] state in
                 if state == .poweredOn {
@@ -149,6 +150,7 @@ extension ScratchLink: WKScriptMessageHandler {
 }
 
 @objc public protocol ScratchLinkDelegate {
+    @objc func canStartSession(type: SessionType) -> Bool
     @objc func didStartSession(type: SessionType)
     @objc func didFailStartingSession(type: SessionType, error: Error)
 }

@@ -179,6 +179,10 @@ extension ScratchWebViewController: WKDownloadDelegate {
 
 extension ScratchWebViewController: ScratchLinkDelegate {
     
+    public func canStartSession(type: SessionType) -> Bool {
+        return delegate?.canStartSession?(type: type) ?? false
+    }
+    
     public func didStartSession(type: SessionType) {
         delegate?.didStartSession?(type: type)
     }
@@ -196,6 +200,7 @@ extension ScratchWebViewController: ScratchLinkDelegate {
 @objc public protocol ScratchWebViewControllerDelegate {
     @objc optional func decidePolicyFor(url: URL, isScratchEditor: Bool, decisionHandler: @escaping (WebFilterPolicy) -> Void)
     @objc optional func didDownloadFile(at url: URL)
+    @objc optional func canStartSession(type: SessionType) -> Bool
     @objc optional func didStartSession(type: SessionType)
     @objc optional func didFail(error: Error)
 }
