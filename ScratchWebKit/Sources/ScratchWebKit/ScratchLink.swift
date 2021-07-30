@@ -32,7 +32,7 @@ extension SessionError: LocalizedError {
     }
 }
 
-@objc public enum SessionType: Int {
+public enum SessionType {
     case ble
     case bt
     
@@ -110,7 +110,7 @@ extension ScratchLink: WKScriptMessageHandler {
                 if state == .poweredOn {
                     self?.open(socketId: socketId, type: type)
                 } else {
-                    self?.delegate?.didFailStartingSession(type: type, error: SessionError.bluetoothIsNotAvailable)
+                    self?.delegate?.didFailStartingSession(type: type, error: .bluetoothIsNotAvailable)
                 }
             }.store(in: &cancellables)
             
@@ -149,8 +149,8 @@ extension ScratchLink: WKScriptMessageHandler {
     
 }
 
-@objc public protocol ScratchLinkDelegate {
-    @objc func canStartSession(type: SessionType) -> Bool
-    @objc func didStartSession(type: SessionType)
-    @objc func didFailStartingSession(type: SessionType, error: Error)
+public protocol ScratchLinkDelegate: AnyObject {
+    func canStartSession(type: SessionType) -> Bool
+    func didStartSession(type: SessionType)
+    func didFailStartingSession(type: SessionType, error: SessionError)
 }

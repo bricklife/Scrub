@@ -227,6 +227,6 @@ private class StreamDelegateHelper: NSObject, StreamDelegate {
     }
 }
 
-@objc private protocol SwiftStreamDelegate {
-    @objc func stream(_ aStream: Stream, handle eventCode: Stream.Event)
+private protocol SwiftStreamDelegate: AnyObject {
+    func stream(_ aStream: Stream, handle eventCode: Stream.Event)
 }
