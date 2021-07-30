@@ -19,17 +19,10 @@ enum SerializationError: Error {
     case internalError(String)
 }
 
-public enum SessionError: Error {
-    case bluetoothIsNotAvailable
-}
-
-extension SessionError: LocalizedError {
-    public var errorDescription: String? {
-        switch self {
-        case .bluetoothIsNotAvailable:
-            return NSLocalizedString("Bluetooth is not available", bundle: Bundle.module, comment: "Bluetooth is not available")
-        }
-    }
+public enum BluetoothError: Error {
+    case poweredOff
+    case unauthorized
+    case unsupported
 }
 
 @objc public enum SessionType: Int {
@@ -107,10 +100,17 @@ extension ScratchLink: WKScriptMessageHandler {
             guard delegate?.canStartSession(type: type) == true else { break }
             
             bluetoothConnectionChecker.publisher(for: \.state).first(where: { $0 != .unknown }).sink { [weak self] state in
-                if state == .poweredOn {
+                switch state {
+                case .poweredOn:
                     self?.open(socketId: socketId, type: type)
-                } else {
-                    self?.delegate?.didFailStartingSession(type: type, error: SessionError.bluetoothIsNotAvailable)
+                case .poweredOff:
+                    self?.delegate?.didFailStartingSession(type: type, error: BluetoothError.poweredOff)
+                case .unauthorized:
+                    self?.delegate?.didFailStartingSession(type: type, error: BluetoothError.unauthorized)
+                case .unsupported:
+                    self?.delegate?.didFailStartingSession(type: type, error: BluetoothError.unsupported)
+                default:
+                    break
                 }
             }.store(in: &cancellables)
             

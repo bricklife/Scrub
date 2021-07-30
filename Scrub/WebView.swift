@@ -117,6 +117,23 @@ extension WebView {
             parent.webViewController.present(vc, animated: true)
         }
         
+        func didStartSession(type: SessionType) {
+            if type == .bt, parent.viewModel.shouldShowBluetoothParingDialog {
+                parent.alertController.showAlert(howTo: Text("Please pair your Bluetooth device on Settings app before using this extension.")) { [weak self] in
+                    self?.parent.viewModel.didShowBluetoothParingDialog()
+                }
+            }
+        }
+        
+        func didFail(error: Error) {
+            switch error as? ScratchWebViewError {
+            case let .forbiddenAccess(url: url):
+                parent.alertController.showAlert(forbiddenAccess: Text("This app can only open the official Scratch website or any Scratch Editor."), url: url)
+            case .none:
+                parent.alertController.showAlert(error: error)
+            }
+        }
+        
         func canStartSession(type: SessionType) -> Bool {
             #if DEBUG
             return true
@@ -133,18 +150,14 @@ extension WebView {
             #endif
         }
         
-        func didStartSession(type: SessionType) {
-            if type == .bt, parent.viewModel.shouldShowBluetoothParingDialog {
-                parent.alertController.showAlert(howTo: Text("Please pair your Bluetooth device on Settings app before using this extension.")) { [weak self] in
-                    self?.parent.viewModel.didShowBluetoothParingDialog()
-                }
-            }
-        }
-        
-        func didFail(error: Error) {
-            switch error as? ScratchWebViewError {
-            case let .forbiddenAccess(url: url):
-                parent.alertController.showAlert(forbiddenAccess: Text("This app can only open the official Scratch website or any Scratch Editor."), url: url)
+        func didFailStartingSession(type: SessionType, error: Error) {
+            switch error as? BluetoothError {
+            case .poweredOff:
+                break
+            case .unauthorized:
+                parent.alertController.showAlert(error: error) // TODO:
+            case .unsupported:
+                parent.alertController.showAlert(error: error) // TODO:
             case .none:
                 parent.alertController.showAlert(error: error)
             }

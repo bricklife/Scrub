@@ -188,7 +188,7 @@ extension ScratchWebViewController: ScratchLinkDelegate {
     }
     
     public func didFailStartingSession(type: SessionType, error: Error) {
-        delegate?.didFail?(error: error)
+        delegate?.didFailStartingSession?(type: type, error: error)
     }
 }
 
@@ -200,7 +200,8 @@ extension ScratchWebViewController: ScratchLinkDelegate {
 @objc public protocol ScratchWebViewControllerDelegate {
     @objc optional func decidePolicyFor(url: URL, isScratchEditor: Bool, decisionHandler: @escaping (WebFilterPolicy) -> Void)
     @objc optional func didDownloadFile(at url: URL)
+    @objc optional func didFail(error: Error)
     @objc optional func canStartSession(type: SessionType) -> Bool
     @objc optional func didStartSession(type: SessionType)
-    @objc optional func didFail(error: Error)
+    @objc optional func didFailStartingSession(type: SessionType, error: Error)
 }
