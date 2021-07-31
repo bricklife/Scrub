@@ -58,7 +58,7 @@ class AlertController: ObservableObject {
             
         case let .forbiddenAccess(message: message, url: url):
             return Alert(title: Text("Sorry"), message: message,
-                         primaryButton: .default(Text("Open in Safari"), action: { [weak self] in
+                         primaryButton: .default(Text("Open in Browser"), action: { [weak self] in
                             self?.openURL(url)
                          }),
                          secondaryButton: .default(Text("OK")))

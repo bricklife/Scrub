@@ -13,7 +13,7 @@ struct ActivityView: UIViewControllerRepresentable {
     let activityItems: [Any]
     
     func makeUIViewController(context: Context) -> UIActivityViewController {
-        return UIActivityViewController(activityItems: activityItems, applicationActivities: [HomeUrlActivity(preferences: preferences) ,SafariActivity()])
+        return UIActivityViewController(activityItems: activityItems, applicationActivities: [HomeUrlActivity(preferences: preferences) ,BrowserActivity()])
     }
     
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
@@ -65,12 +65,12 @@ class HomeUrlActivity: UIActivity {
     }
 }
 
-class SafariActivity: UIActivity {
+class BrowserActivity: UIActivity {
     
     var url: URL? = nil
     
     override var activityTitle: String? {
-        return NSLocalizedString("Open in Safari", comment: "Open in Safari")
+        return NSLocalizedString("Open in Browser", comment: "Open in Browser")
     }
     
     override var activityImage: UIImage? {
