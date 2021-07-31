@@ -47,7 +47,7 @@ class AlertController: ObservableObject {
     func makeAlert() -> Alert {
         switch alertContent {
         case let .error(error: error):
-            return Alert(title: Text("Error"), message: Text(error.localizedDescription))
+            return Alert(title: Text(error.localizedDescription))
             
         case let .howTo(message: message, completion: completion):
             return Alert(title: Text("How to Use"), message: message,
@@ -64,7 +64,7 @@ class AlertController: ObservableObject {
                          secondaryButton: .default(Text("OK")))
             
         case .none:
-            return Alert(title: Text("Alert"), message: Text("An unexpected error has occurred."))
+            return Alert(title: Text("An unexpected error has occurred."))
         }
     }
 }
