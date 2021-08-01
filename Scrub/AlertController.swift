@@ -47,7 +47,7 @@ class AlertController: ObservableObject {
     func makeAlert() -> Alert {
         switch alertContent {
         case let .error(error: error):
-            return Alert(title: Text(error.localizedDescription))
+            return Alert(title: Text("Error"), message: Text(error.localizedDescription))
             
         case let .howTo(message: message, completion: completion):
             return Alert(title: Text("How to Use"), message: message,
