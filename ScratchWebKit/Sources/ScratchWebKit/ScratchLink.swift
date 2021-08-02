@@ -104,7 +104,7 @@ extension ScratchLink: WKScriptMessageHandler {
         case .open:
             guard let url = message.url else { break }
             guard let type = SessionType(url: url) else { break }
-            guard delegate?.canStartSession(type: type) == true else { break }
+            guard delegate?.canStartSession(type: type) ?? true else { break }
             
             bluetoothConnectionChecker.publisher(for: \.state).first(where: { $0 != .unknown }).sink { [weak self] state in
                 if state == .poweredOn {

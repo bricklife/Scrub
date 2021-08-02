@@ -180,7 +180,7 @@ extension ScratchWebViewController: WKDownloadDelegate {
 extension ScratchWebViewController: ScratchLinkDelegate {
     
     public func canStartSession(type: SessionType) -> Bool {
-        return delegate?.canStartSession(type: type) ?? false
+        return delegate?.canStartSession(type: type) ?? true
     }
     
     public func didStartSession(type: SessionType) {
