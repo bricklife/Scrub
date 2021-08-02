@@ -16,6 +16,7 @@ class AlertController: ObservableObject {
         case howTo(message: Text, completion: () -> Void)
         case sorry(message: Text)
         case forbiddenAccess(message: Text, url: URL)
+        case unauthorized(type: Text)
     }
     
     private var alertContent: Content? = nil {
@@ -44,6 +45,10 @@ class AlertController: ObservableObject {
         self.alertContent = .forbiddenAccess(message: message, url: url)
     }
     
+    func showAlert(unauthorized type: Text) {
+        self.alertContent = .unauthorized(type: type)
+    }
+    
     func makeAlert() -> Alert {
         switch alertContent {
         case let .error(error: error):
@@ -62,6 +67,16 @@ class AlertController: ObservableObject {
                             self?.openURL(url)
                          }),
                          secondaryButton: .default(Text("OK")))
+            
+        case let .unauthorized(type: type):
+            let title = Text("\(type) is Not Allowed ")
+            let message = Text("Allow \(type) access in Settings to use this function.")
+            let url = URL(string: UIApplication.openSettingsURLString)!
+            return Alert(title: title, message: message,
+                         primaryButton: .default(Text("Settings"), action: { [weak self] in
+                            self?.openURL(url)
+                         }),
+                         secondaryButton: .default(Text("Close")))
             
         case .none:
             return Alert(title: Text("An unexpected error has occurred."))
