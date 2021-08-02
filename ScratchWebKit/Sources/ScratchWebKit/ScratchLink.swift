@@ -20,14 +20,20 @@ enum SerializationError: Error {
 }
 
 public enum SessionError: Error {
+    case notAvailable
     case bluetoothIsNotAvailable
+    case other(error: Error)
 }
 
 extension SessionError: LocalizedError {
     public var errorDescription: String? {
         switch self {
+        case .notAvailable:
+            return NSLocalizedString("This session is not available", bundle: Bundle.module, comment: "This session is not available")
         case .bluetoothIsNotAvailable:
             return NSLocalizedString("Bluetooth is not available", bundle: Bundle.module, comment: "Bluetooth is not available")
+        case .other(error: let error):
+            return error.localizedDescription
         }
     }
 }
@@ -104,14 +110,20 @@ extension ScratchLink: WKScriptMessageHandler {
         case .open:
             guard let url = message.url else { break }
             guard let type = SessionType(url: url) else { break }
-            guard delegate?.canStartSession(type: type) ?? true else { break }
+            
+            if let canStart = delegate?.canStartSession(type: type), canStart == false {
+                delegate?.didFailStartingSession(type: type, error: .notAvailable)
+                break
+            }
             
             bluetoothConnectionChecker.publisher(for: \.state).first(where: { $0 != .unknown }).sink { [weak self] state in
                 if state == .poweredOn {
                     do {
                         try self?.open(socketId: socketId, type: type)
                         self?.delegate?.didStartSession(type: type)
-                    } catch {}
+                    } catch {
+                        self?.delegate?.didFailStartingSession(type: type, error: .other(error: error))
+                    }
                 } else {
                     self?.delegate?.didFailStartingSession(type: type, error: .bluetoothIsNotAvailable)
                 }

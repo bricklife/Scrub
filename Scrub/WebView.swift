@@ -134,9 +134,6 @@ extension WebView {
             case .ble:
                 return true
             case .bt:
-                DispatchQueue.main.async {
-                    self.parent.alertController.showAlert(sorry: Text("This extension is not supported🙇🏻"))
-                }
                 return false
             }
             #endif
@@ -151,7 +148,14 @@ extension WebView {
         }
         
         func didFailStartingScratchLinkSession(type: SessionType, error: SessionError) {
-            parent.alertController.showAlert(error: error)
+            switch error {
+            case .notAvailable:
+                self.parent.alertController.showAlert(sorry: Text("This extension is not supported🙇🏻"))
+            case .bluetoothIsNotAvailable:
+                self.parent.alertController.showAlert(error: error)
+            case .other(error: let error):
+                self.parent.alertController.showAlert(error: error)
+            }
         }
     }
 }
