@@ -21,7 +21,9 @@ enum SerializationError: Error {
 
 public enum SessionError: Error {
     case notAvailable
-    case bluetoothIsNotAvailable
+    case bluetoothIsPoweredOff
+    case bluetoothIsUnauthorized
+    case bluetoothIsUnsupported
     case other(error: Error)
 }
 
@@ -30,8 +32,12 @@ extension SessionError: LocalizedError {
         switch self {
         case .notAvailable:
             return NSLocalizedString("This session is not available", bundle: Bundle.module, comment: "This session is not available")
-        case .bluetoothIsNotAvailable:
-            return NSLocalizedString("Bluetooth is not available", bundle: Bundle.module, comment: "Bluetooth is not available")
+        case .bluetoothIsPoweredOff:
+            return NSLocalizedString("Bluetooth is powered off", bundle: Bundle.module, comment: "Bluetooth is powered off")
+        case .bluetoothIsUnauthorized:
+            return NSLocalizedString("Bluetooth is unauthorized", bundle: Bundle.module, comment: "Bluetooth is unauthorized")
+        case .bluetoothIsUnsupported:
+            return NSLocalizedString("Bluetooth is unsupported", bundle: Bundle.module, comment: "Bluetooth is unsupported")
         case .other(error: let error):
             return error.localizedDescription
         }
@@ -117,15 +123,22 @@ extension ScratchLink: WKScriptMessageHandler {
             }
             
             bluetoothConnectionChecker.publisher(for: \.state).first(where: { $0 != .unknown }).sink { [weak self] state in
-                if state == .poweredOn {
+                switch state {
+                case .poweredOn:
                     do {
                         try self?.open(socketId: socketId, type: type)
                         self?.delegate?.didStartSession(type: type)
                     } catch {
                         self?.delegate?.didFailStartingSession(type: type, error: .other(error: error))
                     }
-                } else {
-                    self?.delegate?.didFailStartingSession(type: type, error: .bluetoothIsNotAvailable)
+                case .poweredOff:
+                    self?.delegate?.didFailStartingSession(type: type, error: .bluetoothIsPoweredOff)
+                case .unauthorized:
+                    self?.delegate?.didFailStartingSession(type: type, error: .bluetoothIsUnauthorized)
+                case .unsupported:
+                    self?.delegate?.didFailStartingSession(type: type, error: .bluetoothIsUnsupported)
+                default:
+                    break
                 }
             }.store(in: &cancellables)
             

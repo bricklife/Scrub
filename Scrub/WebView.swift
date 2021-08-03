@@ -151,7 +151,11 @@ extension WebView {
             switch error {
             case .notAvailable:
                 self.parent.alertController.showAlert(sorry: Text("This extension is not supported🙇🏻"))
-            case .bluetoothIsNotAvailable:
+            case .bluetoothIsPoweredOff:
+                self.parent.alertController.showAlert(error: error)
+            case .bluetoothIsUnauthorized:
+                self.parent.alertController.showAlert(unauthorized: Text("Bluetooth"))
+            case .bluetoothIsUnsupported:
                 self.parent.alertController.showAlert(error: error)
             case .other(error: let error):
                 self.parent.alertController.showAlert(error: error)
