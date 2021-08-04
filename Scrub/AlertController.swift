@@ -69,7 +69,7 @@ class AlertController: ObservableObject {
                          secondaryButton: .default(Text("OK")))
             
         case let .unauthorized(type: type):
-            let title = Text("\(type) is Not Allowed ")
+            let title = Text("\(type) is Not Allowed")
             let message = Text("Allow \(type) access in Settings to use this function.")
             let url = URL(string: UIApplication.openSettingsURLString)!
             return Alert(title: title, message: message,
