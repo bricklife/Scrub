@@ -20,7 +20,7 @@ enum SerializationError: Error {
 }
 
 public enum SessionError: Error {
-    case notAvailable
+    case unavailable
     case bluetoothIsPoweredOff
     case bluetoothIsUnauthorized
     case bluetoothIsUnsupported
@@ -30,8 +30,8 @@ public enum SessionError: Error {
 extension SessionError: LocalizedError {
     public var errorDescription: String? {
         switch self {
-        case .notAvailable:
-            return NSLocalizedString("This session is not available", bundle: Bundle.module, comment: "This session is not available")
+        case .unavailable:
+            return NSLocalizedString("This session is unavailable", bundle: Bundle.module, comment: "This session is unavailable")
         case .bluetoothIsPoweredOff:
             return NSLocalizedString("Bluetooth is powered off", bundle: Bundle.module, comment: "Bluetooth is powered off")
         case .bluetoothIsUnauthorized:
@@ -118,7 +118,7 @@ extension ScratchLink: WKScriptMessageHandler {
             guard let type = SessionType(url: url) else { break }
             
             if let canStart = delegate?.canStartSession(type: type), canStart == false {
-                delegate?.didFailStartingSession(type: type, error: .notAvailable)
+                delegate?.didFailStartingSession(type: type, error: .unavailable)
                 break
             }
             

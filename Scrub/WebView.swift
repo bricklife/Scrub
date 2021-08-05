@@ -149,7 +149,7 @@ extension WebView {
         
         func didFailStartingScratchLinkSession(type: SessionType, error: SessionError) {
             switch error {
-            case .notAvailable:
+            case .unavailable:
                 self.parent.alertController.showAlert(sorry: Text("This extension is not supported🙇🏻"))
             case .bluetoothIsPoweredOff:
                 self.parent.alertController.showAlert(error: error)
