@@ -9,3 +9,8 @@
 "Cancel" = "Cancel";
 
 "Not allowed to access this URL" = "Not allowed to access this URL";
+
+"This session is unavailable" = "This session is unavailable";
+"Bluetooth is powered off" = "Bluetooth is powered off";
+"Bluetooth is unauthorized" = "Bluetooth is unauthorized";
+"Bluetooth is unsupported" = "Bluetooth is unsupported";

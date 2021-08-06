@@ -9,3 +9,8 @@
 "Cancel" = "キャンセル";
 
 "Not allowed to access this URL" = "このURLへのアクセスは許可されていません";
+
+"This session is unavailable" = "このセッションは無効になっています";
+"Bluetooth is powered off" = "Bluetoothがオフになっています";
+"Bluetooth is unauthorized" = "Bluetoothが許可されていません";
+"Bluetooth is unsupported" = "Bluetoothがサポートされていません";
