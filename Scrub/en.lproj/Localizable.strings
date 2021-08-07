@@ -7,6 +7,8 @@
 */
 "Done" = "Done";
 "Error" = "Error";
+"Close" = "Close";
+"Settings" = "Settings";
 
 "Invalid URL" = "Invalid URL";
 
@@ -16,6 +18,8 @@
 "Sorry" = "Sorry";
 "This extension is not supported🙇🏻" = "This extension is not supported🙇🏻";
 "This app can only open the official Scratch website or any Scratch Editor." = "This app can only open the official Scratch website or any Scratch Editor.";
+"%@ is Not Allowed" = "%@ is Not Allowed";
+"Allow %@ access in Settings to use this function." = "Allow %@ access in Settings to use this function.";
 
 "Set as Home URL" = "Set as Home URL";
 "Open in Browser" = "Open in Browser";

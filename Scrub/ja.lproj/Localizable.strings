@@ -7,6 +7,8 @@
 */
 "Done" = "完了";
 "Error" = "エラー";
+"Close" = "閉じる";
+"Settings" = "設定";
 
 "Invalid URL" = "不正なURLです";
 
@@ -16,6 +18,8 @@
 "Sorry" = "ごめんなさい";
 "This extension is not supported🙇🏻" = "この機能拡張は対応していません🙇🏻";
 "This app can only open the official Scratch website or any Scratch Editor." = "このアプリでは Scratchの公式サイト か 有志が公開しているScratchエディタ画面 以外を開くことはできません。";
+"%@ is Not Allowed" = "%@が許可されていません";
+"Allow %@ access in Settings to use this function." = "この機能を使うには設定で%@へのアクセスを許可してください。";
 
 "Set as Home URL" = "ホームURLに設定する";
 "Open in Browser" = "ブラウザで開く";
