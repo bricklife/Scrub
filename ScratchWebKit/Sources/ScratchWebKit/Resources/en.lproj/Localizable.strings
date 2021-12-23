@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  Scrub
+
+  Created by Shinichiro Oba on 2021/05/24.
+  
+*/
+"OK" = "OK";
+"Cancel" = "Cancel";
+
+"Not allowed to access this URL" = "Not allowed to access this URL";

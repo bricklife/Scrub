@@ -8,6 +8,7 @@
 import UIKit
 import WebKit
 import Combine
+import ScratchLink
 
 public enum ScratchWebViewError: Error {
     case forbiddenAccess(url: URL)
