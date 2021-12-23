@@ -1,5 +1,5 @@
 //
-//  BTSession.swift
+//  ExternalAccessorySession.swift
 //  Scrub
 //
 //  Created by Shinichiro Oba on 2021/03/21.
@@ -8,7 +8,7 @@
 import Foundation
 import ExternalAccessory
 
-class BTSession: Session {
+class ExternalAccessorySession: Session {
     private var connectedSession: EASession?
     private var state: SessionState = .initial
     private var ouiPrefix: String
@@ -171,7 +171,7 @@ class BTSession: Session {
     }
 }
 
-extension BTSession: SwiftStreamDelegate {
+extension ExternalAccessorySession: SwiftStreamDelegate {
     func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
         switch eventCode {
         case .openCompleted:

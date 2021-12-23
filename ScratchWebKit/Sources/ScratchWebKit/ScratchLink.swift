@@ -169,7 +169,7 @@ extension ScratchLink: WKScriptMessageHandler {
         case .ble:
             sessions[socketId] = try BLESession(withSocket: webSocket)
         case .bt:
-            sessions[socketId] = try BTSession(withSocket: webSocket)
+            sessions[socketId] = try ExternalAccessorySession(withSocket: webSocket)
         }
     }
 }
