@@ -39,6 +39,7 @@ let package = Package(
                 "scratch-link/macOS/Sources/scratch-link/main.swift",
                 "scratch-link/macOS/Sources/scratch-link/BTSession.swift",
                 "scratch-link/macOS/Sources/scratch-link/BundleInfo.swift",
+                "scratch-link/macOS/Sources/scratch-link/IOBluetoothDeviceInquiryDelegateHelper.swift",
                 "scratch-link/macOS/Sources/scratch-link/SessionManager.swift",
             ],
             resources: [
