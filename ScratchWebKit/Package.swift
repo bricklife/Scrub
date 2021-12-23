@@ -16,7 +16,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "../ScratchLink", from: "1.0.0"),
+        .package(path: "../ScratchLink")
     ],
     targets: [
         .target(
