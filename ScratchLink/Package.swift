@@ -4,15 +4,15 @@
 import PackageDescription
 
 let package = Package(
-    name: "ScratchWebKit",
+    name: "ScratchLink",
     defaultLocalization: "en",
     platforms: [
         .iOS("14.5")
     ],
     products: [
         .library(
-            name: "ScratchWebKit",
-            targets: ["ScratchWebKit"]
+            name: "ScratchLink",
+            targets: ["ScratchLink"]
         ),
         .library(
             name: "DummyModules",
@@ -21,7 +21,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "ScratchWebKit",
+            name: "ScratchLink",
             dependencies: ["PerfectHTTP", "PerfectWebSockets"],
             exclude: [
                 "scratch-link/Assets",

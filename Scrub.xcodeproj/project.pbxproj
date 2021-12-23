@@ -18,7 +18,7 @@
 		CB47F3BB2632DF5600C0A7ED /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB47F3BA2632DF5600C0A7ED /* CircleProgressView.swift */; };
 		CB4D940A265772BA007C59AB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CB4D9409265772BA007C59AB /* Settings.bundle */; };
 		CB52568F26419776009EE660 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB52568E26419776009EE660 /* ActivityView.swift */; };
-		CB6F7A3E2616E49F007C2230 /* ScratchWebKit in Frameworks */ = {isa = PBXBuildFile; productRef = CB6F7A3D2616E49F007C2230 /* ScratchWebKit */; };
+		CB713FEA2774994E009C63E8 /* ScratchLink in Frameworks */ = {isa = PBXBuildFile; productRef = CB713FE92774994E009C63E8 /* ScratchLink */; };
 		CB7D42DB2617096C005C86D0 /* ScrubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D42DA2617096C005C86D0 /* ScrubApp.swift */; };
 		CB7D42F9261709F4005C86D0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D42F8261709F4005C86D0 /* MainView.swift */; };
 		CB7D42FB26170A9E005C86D0 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D42FA26170A9E005C86D0 /* WebView.swift */; };
@@ -52,7 +52,7 @@
 		CB47F3BA2632DF5600C0A7ED /* CircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		CB4D9409265772BA007C59AB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		CB52568E26419776009EE660 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
-		CB6F7A3C2616E44E007C2230 /* ScratchWebKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ScratchWebKit; sourceTree = "<group>"; };
+		CB6F7A3C2616E44E007C2230 /* ScratchLink */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ScratchLink; sourceTree = "<group>"; };
 		CB7D42DA2617096C005C86D0 /* ScrubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubApp.swift; sourceTree = "<group>"; };
 		CB7D42F8261709F4005C86D0 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CB7D42FA26170A9E005C86D0 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
@@ -67,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB6F7A3E2616E49F007C2230 /* ScratchWebKit in Frameworks */,
+				CB713FEA2774994E009C63E8 /* ScratchLink in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,7 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				CB3FBCEE2605D98B008FE5C2 /* Scrub */,
-				CB6F7A3C2616E44E007C2230 /* ScratchWebKit */,
+				CB6F7A3C2616E44E007C2230 /* ScratchLink */,
 				CB3FBCED2605D98B008FE5C2 /* Products */,
 				CBEDE1EA2605E3F30071628C /* Frameworks */,
 			);
@@ -157,7 +157,7 @@
 			);
 			name = Scrub;
 			packageProductDependencies = (
-				CB6F7A3D2616E49F007C2230 /* ScratchWebKit */,
+				CB713FE92774994E009C63E8 /* ScratchLink */,
 			);
 			productName = Scrub;
 			productReference = CB3FBCEC2605D98B008FE5C2 /* Scrub.app */;
@@ -443,9 +443,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CB6F7A3D2616E49F007C2230 /* ScratchWebKit */ = {
+		CB713FE92774994E009C63E8 /* ScratchLink */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = ScratchWebKit;
+			productName = ScratchLink;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

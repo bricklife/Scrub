@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Combine
-import ScratchWebKit
+import ScratchLink
 
 enum WebViewError: Error {
     case invalidUrl
