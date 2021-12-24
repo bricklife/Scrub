@@ -36,7 +36,36 @@
 		CBD43E62277574AE00039737 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43E5A277574AE00039737 /* ActivityView.swift */; };
 		CBD43E63277574AE00039737 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43E5B277574AE00039737 /* MainView.swift */; };
 		CBD43E69277574F800039737 /* ScratchWebKit in Frameworks */ = {isa = PBXBuildFile; productRef = CBD43E68277574F800039737 /* ScratchWebKit */; };
+		CBD43EB12776037C00039737 /* ScratchWebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD43E9F277601FB00039737 /* ScratchWebKit.framework */; };
+		CBD43EB22776037C00039737 /* ScratchWebKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBD43E9F277601FB00039737 /* ScratchWebKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CBD43EC12776137900039737 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43EBA2776137900039737 /* WebViewController.swift */; };
+		CBD43EC22776137900039737 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43EBB2776137900039737 /* ViewController.swift */; };
+		CBD43EC42776137900039737 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CBD43EBE2776137900039737 /* Localizable.strings */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CBD43EB32776037C00039737 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CBD43E0627756D3400039737 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CBD43E9E277601FB00039737;
+			remoteInfo = "ScratchWebKit (macOS)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CBD43EB52776037C00039737 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CBD43EB22776037C00039737 /* ScratchWebKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		CBD43E0D27756D3700039737 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -65,6 +94,11 @@
 		CBD43E65277574C500039737 /* ScratchWebKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ScratchWebKit; sourceTree = "<group>"; };
 		CBD43E6B2775908000039737 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBD43E6D2775908000039737 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CBD43E9F277601FB00039737 /* ScratchWebKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ScratchWebKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBD43EBA2776137900039737 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		CBD43EBB2776137900039737 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CBD43EBF2776137900039737 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CBD43EC02776137900039737 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +114,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBD43EB12776037C00039737 /* ScratchWebKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBD43E9C277601FB00039737 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +134,7 @@
 				CBD43E0A27756D3500039737 /* Shared */,
 				CBD43E2A27756E6B00039737 /* iOS */,
 				CBD43E1927756D3700039737 /* macOS */,
+				CBD43EA0277601FB00039737 /* ScratchWebKit */,
 				CBD43E1327756D3700039737 /* Products */,
 				CBD43E67277574F800039737 /* Frameworks */,
 				CBD43E64277574C500039737 /* Packages */,
@@ -116,6 +159,7 @@
 			children = (
 				CBD43E1227756D3700039737 /* Scrub.app */,
 				CBD43E1827756D3700039737 /* Scrub.app */,
+				CBD43E9F277601FB00039737 /* ScratchWebKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -206,7 +250,36 @@
 			path = Release;
 			sourceTree = "<group>";
 		};
+		CBD43EA0277601FB00039737 /* ScratchWebKit */ = {
+			isa = PBXGroup;
+			children = (
+				CBD43EBD2776137900039737 /* Resources */,
+				CBD43EBB2776137900039737 /* ViewController.swift */,
+				CBD43EBA2776137900039737 /* WebViewController.swift */,
+			);
+			name = ScratchWebKit;
+			path = ScratchWebKit/Sources/ScratchWebKit;
+			sourceTree = "<group>";
+		};
+		CBD43EBD2776137900039737 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CBD43EBE2776137900039737 /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		CBD43E9A277601FB00039737 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		CBD43E1127756D3700039737 /* Scrub (iOS) */ = {
@@ -236,15 +309,35 @@
 				CBD43E1427756D3700039737 /* Sources */,
 				CBD43E1527756D3700039737 /* Frameworks */,
 				CBD43E1627756D3700039737 /* Resources */,
+				CBD43EB52776037C00039737 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CBD43EB42776037C00039737 /* PBXTargetDependency */,
 			);
 			name = "Scrub (macOS)";
 			productName = "Scrub (macOS)";
 			productReference = CBD43E1827756D3700039737 /* Scrub.app */;
 			productType = "com.apple.product-type.application";
+		};
+		CBD43E9E277601FB00039737 /* ScratchWebKit (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CBD43EA7277601FB00039737 /* Build configuration list for PBXNativeTarget "ScratchWebKit (macOS)" */;
+			buildPhases = (
+				CBD43E9A277601FB00039737 /* Headers */,
+				CBD43E9B277601FB00039737 /* Sources */,
+				CBD43E9C277601FB00039737 /* Frameworks */,
+				CBD43E9D277601FB00039737 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ScratchWebKit (macOS)";
+			productName = ScratchWebKit;
+			productReference = CBD43E9F277601FB00039737 /* ScratchWebKit.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -261,6 +354,10 @@
 						LastSwiftMigration = 1320;
 					};
 					CBD43E1727756D3700039737 = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+					};
+					CBD43E9E277601FB00039737 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
@@ -282,6 +379,7 @@
 			targets = (
 				CBD43E1127756D3700039737 /* Scrub (iOS) */,
 				CBD43E1727756D3700039737 /* Scrub (macOS) */,
+				CBD43E9E277601FB00039737 /* ScratchWebKit (macOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -312,6 +410,14 @@
 				CBD43E2027756D3700039737 /* Assets.xcassets in Resources */,
 				CBD43E3627756F6C00039737 /* Main.storyboard in Resources */,
 				CBD43E4F2775748F00039737 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBD43E9D277601FB00039737 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBD43EC42776137900039737 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,7 +452,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CBD43E9B277601FB00039737 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBD43EC22776137900039737 /* ViewController.swift in Sources */,
+				CBD43EC12776137900039737 /* WebViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CBD43EB42776037C00039737 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CBD43E9E277601FB00039737 /* ScratchWebKit (macOS) */;
+			targetProxy = CBD43EB32776037C00039737 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		CBD43E3227756F6C00039737 /* Main.storyboard */ = {
@@ -387,6 +510,15 @@
 				CBD43E452775748F00039737 /* ja */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CBD43EBE2776137900039737 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CBD43EBF2776137900039737 /* ja */,
+				CBD43EC02776137900039737 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -584,6 +716,7 @@
 		CBD43E2727756D3700039737 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
@@ -617,6 +750,7 @@
 		CBD43E2827756D3700039737 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
@@ -646,6 +780,71 @@
 			};
 			name = Release;
 		};
+		CBD43EA8277601FB00039737 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = UV6TAX3ANB;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bricklife.ScratchWebKit;
+				PRODUCT_NAME = ScratchWebKit;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		CBD43EA9277601FB00039737 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = UV6TAX3ANB;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bricklife.ScratchWebKit;
+				PRODUCT_NAME = ScratchWebKit;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -672,6 +871,15 @@
 			buildConfigurations = (
 				CBD43E2727756D3700039737 /* Debug */,
 				CBD43E2827756D3700039737 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CBD43EA7277601FB00039737 /* Build configuration list for PBXNativeTarget "ScratchWebKit (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CBD43EA8277601FB00039737 /* Debug */,
+				CBD43EA9277601FB00039737 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

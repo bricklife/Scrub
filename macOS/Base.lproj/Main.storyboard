@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
-        <plugIn identifier="com.apple.WebKit2IBPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -706,33 +705,42 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Scrub" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="XfG-lQ-9wD" customClass="ViewController" customModule="Scrub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <wkWebView wantsLayer="YES" allowsLinkPreview="NO" allowsMagnification="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kd5-SS-qiQ">
+                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="9gd-4b-9ui">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                                <wkWebViewConfiguration key="configuration" allowsAirPlayForMediaPlayback="NO">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
+                                <connections>
+                                    <segue destination="rUE-n7-WzU" kind="embed" id="b7n-EU-z5z"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Kd5-SS-qiQ" secondAttribute="trailing" id="TWy-6g-pnD"/>
-                            <constraint firstItem="Kd5-SS-qiQ" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="fz7-FZ-PBg"/>
-                            <constraint firstAttribute="bottom" secondItem="Kd5-SS-qiQ" secondAttribute="bottom" id="h96-UQ-CAq"/>
-                            <constraint firstItem="Kd5-SS-qiQ" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="xtl-Ta-Pyz"/>
+                            <constraint firstAttribute="trailing" secondItem="9gd-4b-9ui" secondAttribute="trailing" id="24N-dw-EZj"/>
+                            <constraint firstItem="9gd-4b-9ui" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="dt6-r6-eAK"/>
+                            <constraint firstAttribute="bottom" secondItem="9gd-4b-9ui" secondAttribute="bottom" id="oRE-Wf-z0u"/>
+                            <constraint firstItem="9gd-4b-9ui" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="tbl-6C-s0W"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="webView" destination="Kd5-SS-qiQ" id="dmn-J4-1lD"/>
-                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="ZiX-KR-NLz">
+            <objects>
+                <viewController id="rUE-n7-WzU" customClass="WebViewController" customModule="ScratchWebKit" sceneMemberID="viewController">
+                    <view key="view" id="GmU-ie-cce">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="wpa-jd-Dc6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="634" y="655"/>
         </scene>
     </scenes>
 </document>

@@ -2,15 +2,36 @@
 //  WebViewController.swift
 //  Scrub
 //
-//
 //  Created by Shinichiro Oba on 2021/07/23.
 //
 
+#if canImport(UIKit)
 import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
+
 import WebKit
 import Combine
 
-public class WebViewController: UIViewController {
+private func makeWKWebViewConfiguration() -> WKWebViewConfiguration {
+    let configuration = WKWebViewConfiguration()
+    
+    configuration.allowsAirPlayForMediaPlayback = false
+    configuration.mediaTypesRequiringUserActionForPlayback = []
+    
+#if os(iOS)
+    configuration.allowsInlineMediaPlayback = true
+    configuration.allowsPictureInPictureMediaPlayback = false
+    configuration.dataDetectorTypes = []
+#endif
+    
+    configuration.preferences.javaScriptCanOpenWindowsAutomatically = true
+    
+    return configuration
+}
+
+public class WebViewController: ViewController {
     
     internal let webView: WKWebView
     
@@ -22,31 +43,26 @@ public class WebViewController: UIViewController {
     @Published public private(set) var canGoBack: Bool = false
     @Published public private(set) var canGoForward: Bool = false
     
+#if canImport(UIKit)
     private var queue: [UIViewController] = []
+#endif
     
     public init() {
-        let configuration = WKWebViewConfiguration()
-        configuration.allowsAirPlayForMediaPlayback = false
-        configuration.allowsInlineMediaPlayback = true
-        configuration.allowsPictureInPictureMediaPlayback = false
-        configuration.mediaTypesRequiringUserActionForPlayback = []
-        configuration.dataDetectorTypes = []
-        
-        configuration.preferences.javaScriptCanOpenWindowsAutomatically = true
-        
-        self.webView = WKWebView(frame: .zero, configuration: configuration)
+        self.webView = WKWebView(frame: .zero, configuration: makeWKWebViewConfiguration())
         
         super.init(nibName: nil, bundle: nil)
+    }
+    
+    public required init?(coder: NSCoder) {
+        self.webView = WKWebView(frame: .zero, configuration: makeWKWebViewConfiguration())
+        
+        super.init(coder: coder)
     }
     
     public init(webView: WKWebView) {
         self.webView = webView
         
         super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     public override func loadView() {
@@ -65,6 +81,7 @@ public class WebViewController: UIViewController {
         webView.uiDelegate = self
     }
     
+#if canImport(UIKit)
     private func presentOrQueue(_ viewController: UIViewController) {
         if presentedViewController != nil {
             queue.append(viewController)
@@ -79,6 +96,7 @@ public class WebViewController: UIViewController {
             present(vc, animated: true)
         }
     }
+#endif
 }
 
 extension WebViewController {
@@ -105,6 +123,7 @@ extension WebViewController {
     }
 }
 
+#if canImport(UIKit)
 extension WebViewController: WKUIDelegate {
     
     public func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
@@ -181,3 +200,75 @@ extension WebViewController: UIAdaptivePresentationControllerDelegate {
         presentQueueingViewController()
     }
 }
+#endif
+
+#if canImport(AppKit)
+extension ViewController: WKUIDelegate {
+    
+    public func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        guard navigationAction.targetFrame?.isMainFrame != true else { return nil }
+        
+        let newWebView = WKWebView(frame: webView.bounds, configuration: configuration)
+        
+        return newWebView
+    }
+    
+    public func webViewDidClose(_ webView: WKWebView) {
+        print(#function)
+    }
+    
+    public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+        let alert = NSAlert()
+        alert.messageText = message
+        alert.runModal()
+        completionHandler()
+    }
+    
+    public func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
+        let alert = NSAlert()
+        alert.messageText = message
+        alert.addButton(withTitle: "OK")
+        alert.addButton(withTitle: "Cancel")
+        if alert.runModal() == .alertFirstButtonReturn {
+            completionHandler(true)
+        } else{
+            completionHandler(false)
+        }
+    }
+    
+    public func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
+        let alert = NSAlert()
+        alert.messageText = prompt
+        alert.informativeText = defaultText ?? ""
+        
+        let textField = NSTextField(frame: NSRect(x: 0, y: 0, width: 200, height: 24))
+        
+        alert.accessoryView = textField
+        alert.addButton(withTitle: "Cancel")
+        alert.addButton(withTitle: "OK")
+        
+        let res = alert.runModal()
+        if res == .alertSecondButtonReturn {
+            completionHandler(textField.stringValue)
+        } else {
+            completionHandler(nil)
+        }
+    }
+    
+    public func webView(_ webView: WKWebView, runOpenPanelWith parameters: WKOpenPanelParameters, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping ([URL]?) -> Void) {
+        let openPanel = NSOpenPanel()
+        openPanel.canChooseFiles = true
+        
+        openPanel.begin() { (result) in
+            NSLog("Selected result " + result.rawValue.description)
+            if result == .OK {
+                if let url = openPanel.url {
+                    completionHandler([url])
+                }
+            } else if result == NSApplication.ModalResponse.cancel {
+                completionHandler(nil)
+            }
+        }
+    }
+}
+#endif

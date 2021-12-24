@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  WebView
+//  Scrub
 //
 //  Created by Shinichiro Oba on 2021/12/24.
 //
