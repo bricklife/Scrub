@@ -256,16 +256,18 @@ extension ViewController: WKUIDelegate {
     }
     
     public func webView(_ webView: WKWebView, runOpenPanelWith parameters: WKOpenPanelParameters, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping ([URL]?) -> Void) {
+        guard let window = view.window else {
+            completionHandler(nil)
+            return
+        }
+        
         let openPanel = NSOpenPanel()
         openPanel.canChooseFiles = true
         
-        openPanel.begin() { (result) in
-            NSLog("Selected result " + result.rawValue.description)
-            if result == .OK {
-                if let url = openPanel.url {
-                    completionHandler([url])
-                }
-            } else if result == NSApplication.ModalResponse.cancel {
+        openPanel.beginSheetModal(for: window) { (result) in
+            if result == .OK, let url = openPanel.url {
+                completionHandler([url])
+            } else {
                 completionHandler(nil)
             }
         }
