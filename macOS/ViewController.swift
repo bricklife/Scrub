@@ -21,7 +21,8 @@ class ViewController: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         
-        let url = URL(string: "https://bricklife.com/scratch-gui/")!
+        //let url = URL(string: "https://bricklife.com/scratch-gui/")!
+        let url = URL(string: "https://stretch3.github.io/")!
         webViewController?.load(url: url)
     }
     

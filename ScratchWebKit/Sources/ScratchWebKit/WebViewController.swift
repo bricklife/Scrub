@@ -209,12 +209,15 @@ extension ViewController: WKUIDelegate {
         guard navigationAction.targetFrame?.isMainFrame != true else { return nil }
         
         let newWebView = WKWebView(frame: webView.bounds, configuration: configuration)
+        let vc = WebViewController(webView: newWebView)
+        
+        presentAsModalWindow(vc)
         
         return newWebView
     }
     
     public func webViewDidClose(_ webView: WKWebView) {
-        print(#function)
+        dismiss(self)
     }
     
     public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
