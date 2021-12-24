@@ -41,6 +41,35 @@
 		CBD43EC12776137900039737 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43EBA2776137900039737 /* WebViewController.swift */; };
 		CBD43EC22776137900039737 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43EBB2776137900039737 /* ViewController.swift */; };
 		CBD43EC42776137900039737 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CBD43EBE2776137900039737 /* Localizable.strings */; };
+		CBD43ED02776154500039737 /* ScratchLink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD43ECA2776154500039737 /* ScratchLink.framework */; };
+		CBD43ED12776154500039737 /* ScratchLink.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBD43ECA2776154500039737 /* ScratchLink.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CBD43EE02776155500039737 /* PerfectHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD43EDA2776155500039737 /* PerfectHTTP.framework */; };
+		CBD43EE12776155500039737 /* PerfectHTTP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBD43EDA2776155500039737 /* PerfectHTTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CBD43EF02776156700039737 /* PerfectWebSockets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD43EEA2776156700039737 /* PerfectWebSockets.framework */; };
+		CBD43EF12776156700039737 /* PerfectWebSockets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBD43EEA2776156700039737 /* PerfectWebSockets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CBD43F0D2776160900039737 /* ScratchLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43EF52776160900039737 /* ScratchLink.swift */; };
+		CBD43F0E2776160900039737 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43EF62776160900039737 /* WebSocket.swift */; };
+		CBD43F0F2776160900039737 /* JavaScriptLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43EF72776160900039737 /* JavaScriptLoader.swift */; };
+		CBD43F102776160900039737 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CBD43EF92776160900039737 /* Localizable.strings */; };
+		CBD43F112776160900039737 /* inject-scratch-link.js in Resources */ = {isa = PBXBuildFile; fileRef = CBD43EFC2776160900039737 /* inject-scratch-link.js */; };
+		CBD43F122776160900039737 /* BLESession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43EFE2776160900039737 /* BLESession.swift */; };
+		CBD43F142776160900039737 /* JSONRPCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F002776160900039737 /* JSONRPCError.swift */; };
+		CBD43F152776160900039737 /* RSSI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F012776160900039737 /* RSSI.swift */; };
+		CBD43F172776160900039737 /* DispatchSemaphore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F032776160900039737 /* DispatchSemaphore.swift */; };
+		CBD43F182776160900039737 /* GATTHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F042776160900039737 /* GATTHelpers.swift */; };
+		CBD43F1B2776160900039737 /* IOBluetoothDeviceInquiryDelegateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F072776160900039737 /* IOBluetoothDeviceInquiryDelegateHelper.swift */; };
+		CBD43F1D2776160900039737 /* CBCentralManagerDelegateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F092776160900039737 /* CBCentralManagerDelegateHelper.swift */; };
+		CBD43F1E2776160900039737 /* EncodingHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F0A2776160900039737 /* EncodingHelpers.swift */; };
+		CBD43F1F2776160900039737 /* BTSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F0B2776160900039737 /* BTSession.swift */; };
+		CBD43F202776160900039737 /* CBPeripheralDelegateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F0C2776160900039737 /* CBPeripheralDelegateHelper.swift */; };
+		CBD43F252776169500039737 /* PerfectHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD43EDA2776155500039737 /* PerfectHTTP.framework */; };
+		CBD43F262776169500039737 /* PerfectHTTP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBD43EDA2776155500039737 /* PerfectHTTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CBD43F292776169500039737 /* PerfectWebSockets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD43EEA2776156700039737 /* PerfectWebSockets.framework */; };
+		CBD43F2A2776169500039737 /* PerfectWebSockets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBD43EEA2776156700039737 /* PerfectWebSockets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CBD43F34277616F100039737 /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F31277616EB00039737 /* Dummy.swift */; };
+		CBD43F372776172600039737 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F362776172600039737 /* Session.swift */; };
+		CBD43F392776191600039737 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F382776191600039737 /* Bundle.swift */; };
+		CBD43F3B277619EA00039737 /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F3A277619EA00039737 /* Dummy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +79,41 @@
 			proxyType = 1;
 			remoteGlobalIDString = CBD43E9E277601FB00039737;
 			remoteInfo = "ScratchWebKit (macOS)";
+		};
+		CBD43ECE2776154500039737 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CBD43E0627756D3400039737 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CBD43EC92776154500039737;
+			remoteInfo = ScratchLink;
+		};
+		CBD43EDE2776155500039737 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CBD43E0627756D3400039737 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CBD43ED92776155500039737;
+			remoteInfo = PerfectHTTP;
+		};
+		CBD43EEE2776156700039737 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CBD43E0627756D3400039737 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CBD43EE92776156700039737;
+			remoteInfo = PerfectWebSockets;
+		};
+		CBD43F272776169500039737 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CBD43E0627756D3400039737 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CBD43ED92776155500039737;
+			remoteInfo = "PerfectHTTP (macOS)";
+		};
+		CBD43F2B2776169500039737 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CBD43E0627756D3400039737 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CBD43EE92776156700039737;
+			remoteInfo = "PerfectWebSockets (macOS)";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -61,6 +125,21 @@
 			dstSubfolderSpec = 10;
 			files = (
 				CBD43EB22776037C00039737 /* ScratchWebKit.framework in Embed Frameworks */,
+				CBD43ED12776154500039737 /* ScratchLink.framework in Embed Frameworks */,
+				CBD43EF12776156700039737 /* PerfectWebSockets.framework in Embed Frameworks */,
+				CBD43EE12776155500039737 /* PerfectHTTP.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBD43F2D2776169600039737 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CBD43F2A2776169500039737 /* PerfectWebSockets.framework in Embed Frameworks */,
+				CBD43F262776169500039737 /* PerfectHTTP.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,6 +178,29 @@
 		CBD43EBB2776137900039737 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CBD43EBF2776137900039737 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CBD43EC02776137900039737 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CBD43ECA2776154500039737 /* ScratchLink.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ScratchLink.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBD43EDA2776155500039737 /* PerfectHTTP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PerfectHTTP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBD43EEA2776156700039737 /* PerfectWebSockets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PerfectWebSockets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBD43EF52776160900039737 /* ScratchLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScratchLink.swift; sourceTree = "<group>"; };
+		CBD43EF62776160900039737 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
+		CBD43EF72776160900039737 /* JavaScriptLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JavaScriptLoader.swift; sourceTree = "<group>"; };
+		CBD43EFA2776160900039737 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CBD43EFB2776160900039737 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CBD43EFC2776160900039737 /* inject-scratch-link.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "inject-scratch-link.js"; sourceTree = "<group>"; };
+		CBD43EFE2776160900039737 /* BLESession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLESession.swift; sourceTree = "<group>"; };
+		CBD43F002776160900039737 /* JSONRPCError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONRPCError.swift; sourceTree = "<group>"; };
+		CBD43F012776160900039737 /* RSSI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSI.swift; sourceTree = "<group>"; };
+		CBD43F032776160900039737 /* DispatchSemaphore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchSemaphore.swift; sourceTree = "<group>"; };
+		CBD43F042776160900039737 /* GATTHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GATTHelpers.swift; sourceTree = "<group>"; };
+		CBD43F072776160900039737 /* IOBluetoothDeviceInquiryDelegateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOBluetoothDeviceInquiryDelegateHelper.swift; sourceTree = "<group>"; };
+		CBD43F092776160900039737 /* CBCentralManagerDelegateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCentralManagerDelegateHelper.swift; sourceTree = "<group>"; };
+		CBD43F0A2776160900039737 /* EncodingHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingHelpers.swift; sourceTree = "<group>"; };
+		CBD43F0B2776160900039737 /* BTSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTSession.swift; sourceTree = "<group>"; };
+		CBD43F0C2776160900039737 /* CBPeripheralDelegateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBPeripheralDelegateHelper.swift; sourceTree = "<group>"; };
+		CBD43F31277616EB00039737 /* Dummy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
+		CBD43F362776172600039737 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		CBD43F382776191600039737 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
+		CBD43F3A277619EA00039737 /* Dummy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,10 +217,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBD43EB12776037C00039737 /* ScratchWebKit.framework in Frameworks */,
+				CBD43ED02776154500039737 /* ScratchLink.framework in Frameworks */,
+				CBD43EF02776156700039737 /* PerfectWebSockets.framework in Frameworks */,
+				CBD43EE02776155500039737 /* PerfectHTTP.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CBD43E9C277601FB00039737 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBD43EC72776154500039737 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBD43F292776169500039737 /* PerfectWebSockets.framework in Frameworks */,
+				CBD43F252776169500039737 /* PerfectHTTP.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBD43ED72776155500039737 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBD43EE72776156700039737 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -135,6 +263,9 @@
 				CBD43E2A27756E6B00039737 /* iOS */,
 				CBD43E1927756D3700039737 /* macOS */,
 				CBD43EA0277601FB00039737 /* ScratchWebKit */,
+				CBD43ECB2776154500039737 /* ScratchLink */,
+				CBD43F30277616EB00039737 /* PerfectHTTP */,
+				CBD43F2E277616EB00039737 /* PerfectWebSockets */,
 				CBD43E1327756D3700039737 /* Products */,
 				CBD43E67277574F800039737 /* Frameworks */,
 				CBD43E64277574C500039737 /* Packages */,
@@ -160,6 +291,9 @@
 				CBD43E1227756D3700039737 /* Scrub.app */,
 				CBD43E1827756D3700039737 /* Scrub.app */,
 				CBD43E9F277601FB00039737 /* ScratchWebKit.framework */,
+				CBD43ECA2776154500039737 /* ScratchLink.framework */,
+				CBD43EDA2776155500039737 /* PerfectHTTP.framework */,
+				CBD43EEA2776156700039737 /* PerfectWebSockets.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -269,10 +403,91 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		CBD43ECB2776154500039737 /* ScratchLink */ = {
+			isa = PBXGroup;
+			children = (
+				CBD43EFD2776160900039737 /* scratch-link */,
+				CBD43EF52776160900039737 /* ScratchLink.swift */,
+				CBD43EF62776160900039737 /* WebSocket.swift */,
+				CBD43EF72776160900039737 /* JavaScriptLoader.swift */,
+				CBD43F382776191600039737 /* Bundle.swift */,
+				CBD43EF82776160900039737 /* Resources */,
+			);
+			name = ScratchLink;
+			path = ScratchLink/Sources/ScratchLink;
+			sourceTree = "<group>";
+		};
+		CBD43EF82776160900039737 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CBD43EF92776160900039737 /* Localizable.strings */,
+				CBD43EFC2776160900039737 /* inject-scratch-link.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CBD43EFD2776160900039737 /* scratch-link */ = {
+			isa = PBXGroup;
+			children = (
+				CBD43F362776172600039737 /* Session.swift */,
+				CBD43EFE2776160900039737 /* BLESession.swift */,
+				CBD43F002776160900039737 /* JSONRPCError.swift */,
+				CBD43F012776160900039737 /* RSSI.swift */,
+				CBD43F032776160900039737 /* DispatchSemaphore.swift */,
+				CBD43F042776160900039737 /* GATTHelpers.swift */,
+				CBD43F072776160900039737 /* IOBluetoothDeviceInquiryDelegateHelper.swift */,
+				CBD43F092776160900039737 /* CBCentralManagerDelegateHelper.swift */,
+				CBD43F0A2776160900039737 /* EncodingHelpers.swift */,
+				CBD43F0B2776160900039737 /* BTSession.swift */,
+				CBD43F0C2776160900039737 /* CBPeripheralDelegateHelper.swift */,
+			);
+			name = "scratch-link";
+			path = "scratch-link/macOS/Sources/scratch-link";
+			sourceTree = "<group>";
+		};
+		CBD43F2E277616EB00039737 /* PerfectWebSockets */ = {
+			isa = PBXGroup;
+			children = (
+				CBD43F3A277619EA00039737 /* Dummy.swift */,
+			);
+			name = PerfectWebSockets;
+			path = ScratchLink/Sources/PerfectWebSockets;
+			sourceTree = SOURCE_ROOT;
+		};
+		CBD43F30277616EB00039737 /* PerfectHTTP */ = {
+			isa = PBXGroup;
+			children = (
+				CBD43F31277616EB00039737 /* Dummy.swift */,
+			);
+			name = PerfectHTTP;
+			path = ScratchLink/Sources/PerfectHTTP;
+			sourceTree = SOURCE_ROOT;
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
 		CBD43E9A277601FB00039737 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBD43EC52776154500039737 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBD43ED52776155500039737 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBD43EE52776156700039737 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -315,6 +530,9 @@
 			);
 			dependencies = (
 				CBD43EB42776037C00039737 /* PBXTargetDependency */,
+				CBD43ECF2776154500039737 /* PBXTargetDependency */,
+				CBD43EDF2776155500039737 /* PBXTargetDependency */,
+				CBD43EEF2776156700039737 /* PBXTargetDependency */,
 			);
 			name = "Scrub (macOS)";
 			productName = "Scrub (macOS)";
@@ -339,6 +557,63 @@
 			productReference = CBD43E9F277601FB00039737 /* ScratchWebKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		CBD43EC92776154500039737 /* ScratchLink (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CBD43ED22776154500039737 /* Build configuration list for PBXNativeTarget "ScratchLink (macOS)" */;
+			buildPhases = (
+				CBD43EC52776154500039737 /* Headers */,
+				CBD43EC62776154500039737 /* Sources */,
+				CBD43EC72776154500039737 /* Frameworks */,
+				CBD43EC82776154500039737 /* Resources */,
+				CBD43F2D2776169600039737 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CBD43F282776169500039737 /* PBXTargetDependency */,
+				CBD43F2C2776169500039737 /* PBXTargetDependency */,
+			);
+			name = "ScratchLink (macOS)";
+			productName = ScratchLink;
+			productReference = CBD43ECA2776154500039737 /* ScratchLink.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CBD43ED92776155500039737 /* PerfectHTTP (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CBD43EE22776155500039737 /* Build configuration list for PBXNativeTarget "PerfectHTTP (macOS)" */;
+			buildPhases = (
+				CBD43ED52776155500039737 /* Headers */,
+				CBD43ED62776155500039737 /* Sources */,
+				CBD43ED72776155500039737 /* Frameworks */,
+				CBD43ED82776155500039737 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PerfectHTTP (macOS)";
+			productName = PerfectHTTP;
+			productReference = CBD43EDA2776155500039737 /* PerfectHTTP.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CBD43EE92776156700039737 /* PerfectWebSockets (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CBD43EF22776156700039737 /* Build configuration list for PBXNativeTarget "PerfectWebSockets (macOS)" */;
+			buildPhases = (
+				CBD43EE52776156700039737 /* Headers */,
+				CBD43EE62776156700039737 /* Sources */,
+				CBD43EE72776156700039737 /* Frameworks */,
+				CBD43EE82776156700039737 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PerfectWebSockets (macOS)";
+			productName = PerfectWebSockets;
+			productReference = CBD43EEA2776156700039737 /* PerfectWebSockets.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -361,6 +636,17 @@
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
+					CBD43EC92776154500039737 = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+					};
+					CBD43ED92776155500039737 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					CBD43EE92776156700039737 = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+					};
 				};
 			};
 			buildConfigurationList = CBD43E0927756D3400039737 /* Build configuration list for PBXProject "Scrub" */;
@@ -380,6 +666,9 @@
 				CBD43E1127756D3700039737 /* Scrub (iOS) */,
 				CBD43E1727756D3700039737 /* Scrub (macOS) */,
 				CBD43E9E277601FB00039737 /* ScratchWebKit (macOS) */,
+				CBD43EC92776154500039737 /* ScratchLink (macOS) */,
+				CBD43ED92776155500039737 /* PerfectHTTP (macOS) */,
+				CBD43EE92776156700039737 /* PerfectWebSockets (macOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -418,6 +707,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBD43EC42776137900039737 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBD43EC82776154500039737 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBD43F112776160900039737 /* inject-scratch-link.js in Resources */,
+				CBD43F102776160900039737 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBD43ED82776155500039737 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBD43EE82776156700039737 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +773,44 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CBD43EC62776154500039737 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBD43F142776160900039737 /* JSONRPCError.swift in Sources */,
+				CBD43F392776191600039737 /* Bundle.swift in Sources */,
+				CBD43F152776160900039737 /* RSSI.swift in Sources */,
+				CBD43F1F2776160900039737 /* BTSession.swift in Sources */,
+				CBD43F1D2776160900039737 /* CBCentralManagerDelegateHelper.swift in Sources */,
+				CBD43F0F2776160900039737 /* JavaScriptLoader.swift in Sources */,
+				CBD43F1B2776160900039737 /* IOBluetoothDeviceInquiryDelegateHelper.swift in Sources */,
+				CBD43F0D2776160900039737 /* ScratchLink.swift in Sources */,
+				CBD43F202776160900039737 /* CBPeripheralDelegateHelper.swift in Sources */,
+				CBD43F182776160900039737 /* GATTHelpers.swift in Sources */,
+				CBD43F122776160900039737 /* BLESession.swift in Sources */,
+				CBD43F172776160900039737 /* DispatchSemaphore.swift in Sources */,
+				CBD43F372776172600039737 /* Session.swift in Sources */,
+				CBD43F1E2776160900039737 /* EncodingHelpers.swift in Sources */,
+				CBD43F0E2776160900039737 /* WebSocket.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBD43ED62776155500039737 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBD43F34277616F100039737 /* Dummy.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBD43EE62776156700039737 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBD43F3B277619EA00039737 /* Dummy.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -468,6 +818,31 @@
 			isa = PBXTargetDependency;
 			target = CBD43E9E277601FB00039737 /* ScratchWebKit (macOS) */;
 			targetProxy = CBD43EB32776037C00039737 /* PBXContainerItemProxy */;
+		};
+		CBD43ECF2776154500039737 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CBD43EC92776154500039737 /* ScratchLink (macOS) */;
+			targetProxy = CBD43ECE2776154500039737 /* PBXContainerItemProxy */;
+		};
+		CBD43EDF2776155500039737 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CBD43ED92776155500039737 /* PerfectHTTP (macOS) */;
+			targetProxy = CBD43EDE2776155500039737 /* PBXContainerItemProxy */;
+		};
+		CBD43EEF2776156700039737 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CBD43EE92776156700039737 /* PerfectWebSockets (macOS) */;
+			targetProxy = CBD43EEE2776156700039737 /* PBXContainerItemProxy */;
+		};
+		CBD43F282776169500039737 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CBD43ED92776155500039737 /* PerfectHTTP (macOS) */;
+			targetProxy = CBD43F272776169500039737 /* PBXContainerItemProxy */;
+		};
+		CBD43F2C2776169500039737 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CBD43EE92776156700039737 /* PerfectWebSockets (macOS) */;
+			targetProxy = CBD43F2B2776169500039737 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -517,6 +892,15 @@
 			children = (
 				CBD43EBF2776137900039737 /* ja */,
 				CBD43EC02776137900039737 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		CBD43EF92776160900039737 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CBD43EFA2776160900039737 /* ja */,
+				CBD43EFB2776160900039737 /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -845,6 +1229,204 @@
 			};
 			name = Release;
 		};
+		CBD43ED32776154500039737 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = UV6TAX3ANB;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bricklife.ScratchLink;
+				PRODUCT_NAME = ScratchLink;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		CBD43ED42776154500039737 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = UV6TAX3ANB;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bricklife.ScratchLink;
+				PRODUCT_NAME = ScratchLink;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		CBD43EE32776155500039737 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = UV6TAX3ANB;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bricklife.PerfectHTTP;
+				PRODUCT_NAME = PerfectHTTP;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		CBD43EE42776155500039737 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = UV6TAX3ANB;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bricklife.PerfectHTTP;
+				PRODUCT_NAME = PerfectHTTP;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		CBD43EF32776156700039737 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = UV6TAX3ANB;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bricklife.PerfectWebSockets;
+				PRODUCT_NAME = PerfectWebSockets;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		CBD43EF42776156700039737 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = UV6TAX3ANB;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bricklife.PerfectWebSockets;
+				PRODUCT_NAME = PerfectWebSockets;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -880,6 +1462,33 @@
 			buildConfigurations = (
 				CBD43EA8277601FB00039737 /* Debug */,
 				CBD43EA9277601FB00039737 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CBD43ED22776154500039737 /* Build configuration list for PBXNativeTarget "ScratchLink (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CBD43ED32776154500039737 /* Debug */,
+				CBD43ED42776154500039737 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CBD43EE22776155500039737 /* Build configuration list for PBXNativeTarget "PerfectHTTP (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CBD43EE32776155500039737 /* Debug */,
+				CBD43EE42776155500039737 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CBD43EF22776156700039737 /* Build configuration list for PBXNativeTarget "PerfectWebSockets (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CBD43EF32776156700039737 /* Debug */,
+				CBD43EF42776156700039737 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
