@@ -31,13 +31,13 @@ extension SessionError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .unavailable:
-            return NSLocalizedString("This session is unavailable", bundle: Bundle.module, comment: "This session is unavailable")
+            return NSLocalizedString("This session is unavailable", bundle: BundleLoader.bundle, comment: "This session is unavailable")
         case .bluetoothIsPoweredOff:
-            return NSLocalizedString("Bluetooth is powered off", bundle: Bundle.module, comment: "Bluetooth is powered off")
+            return NSLocalizedString("Bluetooth is powered off", bundle: BundleLoader.bundle, comment: "Bluetooth is powered off")
         case .bluetoothIsUnauthorized:
-            return NSLocalizedString("Bluetooth is unauthorized", bundle: Bundle.module, comment: "Bluetooth is unauthorized")
+            return NSLocalizedString("Bluetooth is unauthorized", bundle: BundleLoader.bundle, comment: "Bluetooth is unauthorized")
         case .bluetoothIsUnsupported:
-            return NSLocalizedString("Bluetooth is unsupported", bundle: Bundle.module, comment: "Bluetooth is unsupported")
+            return NSLocalizedString("Bluetooth is unsupported", bundle: BundleLoader.bundle, comment: "Bluetooth is unsupported")
         case .other(error: let error):
             return error.localizedDescription
         }

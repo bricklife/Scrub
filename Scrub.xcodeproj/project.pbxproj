@@ -68,8 +68,13 @@
 		CBD43F2A2776169500039737 /* PerfectWebSockets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBD43EEA2776156700039737 /* PerfectWebSockets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CBD43F34277616F100039737 /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F31277616EB00039737 /* Dummy.swift */; };
 		CBD43F372776172600039737 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F362776172600039737 /* Session.swift */; };
-		CBD43F392776191600039737 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F382776191600039737 /* Bundle.swift */; };
 		CBD43F3B277619EA00039737 /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F3A277619EA00039737 /* Dummy.swift */; };
+		CBD43F3D27761A7200039737 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F3C27761A7200039737 /* View.swift */; };
+		CBD43F3F27761B1200039737 /* ScratchWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F3E27761B1200039737 /* ScratchWebViewController.swift */; };
+		CBD43F4027761B4400039737 /* ScratchLink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD43ECA2776154500039737 /* ScratchLink.framework */; };
+		CBD43F4127761B4400039737 /* ScratchLink.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBD43ECA2776154500039737 /* ScratchLink.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CBD43F492776225400039737 /* BundleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F482776225300039737 /* BundleLoader.swift */; };
+		CBD43F4B2776231600039737 /* BundleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F4A2776231600039737 /* BundleLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +120,13 @@
 			remoteGlobalIDString = CBD43EE92776156700039737;
 			remoteInfo = "PerfectWebSockets (macOS)";
 		};
+		CBD43F4227761B4400039737 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CBD43E0627756D3400039737 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CBD43EC92776154500039737;
+			remoteInfo = "ScratchLink (macOS)";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -140,6 +152,17 @@
 			files = (
 				CBD43F2A2776169500039737 /* PerfectWebSockets.framework in Embed Frameworks */,
 				CBD43F262776169500039737 /* PerfectHTTP.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBD43F4427761B4400039737 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CBD43F4127761B4400039737 /* ScratchLink.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,8 +222,11 @@
 		CBD43F0C2776160900039737 /* CBPeripheralDelegateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBPeripheralDelegateHelper.swift; sourceTree = "<group>"; };
 		CBD43F31277616EB00039737 /* Dummy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
 		CBD43F362776172600039737 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		CBD43F382776191600039737 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		CBD43F3A277619EA00039737 /* Dummy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
+		CBD43F3C27761A7200039737 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		CBD43F3E27761B1200039737 /* ScratchWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScratchWebViewController.swift; sourceTree = "<group>"; };
+		CBD43F482776225300039737 /* BundleLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleLoader.swift; sourceTree = "<group>"; };
+		CBD43F4A2776231600039737 /* BundleLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +253,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBD43F4027761B4400039737 /* ScratchLink.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,10 +289,6 @@
 				CBD43E0A27756D3500039737 /* Shared */,
 				CBD43E2A27756E6B00039737 /* iOS */,
 				CBD43E1927756D3700039737 /* macOS */,
-				CBD43EA0277601FB00039737 /* ScratchWebKit */,
-				CBD43ECB2776154500039737 /* ScratchLink */,
-				CBD43F30277616EB00039737 /* PerfectHTTP */,
-				CBD43F2E277616EB00039737 /* PerfectWebSockets */,
 				CBD43E1327756D3700039737 /* Products */,
 				CBD43E67277574F800039737 /* Frameworks */,
 				CBD43E64277574C500039737 /* Packages */,
@@ -364,6 +387,10 @@
 		CBD43E67277574F800039737 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CBD43EA0277601FB00039737 /* ScratchWebKit */,
+				CBD43ECB2776154500039737 /* ScratchLink */,
+				CBD43F30277616EB00039737 /* PerfectHTTP */,
+				CBD43F2E277616EB00039737 /* PerfectWebSockets */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -387,9 +414,12 @@
 		CBD43EA0277601FB00039737 /* ScratchWebKit */ = {
 			isa = PBXGroup;
 			children = (
-				CBD43EBD2776137900039737 /* Resources */,
+				CBD43F3C27761A7200039737 /* View.swift */,
 				CBD43EBB2776137900039737 /* ViewController.swift */,
 				CBD43EBA2776137900039737 /* WebViewController.swift */,
+				CBD43F3E27761B1200039737 /* ScratchWebViewController.swift */,
+				CBD43F4A2776231600039737 /* BundleLoader.swift */,
+				CBD43EBD2776137900039737 /* Resources */,
 			);
 			name = ScratchWebKit;
 			path = ScratchWebKit/Sources/ScratchWebKit;
@@ -410,7 +440,7 @@
 				CBD43EF52776160900039737 /* ScratchLink.swift */,
 				CBD43EF62776160900039737 /* WebSocket.swift */,
 				CBD43EF72776160900039737 /* JavaScriptLoader.swift */,
-				CBD43F382776191600039737 /* Bundle.swift */,
+				CBD43F482776225300039737 /* BundleLoader.swift */,
 				CBD43EF82776160900039737 /* Resources */,
 			);
 			name = ScratchLink;
@@ -547,10 +577,12 @@
 				CBD43E9B277601FB00039737 /* Sources */,
 				CBD43E9C277601FB00039737 /* Frameworks */,
 				CBD43E9D277601FB00039737 /* Resources */,
+				CBD43F4427761B4400039737 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CBD43F4327761B4400039737 /* PBXTargetDependency */,
 			);
 			name = "ScratchWebKit (macOS)";
 			productName = ScratchWebKit;
@@ -768,8 +800,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBD43F4B2776231600039737 /* BundleLoader.swift in Sources */,
 				CBD43EC22776137900039737 /* ViewController.swift in Sources */,
 				CBD43EC12776137900039737 /* WebViewController.swift in Sources */,
+				CBD43F3F27761B1200039737 /* ScratchWebViewController.swift in Sources */,
+				CBD43F3D27761A7200039737 /* View.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -777,8 +812,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBD43F492776225400039737 /* BundleLoader.swift in Sources */,
 				CBD43F142776160900039737 /* JSONRPCError.swift in Sources */,
-				CBD43F392776191600039737 /* Bundle.swift in Sources */,
 				CBD43F152776160900039737 /* RSSI.swift in Sources */,
 				CBD43F1F2776160900039737 /* BTSession.swift in Sources */,
 				CBD43F1D2776160900039737 /* CBCentralManagerDelegateHelper.swift in Sources */,
@@ -843,6 +878,11 @@
 			isa = PBXTargetDependency;
 			target = CBD43EE92776156700039737 /* PerfectWebSockets (macOS) */;
 			targetProxy = CBD43F2B2776169500039737 /* PBXContainerItemProxy */;
+		};
+		CBD43F4327761B4400039737 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CBD43EC92776154500039737 /* ScratchLink (macOS) */;
+			targetProxy = CBD43F4227761B4400039737 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1249,7 +1289,6 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bricklife.ScratchLink;
 				PRODUCT_NAME = ScratchLink;
@@ -1283,7 +1322,6 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bricklife.ScratchLink;
 				PRODUCT_NAME = ScratchLink;
@@ -1315,7 +1353,6 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bricklife.PerfectHTTP;
 				PRODUCT_NAME = PerfectHTTP;
@@ -1347,7 +1384,6 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bricklife.PerfectHTTP;
 				PRODUCT_NAME = PerfectHTTP;
@@ -1380,7 +1416,6 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bricklife.PerfectWebSockets;
 				PRODUCT_NAME = PerfectWebSockets;
@@ -1414,7 +1449,6 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bricklife.PerfectWebSockets;
 				PRODUCT_NAME = PerfectWebSockets;

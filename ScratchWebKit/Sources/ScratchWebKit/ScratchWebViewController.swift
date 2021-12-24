@@ -5,7 +5,11 @@
 //  Created by Shinichiro Oba on 2021/04/02.
 //
 
+#if canImport(UIKit)
 import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 import WebKit
 import Combine
 import ScratchLink
@@ -18,7 +22,7 @@ extension ScratchWebViewError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .forbiddenAccess:
-            return NSLocalizedString("Not allowed to access this URL", bundle: Bundle.module, comment: "Not allowed to access this URL")
+            return NSLocalizedString("Not allowed to access this URL", bundle: BundleLoader.bundle, comment: "Not allowed to access this URL")
         }
     }
 }
@@ -42,11 +46,14 @@ public class ScratchWebViewController: WebViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        
+        scratchLink.setup(webView: webView)
+        scratchLink.delegate = self
     }
     
     public override func loadView() {
-        self.view = UIView(frame: .zero)
+        self.view = View(frame: .zero)
         
         webView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(webView)
@@ -69,15 +76,19 @@ public class ScratchWebViewController: WebViewController {
         
         webView.navigationDelegate = self
         
+#if os(iOS)
         webView.scrollView.contentInsetAdjustmentBehavior = .never
+#endif
     }
     
+#if os(iOS)
     public override func viewWillLayoutSubviews() {
         let multiplier = max(1.0, 1024.0 / view.bounds.width)
         updateSizeConstraints(multiplier: multiplier)
         webView.transform = CGAffineTransform(scaleX: 1.0 / multiplier, y: 1.0 / multiplier)
     }
-    
+#endif
+
     private func updateSizeConstraints(multiplier: CGFloat) {
         NSLayoutConstraint.deactivate(sizeConstraints)
         self.sizeConstraints = [

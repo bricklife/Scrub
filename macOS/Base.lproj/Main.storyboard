@@ -729,10 +729,10 @@
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
-        <!--Web View Controller-->
+        <!--Scratch Web View Controller-->
         <scene sceneID="ZiX-KR-NLz">
             <objects>
-                <viewController id="rUE-n7-WzU" customClass="WebViewController" customModule="ScratchWebKit" sceneMemberID="viewController">
+                <viewController id="rUE-n7-WzU" customClass="ScratchWebViewController" customModule="ScratchWebKit" sceneMemberID="viewController">
                     <view key="view" id="GmU-ie-cce">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
