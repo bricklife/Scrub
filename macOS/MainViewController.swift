@@ -51,6 +51,19 @@ extension MainViewController: ScratchWebViewControllerDelegate {
     
     func didDownloadFile(at url: URL) {
         print(#function, url)
+        guard let window = view.window else { return }
+        
+        let savePanel = NSSavePanel()
+        savePanel.nameFieldStringValue = url.lastPathComponent
+        
+        savePanel.beginSheetModal(for: window) { res in
+            if res == .OK, let newUrl = savePanel.url {
+                if FileManager.default.fileExists(atPath: newUrl.path) {
+                    try? FileManager.default.removeItem(atPath: newUrl.path)
+                }
+                try? FileManager.default.moveItem(at: url, to: newUrl)
+            }
+        }
     }
     
     func didFail(error: Error) {
