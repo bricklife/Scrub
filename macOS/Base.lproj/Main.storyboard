@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -685,12 +686,60 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Scrub" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Scrub" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titleVisibility="hidden" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="1024" height="720"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <value key="minSize" type="size" width="1024" height="720"/>
+                        <toolbar key="toolbar" implicitIdentifier="0A0C1D2F-1066-4531-A9D2-22E09FC67810" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconOnly" sizeMode="regular" id="rHf-FS-Sgq">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="75858433-37D6-468B-82F4-6CE97E34BDFE" label="" paletteLabel="Back" tag="-1" bordered="YES" sizingBehavior="auto" id="oJ4-DV-DaQ">
+                                    <imageReference key="image" image="chevron.backward" catalog="system" symbolScale="large"/>
+                                    <connections>
+                                        <action selector="goBack:" target="Oky-zY-oP4" id="bHa-rm-fWC"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="4FB881EA-5668-41AE-9533-F99B12ACB325" label="" paletteLabel="Forward" tag="-1" bordered="YES" sizingBehavior="auto" id="VMN-yw-NbI">
+                                    <imageReference key="image" image="chevron.forward" catalog="system" symbolScale="large"/>
+                                    <connections>
+                                        <action selector="goForward:" target="Oky-zY-oP4" id="Kd8-0w-mkH"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="9C557DAD-87A4-479B-9D7F-61A0742F582B" label="" paletteLabel="URL" id="Jd3-xj-oyX">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="500" height="22"/>
+                                    <size key="maxSize" width="10000" height="22"/>
+                                    <textField key="view" verticalHuggingPriority="750" id="h04-XS-hfU">
+                                        <rect key="frame" x="0.0" y="14" width="96" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="left" bezelStyle="round" id="nsk-YE-14z">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="3DEA5E18-522D-4C22-861F-A19F0F4202E6" label="" paletteLabel="Reload" tag="-1" bordered="YES" sizingBehavior="auto" id="s9Z-jd-6nI">
+                                    <imageReference key="image" image="arrow.clockwise" catalog="system" symbolScale="large"/>
+                                    <connections>
+                                        <action selector="reload:" target="Oky-zY-oP4" id="LC2-XN-ORZ"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="1C8BE748-B83A-4650-85E7-F410E5B6C307" label="" paletteLabel="Share" tag="-1" bordered="YES" sizingBehavior="auto" id="GRZ-C0-rXD">
+                                    <imageReference key="image" image="square.and.arrow.up" catalog="system" symbolScale="large"/>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="LMz-Br-dQx"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="Ipq-s8-cF6"/>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="oJ4-DV-DaQ"/>
+                                <toolbarItem reference="VMN-yw-NbI"/>
+                                <toolbarItem reference="Jd3-xj-oyX"/>
+                                <toolbarItem reference="s9Z-jd-6nI"/>
+                                <toolbarItem reference="GRZ-C0-rXD"/>
+                            </defaultToolbarItems>
+                        </toolbar>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
@@ -744,4 +793,10 @@
             <point key="canvasLocation" x="572" y="962"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="arrow.clockwise" catalog="system" width="17" height="20"/>
+        <image name="chevron.backward" catalog="system" width="12" height="16"/>
+        <image name="chevron.forward" catalog="system" width="12" height="16"/>
+        <image name="square.and.arrow.up" catalog="system" width="18" height="21"/>
+    </resources>
 </document>
