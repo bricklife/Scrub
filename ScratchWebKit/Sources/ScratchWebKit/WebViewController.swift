@@ -234,6 +234,7 @@ extension ViewController: WKUIDelegate {
         let alert = NSAlert()
         alert.messageText = message
         alert.addButton(withTitle: NSLocalizedString("Close", bundle: BundleLoader.bundle, comment: "Close"))
+        
         alert.beginSheetModal(for: window) { res in
             completionHandler()
         }
@@ -249,6 +250,7 @@ extension ViewController: WKUIDelegate {
         alert.messageText = message
         alert.addButton(withTitle: NSLocalizedString("OK", bundle: BundleLoader.bundle, comment: "OK"))
         alert.addButton(withTitle: NSLocalizedString("Cancel", bundle: BundleLoader.bundle, comment: "Cancel"))
+        
         alert.beginSheetModal(for: window) { res in
             if res == .alertFirstButtonReturn {
                 completionHandler(true)
