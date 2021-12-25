@@ -292,7 +292,8 @@ extension ViewController: WKUIDelegate {
         }
         
         let openPanel = NSOpenPanel()
-        openPanel.canChooseFiles = parameters.allowsMultipleSelection
+        openPanel.canChooseFiles = true
+        openPanel.allowsMultipleSelection = parameters.allowsMultipleSelection
         openPanel.canChooseDirectories = parameters.allowsDirectories
         
         openPanel.beginSheetModal(for: window) { (result) in
