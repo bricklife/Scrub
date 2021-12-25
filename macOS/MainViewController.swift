@@ -14,11 +14,17 @@ class MainViewController: NSViewController {
     
     @IBOutlet weak var webViewController: ScratchWebViewController?
     
+    private var cancellables: Set<AnyCancellable> = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         webViewController = children.first as? ScratchWebViewController
         webViewController?.delegate = self
+        
+        webViewController?.$url.sink { url in
+            print(url ?? "nil")
+        }.store(in: &cancellables)
     }
     
     override func viewDidAppear() {
