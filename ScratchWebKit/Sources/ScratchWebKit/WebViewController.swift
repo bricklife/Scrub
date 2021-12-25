@@ -208,16 +208,21 @@ extension ViewController: WKUIDelegate {
     public func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         guard navigationAction.targetFrame?.isMainFrame != true else { return nil }
         
-        let newWebView = WKWebView(frame: webView.bounds, configuration: configuration)
+        let width = windowFeatures.width?.doubleValue ?? webView.frame.width
+        let height = windowFeatures.height?.doubleValue ?? webView.frame.height
+        let frame = CGRect(x: 0, y: 0, width: width, height: height)
+        let newWebView = WKWebView(frame: frame, configuration: configuration)
         let vc = WebViewController(webView: newWebView)
+        let window = NSWindow(contentViewController: vc)
+        let windowController = NSWindowController(window: window)
         
-        presentAsModalWindow(vc)
+        windowController.showWindow(self)
         
         return newWebView
     }
     
     public func webViewDidClose(_ webView: WKWebView) {
-        dismiss(self)
+        webView.window?.close()
     }
     
     public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
