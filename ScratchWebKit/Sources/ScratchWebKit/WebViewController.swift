@@ -226,40 +226,60 @@ extension ViewController: WKUIDelegate {
     }
     
     public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+        guard let window = webView.window else {
+            completionHandler()
+            return
+        }
+        
         let alert = NSAlert()
         alert.messageText = message
-        alert.runModal()
-        completionHandler()
+        alert.addButton(withTitle: NSLocalizedString("Close", bundle: BundleLoader.bundle, comment: "Close"))
+        alert.beginSheetModal(for: window) { res in
+            completionHandler()
+        }
     }
     
     public func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
+        guard let window = webView.window else {
+            completionHandler(false)
+            return
+        }
+        
         let alert = NSAlert()
         alert.messageText = message
-        alert.addButton(withTitle: "OK")
-        alert.addButton(withTitle: "Cancel")
-        if alert.runModal() == .alertFirstButtonReturn {
-            completionHandler(true)
-        } else{
-            completionHandler(false)
+        alert.addButton(withTitle: NSLocalizedString("OK", bundle: BundleLoader.bundle, comment: "OK"))
+        alert.addButton(withTitle: NSLocalizedString("Cancel", bundle: BundleLoader.bundle, comment: "Cancel"))
+        alert.beginSheetModal(for: window) { res in
+            if res == .alertFirstButtonReturn {
+                completionHandler(true)
+            } else{
+                completionHandler(false)
+            }
         }
     }
     
     public func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
+        guard let window = webView.window else {
+            completionHandler(nil)
+            return
+        }
+        
         let alert = NSAlert()
         alert.messageText = prompt
-        alert.informativeText = defaultText ?? ""
         
         let textField = NSTextField(frame: NSRect(x: 0, y: 0, width: 200, height: 24))
+        textField.stringValue = defaultText ?? ""
         
         alert.accessoryView = textField
-        alert.addButton(withTitle: "Cancel")
-        alert.addButton(withTitle: "OK")
+        alert.addButton(withTitle: NSLocalizedString("OK", bundle: BundleLoader.bundle, comment: "OK"))
+        alert.addButton(withTitle: NSLocalizedString("Cancel", bundle: BundleLoader.bundle, comment: "Cancel"))
         
-        let res = alert.runModal()
-        if res == .alertSecondButtonReturn {
-            completionHandler(textField.stringValue)
-        } else {
-            completionHandler(nil)
+        alert.beginSheetModal(for: window) { res in
+            if res == .alertFirstButtonReturn {
+                completionHandler(textField.stringValue)
+            } else {
+                completionHandler(nil)
+            }
         }
     }
     
@@ -270,7 +290,8 @@ extension ViewController: WKUIDelegate {
         }
         
         let openPanel = NSOpenPanel()
-        openPanel.canChooseFiles = true
+        openPanel.canChooseFiles = parameters.allowsMultipleSelection
+        openPanel.canChooseDirectories = parameters.allowsDirectories
         
         openPanel.beginSheetModal(for: window) { (result) in
             if result == .OK, let url = openPanel.url {
