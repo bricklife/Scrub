@@ -12,23 +12,20 @@ import ScratchLink
 
 class MainViewController: NSViewController {
     
-    @IBOutlet weak var webViewController: ScratchWebViewController?
+    private weak var webViewController: ScratchWebViewController?
+    private weak var textField: NSTextField?
     
     private var cancellables: Set<AnyCancellable> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        webViewController = children.first as? ScratchWebViewController
+        self.webViewController = children.first as? ScratchWebViewController
         webViewController?.delegate = self
         
-        webViewController?.$url.sink { url in
-            print(url ?? "nil")
+        webViewController?.$url.sink { [weak self] url in
+            self?.updateTextField(url: url)
         }.store(in: &cancellables)
-    }
-    
-    override func viewDidAppear() {
-        super.viewDidAppear()
         
         //let url = URL(string: "https://bricklife.com/scratch-gui/")!
         //let url = URL(string: "https://stretch3.github.io/")!
@@ -36,9 +33,29 @@ class MainViewController: NSViewController {
         webViewController?.load(url: url)
     }
     
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        
+        self.textField = view.window?.toolbar?.items.compactMap({ item in
+            return item.view as? NSTextField
+        }).first
+        updateTextField(url: webViewController?.url)
+    }
+    
     override var representedObject: Any? {
         didSet {
             // Update the view, if already loaded.
+        }
+    }
+    
+    private func updateTextField(url: URL?) {
+        textField?.stringValue = url?.absoluteString ?? ""
+    }
+    
+    @IBAction func urlEntered(_ sender: NSTextField) {
+        print(#function, sender)
+        if let url = URL(string: sender.stringValue) {
+            webViewController?.load(url: url)
         }
     }
 }

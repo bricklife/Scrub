@@ -708,7 +708,7 @@
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="9C557DAD-87A4-479B-9D7F-61A0742F582B" label="" paletteLabel="URL" id="Jd3-xj-oyX">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="500" height="22"/>
+                                    <size key="minSize" width="96" height="22"/>
                                     <size key="maxSize" width="10000" height="22"/>
                                     <textField key="view" verticalHuggingPriority="750" id="h04-XS-hfU">
                                         <rect key="frame" x="0.0" y="14" width="96" height="22"/>
@@ -718,6 +718,9 @@
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
+                                        <connections>
+                                            <action selector="urlEntered:" target="Oky-zY-oP4" id="8lu-8o-Q9u"/>
+                                        </connections>
                                     </textField>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="3DEA5E18-522D-4C22-861F-A19F0F4202E6" label="" paletteLabel="Reload" tag="-1" bordered="YES" sizingBehavior="auto" id="s9Z-jd-6nI">
