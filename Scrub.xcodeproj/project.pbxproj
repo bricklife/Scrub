@@ -11,7 +11,7 @@
 		CBD43E2027756D3700039737 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBD43E0D27756D3700039737 /* Assets.xcassets */; };
 		CBD43E2F27756F2800039737 /* ScrubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43E2D27756F2800039737 /* ScrubApp.swift */; };
 		CBD43E3627756F6C00039737 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBD43E3227756F6C00039737 /* Main.storyboard */; };
-		CBD43E3727756F6C00039737 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43E3427756F6C00039737 /* ViewController.swift */; };
+		CBD43E3727756F6C00039737 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43E3427756F6C00039737 /* MainViewController.swift */; };
 		CBD43E3827756F6C00039737 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43E3527756F6C00039737 /* AppDelegate.swift */; };
 		CBD43E462775748F00039737 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43E392775748F00039737 /* Preferences.swift */; };
 		CBD43E472775748F00039737 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43E392775748F00039737 /* Preferences.swift */; };
@@ -176,7 +176,7 @@
 		CBD43E1A27756D3700039737 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		CBD43E2D27756F2800039737 /* ScrubApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrubApp.swift; sourceTree = "<group>"; };
 		CBD43E3327756F6C00039737 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
-		CBD43E3427756F6C00039737 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CBD43E3427756F6C00039737 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		CBD43E3527756F6C00039737 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBD43E392775748F00039737 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		CBD43E3A2775748F00039737 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
@@ -325,7 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				CBD43E3527756F6C00039737 /* AppDelegate.swift */,
-				CBD43E3427756F6C00039737 /* ViewController.swift */,
+				CBD43E3427756F6C00039737 /* MainViewController.swift */,
 				CBD43E3127756F6C00039737 /* Base.lproj */,
 				CBD43E1A27756D3700039737 /* macOS.entitlements */,
 			);
@@ -790,7 +790,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBD43E3827756F6C00039737 /* AppDelegate.swift in Sources */,
-				CBD43E3727756F6C00039737 /* ViewController.swift in Sources */,
+				CBD43E3727756F6C00039737 /* MainViewController.swift in Sources */,
 				CBD43E4B2775748F00039737 /* LocalDocumentsManager.swift in Sources */,
 				CBD43E472775748F00039737 /* Preferences.swift in Sources */,
 			);
