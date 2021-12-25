@@ -149,7 +149,7 @@ extension WebViewController: WKUIDelegate {
     
     public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
         let alertController = UIAlertController(title: "", message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: NSLocalizedString("OK", bundle: Bundle.module, comment: "OK"), style: .default) { [weak self] _ in
+        let okAction = UIAlertAction(title: NSLocalizedString("Close", bundle: BundleLoader.bundle, comment: "Close"), style: .default) { [weak self] _ in
             completionHandler()
             self?.presentQueueingViewController()
         }
@@ -160,11 +160,11 @@ extension WebViewController: WKUIDelegate {
     
     public func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
         let alertController = UIAlertController(title: "", message: message, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", bundle: Bundle.module, comment: "Cancel"), style: .cancel) { [weak self] _ in
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", bundle: BundleLoader.bundle, comment: "Cancel"), style: .cancel) { [weak self] _ in
             completionHandler(false)
             self?.presentQueueingViewController()
         }
-        let okAction = UIAlertAction(title: NSLocalizedString("OK", bundle: Bundle.module, comment: "OK"), style: .default) { [weak self] _ in
+        let okAction = UIAlertAction(title: NSLocalizedString("OK", bundle: BundleLoader.bundle, comment: "OK"), style: .default) { [weak self] _ in
             completionHandler(true)
             self?.presentQueueingViewController()
         }
@@ -179,11 +179,11 @@ extension WebViewController: WKUIDelegate {
         alertController.addTextField() { textField in
             textField.text = defaultText
         }
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", bundle: Bundle.module, comment: "Cancel"), style: .cancel) { [weak self] _ in
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", bundle: BundleLoader.bundle, comment: "Cancel"), style: .cancel) { [weak self] _ in
             completionHandler(nil)
             self?.presentQueueingViewController()
         }
-        let okAction = UIAlertAction(title: NSLocalizedString("OK", bundle: Bundle.module, comment: "OK"), style: .default) { [weak self, weak alertController] _ in
+        let okAction = UIAlertAction(title: NSLocalizedString("OK", bundle: BundleLoader.bundle, comment: "OK"), style: .default) { [weak self, weak alertController] _ in
             completionHandler(alertController?.textFields?.first?.text)
             self?.presentQueueingViewController()
         }
