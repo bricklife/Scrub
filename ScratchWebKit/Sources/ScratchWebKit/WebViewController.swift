@@ -101,27 +101,48 @@ public class WebViewController: ViewController {
 
 extension WebViewController {
     
-    public func load(url: URL) {
+    @objc public func load(url: URL) {
         let request = URLRequest(url: url)
         webView.load(request)
     }
     
-    public func goBack() {
+    @objc public func goBack() {
         webView.goBack()
     }
     
-    public func goForward() {
+    @objc public func goForward() {
         webView.goForward()
     }
     
-    public func reload() {
+    @objc public func reload() {
         webView.reload()
     }
     
-    public func stopLoading() {
+    @objc public func stopLoading() {
         webView.stopLoading()
     }
 }
+
+#if canImport(AppKit)
+extension WebViewController: NSUserInterfaceValidations {
+    
+    public func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+        print(#function, item.action)
+        switch item.action {
+        case #selector(goBack):
+            return canGoBack
+        case #selector(goForward):
+            return canGoForward
+        case #selector(reload):
+            return true
+        case #selector(stopLoading):
+            return true
+        default:
+            return webView.validateUserInterfaceItem(item)
+        }
+    }
+}
+#endif
 
 #if canImport(UIKit)
 extension WebViewController: WKUIDelegate {

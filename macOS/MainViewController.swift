@@ -13,18 +13,24 @@ import ScratchLink
 class MainViewController: NSViewController {
     
     private weak var webViewController: ScratchWebViewController?
-    private weak var textField: NSTextField?
+    private weak var windowController: MainWindowController?
     
     private var cancellables: Set<AnyCancellable> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.publisher(for: \.window?.windowController).sink { [weak self] windowController in
+            if let windowController = windowController as? MainWindowController {
+                self?.setup(windowController: windowController)
+            }
+        }.store(in: &cancellables)
+        
         self.webViewController = children.first as? ScratchWebViewController
         webViewController?.delegate = self
         
         webViewController?.$url.sink { [weak self] url in
-            self?.updateTextField(url: url)
+            self?.updateToolbar(url: url)
         }.store(in: &cancellables)
         
         //let url = URL(string: "https://bricklife.com/scratch-gui/")!
@@ -36,10 +42,7 @@ class MainViewController: NSViewController {
     override func viewWillAppear() {
         super.viewWillAppear()
         
-        self.textField = view.window?.toolbar?.items.compactMap({ item in
-            return item.view as? NSTextField
-        }).first
-        updateTextField(url: webViewController?.url)
+        updateToolbar(url: webViewController?.url)
     }
     
     override var representedObject: Any? {
@@ -48,8 +51,22 @@ class MainViewController: NSViewController {
         }
     }
     
-    private func updateTextField(url: URL?) {
-        textField?.stringValue = url?.absoluteString ?? ""
+    private func setup(windowController: MainWindowController) {
+        windowController.textField.target = self
+        
+        windowController.backButton.action = #selector(WebViewController.goBack)
+        windowController.backButton.target = webViewController
+        
+        windowController.forwardButton.action = #selector(WebViewController.goForward)
+        windowController.forwardButton.target = webViewController
+        
+        self.windowController = windowController
+    }
+    
+    private func updateToolbar(url: URL?) {
+        windowController?.textField.stringValue = url?.absoluteString ?? ""
+        windowController?.backButton.validate()
+        windowController?.forwardButton.validate()
     }
     
     @IBAction func urlEntered(_ sender: NSTextField) {
@@ -63,6 +80,8 @@ class MainViewController: NSViewController {
 extension MainViewController: ScratchWebViewControllerDelegate {
     func decidePolicyFor(url: URL, isScratchEditor: Bool, decisionHandler: @escaping (WebFilterPolicy) -> Void) {
         print(#function, url, isScratchEditor)
+        windowController?.backButton.validate()
+        windowController?.forwardButton.validate()
         decisionHandler(.allow)
     }
     

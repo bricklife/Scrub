@@ -75,6 +75,7 @@
 		CBD43F4127761B4400039737 /* ScratchLink.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBD43ECA2776154500039737 /* ScratchLink.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CBD43F492776225400039737 /* BundleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F482776225300039737 /* BundleLoader.swift */; };
 		CBD43F4B2776231600039737 /* BundleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F4A2776231600039737 /* BundleLoader.swift */; };
+		CBF6C6962778755E00548AA8 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF6C6952778755E00548AA8 /* MainWindowController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -227,6 +228,7 @@
 		CBD43F3E27761B1200039737 /* ScratchWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScratchWebViewController.swift; sourceTree = "<group>"; };
 		CBD43F482776225300039737 /* BundleLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleLoader.swift; sourceTree = "<group>"; };
 		CBD43F4A2776231600039737 /* BundleLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleLoader.swift; sourceTree = "<group>"; };
+		CBF6C6952778755E00548AA8 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				CBD43E3527756F6C00039737 /* AppDelegate.swift */,
+				CBF6C6952778755E00548AA8 /* MainWindowController.swift */,
 				CBD43E3427756F6C00039737 /* MainViewController.swift */,
 				CBD43E3127756F6C00039737 /* Base.lproj */,
 				CBD43E1A27756D3700039737 /* macOS.entitlements */,
@@ -793,6 +796,7 @@
 				CBD43E3727756F6C00039737 /* MainViewController.swift in Sources */,
 				CBD43E4B2775748F00039737 /* LocalDocumentsManager.swift in Sources */,
 				CBD43E472775748F00039737 /* Preferences.swift in Sources */,
+				CBF6C6962778755E00548AA8 /* MainWindowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
