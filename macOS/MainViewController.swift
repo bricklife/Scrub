@@ -72,18 +72,19 @@ class MainViewController: NSViewController {
     
     private func setup(toolbar: MainToolbar) {
         toolbar.textField.target = self
+        toolbar.textField.action = #selector(go(_:))
         
-        toolbar.backButton.action = #selector(WebViewController.goBack(_:))
-        toolbar.backButton.target = webViewController
+        toolbar.backButton.target = self
+        toolbar.backButton.action = #selector(goBack(_:))
         
-        toolbar.forwardButton.action = #selector(WebViewController.goForward(_:))
-        toolbar.forwardButton.target = webViewController
+        toolbar.forwardButton.target = self
+        toolbar.forwardButton.action = #selector(goForward(_:))
         
-        toolbar.reloadButton.action = #selector(WebViewController.reload(_:))
-        toolbar.reloadButton.target = webViewController
+        toolbar.reloadButton.target = self
+        toolbar.reloadButton.action = #selector(reload(_:))
         
-        toolbar.stopButton.action = #selector(WebViewController.stopLoading(_:))
-        toolbar.stopButton.target = webViewController
+        toolbar.stopButton.target = self
+        toolbar.stopButton.action = #selector(stopLoading(_:))
         
         self.toolbar = toolbar
     }
@@ -91,16 +92,43 @@ class MainViewController: NSViewController {
     private func updateToolbar(url: URL?) {
         toolbar?.textField.stringValue = url?.absoluteString ?? ""
     }
+}
+
+extension MainViewController {
     
-    @IBAction func urlEntered(_ sender: NSTextField) {
-        print(#function, sender)
-        if let url = URL(string: sender.stringValue) {
+    @objc func goBack(_ sender: Any?) {
+        webViewController?.goBack(sender)
+    }
+    
+    @objc func goForward(_ sender: Any?) {
+        webViewController?.goForward(sender)
+    }
+    
+    @objc func reload(_ sender: Any?) {
+        webViewController?.reload(sender)
+    }
+    
+    @objc func stopLoading(_ sender: Any?) {
+        webViewController?.stopLoading(sender)
+    }
+    
+    @objc func go(_ sender: Any?) {
+        let urlString = toolbar?.textField.stringValue
+        if let url = urlString.flatMap({ URL(string: $0) }) {
             webViewController?.load(url: url)
         }
     }
 }
 
+extension MainViewController: NSUserInterfaceValidations {
+    
+    public func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+        return webViewController?.validateUserInterfaceItem(item) ?? true
+    }
+}
+
 extension MainViewController: ScratchWebViewControllerDelegate {
+    
     func decidePolicyFor(url: URL, isScratchEditor: Bool, decisionHandler: @escaping (WebFilterPolicy) -> Void) {
         print(#function, url, isScratchEditor)
         decisionHandler(.allow)
