@@ -57,16 +57,16 @@ class MainViewController: NSViewController {
                 self?.view.window?.title = title
             }
         }.store(in: &cancellables)
-
-        webViewController.$isLoading.sink{ [weak self] value in
-            self?.toolbar?.isLoading = value
+        
+        webViewController.$isLoading.sink{ [weak self] isLoading in
+            self?.toolbar?.isLoading = isLoading
         }.store(in: &cancellables)
         
-        webViewController.$canGoBack.sink{ [weak self] value in
+        webViewController.$canGoBack.sink{ [weak self] _ in
             self?.toolbar?.backButton.validate()
         }.store(in: &cancellables)
         
-        webViewController.$canGoForward.sink{ [weak self] value in
+        webViewController.$canGoForward.sink{ [weak self] _ in
             self?.toolbar?.forwardButton.validate()
         }.store(in: &cancellables)
         
