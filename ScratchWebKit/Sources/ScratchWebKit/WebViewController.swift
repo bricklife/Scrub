@@ -37,7 +37,8 @@ public class WebViewController: ViewController {
     
     public var didClose: (() -> Void)?
     
-    @Published public private(set) var url: URL? = nil
+    @Published public private(set) var url: URL?
+    @Published public private(set) var pageTitle: String?
     @Published public private(set) var isLoading: Bool = false
     @Published public private(set) var estimatedProgress: Double = 0.0
     @Published public private(set) var canGoBack: Bool = false
@@ -73,6 +74,7 @@ public class WebViewController: ViewController {
         super.viewDidLoad()
         
         webView.publisher(for: \.url).assign(to: &$url)
+        webView.publisher(for: \.title).assign(to: &$pageTitle)
         webView.publisher(for: \.isLoading).assign(to: &$isLoading)
         webView.publisher(for: \.canGoBack).assign(to: &$canGoBack)
         webView.publisher(for: \.canGoForward).assign(to: &$canGoForward)
