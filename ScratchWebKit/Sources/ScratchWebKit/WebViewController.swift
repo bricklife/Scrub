@@ -101,12 +101,16 @@ public class WebViewController: ViewController {
 
 extension WebViewController {
     
-    @objc public func load(url: URL) {
+    public func load(url: URL) {
         let request = URLRequest(url: url)
         webView.load(request)
     }
     
-    @objc public func goBack() {
+    public func goBack() {
+        webView.goBack()
+    }
+    
+    @IBAction public func goBack(_ sender: Any?) {
         webView.goBack()
     }
     
@@ -114,11 +118,23 @@ extension WebViewController {
         webView.goForward()
     }
     
-    @objc public func reload() {
+    @IBAction public func goForward(_ sender: Any?) {
+        webView.goForward()
+    }
+    
+    public func reload() {
         webView.reload()
     }
     
-    @objc public func stopLoading() {
+    @IBAction public func reload(_ sender: Any?) {
+        webView.reload()
+    }
+    
+    public func stopLoading() {
+        webView.stopLoading()
+    }
+    
+    @IBAction public func stopLoading(_ sender: Any?) {
         webView.stopLoading()
     }
 }
@@ -127,19 +143,7 @@ extension WebViewController {
 extension WebViewController: NSUserInterfaceValidations {
     
     public func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
-        print(#function, item.action)
-        switch item.action {
-        case #selector(goBack):
-            return canGoBack
-        case #selector(goForward):
-            return canGoForward
-        case #selector(reload):
-            return true
-        case #selector(stopLoading):
-            return true
-        default:
-            return webView.validateUserInterfaceItem(item)
-        }
+        return webView.validateUserInterfaceItem(item)
     }
 }
 #endif

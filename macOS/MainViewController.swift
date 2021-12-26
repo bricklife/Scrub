@@ -54,11 +54,14 @@ class MainViewController: NSViewController {
     private func setup(windowController: MainWindowController) {
         windowController.textField.target = self
         
-        windowController.backButton.action = #selector(WebViewController.goBack)
+        windowController.backButton.action = #selector(WebViewController.goBack(_:))
         windowController.backButton.target = webViewController
         
-        windowController.forwardButton.action = #selector(WebViewController.goForward)
+        windowController.forwardButton.action = #selector(WebViewController.goForward(_:))
         windowController.forwardButton.target = webViewController
+        
+        windowController.reloadButton.action = #selector(WebViewController.reload(_:))
+        windowController.reloadButton.target = webViewController
         
         self.windowController = windowController
     }
