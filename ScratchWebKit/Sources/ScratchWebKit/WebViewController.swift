@@ -110,23 +110,11 @@ extension WebViewController {
         webView.goBack()
     }
     
-    @IBAction public func goBack(_ sender: Any?) {
-        webView.goBack()
-    }
-    
     public func goForward() {
         webView.goForward()
     }
     
-    @IBAction public func goForward(_ sender: Any?) {
-        webView.goForward()
-    }
-    
     public func reload() {
-        webView.reload()
-    }
-    
-    @IBAction public func reload(_ sender: Any?) {
         webView.reload()
     }
     

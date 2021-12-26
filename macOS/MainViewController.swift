@@ -97,19 +97,19 @@ class MainViewController: NSViewController {
 extension MainViewController {
     
     @objc func goBack(_ sender: Any?) {
-        webViewController?.goBack(sender)
+        webViewController?.goBack()
     }
     
     @objc func goForward(_ sender: Any?) {
-        webViewController?.goForward(sender)
+        webViewController?.goForward()
     }
     
     @objc func reload(_ sender: Any?) {
-        webViewController?.reload(sender)
+        webViewController?.reload()
     }
     
     @objc func stopLoading(_ sender: Any?) {
-        webViewController?.stopLoading(sender)
+        webViewController?.stopLoading()
     }
     
     @objc func go(_ sender: Any?) {
