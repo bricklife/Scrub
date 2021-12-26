@@ -114,7 +114,7 @@ extension WebViewController {
         webView.goBack()
     }
     
-    @objc public func goForward() {
+    public func goForward() {
         webView.goForward()
     }
     
