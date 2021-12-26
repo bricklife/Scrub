@@ -52,16 +52,22 @@ class MainViewController: NSViewController {
             self?.updateToolbar(url: url)
         }.store(in: &cancellables)
         
+        webViewController.$pageTitle.sink { [weak self] title in
+            if let title = title {
+                self?.view.window?.title = title
+            }
+        }.store(in: &cancellables)
+
+        webViewController.$isLoading.sink{ [weak self] value in
+            self?.toolbar?.isLoading = value
+        }.store(in: &cancellables)
+        
         webViewController.$canGoBack.sink{ [weak self] value in
             self?.toolbar?.backButton.validate()
         }.store(in: &cancellables)
         
         webViewController.$canGoForward.sink{ [weak self] value in
             self?.toolbar?.forwardButton.validate()
-        }.store(in: &cancellables)
-        
-        webViewController.$isLoading.sink{ [weak self] value in
-            self?.toolbar?.isLoading = value
         }.store(in: &cancellables)
         
         self.webViewController = children.first as? ScratchWebViewController
