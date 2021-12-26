@@ -451,9 +451,15 @@
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="75858433-37D6-468B-82F4-6CE97E34BDFE" label="" paletteLabel="Back" tag="-1" bordered="YES" sizingBehavior="auto" id="oJ4-DV-DaQ">
                                     <imageReference key="image" image="chevron.backward" catalog="system" symbolScale="large"/>
+                                    <connections>
+                                        <action selector="goBack:" target="Oky-zY-oP4" id="xsE-5L-g9o"/>
+                                    </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="4FB881EA-5668-41AE-9533-F99B12ACB325" label="" paletteLabel="Forward" tag="-1" bordered="YES" sizingBehavior="auto" id="VMN-yw-NbI">
                                     <imageReference key="image" image="chevron.forward" catalog="system" symbolScale="large"/>
+                                    <connections>
+                                        <action selector="goForward:" target="Oky-zY-oP4" id="lTL-H7-d7U"/>
+                                    </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="9C557DAD-87A4-479B-9D7F-61A0742F582B" label="" paletteLabel="URL" id="Jd3-xj-oyX">
                                     <nil key="toolTip"/>
@@ -474,9 +480,15 @@
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="3DEA5E18-522D-4C22-861F-A19F0F4202E6" label="" paletteLabel="Reload" tag="-1" bordered="YES" sizingBehavior="auto" id="s9Z-jd-6nI">
                                     <imageReference key="image" image="arrow.clockwise" catalog="system" symbolScale="large"/>
+                                    <connections>
+                                        <action selector="reload:" target="Oky-zY-oP4" id="hjM-Xi-tdQ"/>
+                                    </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="BCC137FB-95B9-4B14-A621-BE818FA74F78" label="" paletteLabel="Stop" tag="-1" bordered="YES" sizingBehavior="auto" id="vcg-fC-mdB">
                                     <imageReference key="image" image="xmark" catalog="system" symbolScale="large"/>
+                                    <connections>
+                                        <action selector="stopLoading:" target="Oky-zY-oP4" id="Aln-e2-3QM"/>
+                                    </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="1C8BE748-B83A-4650-85E7-F410E5B6C307" label="" paletteLabel="Share" tag="-1" bordered="YES" sizingBehavior="auto" id="GRZ-C0-rXD">
                                     <imageReference key="image" image="square.and.arrow.up" catalog="system" symbolScale="large"/>

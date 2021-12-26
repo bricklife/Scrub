@@ -13,18 +13,15 @@ import ScratchLink
 class MainViewController: NSViewController {
     
     private weak var webViewController: ScratchWebViewController?
-    private weak var toolbar: MainToolbar?
     
     private var cancellables: Set<AnyCancellable> = []
     
+    private var toolbar: MainToolbar? {
+        view.window?.toolbar as? MainToolbar
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.publisher(for: \.window?.toolbar).sink { [weak self] toolbar in
-            if let toolbar = toolbar as? MainToolbar {
-                self?.setup(toolbar: toolbar)
-            }
-        }.store(in: &cancellables)
         
         if let webViewController = children.first as? ScratchWebViewController {
             setup(webViewController: webViewController)
@@ -68,25 +65,6 @@ class MainViewController: NSViewController {
         }.store(in: &cancellables)
         
         self.webViewController = children.first as? ScratchWebViewController
-    }
-    
-    private func setup(toolbar: MainToolbar) {
-        toolbar.textField.target = self
-        toolbar.textField.action = #selector(go(_:))
-        
-        toolbar.backButton.target = self
-        toolbar.backButton.action = #selector(goBack(_:))
-        
-        toolbar.forwardButton.target = self
-        toolbar.forwardButton.action = #selector(goForward(_:))
-        
-        toolbar.reloadButton.target = self
-        toolbar.reloadButton.action = #selector(reload(_:))
-        
-        toolbar.stopButton.target = self
-        toolbar.stopButton.action = #selector(stopLoading(_:))
-        
-        self.toolbar = toolbar
     }
     
     private func updateToolbar(url: URL?) {

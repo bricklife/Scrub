@@ -30,11 +30,4 @@ class MainToolbar: NSToolbar {
             }
         }
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        backButton.autovalidates = false
-        forwardButton.autovalidates = false
-    }
 }
