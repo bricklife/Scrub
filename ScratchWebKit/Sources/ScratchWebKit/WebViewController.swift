@@ -121,14 +121,26 @@ extension WebViewController {
     public func stopLoading() {
         webView.stopLoading()
     }
-    
-    @IBAction public func stopLoading(_ sender: Any?) {
-        webView.stopLoading()
-    }
 }
 
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
 extension WebViewController: NSUserInterfaceValidations {
+    
+    @IBAction public func goBack(_ sender: Any?) {
+        webView.goBack(sender)
+    }
+    
+    @IBAction public func goForward(_ sender: Any?) {
+        webView.goForward(sender)
+    }
+    
+    @IBAction public func reload(_ sender: Any?) {
+        webView.reload(sender)
+    }
+    
+    @IBAction public func stopLoading(_ sender: Any?) {
+        webView.stopLoading(sender)
+    }
     
     public func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         return webView.validateUserInterfaceItem(item)
