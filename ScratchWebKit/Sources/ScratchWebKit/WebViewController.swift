@@ -127,7 +127,7 @@ extension WebViewController {
     }
 }
 
-#if canImport(AppKit)
+#if canImport(AppKit) && !targetEnvironment(macCatalyst)
 extension WebViewController: NSUserInterfaceValidations {
     
     public func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
@@ -215,7 +215,7 @@ extension WebViewController: UIAdaptivePresentationControllerDelegate {
 }
 #endif
 
-#if canImport(AppKit)
+#if canImport(AppKit) && !targetEnvironment(macCatalyst)
 extension ViewController: WKUIDelegate {
     
     public func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
