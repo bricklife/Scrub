@@ -18,26 +18,41 @@ class Preferences: ObservableObject {
         case documentsFolder
     }
     
-    @Published var homeUrl: HomeUrl
-    @Published var customUrl: String
-    @Published var didShowBluetoothParingDialog: Bool
+    var homeUrl: HomeUrl {
+        get {
+            ManagedAppConfig.shared.rawRepresentable(forKey: "homeUrl")
+            ?? UserDefaults.standard.rawRepresentable(forKey: "homeUrl")
+            ?? .scratchEditor
+        }
+        set {
+            UserDefaults.standard.setRawRepresentable(newValue, forKey: "homeUrl")
+        }
+    }
     
-    private var cancellables: Set<AnyCancellable> = []
+    var customUrl: String {
+        get {
+            ManagedAppConfig.shared.string(forKey: "customUrl")
+            ?? UserDefaults.standard.string(forKey: "customUrl")
+            ?? "http://"
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "customUrl")
+        }
+    }
+    
+    var didShowBluetoothParingDialog: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: "didShowBluetoothParingDialog")
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "didShowBluetoothParingDialog")
+        }
+    }
     
     init() {
-        self.homeUrl = UserDefaults.standard.rawRepresentable(forKey: "homeUrl") ?? .scratchEditor
-        self.customUrl = UserDefaults.standard.string(forKey: "customUrl") ?? "https://"
-        self.didShowBluetoothParingDialog = UserDefaults.standard.bool(forKey: "didShowBluetoothParingDialog")
-        
-        $homeUrl.sink { (value) in
-            UserDefaults.standard.setRawRepresentable(value, forKey: "homeUrl")
-        }.store(in: &cancellables)
-        $customUrl.sink { (value) in
-            UserDefaults.standard.setValue(value, forKey: "customUrl")
-        }.store(in: &cancellables)
-        $didShowBluetoothParingDialog.sink { (value) in
-            UserDefaults.standard.setValue(value, forKey: "didShowBluetoothParingDialog")
-        }.store(in: &cancellables)
+        ManagedAppConfig.shared.addDidChangeHandler { [weak self] _ in
+            self?.objectWillChange.send()
+        }
     }
 }
 
