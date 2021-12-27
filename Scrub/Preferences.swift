@@ -25,12 +25,12 @@ class Preferences: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     
     init() {
-        self.homeUrl = UserDefaults.standard.getEnum(forKey: "homeUrl") ?? .scratchEditor
+        self.homeUrl = UserDefaults.standard.rawRepresentable(forKey: "homeUrl") ?? .scratchEditor
         self.customUrl = UserDefaults.standard.string(forKey: "customUrl") ?? "https://"
         self.didShowBluetoothParingDialog = UserDefaults.standard.bool(forKey: "didShowBluetoothParingDialog")
         
         $homeUrl.sink { (value) in
-            UserDefaults.standard.setEnum(value, forKey: "homeUrl")
+            UserDefaults.standard.setRawRepresentable(value, forKey: "homeUrl")
         }.store(in: &cancellables)
         $customUrl.sink { (value) in
             UserDefaults.standard.setValue(value, forKey: "customUrl")
@@ -43,14 +43,11 @@ class Preferences: ObservableObject {
 
 extension UserDefaults {
     
-    func getEnum<V>(forKey key: String) -> V? where V: RawRepresentable, V.RawValue == String {
-        if let s = string(forKey: key), let v = V.init(rawValue: s) {
-            return v
-        }
-        return nil
+    func rawRepresentable<V>(forKey key: String) -> V? where V: RawRepresentable, V.RawValue == String {
+        return string(forKey: key).flatMap(V.init(rawValue:))
     }
     
-    func setEnum<V>(_ value: V?, forKey key: String) where V: RawRepresentable, V.RawValue == String {
+    func setRawRepresentable<V>(_ value: V?, forKey key: String) where V: RawRepresentable, V.RawValue == String {
         setValue(value?.rawValue, forKey: key)
     }
 }
