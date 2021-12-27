@@ -50,7 +50,7 @@ class Preferences: ObservableObject {
     }
     
     init() {
-        ManagedAppConfig.shared.addDidChangeHandler { [weak self] _ in
+        NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: .main) { [weak self] _ in
             self?.objectWillChange.send()
         }
     }
