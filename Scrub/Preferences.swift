@@ -8,6 +8,10 @@
 import Foundation
 import Combine
 
+private let homeUrlKey = "homeUrl"
+private let customUrlKey = "customUrl"
+private let didShowBluetoothParingDialogKey = "didShowBluetoothParingDialog"
+
 class Preferences: ObservableObject {
     
     enum HomeUrl: String {
@@ -20,32 +24,32 @@ class Preferences: ObservableObject {
     
     var homeUrl: HomeUrl {
         get {
-            ManagedAppConfig.shared.rawRepresentable(forKey: "homeUrl")
-            ?? UserDefaults.standard.rawRepresentable(forKey: "homeUrl")
+            ManagedAppConfig.shared.rawRepresentable(forKey: homeUrlKey)
+            ?? UserDefaults.standard.rawRepresentable(forKey: homeUrlKey)
             ?? .scratchEditor
         }
         set {
-            UserDefaults.standard.setRawRepresentable(newValue, forKey: "homeUrl")
+            UserDefaults.standard.setRawRepresentable(newValue, forKey: homeUrlKey)
         }
     }
     
     var customUrl: String {
         get {
-            ManagedAppConfig.shared.string(forKey: "customUrl")
-            ?? UserDefaults.standard.string(forKey: "customUrl")
+            ManagedAppConfig.shared.string(forKey: customUrlKey)
+            ?? UserDefaults.standard.string(forKey: customUrlKey)
             ?? "http://"
         }
         set {
-            UserDefaults.standard.setValue(newValue, forKey: "customUrl")
+            UserDefaults.standard.setValue(newValue, forKey: customUrlKey)
         }
     }
     
     var didShowBluetoothParingDialog: Bool {
         get {
-            UserDefaults.standard.bool(forKey: "didShowBluetoothParingDialog")
+            UserDefaults.standard.bool(forKey: didShowBluetoothParingDialogKey)
         }
         set {
-            UserDefaults.standard.setValue(newValue, forKey: "didShowBluetoothParingDialog")
+            UserDefaults.standard.setValue(newValue, forKey: didShowBluetoothParingDialogKey)
         }
     }
     
