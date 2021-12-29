@@ -33,6 +33,10 @@ class Preferences: ObservableObject {
         }
     }
     
+    var isHomeUrlLocked: Bool {
+        ManagedAppConfig.shared.isSet(forKey: homeUrlKey)
+    }
+    
     var customUrl: String {
         get {
             ManagedAppConfig.shared.string(forKey: customUrlKey)
@@ -42,6 +46,10 @@ class Preferences: ObservableObject {
         set {
             UserDefaults.standard.setValue(newValue, forKey: customUrlKey)
         }
+    }
+    
+    var isCustomUrlLocked: Bool {
+        ManagedAppConfig.shared.isSet(forKey: customUrlKey)
     }
     
     var didShowBluetoothParingDialog: Bool {

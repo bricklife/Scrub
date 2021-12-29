@@ -26,4 +26,8 @@ class ManagedAppConfig {
     func rawRepresentable<V>(forKey key: String) -> V? where V: RawRepresentable, V.RawValue == String {
         return string(forKey: key).flatMap(V.init(rawValue:))
     }
+    
+    func isSet(forKey key: String) -> Bool {
+        return value(forKey: key) != nil
+    }
 }
