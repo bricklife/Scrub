@@ -18,7 +18,7 @@ class Preferences: ObservableObject {
         case scratchHome
         case scratchEditor
         case scratchMyStuff
-        case custom
+        case customUrl
         case documentsFolder
     }
     

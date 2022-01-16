@@ -44,7 +44,7 @@ class WebViewModel: ObservableObject {
             return URL(string: "https://scratch.mit.edu/projects/editor/")
         case .scratchMyStuff:
             return URL(string: "https://scratch.mit.edu/mystuff/")
-        case .custom:
+        case .customUrl:
             if let url = URL(string: preferences.customUrl), url.scheme == "http" || url.scheme == "https" {
                 return url
             }

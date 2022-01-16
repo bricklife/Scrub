@@ -40,13 +40,13 @@ struct PreferencesView: View {
                 }
                 Button(action: {
                     closeKeyboard()
-                    preferences.home = .custom
+                    preferences.home = .customUrl
                 }) {
                     VStack {
-                        CheckmarkText(title: Text("Custom"), checked: preferences.home == .custom)
+                        CheckmarkText(title: Text("Custom URL"), checked: preferences.home == .customUrl)
                         URLTextField(text: $preferences.customUrl, disabled: preferences.isCustomUrlLocked, onEditingChanged: { isEditing in
                             if isEditing {
-                                preferences.home = .custom
+                                preferences.home = .customUrl
                             }
                         })
                     }
