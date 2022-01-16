@@ -23,6 +23,16 @@ extension WebViewError: LocalizedError {
     }
 }
 
+extension URL {
+    var isScratchSite: Bool {
+        return host == "scratch.mit.edu"
+    }
+    
+    var isLocal: Bool {
+        return scheme == "file"
+    }
+}
+
 struct WebView: UIViewControllerRepresentable {
     
     @ObservedObject var viewModel: WebViewModel
@@ -102,9 +112,7 @@ extension WebView {
             #if DEBUG
             decisionHandler(.allow)
             #else
-            let isScratchSite = url.host == "scratch.mit.edu"
-            let isLocal = url.scheme == "file"
-            if isScratchSite || isLocal || isScratchEditor {
+            if url.isScratchSite || url.isLocal || isScratchEditor {
                 decisionHandler(.allow)
             } else {
                 decisionHandler(.deny)
