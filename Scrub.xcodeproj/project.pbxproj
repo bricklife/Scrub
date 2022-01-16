@@ -24,6 +24,7 @@
 		CB7D42F9261709F4005C86D0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D42F8261709F4005C86D0 /* MainView.swift */; };
 		CB7D42FB26170A9E005C86D0 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D42FA26170A9E005C86D0 /* WebView.swift */; };
 		CB9DA456264826F400459625 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CB9DA458264826F400459625 /* Localizable.strings */; };
+		CBF6C69D2779970000548AA8 /* ManagedAppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF6C69C2779970000548AA8 /* ManagedAppConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -62,6 +63,7 @@
 		CB9DA4592648274000459625 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CBF579B726686AEE00D35D6A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBF579B926686AEE00D35D6A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CBF6C69C2779970000548AA8 /* ManagedAppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedAppConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				CB7D42DA2617096C005C86D0 /* ScrubApp.swift */,
 				CB0A07722629E4D4001EF560 /* Preferences.swift */,
+				CBF6C69C2779970000548AA8 /* ManagedAppConfig.swift */,
 				CB7D42F8261709F4005C86D0 /* MainView.swift */,
 				CB3EE8D3266082D100005ECC /* AlertController.swift */,
 				CB7D42FA26170A9E005C86D0 /* WebView.swift */,
@@ -230,6 +233,7 @@
 				CB2F32EB2657CAFB0097ED27 /* LocalDocumentsManager.swift in Sources */,
 				CB3EE8D4266082D100005ECC /* AlertController.swift in Sources */,
 				CB52568F26419776009EE660 /* ActivityView.swift in Sources */,
+				CBF6C69D2779970000548AA8 /* ManagedAppConfig.swift in Sources */,
 				CB1DAA51262D6EB0007F5531 /* WebViewModel.swift in Sources */,
 				CB7D42DB2617096C005C86D0 /* ScrubApp.swift in Sources */,
 			);
