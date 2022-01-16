@@ -14,7 +14,12 @@ struct PreferencesView: View {
     var body: some View {
         Form {
             // Home URL
-            Section(header: Label("Home URL", systemImage: "house")) {
+            Section(header: HStack {
+                Label("Home URL", systemImage: "house")
+                if preferences.isHomeUrlLocked {
+                    LockImage()
+                }
+            }.font(.headline)) {
                 Button(action: {
                     closeKeyboard()
                     preferences.homeUrl = .scratchHome
@@ -39,7 +44,7 @@ struct PreferencesView: View {
                 }) {
                     VStack {
                         CheckmarkText(title: Text("Custom"), checked: preferences.homeUrl == .custom)
-                        URLTextField(text: $preferences.customUrl, onEditingChanged: { isEditing in
+                        URLTextField(text: $preferences.customUrl, disabled: preferences.isCustomUrlLocked, onEditingChanged: { isEditing in
                             if isEditing {
                                 preferences.homeUrl = .custom
                             }
@@ -52,7 +57,7 @@ struct PreferencesView: View {
                 }) {
                     CheckmarkText(title: Text("Local Documents Folder"), checked: preferences.homeUrl == .documentsFolder)
                 }
-            }
+            }.disabled(preferences.isHomeUrlLocked)
             
             // Support, Special Thanks
             Section {
@@ -104,6 +109,13 @@ struct PreferencesView: View {
     }
 }
 
+private struct LockImage: View {
+    
+    var body: some View {
+        Image(systemName: "lock.fill").foregroundColor(.red)
+    }
+}
+
 private struct CheckmarkText: View {
     
     let title: Text
@@ -123,20 +135,27 @@ private struct CheckmarkText: View {
 private struct URLTextField: View {
     
     @Binding var text: String
+    let disabled: Bool
     let onEditingChanged: (Bool) -> Void
     
     @State private var isEditing = false
     
     var body: some View {
         HStack {
+            if disabled {
+                LockImage()
+            }
+            
             TextField("https://", text: $text, onEditingChanged: { isEditing in
                 self.isEditing = isEditing
                 onEditingChanged(isEditing)
             })
-            .foregroundColor(.secondary)
-            .keyboardType(.URL)
-            .autocapitalization(.none)
-            .disableAutocorrection(true)
+                .foregroundColor(.secondary)
+                .keyboardType(.URL)
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
+                .disabled(disabled)
+            
             if isEditing && !text.isEmpty {
                 Button(action: {
                     text = ""
