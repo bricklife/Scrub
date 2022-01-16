@@ -36,8 +36,8 @@ class WebViewModel: ObservableObject {
         self.inputs = inputsSubject.eraseToAnyPublisher()
     }
     
-    var homeUrl: URL? {
-        switch preferences.homeUrl {
+    var home: URL? {
+        switch preferences.home {
         case .scratchHome:
             return URL(string: "https://scratch.mit.edu/")
         case .scratchEditor:

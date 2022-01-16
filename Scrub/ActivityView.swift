@@ -13,14 +13,14 @@ struct ActivityView: UIViewControllerRepresentable {
     let activityItems: [Any]
     
     func makeUIViewController(context: Context) -> UIActivityViewController {
-        return UIActivityViewController(activityItems: activityItems, applicationActivities: [HomeUrlActivity(preferences: preferences) ,BrowserActivity()])
+        return UIActivityViewController(activityItems: activityItems, applicationActivities: [HomeActivity(preferences: preferences) ,BrowserActivity()])
     }
     
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
     }
 }
 
-class HomeUrlActivity: UIActivity {
+class HomeActivity: UIActivity {
     
     let preferences: Preferences
     var url: URL? = nil
@@ -31,7 +31,7 @@ class HomeUrlActivity: UIActivity {
     }
     
     override var activityTitle: String? {
-        return NSLocalizedString("Set as Home URL", comment: "Set as Home URL")
+        return NSLocalizedString("Set as Home", comment: "Set as Home")
     }
     
     override var activityImage: UIImage? {
@@ -58,7 +58,7 @@ class HomeUrlActivity: UIActivity {
     
     override func perform() {
         if let url = url {
-            preferences.homeUrl = .custom
+            preferences.home = .custom
             preferences.customUrl = url.absoluteString
         }
         activityDidFinish(true)

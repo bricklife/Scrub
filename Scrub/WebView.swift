@@ -54,7 +54,7 @@ struct WebView: UIViewControllerRepresentable {
         
         if let url = url, url.scheme != "file" {
             webViewController.load(url: url)
-        } else if let url = viewModel.homeUrl {
+        } else if let url = viewModel.home {
             webViewController.load(url: url)
         } else {
             alertController.showAlert(error: WebViewError.invalidUrl)
@@ -81,7 +81,7 @@ extension WebView {
             parent.viewModel.inputs.sink { (inputs) in
                 switch inputs {
                 case .goHome:
-                    if let url = parent.viewModel.homeUrl {
+                    if let url = parent.viewModel.home {
                         parent.webViewController.load(url: url)
                     } else {
                         parent.alertController.showAlert(error: WebViewError.invalidUrl)

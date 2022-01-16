@@ -21,11 +21,11 @@
 "%@ is Not Allowed" = "%@ is Not Allowed";
 "Allow %@ access in Settings to use this function." = "Allow %@ access in Settings to use this function.";
 
-"Set as Home URL" = "Set as Home URL";
+"Set as Home" = "Set as Home";
 "Open in Browser" = "Open in Browser";
 
 "Preferences" = "Preferences";
-"Home URL" = "Home URL";
+"Home" = "Home";
 "Scratch Home" = "Scratch Home";
 "Scratch Editor (Create New Project)" = "Scratch Editor (Create New Project)";
 "Scratch My Stuff" = "Scratch My Stuff";

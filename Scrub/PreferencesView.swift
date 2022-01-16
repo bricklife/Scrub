@@ -13,51 +13,51 @@ struct PreferencesView: View {
     
     var body: some View {
         Form {
-            // Home URL
+            // Home
             Section(header: HStack {
-                Label("Home URL", systemImage: "house")
-                if preferences.isHomeUrlLocked {
+                Label("Home", systemImage: "house")
+                if preferences.isHomeLocked {
                     LockImage()
                 }
             }.font(.headline)) {
                 Button(action: {
                     closeKeyboard()
-                    preferences.homeUrl = .scratchHome
+                    preferences.home = .scratchHome
                 }) {
-                    CheckmarkText(title: Text("Scratch Home"), checked: preferences.homeUrl == .scratchHome)
+                    CheckmarkText(title: Text("Scratch Home"), checked: preferences.home == .scratchHome)
                 }
                 Button(action: {
                     closeKeyboard()
-                    preferences.homeUrl = .scratchEditor
+                    preferences.home = .scratchEditor
                 }) {
-                    CheckmarkText(title: Text("Scratch Editor (Create New Project)"), checked: preferences.homeUrl == .scratchEditor)
+                    CheckmarkText(title: Text("Scratch Editor (Create New Project)"), checked: preferences.home == .scratchEditor)
                 }
                 Button(action: {
                     closeKeyboard()
-                    preferences.homeUrl = .scratchMyStuff
+                    preferences.home = .scratchMyStuff
                 }) {
-                    CheckmarkText(title: Text("Scratch My Stuff"), checked: preferences.homeUrl == .scratchMyStuff)
+                    CheckmarkText(title: Text("Scratch My Stuff"), checked: preferences.home == .scratchMyStuff)
                 }
                 Button(action: {
                     closeKeyboard()
-                    preferences.homeUrl = .custom
+                    preferences.home = .custom
                 }) {
                     VStack {
-                        CheckmarkText(title: Text("Custom"), checked: preferences.homeUrl == .custom)
+                        CheckmarkText(title: Text("Custom"), checked: preferences.home == .custom)
                         URLTextField(text: $preferences.customUrl, disabled: preferences.isCustomUrlLocked, onEditingChanged: { isEditing in
                             if isEditing {
-                                preferences.homeUrl = .custom
+                                preferences.home = .custom
                             }
                         })
                     }
                 }
                 Button(action: {
                     closeKeyboard()
-                    preferences.homeUrl = .documentsFolder
+                    preferences.home = .documentsFolder
                 }) {
-                    CheckmarkText(title: Text("Local Documents Folder"), checked: preferences.homeUrl == .documentsFolder)
+                    CheckmarkText(title: Text("Local Documents Folder"), checked: preferences.home == .documentsFolder)
                 }
-            }.disabled(preferences.isHomeUrlLocked)
+            }.disabled(preferences.isHomeLocked)
             
             // Support, Special Thanks
             Section {

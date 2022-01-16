@@ -8,13 +8,13 @@
 import Foundation
 import Combine
 
-private let homeUrlKey = "homeUrl"
+private let homeKey = "home"
 private let customUrlKey = "customUrl"
 private let didShowBluetoothParingDialogKey = "didShowBluetoothParingDialog"
 
 class Preferences: ObservableObject {
     
-    enum HomeUrl: String {
+    enum Home: String {
         case scratchHome
         case scratchEditor
         case scratchMyStuff
@@ -22,19 +22,19 @@ class Preferences: ObservableObject {
         case documentsFolder
     }
     
-    var homeUrl: HomeUrl {
+    var home: Home {
         get {
-            ManagedAppConfig.shared.rawRepresentable(forKey: homeUrlKey)
-            ?? UserDefaults.standard.rawRepresentable(forKey: homeUrlKey)
+            ManagedAppConfig.shared.rawRepresentable(forKey: homeKey)
+            ?? UserDefaults.standard.rawRepresentable(forKey: homeKey)
             ?? .scratchEditor
         }
         set {
-            UserDefaults.standard.setRawRepresentable(newValue, forKey: homeUrlKey)
+            UserDefaults.standard.setRawRepresentable(newValue, forKey: homeKey)
         }
     }
     
-    var isHomeUrlLocked: Bool {
-        ManagedAppConfig.shared.isSet(forKey: homeUrlKey)
+    var isHomeLocked: Bool {
+        ManagedAppConfig.shared.isSet(forKey: homeKey)
     }
     
     var customUrl: String {
