@@ -25,7 +25,14 @@ extension WebViewError: LocalizedError {
 
 extension URL {
     var isScratchSite: Bool {
-        return host == "scratch.mit.edu"
+        let normalizedHost = "." + (host ?? "")
+        let scratchHosts = [
+            ".scratch.mit.edu",
+            ".scratch-wiki.info",
+            ".scratchfoundation.org",
+            ".scratchjr.org",
+        ]
+        return scratchHosts.contains(where: normalizedHost.hasSuffix(_:))
     }
 }
 
