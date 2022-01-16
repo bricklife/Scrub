@@ -24,19 +24,19 @@ struct PreferencesView: View {
                     closeKeyboard()
                     preferences.home = .scratchHome
                 }) {
-                    CheckmarkText(title: Text("Scratch Home"), checked: preferences.home == .scratchHome)
+                    CheckmarkText(title: Text("Scratch - Home"), checked: preferences.home == .scratchHome)
                 }
                 Button(action: {
                     closeKeyboard()
                     preferences.home = .scratchEditor
                 }) {
-                    CheckmarkText(title: Text("Scratch Editor (Create New Project)"), checked: preferences.home == .scratchEditor)
+                    CheckmarkText(title: Text("Scratch - Editor (Create New Project)"), checked: preferences.home == .scratchEditor)
                 }
                 Button(action: {
                     closeKeyboard()
                     preferences.home = .scratchMyStuff
                 }) {
-                    CheckmarkText(title: Text("Scratch My Stuff"), checked: preferences.home == .scratchMyStuff)
+                    CheckmarkText(title: Text("Scratch - My Stuff"), checked: preferences.home == .scratchMyStuff)
                 }
                 Button(action: {
                     closeKeyboard()
