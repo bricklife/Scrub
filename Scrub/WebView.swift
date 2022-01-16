@@ -27,10 +27,6 @@ extension URL {
     var isScratchSite: Bool {
         return host == "scratch.mit.edu"
     }
-    
-    var isLocal: Bool {
-        return scheme == "file"
-    }
 }
 
 struct WebView: UIViewControllerRepresentable {
@@ -112,7 +108,7 @@ extension WebView {
             #if DEBUG
             decisionHandler(.allow)
             #else
-            if url.isScratchSite || url.isLocal || isScratchEditor {
+            if url.isScratchSite || url.isFileURL || isScratchEditor {
                 decisionHandler(.allow)
             } else {
                 decisionHandler(.deny)
