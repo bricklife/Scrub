@@ -62,8 +62,21 @@ class Preferences: ObservableObject {
     }
     
     init() {
+        migrate()
+        
         NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: .main) { [weak self] _ in
             self?.objectWillChange.send()
+        }
+    }
+    
+    private func migrate() {
+        if let value = UserDefaults.standard.string(forKey: "homeUrl") {
+            UserDefaults.standard.removeObject(forKey: "homeUrl")
+            if value == "custom" {
+                UserDefaults.standard.setValue(Home.customUrl.rawValue, forKey: homeKey)
+            } else {
+                UserDefaults.standard.setValue(value, forKey: homeKey)
+            }
         }
     }
 }
