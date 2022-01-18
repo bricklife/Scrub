@@ -83,7 +83,7 @@ public class ScratchWebViewController: WebViewController {
     
 #if os(iOS)
     public override func viewWillLayoutSubviews() {
-        let multiplier = max(1.0, 1024.0 / view.bounds.width)
+        let multiplier = max(1.0, 1092.0 / view.bounds.width)
         updateSizeConstraints(multiplier: multiplier)
         webView.transform = CGAffineTransform(scaleX: 1.0 / multiplier, y: 1.0 / multiplier)
     }

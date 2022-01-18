@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CBB0358C2796BBCE007F51D2 /* ManagedAppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB0358B2796BBCE007F51D2 /* ManagedAppConfig.swift */; };
+		CBB0358D2796BBCE007F51D2 /* ManagedAppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB0358B2796BBCE007F51D2 /* ManagedAppConfig.swift */; };
 		CBD43E1F27756D3700039737 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBD43E0D27756D3700039737 /* Assets.xcassets */; };
 		CBD43E2027756D3700039737 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBD43E0D27756D3700039737 /* Assets.xcassets */; };
 		CBD43E2F27756F2800039737 /* ScrubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43E2D27756F2800039737 /* ScrubApp.swift */; };
@@ -172,6 +174,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CBB0358B2796BBCE007F51D2 /* ManagedAppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedAppConfig.swift; sourceTree = "<group>"; };
 		CBD43E0D27756D3700039737 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBD43E1227756D3700039737 /* Scrub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scrub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBD43E1827756D3700039737 /* Scrub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scrub.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -303,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				CBD43E3B2775748F00039737 /* LocalDocumentsManager.swift */,
+				CBB0358B2796BBCE007F51D2 /* ManagedAppConfig.swift */,
 				CBD43E392775748F00039737 /* Preferences.swift */,
 				CBD43E3A2775748F00039737 /* index.html */,
 				CBD43E0D27756D3700039737 /* Assets.xcassets */,
@@ -786,6 +790,7 @@
 				CBD43E61277574AE00039737 /* AlertController.swift in Sources */,
 				CBD43E62277574AE00039737 /* ActivityView.swift in Sources */,
 				CBD43E4A2775748F00039737 /* LocalDocumentsManager.swift in Sources */,
+				CBB0358C2796BBCE007F51D2 /* ManagedAppConfig.swift in Sources */,
 				CBD43E5E277574AE00039737 /* CircleProgressView.swift in Sources */,
 				CBD43E60277574AE00039737 /* WebView.swift in Sources */,
 			);
@@ -801,6 +806,7 @@
 				CBF6C69827788EAE00548AA8 /* MainToolbar.swift in Sources */,
 				CBD43E4B2775748F00039737 /* LocalDocumentsManager.swift in Sources */,
 				CBD43E472775748F00039737 /* Preferences.swift in Sources */,
+				CBB0358D2796BBCE007F51D2 /* ManagedAppConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

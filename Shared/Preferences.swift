@@ -8,49 +8,86 @@
 import Foundation
 import Combine
 
+private let homeKey = "home"
+private let customUrlKey = "customUrl"
+private let didShowBluetoothParingDialogKey = "didShowBluetoothParingDialog"
+
 class Preferences: ObservableObject {
     
-    enum HomeUrl: String {
+    enum Home: String {
         case scratchHome
         case scratchEditor
         case scratchMyStuff
-        case custom
+        case customUrl
         case documentsFolder
     }
     
-    @Published var homeUrl: HomeUrl
-    @Published var customUrl: String
-    @Published var didShowBluetoothParingDialog: Bool
+    var home: Home {
+        get {
+            ManagedAppConfig.shared.rawRepresentable(forKey: homeKey)
+            ?? UserDefaults.standard.rawRepresentable(forKey: homeKey)
+            ?? .scratchEditor
+        }
+        set {
+            UserDefaults.standard.setRawRepresentable(newValue, forKey: homeKey)
+        }
+    }
     
-    private var cancellables: Set<AnyCancellable> = []
+    var isHomeLocked: Bool {
+        ManagedAppConfig.shared.isSet(forKey: homeKey)
+    }
+    
+    var customUrl: String {
+        get {
+            ManagedAppConfig.shared.string(forKey: customUrlKey)
+            ?? UserDefaults.standard.string(forKey: customUrlKey)
+            ?? "http://"
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: customUrlKey)
+        }
+    }
+    
+    var isCustomUrlLocked: Bool {
+        ManagedAppConfig.shared.isSet(forKey: customUrlKey)
+    }
+    
+    var didShowBluetoothParingDialog: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: didShowBluetoothParingDialogKey)
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: didShowBluetoothParingDialogKey)
+        }
+    }
     
     init() {
-        self.homeUrl = UserDefaults.standard.getEnum(forKey: "homeUrl") ?? .scratchEditor
-        self.customUrl = UserDefaults.standard.string(forKey: "customUrl") ?? "https://"
-        self.didShowBluetoothParingDialog = UserDefaults.standard.bool(forKey: "didShowBluetoothParingDialog")
+        migrate()
         
-        $homeUrl.sink { (value) in
-            UserDefaults.standard.setEnum(value, forKey: "homeUrl")
-        }.store(in: &cancellables)
-        $customUrl.sink { (value) in
-            UserDefaults.standard.setValue(value, forKey: "customUrl")
-        }.store(in: &cancellables)
-        $didShowBluetoothParingDialog.sink { (value) in
-            UserDefaults.standard.setValue(value, forKey: "didShowBluetoothParingDialog")
-        }.store(in: &cancellables)
+        NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: .main) { [weak self] _ in
+            self?.objectWillChange.send()
+        }
+    }
+    
+    private func migrate() {
+        if let value = UserDefaults.standard.string(forKey: "homeUrl") {
+            UserDefaults.standard.removeObject(forKey: "homeUrl")
+            if value == "custom" {
+                UserDefaults.standard.setValue(Home.customUrl.rawValue, forKey: homeKey)
+            } else {
+                UserDefaults.standard.setValue(value, forKey: homeKey)
+            }
+        }
     }
 }
 
 extension UserDefaults {
     
-    func getEnum<V>(forKey key: String) -> V? where V: RawRepresentable, V.RawValue == String {
-        if let s = string(forKey: key), let v = V.init(rawValue: s) {
-            return v
-        }
-        return nil
+    func rawRepresentable<V>(forKey key: String) -> V? where V: RawRepresentable, V.RawValue == String {
+        return string(forKey: key).flatMap(V.init(rawValue:))
     }
     
-    func setEnum<V>(_ value: V?, forKey key: String) where V: RawRepresentable, V.RawValue == String {
+    func setRawRepresentable<V>(_ value: V?, forKey key: String) where V: RawRepresentable, V.RawValue == String {
         setValue(value?.rawValue, forKey: key)
     }
 }

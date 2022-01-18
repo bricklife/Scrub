@@ -36,15 +36,15 @@ class WebViewModel: ObservableObject {
         self.inputs = inputsSubject.eraseToAnyPublisher()
     }
     
-    var homeUrl: URL? {
-        switch preferences.homeUrl {
+    var home: URL? {
+        switch preferences.home {
         case .scratchHome:
             return URL(string: "https://scratch.mit.edu/")
         case .scratchEditor:
             return URL(string: "https://scratch.mit.edu/projects/editor/")
         case .scratchMyStuff:
             return URL(string: "https://scratch.mit.edu/mystuff/")
-        case .custom:
+        case .customUrl:
             if let url = URL(string: preferences.customUrl), url.scheme == "http" || url.scheme == "https" {
                 return url
             }

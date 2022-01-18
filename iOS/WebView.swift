@@ -23,6 +23,19 @@ extension WebViewError: LocalizedError {
     }
 }
 
+extension URL {
+    var isScratchSite: Bool {
+        let normalizedHost = "." + (host ?? "")
+        let scratchHosts = [
+            ".scratch.mit.edu",
+            ".scratch-wiki.info",
+            ".scratchfoundation.org",
+            ".scratchjr.org",
+        ]
+        return scratchHosts.contains(where: normalizedHost.hasSuffix(_:))
+    }
+}
+
 struct WebView: UIViewControllerRepresentable {
     
     @ObservedObject var viewModel: WebViewModel
@@ -41,7 +54,7 @@ struct WebView: UIViewControllerRepresentable {
         
         if let url = url, url.scheme != "file" {
             webViewController.load(url: url)
-        } else if let url = viewModel.homeUrl {
+        } else if let url = viewModel.home {
             webViewController.load(url: url)
         } else {
             alertController.showAlert(error: WebViewError.invalidUrl)
@@ -68,7 +81,7 @@ extension WebView {
             parent.viewModel.inputs.sink { (inputs) in
                 switch inputs {
                 case .goHome:
-                    if let url = parent.viewModel.homeUrl {
+                    if let url = parent.viewModel.home {
                         parent.webViewController.load(url: url)
                     } else {
                         parent.alertController.showAlert(error: WebViewError.invalidUrl)
@@ -102,9 +115,7 @@ extension WebView {
             #if DEBUG
             decisionHandler(.allow)
             #else
-            let isScratchSite = url.host == "scratch.mit.edu"
-            let isLocal = url.scheme == "file"
-            if isScratchSite || isLocal || isScratchEditor {
+            if url.isScratchSite || url.isFileURL || isScratchEditor {
                 decisionHandler(.allow)
             } else {
                 decisionHandler(.deny)

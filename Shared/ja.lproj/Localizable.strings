@@ -21,15 +21,15 @@
 "%@ is Not Allowed" = "%@が許可されていません";
 "Allow %@ access in Settings to use this function." = "この機能を使うには設定で%@へのアクセスを許可してください。";
 
-"Set as Home URL" = "ホームURLに設定する";
+"Set as Home" = "ホームに設定する";
 "Open in Browser" = "ブラウザで開く";
 
 "Preferences" = "設定";
-"Home URL" = "ホームURL";
-"Scratch Home" = "Scratch ホーム";
-"Scratch Editor (Create New Project)" = "Scratch エディタ (新しいプロジェクト)";
-"Scratch My Stuff" = "Scratch 私の作品";
-"Custom" = "カスタム";
+"Home" = "ホーム";
+"Scratch - Home" = "Scratch - ホーム";
+"Scratch - Editor (Create New Project)" = "Scratch - エディタ (新しいプロジェクト)";
+"Scratch - My Stuff" = "Scratch - 私の作品";
+"Custom URL" = "カスタムURL";
 "Local Documents Folder" = "ローカルフォルダ";
 "Support" = "サポート";
 "Special Thanks" = "謝辞";

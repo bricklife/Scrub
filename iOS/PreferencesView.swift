@@ -13,46 +13,51 @@ struct PreferencesView: View {
     
     var body: some View {
         Form {
-            // Home URL
-            Section(header: Label("Home URL", systemImage: "house")) {
+            // Home
+            Section(header: HStack {
+                Label("Home", systemImage: "house")
+                if preferences.isHomeLocked {
+                    LockImage()
+                }
+            }.font(.headline)) {
                 Button(action: {
                     closeKeyboard()
-                    preferences.homeUrl = .scratchHome
+                    preferences.home = .scratchHome
                 }) {
-                    CheckmarkText(title: Text("Scratch Home"), checked: preferences.homeUrl == .scratchHome)
+                    CheckmarkText(title: Text("Scratch - Home"), checked: preferences.home == .scratchHome)
                 }
                 Button(action: {
                     closeKeyboard()
-                    preferences.homeUrl = .scratchEditor
+                    preferences.home = .scratchEditor
                 }) {
-                    CheckmarkText(title: Text("Scratch Editor (Create New Project)"), checked: preferences.homeUrl == .scratchEditor)
+                    CheckmarkText(title: Text("Scratch - Editor (Create New Project)"), checked: preferences.home == .scratchEditor)
                 }
                 Button(action: {
                     closeKeyboard()
-                    preferences.homeUrl = .scratchMyStuff
+                    preferences.home = .scratchMyStuff
                 }) {
-                    CheckmarkText(title: Text("Scratch My Stuff"), checked: preferences.homeUrl == .scratchMyStuff)
+                    CheckmarkText(title: Text("Scratch - My Stuff"), checked: preferences.home == .scratchMyStuff)
                 }
                 Button(action: {
                     closeKeyboard()
-                    preferences.homeUrl = .custom
+                    preferences.home = .customUrl
                 }) {
                     VStack {
-                        CheckmarkText(title: Text("Custom"), checked: preferences.homeUrl == .custom)
-                        URLTextField(text: $preferences.customUrl, onEditingChanged: { isEditing in
+                        CheckmarkText(title: Text("Custom URL"), checked: preferences.home == .customUrl)
+                        URLTextField(text: $preferences.customUrl, disabled: preferences.isCustomUrlLocked, onEditingChanged: { isEditing in
                             if isEditing {
-                                preferences.homeUrl = .custom
+                                preferences.home = .customUrl
                             }
                         })
                     }
                 }
                 Button(action: {
                     closeKeyboard()
-                    preferences.homeUrl = .documentsFolder
+                    preferences.home = .documentsFolder
                 }) {
-                    CheckmarkText(title: Text("Local Documents Folder"), checked: preferences.homeUrl == .documentsFolder)
+                    CheckmarkText(title: Text("Local Documents Folder"), checked: preferences.home == .documentsFolder)
                 }
-            }
+            }.disabled(preferences.isHomeLocked)
             
             // Support, Special Thanks
             Section {
@@ -104,6 +109,13 @@ struct PreferencesView: View {
     }
 }
 
+private struct LockImage: View {
+    
+    var body: some View {
+        Image(systemName: "lock.fill").foregroundColor(.red)
+    }
+}
+
 private struct CheckmarkText: View {
     
     let title: Text
@@ -123,20 +135,27 @@ private struct CheckmarkText: View {
 private struct URLTextField: View {
     
     @Binding var text: String
+    let disabled: Bool
     let onEditingChanged: (Bool) -> Void
     
     @State private var isEditing = false
     
     var body: some View {
         HStack {
+            if disabled {
+                LockImage()
+            }
+            
             TextField("https://", text: $text, onEditingChanged: { isEditing in
                 self.isEditing = isEditing
                 onEditingChanged(isEditing)
             })
-            .foregroundColor(.secondary)
-            .keyboardType(.URL)
-            .autocapitalization(.none)
-            .disableAutocorrection(true)
+                .foregroundColor(.secondary)
+                .keyboardType(.URL)
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
+                .disabled(disabled)
+            
             if isEditing && !text.isEmpty {
                 Button(action: {
                     text = ""
