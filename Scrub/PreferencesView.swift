@@ -112,7 +112,7 @@ struct PreferencesView: View {
 private struct LockImage: View {
     
     var body: some View {
-        Image(systemName: "lock.fill").foregroundColor(.red)
+        Image(symbol: .lockFill).foregroundColor(.red)
     }
 }
 
@@ -126,7 +126,7 @@ private struct CheckmarkText: View {
             title.foregroundColor(.primary)
             Spacer()
             if checked {
-                Image(systemName: "checkmark")
+                Image(symbol: .checkmark)
             }
         }
     }
@@ -160,7 +160,7 @@ private struct URLTextField: View {
                 Button(action: {
                     text = ""
                 }) {
-                    Image(systemName: "xmark.circle.fill")
+                    Image(symbol: .xmarkCircleFill)
                         .foregroundColor(.secondary)
                 }
             }
@@ -178,7 +178,7 @@ private struct WebLink: View {
             HStack {
                 title
                 Spacer()
-                Image(systemName: "globe")
+                Image(symbol: .globe)
             }
         }
     }

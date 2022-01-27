@@ -16,6 +16,7 @@
 		CB3EE8D4266082D100005ECC /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3EE8D3266082D100005ECC /* AlertController.swift */; };
 		CB3FBCF92605D98C008FE5C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */; };
 		CB47F3BB2632DF5600C0A7ED /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB47F3BA2632DF5600C0A7ED /* CircleProgressView.swift */; };
+		CB485DC927A250D8003C9A68 /* SFUserFriendlySymbols in Frameworks */ = {isa = PBXBuildFile; productRef = CB485DC827A250D8003C9A68 /* SFUserFriendlySymbols */; };
 		CB4D940A265772BA007C59AB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CB4D9409265772BA007C59AB /* Settings.bundle */; };
 		CB52568F26419776009EE660 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB52568E26419776009EE660 /* ActivityView.swift */; };
 		CB713FEA2774994E009C63E8 /* ScratchLink in Frameworks */ = {isa = PBXBuildFile; productRef = CB713FE92774994E009C63E8 /* ScratchLink */; };
@@ -73,6 +74,7 @@
 			files = (
 				CB713FEA2774994E009C63E8 /* ScratchLink in Frameworks */,
 				CB713FED27749B2A009C63E8 /* ScratchWebKit in Frameworks */,
+				CB485DC927A250D8003C9A68 /* SFUserFriendlySymbols in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +168,7 @@
 			packageProductDependencies = (
 				CB713FE92774994E009C63E8 /* ScratchLink */,
 				CB713FEC27749B2A009C63E8 /* ScratchWebKit */,
+				CB485DC827A250D8003C9A68 /* SFUserFriendlySymbols */,
 			);
 			productName = Scrub;
 			productReference = CB3FBCEC2605D98B008FE5C2 /* Scrub.app */;
@@ -196,6 +199,9 @@
 				ja,
 			);
 			mainGroup = CB3FBCE32605D98B008FE5C2;
+			packageReferences = (
+				CB485DC727A250D8003C9A68 /* XCRemoteSwiftPackageReference "SFUserFriendlySymbols" */,
+			);
 			productRefGroup = CB3FBCED2605D98B008FE5C2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -451,7 +457,23 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		CB485DC727A250D8003C9A68 /* XCRemoteSwiftPackageReference "SFUserFriendlySymbols" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/littleossa/SFUserFriendlySymbols";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		CB485DC827A250D8003C9A68 /* SFUserFriendlySymbols */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CB485DC727A250D8003C9A68 /* XCRemoteSwiftPackageReference "SFUserFriendlySymbols" */;
+			productName = SFUserFriendlySymbols;
+		};
 		CB713FE92774994E009C63E8 /* ScratchLink */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ScratchLink;

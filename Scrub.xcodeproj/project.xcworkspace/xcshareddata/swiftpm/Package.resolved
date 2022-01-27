@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SFUserFriendlySymbols",
+        "repositoryURL": "https://github.com/littleossa/SFUserFriendlySymbols",
+        "state": {
+          "branch": null,
+          "revision": "9e3e09327c31271b1ed297d4320464d4769be040",
+          "version": "0.1.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

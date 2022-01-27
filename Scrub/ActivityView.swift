@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SFUserFriendlySymbols
 
 struct ActivityView: UIViewControllerRepresentable {
     
@@ -35,7 +36,7 @@ class HomeActivity: UIActivity {
     }
     
     override var activityImage: UIImage? {
-        return UIImage(systemName: "house")
+        return UIImage(symbol: .house)
     }
     
     override func canPerform(withActivityItems activityItems: [Any]) -> Bool {
@@ -74,7 +75,7 @@ class BrowserActivity: UIActivity {
     }
     
     override var activityImage: UIImage? {
-        return UIImage(systemName: "safari")
+        return UIImage(symbol: .safari)
     }
     
     override func canPerform(withActivityItems activityItems: [Any]) -> Bool {

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SFUserFriendlySymbols
 
 struct MainView: View {
     
@@ -38,7 +39,7 @@ struct MainView: View {
                 Button(action: {
                     isShowingActivityView = true
                 }) {
-                    Image(systemName: "square.and.arrow.up")
+                    Image(symbol: .squareAndArrowUp)
                 }
                 .disabled(!canShareUrl)
                 .opacity(canShareUrl ? 1.0 : 0.4)
@@ -54,21 +55,21 @@ struct MainView: View {
                 Spacer()
                 
                 Button(action: { webViewModel.apply(inputs: .goHome) }) {
-                    Image(systemName: "house")
+                    Image(symbol: .house)
                 }
                 Button(action: { webViewModel.apply(inputs: .goBack) }) {
-                    Image(systemName: "chevron.backward")
+                    Image(symbol: .chevronBackward)
                 }
                 .opacity(webViewModel.canGoBack ? 1.0 : 0.4)
                 Button(action: { webViewModel.apply(inputs: .goForward) }) {
-                    Image(systemName: "chevron.forward")
+                    Image(symbol: .chevronForward)
                 }
                 .opacity(webViewModel.canGoForward ? 1.0 : 0.4)
                 
                 Spacer()
                 
                 Button(action: { isShowingPreferences = true }) {
-                    Image(systemName: "gear")
+                    Image(symbol: .gear)
                 }
             }
             .padding(4)
@@ -111,9 +112,9 @@ struct ReloadAndStopButton: View {
                 .animation(.easeInOut(duration: 0.2))
             Button(action: action) {
                 if isLoading {
-                    Image(systemName: "xmark")
+                    Image(symbol: .xmark)
                 } else {
-                    Image(systemName: "arrow.clockwise")
+                    Image(symbol: .arrowClockwise)
                 }
             }
         }
