@@ -72,6 +72,7 @@
 		CBD43F4127761B4400039737 /* ScratchLink.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBD43ECA2776154500039737 /* ScratchLink.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CBD43F492776225400039737 /* BundleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F482776225300039737 /* BundleLoader.swift */; };
 		CBD43F4B2776231600039737 /* BundleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43F4A2776231600039737 /* BundleLoader.swift */; };
+		CBDF31AB27C1019800C71A09 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CBDF31A927C1019800C71A09 /* Credits.rtf */; };
 		CBF6C69827788EAE00548AA8 /* MainToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF6C69727788EAE00548AA8 /* MainToolbar.swift */; };
 		CBF6C69B2778C6F500548AA8 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF6C69A2778C6F500548AA8 /* MainWindowController.swift */; };
 /* End PBXBuildFile section */
@@ -209,6 +210,7 @@
 		CBD43F3E27761B1200039737 /* ScratchWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScratchWebViewController.swift; sourceTree = "<group>"; };
 		CBD43F482776225300039737 /* BundleLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleLoader.swift; sourceTree = "<group>"; };
 		CBD43F4A2776231600039737 /* BundleLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleLoader.swift; sourceTree = "<group>"; };
+		CBDF31AA27C1019800C71A09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Base; path = Credits.rtf; sourceTree = "<group>"; };
 		CBF6C69727788EAE00548AA8 /* MainToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainToolbar.swift; sourceTree = "<group>"; };
 		CBF6C69A2778C6F500548AA8 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -331,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				CBD43E3227756F6C00039737 /* Main.storyboard */,
+				CBDF31A927C1019800C71A09 /* Credits.rtf */,
 			);
 			path = Base.lproj;
 			sourceTree = "<group>";
@@ -663,6 +666,7 @@
 				CBD43E492775748F00039737 /* index.html in Resources */,
 				CBD43E532775748F00039737 /* InfoPlist.strings in Resources */,
 				CBD43E512775748F00039737 /* Localizable.strings in Resources */,
+				CBDF31AB27C1019800C71A09 /* Credits.rtf in Resources */,
 				CBD43E4D2775748F00039737 /* Localizable.strings in Resources */,
 				CBD43E2027756D3700039737 /* Assets.xcassets in Resources */,
 				CBD43E3627756F6C00039737 /* Main.storyboard in Resources */,
@@ -858,6 +862,14 @@
 				CBD43EFB2776160900039737 /* en */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		CBDF31A927C1019800C71A09 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CBDF31AA27C1019800C71A09 /* Base */,
+			);
+			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
