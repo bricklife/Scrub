@@ -1069,7 +1069,7 @@
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "App uses Bluetooth to communicate with external devices.";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "App uses Bluetooth to communicate with external devices.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "App uses the camera to get images.";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021–2022 bricklife.com. All rights reserved.";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "App uses the microphone to get sounds.";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -1103,7 +1103,7 @@
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "App uses Bluetooth to communicate with external devices.";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "App uses Bluetooth to communicate with external devices.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "App uses the camera to get images.";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021–2022 bricklife.com. All rights reserved.";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "App uses the microphone to get sounds.";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
