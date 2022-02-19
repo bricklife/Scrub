@@ -16,16 +16,15 @@ let package = Package(
         ),
         .library(
             name: "DummyModules",
-            targets: ["PerfectHTTP", "PerfectWebSockets"]
+            targets: ["PerfectWebSockets"]
         ),
     ],
     targets: [
         .target(
             name: "ScratchLink",
-            dependencies: ["PerfectHTTP", "PerfectWebSockets"],
+            dependencies: ["PerfectWebSockets"],
             exclude: [
                 "scratch-link/Assets",
-                "scratch-link/Certificates",
                 "scratch-link/Documentation",
                 "scratch-link/Windows",
                 "scratch-link/LICENSE",
@@ -46,7 +45,6 @@ let package = Package(
                 .process("Resources"),
             ]
         ),
-        .target(name: "PerfectHTTP"),
         .target(name: "PerfectWebSockets"),
     ]
 )
