@@ -20,6 +20,8 @@ class MainViewController: NSViewController {
         view.window?.toolbar as? MainToolbar
     }
     
+    private let homeUrl = URL(string: "https://scratch.mit.edu/projects/editor/")!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,8 +32,7 @@ class MainViewController: NSViewController {
         //let url = URL(string: "https://bricklife.com/scratch-gui/")!
         //let url = URL(string: "https://stretch3.github.io/")!
         //let url = URL(string: "https://bricklife.com/webview-checker.html")!
-        let url = URL(string: "https://scratch.mit.edu/projects/editor/")!
-        webViewController?.load(url: url)
+        webViewController?.load(url: homeUrl)
     }
     
     override func viewWillAppear() {
@@ -80,6 +81,10 @@ class MainViewController: NSViewController {
 }
 
 extension MainViewController {
+    
+    @objc func gotoBeginning(_ sender: Any?) {
+        webViewController?.load(url: homeUrl)
+    }
     
     @objc func goBack(_ sender: Any?) {
         webViewController?.goBack(sender)

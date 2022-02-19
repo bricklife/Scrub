@@ -437,6 +437,12 @@
                         <value key="minSize" type="size" width="500" height="500"/>
                         <toolbar key="toolbar" implicitIdentifier="0A0C1D2F-1066-4531-A9D2-22E09FC67810" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconOnly" sizeMode="regular" id="rHf-FS-Sgq" customClass="MainToolbar" customModule="Scrub" customModuleProvider="target">
                             <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="38E0D240-8381-431E-8CB5-9E797EF35B13" label="" paletteLabel="Home" tag="-1" bordered="YES" sizingBehavior="auto" id="C0V-Th-C6f">
+                                    <imageReference key="image" image="house" catalog="system" symbolScale="large"/>
+                                    <connections>
+                                        <action selector="gotoBeginning:" target="Oky-zY-oP4" id="Yl7-wa-Hp6"/>
+                                    </connections>
+                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="75858433-37D6-468B-82F4-6CE97E34BDFE" label="" paletteLabel="Back" tag="-1" bordered="YES" sizingBehavior="auto" id="oJ4-DV-DaQ">
                                     <imageReference key="image" image="chevron.backward" catalog="system" symbolScale="large"/>
                                     <connections>
@@ -485,6 +491,7 @@
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="Ipq-s8-cF6"/>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
+                                <toolbarItem reference="C0V-Th-C6f"/>
                                 <toolbarItem reference="oJ4-DV-DaQ"/>
                                 <toolbarItem reference="VMN-yw-NbI"/>
                                 <toolbarItem reference="Jd3-xj-oyX"/>
@@ -594,6 +601,7 @@
         <image name="arrow.clockwise" catalog="system" width="17" height="20"/>
         <image name="chevron.backward" catalog="system" width="12" height="16"/>
         <image name="chevron.forward" catalog="system" width="12" height="16"/>
+        <image name="house" catalog="system" width="23" height="20"/>
         <image name="square.and.arrow.up" catalog="system" width="18" height="21"/>
         <image name="xmark" catalog="system" width="16" height="15"/>
     </resources>
