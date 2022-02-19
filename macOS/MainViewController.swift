@@ -29,7 +29,8 @@ class MainViewController: NSViewController {
         
         //let url = URL(string: "https://bricklife.com/scratch-gui/")!
         //let url = URL(string: "https://stretch3.github.io/")!
-        let url = URL(string: "https://bricklife.com/webview-checker.html")!
+        //let url = URL(string: "https://bricklife.com/webview-checker.html")!
+        let url = URL(string: "https://scratch.mit.edu/projects/editor/")!
         webViewController?.load(url: url)
     }
     
