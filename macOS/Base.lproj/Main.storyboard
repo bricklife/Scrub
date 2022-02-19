@@ -583,14 +583,119 @@
             </objects>
             <point key="canvasLocation" x="-896" y="-134"/>
         </scene>
-        <!--View Controller-->
+        <!--Preferences View Controller-->
         <scene sceneID="TAl-Xh-mP1">
             <objects>
-                <viewController id="oaj-1T-wSP" sceneMemberID="viewController">
+                <viewController id="oaj-1T-wSP" customClass="PreferencesViewController" customModule="Scrub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="asu-J2-Fy3">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="uon-Xv-P6r">
+                                <rect key="frame" x="0.0" y="0.0" width="120" height="270"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="q3F-r0-K2K">
+                                        <rect key="frame" x="18" y="234" width="104" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Home:" id="LVy-B2-VG6">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="q3F-r0-K2K" firstAttribute="leading" secondItem="uon-Xv-P6r" secondAttribute="leading" constant="20" id="L4g-Sa-1e8"/>
+                                    <constraint firstItem="q3F-r0-K2K" firstAttribute="top" secondItem="uon-Xv-P6r" secondAttribute="top" constant="20" id="WYV-YF-EHX"/>
+                                    <constraint firstAttribute="trailing" secondItem="q3F-r0-K2K" secondAttribute="trailing" id="cow-79-bsA"/>
+                                    <constraint firstAttribute="width" constant="120" id="idS-2f-Bv8"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="6FI-g1-tRv">
+                                <rect key="frame" x="120" y="0.0" width="360" height="270"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="43X-aE-76Y">
+                                        <rect key="frame" x="8" y="233" width="332" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Scratch - Home" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="6pM-aj-x5Z">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="selectHome:" target="oaj-1T-wSP" id="rED-UW-Bm6"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="aa4-pP-WHs">
+                                        <rect key="frame" x="8" y="207" width="332" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Scratch - Editor (Create New Project)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="ThI-hG-elt">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="selectHome:" target="oaj-1T-wSP" id="1Ge-78-AMf"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="WJA-kF-sgj">
+                                        <rect key="frame" x="8" y="181" width="332" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Scratch - My Stuff" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="M61-dy-fV8">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="selectHome:" target="oaj-1T-wSP" id="TRg-0n-og9"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="gdh-zh-2zc">
+                                        <rect key="frame" x="8" y="155" width="332" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Custom URL" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="zqq-9e-4P2">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="selectHome:" target="oaj-1T-wSP" id="oBL-gR-OUU"/>
+                                        </connections>
+                                    </button>
+                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vlm-l4-S8h">
+                                        <rect key="frame" x="30" y="125" width="310" height="21"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="WcS-Bc-aN1">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="WJA-kF-sgj" secondAttribute="trailing" constant="20" id="1OL-WT-Kdh"/>
+                                    <constraint firstItem="WJA-kF-sgj" firstAttribute="top" secondItem="aa4-pP-WHs" secondAttribute="bottom" constant="10" id="5Lm-Tz-vLF"/>
+                                    <constraint firstItem="aa4-pP-WHs" firstAttribute="top" secondItem="43X-aE-76Y" secondAttribute="bottom" constant="10" id="6WI-fT-nyv"/>
+                                    <constraint firstAttribute="trailing" secondItem="aa4-pP-WHs" secondAttribute="trailing" constant="20" id="7lQ-Jg-jh6"/>
+                                    <constraint firstAttribute="trailing" secondItem="43X-aE-76Y" secondAttribute="trailing" constant="20" id="QL9-gU-eim"/>
+                                    <constraint firstItem="gdh-zh-2zc" firstAttribute="leading" secondItem="6FI-g1-tRv" secondAttribute="leading" constant="10" id="YBj-cE-Vnf"/>
+                                    <constraint firstAttribute="trailing" secondItem="gdh-zh-2zc" secondAttribute="trailing" constant="20" id="Yln-l7-YHz"/>
+                                    <constraint firstAttribute="trailing" secondItem="Vlm-l4-S8h" secondAttribute="trailing" constant="20" id="bfr-1w-cAj"/>
+                                    <constraint firstItem="WJA-kF-sgj" firstAttribute="leading" secondItem="6FI-g1-tRv" secondAttribute="leading" constant="10" id="i7K-cf-RqQ"/>
+                                    <constraint firstItem="43X-aE-76Y" firstAttribute="top" secondItem="6FI-g1-tRv" secondAttribute="top" constant="20" id="ja4-J6-3f1"/>
+                                    <constraint firstItem="Vlm-l4-S8h" firstAttribute="top" secondItem="gdh-zh-2zc" secondAttribute="bottom" constant="10" id="o06-df-I0k"/>
+                                    <constraint firstItem="aa4-pP-WHs" firstAttribute="leading" secondItem="6FI-g1-tRv" secondAttribute="leading" constant="10" id="o9T-g1-7WZ"/>
+                                    <constraint firstItem="Vlm-l4-S8h" firstAttribute="leading" secondItem="6FI-g1-tRv" secondAttribute="leading" constant="30" id="oLi-gU-m2d"/>
+                                    <constraint firstItem="gdh-zh-2zc" firstAttribute="top" secondItem="WJA-kF-sgj" secondAttribute="bottom" constant="10" id="tpS-bf-Zxy"/>
+                                    <constraint firstItem="43X-aE-76Y" firstAttribute="leading" secondItem="6FI-g1-tRv" secondAttribute="leading" constant="10" id="uQA-0v-K8w"/>
+                                    <constraint firstAttribute="trailing" secondItem="gdh-zh-2zc" secondAttribute="trailing" constant="20" id="xe8-vK-ryB"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="6FI-g1-tRv" secondAttribute="trailing" id="8xD-oj-BLI"/>
+                            <constraint firstItem="uon-Xv-P6r" firstAttribute="leading" secondItem="asu-J2-Fy3" secondAttribute="leading" id="CAd-Va-QXM"/>
+                            <constraint firstItem="uon-Xv-P6r" firstAttribute="top" secondItem="asu-J2-Fy3" secondAttribute="top" id="Icm-BU-gIV"/>
+                            <constraint firstItem="6FI-g1-tRv" firstAttribute="leading" secondItem="uon-Xv-P6r" secondAttribute="trailing" id="JVv-0s-FwE"/>
+                            <constraint firstItem="6FI-g1-tRv" firstAttribute="top" secondItem="asu-J2-Fy3" secondAttribute="top" id="T7h-qF-1Kd"/>
+                            <constraint firstAttribute="bottom" secondItem="uon-Xv-P6r" secondAttribute="bottom" id="Ts3-sd-9Xb"/>
+                            <constraint firstAttribute="bottom" secondItem="6FI-g1-tRv" secondAttribute="bottom" id="Uxq-zI-Xwg"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="groupView" destination="6FI-g1-tRv" id="RfO-sN-pVl"/>
+                        <outlet property="textField" destination="Vlm-l4-S8h" id="7XV-RK-f46"/>
+                    </connections>
                 </viewController>
                 <customObject id="dgJ-wg-TWK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

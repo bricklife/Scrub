@@ -73,6 +73,7 @@
 		CBDF31B127C12AC800C71A09 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = CBDF31AF27C12AC800C71A09 /* index.html */; };
 		CBDF31B427C12AF700C71A09 /* LocalDocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDF31B327C12AF700C71A09 /* LocalDocumentsManager.swift */; };
 		CBDF31B527C12AFC00C71A09 /* LocalDocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDF31B327C12AF700C71A09 /* LocalDocumentsManager.swift */; };
+		CBDF31B727C1324200C71A09 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDF31B627C1324200C71A09 /* PreferencesViewController.swift */; };
 		CBF6C69827788EAE00548AA8 /* MainToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF6C69727788EAE00548AA8 /* MainToolbar.swift */; };
 		CBF6C69B2778C6F500548AA8 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF6C69A2778C6F500548AA8 /* MainWindowController.swift */; };
 /* End PBXBuildFile section */
@@ -211,6 +212,7 @@
 		CBDF31AC27C12ABA00C71A09 /* WebViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		CBDF31AF27C12AC800C71A09 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		CBDF31B327C12AF700C71A09 /* LocalDocumentsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalDocumentsManager.swift; sourceTree = "<group>"; };
+		CBDF31B627C1324200C71A09 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		CBF6C69727788EAE00548AA8 /* MainToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainToolbar.swift; sourceTree = "<group>"; };
 		CBF6C69A2778C6F500548AA8 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -305,6 +307,7 @@
 				CBF6C69727788EAE00548AA8 /* MainToolbar.swift */,
 				CBF6C69A2778C6F500548AA8 /* MainWindowController.swift */,
 				CBD43E3427756F6C00039737 /* MainViewController.swift */,
+				CBDF31B627C1324200C71A09 /* PreferencesViewController.swift */,
 				CBD43E3127756F6C00039737 /* Base.lproj */,
 				CBD43E1A27756D3700039737 /* macOS.entitlements */,
 			);
@@ -724,6 +727,7 @@
 			files = (
 				CBD43E3827756F6C00039737 /* AppDelegate.swift in Sources */,
 				CBD43E3727756F6C00039737 /* MainViewController.swift in Sources */,
+				CBDF31B727C1324200C71A09 /* PreferencesViewController.swift in Sources */,
 				CBF6C69B2778C6F500548AA8 /* MainWindowController.swift in Sources */,
 				CBF6C69827788EAE00548AA8 /* MainToolbar.swift in Sources */,
 				CBD43E472775748F00039737 /* Preferences.swift in Sources */,
