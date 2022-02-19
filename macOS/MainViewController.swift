@@ -14,13 +14,13 @@ class MainViewController: NSViewController {
     
     private weak var webViewController: ScratchWebViewController?
     
+    private let viewModel = WebViewModel(preferences: AppDelegate.shared.preferences)
+    
     private var cancellables: Set<AnyCancellable> = []
     
     private var toolbar: MainToolbar? {
         view.window?.toolbar as? MainToolbar
     }
-    
-    private let homeUrl = URL(string: "https://scratch.mit.edu/projects/editor/")!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +29,24 @@ class MainViewController: NSViewController {
             setup(webViewController: webViewController)
         }
         
-        //let url = URL(string: "https://bricklife.com/scratch-gui/")!
-        //let url = URL(string: "https://stretch3.github.io/")!
-        //let url = URL(string: "https://bricklife.com/webview-checker.html")!
-        webViewController?.load(url: homeUrl)
+        viewModel.inputs.sink { [weak self] input in
+            switch input {
+            case .goHome:
+                self?.goHome()
+            case .goBack:
+                self?.webViewController?.goBack()
+            case .goForward:
+                self?.webViewController?.goForward()
+            case .load(url: let url):
+                self?.webViewController?.load(url: url)
+            case .reload:
+                self?.webViewController?.reload()
+            case .stopLoading:
+                self?.webViewController?.stopLoading()
+            }
+        }.store(in: &cancellables)
+        
+        goHome()
     }
     
     override func viewWillAppear() {
@@ -78,34 +92,42 @@ class MainViewController: NSViewController {
     private func updateToolbar(url: URL?) {
         toolbar?.textField.stringValue = url?.absoluteString ?? ""
     }
+    
+    private func goHome() {
+        if let url = viewModel.home {
+            webViewController?.load(url: url)
+        } else {
+            // TODO: Alert
+        }
+    }
 }
 
 extension MainViewController {
     
     @objc func gotoBeginning(_ sender: Any?) {
-        webViewController?.load(url: homeUrl)
+        viewModel.apply(inputs: .goHome)
     }
     
     @objc func goBack(_ sender: Any?) {
-        webViewController?.goBack(sender)
+        viewModel.apply(inputs: .goBack)
     }
     
     @objc func goForward(_ sender: Any?) {
-        webViewController?.goForward(sender)
+        viewModel.apply(inputs: .goForward)
     }
     
     @objc func reload(_ sender: Any?) {
-        webViewController?.reload(sender)
+        viewModel.apply(inputs: .reload)
     }
     
     @objc func stopLoading(_ sender: Any?) {
-        webViewController?.stopLoading(sender)
+        viewModel.apply(inputs: .stopLoading)
     }
     
     @objc func go(_ sender: Any?) {
         let urlString = toolbar?.textField.stringValue
         if let url = urlString.flatMap({ URL(string: $0) }) {
-            webViewController?.load(url: url)
+            viewModel.apply(inputs: .load(url: url))
         }
     }
 }
