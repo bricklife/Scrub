@@ -37,9 +37,17 @@ class PreferencesViewController: NSViewController {
         buttons[index].state = .on
         
         textField.stringValue = preferences.customUrl
+        textField.delegate = self
     }
     
     @IBAction func selectHome(_ sender: NSButton) {
-        AppDelegate.shared.preferences.home = homeArray[sender.tag]
+        preferences.home = homeArray[sender.tag]
+    }
+}
+
+extension PreferencesViewController: NSTextFieldDelegate {
+    
+    func controlTextDidChange(_ obj: Notification) {
+        preferences.customUrl = textField.stringValue
     }
 }
