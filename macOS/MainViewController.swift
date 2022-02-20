@@ -142,8 +142,11 @@ extension MainViewController: NSUserInterfaceValidations {
 extension MainViewController: ScratchWebViewControllerDelegate {
     
     func decidePolicyFor(url: URL, isScratchEditor: Bool, decisionHandler: @escaping (WebFilterPolicy) -> Void) {
-        print(#function, url, isScratchEditor)
-        decisionHandler(.allow)
+        if viewModel.canAccess(url: url) || isScratchEditor {
+            decisionHandler(.allow)
+        } else {
+            decisionHandler(.deny)
+        }
     }
     
     func didDownloadFile(at url: URL) {
