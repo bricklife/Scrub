@@ -565,10 +565,10 @@
                     <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="6K6-fq-dHW">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="294" y="363" width="480" height="270"/>
+                        <rect key="contentRect" x="294" y="363" width="480" height="240"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1175"/>
                         <view key="contentView" id="25l-6V-ITv">
-                            <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="240"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </view>
                         <connections>
@@ -588,14 +588,14 @@
             <objects>
                 <viewController id="oaj-1T-wSP" customClass="PreferencesViewController" customModule="Scrub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="asu-J2-Fy3">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="240"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="uon-Xv-P6r">
-                                <rect key="frame" x="0.0" y="0.0" width="120" height="270"/>
+                                <rect key="frame" x="0.0" y="0.0" width="120" height="240"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="q3F-r0-K2K">
-                                        <rect key="frame" x="18" y="234" width="104" height="16"/>
+                                        <rect key="frame" x="18" y="192" width="104" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Home:" id="LVy-B2-VG6">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -605,16 +605,16 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="q3F-r0-K2K" firstAttribute="leading" secondItem="uon-Xv-P6r" secondAttribute="leading" constant="20" id="L4g-Sa-1e8"/>
-                                    <constraint firstItem="q3F-r0-K2K" firstAttribute="top" secondItem="uon-Xv-P6r" secondAttribute="top" constant="20" id="WYV-YF-EHX"/>
+                                    <constraint firstItem="q3F-r0-K2K" firstAttribute="top" secondItem="uon-Xv-P6r" secondAttribute="top" constant="32" id="WYV-YF-EHX"/>
                                     <constraint firstAttribute="trailing" secondItem="q3F-r0-K2K" secondAttribute="trailing" id="cow-79-bsA"/>
                                     <constraint firstAttribute="width" constant="120" id="idS-2f-Bv8"/>
                                 </constraints>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="6FI-g1-tRv">
-                                <rect key="frame" x="120" y="0.0" width="360" height="270"/>
+                                <rect key="frame" x="120" y="0.0" width="360" height="240"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="43X-aE-76Y">
-                                        <rect key="frame" x="8" y="233" width="332" height="18"/>
+                                        <rect key="frame" x="6" y="191" width="122" height="18"/>
                                         <buttonCell key="cell" type="radio" title="Scratch - Home" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="6pM-aj-x5Z">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -624,7 +624,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="aa4-pP-WHs">
-                                        <rect key="frame" x="8" y="207" width="332" height="18"/>
+                                        <rect key="frame" x="6" y="159" width="253" height="18"/>
                                         <buttonCell key="cell" type="radio" title="Scratch - Editor (Create New Project)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="ThI-hG-elt">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -634,7 +634,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="WJA-kF-sgj">
-                                        <rect key="frame" x="8" y="181" width="332" height="18"/>
+                                        <rect key="frame" x="6" y="127" width="138" height="18"/>
                                         <buttonCell key="cell" type="radio" title="Scratch - My Stuff" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="M61-dy-fV8">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -644,7 +644,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="gdh-zh-2zc">
-                                        <rect key="frame" x="8" y="155" width="332" height="18"/>
+                                        <rect key="frame" x="6" y="95" width="102" height="18"/>
                                         <buttonCell key="cell" type="radio" title="Custom URL" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="zqq-9e-4P2">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -654,7 +654,7 @@
                                         </connections>
                                     </button>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vlm-l4-S8h">
-                                        <rect key="frame" x="30" y="125" width="310" height="21"/>
+                                        <rect key="frame" x="28" y="67" width="300" height="21"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="WcS-Bc-aN1">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -663,22 +663,21 @@
                                     </textField>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="WJA-kF-sgj" secondAttribute="trailing" constant="20" id="1OL-WT-Kdh"/>
-                                    <constraint firstItem="WJA-kF-sgj" firstAttribute="top" secondItem="aa4-pP-WHs" secondAttribute="bottom" constant="10" id="5Lm-Tz-vLF"/>
-                                    <constraint firstItem="aa4-pP-WHs" firstAttribute="top" secondItem="43X-aE-76Y" secondAttribute="bottom" constant="10" id="6WI-fT-nyv"/>
-                                    <constraint firstAttribute="trailing" secondItem="aa4-pP-WHs" secondAttribute="trailing" constant="20" id="7lQ-Jg-jh6"/>
-                                    <constraint firstAttribute="trailing" secondItem="43X-aE-76Y" secondAttribute="trailing" constant="20" id="QL9-gU-eim"/>
-                                    <constraint firstItem="gdh-zh-2zc" firstAttribute="leading" secondItem="6FI-g1-tRv" secondAttribute="leading" constant="10" id="YBj-cE-Vnf"/>
-                                    <constraint firstAttribute="trailing" secondItem="gdh-zh-2zc" secondAttribute="trailing" constant="20" id="Yln-l7-YHz"/>
-                                    <constraint firstAttribute="trailing" secondItem="Vlm-l4-S8h" secondAttribute="trailing" constant="20" id="bfr-1w-cAj"/>
-                                    <constraint firstItem="WJA-kF-sgj" firstAttribute="leading" secondItem="6FI-g1-tRv" secondAttribute="leading" constant="10" id="i7K-cf-RqQ"/>
-                                    <constraint firstItem="43X-aE-76Y" firstAttribute="top" secondItem="6FI-g1-tRv" secondAttribute="top" constant="20" id="ja4-J6-3f1"/>
-                                    <constraint firstItem="Vlm-l4-S8h" firstAttribute="top" secondItem="gdh-zh-2zc" secondAttribute="bottom" constant="10" id="o06-df-I0k"/>
-                                    <constraint firstItem="aa4-pP-WHs" firstAttribute="leading" secondItem="6FI-g1-tRv" secondAttribute="leading" constant="10" id="o9T-g1-7WZ"/>
-                                    <constraint firstItem="Vlm-l4-S8h" firstAttribute="leading" secondItem="6FI-g1-tRv" secondAttribute="leading" constant="30" id="oLi-gU-m2d"/>
-                                    <constraint firstItem="gdh-zh-2zc" firstAttribute="top" secondItem="WJA-kF-sgj" secondAttribute="bottom" constant="10" id="tpS-bf-Zxy"/>
-                                    <constraint firstItem="43X-aE-76Y" firstAttribute="leading" secondItem="6FI-g1-tRv" secondAttribute="leading" constant="10" id="uQA-0v-K8w"/>
-                                    <constraint firstAttribute="trailing" secondItem="gdh-zh-2zc" secondAttribute="trailing" constant="20" id="xe8-vK-ryB"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WJA-kF-sgj" secondAttribute="trailing" constant="20" symbolic="YES" id="1OL-WT-Kdh"/>
+                                    <constraint firstItem="WJA-kF-sgj" firstAttribute="top" secondItem="aa4-pP-WHs" secondAttribute="bottom" constant="16" id="5Lm-Tz-vLF"/>
+                                    <constraint firstItem="aa4-pP-WHs" firstAttribute="top" secondItem="43X-aE-76Y" secondAttribute="bottom" constant="16" id="6WI-fT-nyv"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aa4-pP-WHs" secondAttribute="trailing" constant="20" symbolic="YES" id="7lQ-Jg-jh6"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="43X-aE-76Y" secondAttribute="trailing" constant="20" symbolic="YES" id="QL9-gU-eim"/>
+                                    <constraint firstItem="gdh-zh-2zc" firstAttribute="leading" secondItem="6FI-g1-tRv" secondAttribute="leading" constant="8" id="YBj-cE-Vnf"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gdh-zh-2zc" secondAttribute="trailing" constant="20" symbolic="YES" id="Yln-l7-YHz"/>
+                                    <constraint firstAttribute="trailing" secondItem="Vlm-l4-S8h" secondAttribute="trailing" constant="32" id="bfr-1w-cAj"/>
+                                    <constraint firstItem="WJA-kF-sgj" firstAttribute="leading" secondItem="6FI-g1-tRv" secondAttribute="leading" constant="8" id="i7K-cf-RqQ"/>
+                                    <constraint firstItem="43X-aE-76Y" firstAttribute="top" secondItem="6FI-g1-tRv" secondAttribute="top" constant="32" id="ja4-J6-3f1"/>
+                                    <constraint firstItem="Vlm-l4-S8h" firstAttribute="top" secondItem="gdh-zh-2zc" secondAttribute="bottom" constant="8" id="o06-df-I0k"/>
+                                    <constraint firstItem="aa4-pP-WHs" firstAttribute="leading" secondItem="6FI-g1-tRv" secondAttribute="leading" constant="8" id="o9T-g1-7WZ"/>
+                                    <constraint firstItem="Vlm-l4-S8h" firstAttribute="leading" secondItem="6FI-g1-tRv" secondAttribute="leading" constant="28" id="oLi-gU-m2d"/>
+                                    <constraint firstItem="gdh-zh-2zc" firstAttribute="top" secondItem="WJA-kF-sgj" secondAttribute="bottom" constant="16" id="tpS-bf-Zxy"/>
+                                    <constraint firstItem="43X-aE-76Y" firstAttribute="leading" secondItem="6FI-g1-tRv" secondAttribute="leading" constant="8" id="uQA-0v-K8w"/>
                                 </constraints>
                             </customView>
                         </subviews>
