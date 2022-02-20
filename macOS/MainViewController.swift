@@ -32,7 +32,11 @@ class MainViewController: NSViewController {
         viewModel.inputs.sink { [weak self] input in
             switch input {
             case .goHome:
-                self?.goHome()
+                if let url = self?.viewModel.home {
+                    self?.webViewController?.load(url: url)
+                } else {
+                    // TODO: Alert
+                }
             case .goBack:
                 self?.webViewController?.goBack()
             case .goForward:
@@ -46,7 +50,7 @@ class MainViewController: NSViewController {
             }
         }.store(in: &cancellables)
         
-        goHome()
+        viewModel.apply(inputs: .goHome)
     }
     
     override func viewWillAppear() {
@@ -91,14 +95,6 @@ class MainViewController: NSViewController {
     
     private func updateToolbar(url: URL?) {
         toolbar?.textField.stringValue = url?.absoluteString ?? ""
-    }
-    
-    private func goHome() {
-        if let url = viewModel.home {
-            webViewController?.load(url: url)
-        } else {
-            // TODO: Alert
-        }
     }
 }
 
