@@ -57,6 +57,14 @@ class WebViewModel: ObservableObject {
     func apply(inputs: Inputs) {
         inputsSubject.send(inputs)
     }
+    
+    func canAccess(url: URL) -> Bool {
+#if DEBUG
+        return true
+#else
+        return url.isScratchSite || url.isFileURL
+#endif
+    }
 }
 
 extension WebViewModel {
@@ -67,5 +75,19 @@ extension WebViewModel {
     
     func didShowBluetoothParingDialog() {
         preferences.didShowBluetoothParingDialog = true
+    }
+}
+
+extension URL {
+    
+    var isScratchSite: Bool {
+        let normalizedHost = "." + (host ?? "")
+        let scratchHosts = [
+            ".scratch.mit.edu",
+            ".scratch-wiki.info",
+            ".scratchfoundation.org",
+            ".scratchjr.org",
+        ]
+        return scratchHosts.contains(where: normalizedHost.hasSuffix(_:))
     }
 }

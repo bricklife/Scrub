@@ -23,19 +23,6 @@ extension WebViewError: LocalizedError {
     }
 }
 
-extension URL {
-    var isScratchSite: Bool {
-        let normalizedHost = "." + (host ?? "")
-        let scratchHosts = [
-            ".scratch.mit.edu",
-            ".scratch-wiki.info",
-            ".scratchfoundation.org",
-            ".scratchjr.org",
-        ]
-        return scratchHosts.contains(where: normalizedHost.hasSuffix(_:))
-    }
-}
-
 struct WebView: UIViewControllerRepresentable {
     
     @ObservedObject var viewModel: WebViewModel
@@ -53,11 +40,9 @@ struct WebView: UIViewControllerRepresentable {
         webViewController.delegate = context.coordinator
         
         if let url = url, url.scheme != "file" {
-            webViewController.load(url: url)
-        } else if let url = viewModel.home {
-            webViewController.load(url: url)
+            viewModel.apply(inputs: .load(url: url))
         } else {
-            alertController.showAlert(error: WebViewError.invalidUrl)
+            viewModel.apply(inputs: .goHome)
         }
         
         return webViewController
@@ -112,15 +97,12 @@ extension WebView {
         }
         
         func decidePolicyFor(url: URL, isScratchEditor: Bool, decisionHandler: @escaping (WebFilterPolicy) -> Void) {
-            #if DEBUG
             decisionHandler(.allow)
-            #else
-            if url.isScratchSite || url.isFileURL || isScratchEditor {
+            if parent.viewModel.canAccess(url: url) || isScratchEditor {
                 decisionHandler(.allow)
             } else {
                 decisionHandler(.deny)
             }
-            #endif
         }
         
         func didDownloadFile(at url: URL) {
@@ -139,16 +121,16 @@ extension WebView {
         }
         
         func canStartScratchLinkSession(type: SessionType) -> Bool {
-            #if DEBUG
+#if DEBUG
             return true
-            #else
+#else
             switch type {
             case .ble:
                 return true
             case .bt:
                 return false
             }
-            #endif
+#endif
         }
         
         func didStartScratchLinkSession(type: SessionType) {
