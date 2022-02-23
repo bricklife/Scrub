@@ -503,7 +503,7 @@
                                 <outlet property="forwardButton" destination="VMN-yw-NbI" id="EyW-x7-QW3"/>
                                 <outlet property="reloadButton" destination="s9Z-jd-6nI" id="ufY-0K-P3e"/>
                                 <outlet property="stopButton" destination="vcg-fC-mdB" id="Dvc-UH-dM9"/>
-                                <outlet property="textField" destination="h04-XS-hfU" id="RSq-ax-52O"/>
+                                <outlet property="urlTextField" destination="h04-XS-hfU" id="RSq-ax-52O"/>
                             </connections>
                         </toolbar>
                         <connections>

@@ -94,7 +94,7 @@ class MainViewController: NSViewController {
     }
     
     private func updateToolbar(url: URL?) {
-        toolbar?.textField.stringValue = url?.absoluteString ?? ""
+        toolbar?.urlTextField.stringValue = url?.absoluteString ?? ""
     }
 }
 
@@ -121,7 +121,7 @@ extension MainViewController {
     }
     
     @objc func go(_ sender: Any?) {
-        let urlString = toolbar?.textField.stringValue
+        let urlString = toolbar?.urlTextField.stringValue
         if let url = urlString.flatMap({ URL(string: $0) }) {
             viewModel.apply(inputs: .load(url: url))
         }
