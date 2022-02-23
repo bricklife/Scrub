@@ -14,6 +14,7 @@ class MainToolbar: NSToolbar {
     @IBOutlet weak var reloadButton: NSToolbarItem!
     @IBOutlet weak var stopButton: NSToolbarItem!
     @IBOutlet weak var urlTextField: NSTextField!
+    @IBOutlet weak var titleTextField: NSTextField!
     
     var isLoading: Bool = false {
         didSet {

@@ -472,6 +472,23 @@
                                         </textFieldCell>
                                     </textField>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="57325CB2-3B97-4A67-AD4A-CB2D82001EC4" label="" paletteLabel="Title" id="0MD-Zz-hnK">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="96" height="1"/>
+                                    <size key="maxSize" width="10000" height="18"/>
+                                    <textField key="view" verticalHuggingPriority="750" textCompletion="NO" id="oDr-ah-1im">
+                                        <rect key="frame" x="0.0" y="14" width="96" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" alignment="left" title="Scrub" usesSingleLineMode="YES" id="4rU-bL-26H">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <allowedInputSourceLocales>
+                                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                            </allowedInputSourceLocales>
+                                        </textFieldCell>
+                                    </textField>
+                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="3DEA5E18-522D-4C22-861F-A19F0F4202E6" label="" paletteLabel="Reload" tag="-1" bordered="YES" sizingBehavior="auto" id="s9Z-jd-6nI">
                                     <imageReference key="image" image="arrow.clockwise" catalog="system" symbolScale="large"/>
                                     <connections>
@@ -488,21 +505,23 @@
                                     <imageReference key="image" image="square.and.arrow.up" catalog="system" symbolScale="large"/>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="LMz-Br-dQx"/>
-                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="Ipq-s8-cF6"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="euy-1g-SF3"/>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="C0V-Th-C6f"/>
                                 <toolbarItem reference="oJ4-DV-DaQ"/>
                                 <toolbarItem reference="VMN-yw-NbI"/>
-                                <toolbarItem reference="Jd3-xj-oyX"/>
+                                <toolbarItem reference="0MD-Zz-hnK"/>
                                 <toolbarItem reference="s9Z-jd-6nI"/>
                                 <toolbarItem reference="GRZ-C0-rXD"/>
+                                <toolbarItem reference="euy-1g-SF3"/>
                             </defaultToolbarItems>
                             <connections>
                                 <outlet property="backButton" destination="oJ4-DV-DaQ" id="zdZ-ZG-XGu"/>
                                 <outlet property="forwardButton" destination="VMN-yw-NbI" id="EyW-x7-QW3"/>
                                 <outlet property="reloadButton" destination="s9Z-jd-6nI" id="ufY-0K-P3e"/>
                                 <outlet property="stopButton" destination="vcg-fC-mdB" id="Dvc-UH-dM9"/>
+                                <outlet property="titleTextField" destination="oDr-ah-1im" id="cEn-Ho-SiX"/>
                                 <outlet property="urlTextField" destination="h04-XS-hfU" id="RSq-ax-52O"/>
                             </connections>
                         </toolbar>

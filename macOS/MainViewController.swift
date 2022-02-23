@@ -75,6 +75,7 @@ class MainViewController: NSViewController {
         webViewController.$pageTitle.sink { [weak self] title in
             if let title = title {
                 self?.view.window?.title = title
+                self?.updateToolbar(title: title)
             }
         }.store(in: &cancellables)
         
@@ -95,6 +96,10 @@ class MainViewController: NSViewController {
     
     private func updateToolbar(url: URL?) {
         toolbar?.urlTextField.stringValue = url?.absoluteString ?? ""
+    }
+    
+    private func updateToolbar(title: String) {
+        toolbar?.titleTextField.stringValue = title
     }
 }
 
