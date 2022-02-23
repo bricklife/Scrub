@@ -73,7 +73,7 @@ class MainViewController: NSViewController {
         }.store(in: &cancellables)
         
         webViewController.$pageTitle.sink { [weak self] title in
-            if let title = title {
+            if let title = title, !title.isEmpty {
                 self?.view.window?.title = title
                 self?.updateToolbar(title: title)
             }
