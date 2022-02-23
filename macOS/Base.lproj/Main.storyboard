@@ -440,7 +440,7 @@
                                 <toolbarItem implicitItemIdentifier="38E0D240-8381-431E-8CB5-9E797EF35B13" label="" paletteLabel="Home" tag="-1" bordered="YES" sizingBehavior="auto" id="C0V-Th-C6f">
                                     <imageReference key="image" image="house" catalog="system" symbolScale="large"/>
                                     <connections>
-                                        <action selector="gotoBeginning:" target="Oky-zY-oP4" id="Yl7-wa-Hp6"/>
+                                        <action selector="goHome:" target="Oky-zY-oP4" id="bbT-Cw-6Ub"/>
                                     </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="75858433-37D6-468B-82F4-6CE97E34BDFE" label="" paletteLabel="Back" tag="-1" bordered="YES" sizingBehavior="auto" id="oJ4-DV-DaQ">

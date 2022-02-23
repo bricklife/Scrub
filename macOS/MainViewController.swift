@@ -105,7 +105,7 @@ class MainViewController: NSViewController {
 
 extension MainViewController {
     
-    @objc func gotoBeginning(_ sender: Any?) {
+    @objc func goHome(_ sender: Any?) {
         viewModel.apply(inputs: .goHome)
     }
     
