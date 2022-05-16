@@ -29,7 +29,9 @@ class Preferences: ObservableObject {
             ?? .scratchEditor
         }
         set {
-            UserDefaults.standard.setRawRepresentable(newValue, forKey: homeKey)
+            if !isHomeLocked {
+                UserDefaults.standard.setRawRepresentable(newValue, forKey: homeKey)
+            }
         }
     }
     
@@ -44,7 +46,9 @@ class Preferences: ObservableObject {
             ?? "http://"
         }
         set {
-            UserDefaults.standard.setValue(newValue, forKey: customUrlKey)
+            if !isCustomUrlLocked {
+                UserDefaults.standard.setValue(newValue, forKey: customUrlKey)
+            }
         }
     }
     
