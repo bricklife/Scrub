@@ -31,7 +31,9 @@ class ScratchLink {
             socketId: this.socketId
         });
 
-        this.onclose();
+        if (this.onclose) {
+            this.onclose();
+        }
 
         ScratchLink.sockets.delete(this.socketId);
     }
