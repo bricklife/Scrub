@@ -45,8 +45,8 @@ struct WebView: UIViewControllerRepresentable {
     
     private let webViewController = ScratchWebViewController()
     
-    func makeCoordinator() -> WebView.Coodinator {
-        return Coodinator(self)
+    func makeCoordinator() -> WebView.Coordinator {
+        return Coordinator(self)
     }
     
     func makeUIViewController(context: Context) -> ScratchWebViewController {
@@ -69,7 +69,7 @@ struct WebView: UIViewControllerRepresentable {
 
 extension WebView {
     
-    class Coodinator: NSObject, ScratchWebViewControllerDelegate {
+    class Coordinator: NSObject, ScratchWebViewControllerDelegate {
         
         private let parent : WebView
         
