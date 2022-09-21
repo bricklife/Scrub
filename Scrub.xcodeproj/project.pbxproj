@@ -43,6 +43,8 @@
 
 /* Begin PBXFileReference section */
 		CB0268BC28DB4B5E008BD9BF /* WebMIDIKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = WebMIDIKit; sourceTree = "<group>"; };
+		CB0268BD28DB4DCF008BD9BF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		CB0268BE28DB4DCF008BD9BF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		CB0A07722629E4D4001EF560 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		CB0A0776262DC19C001EF560 /* PreferencesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		CB1980C4265CEBF900FC9D3D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				en,
 				Base,
 				ja,
+				"zh-Hans",
 			);
 			mainGroup = CB3FBCE32605D98B008FE5C2;
 			packageReferences = (
@@ -255,6 +258,7 @@
 			children = (
 				CB1980C4265CEBF900FC9D3D /* en */,
 				CB1980C6265CEC0100FC9D3D /* ja */,
+				CB0268BE28DB4DCF008BD9BF /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -264,6 +268,7 @@
 			children = (
 				CB9DA457264826F400459625 /* en */,
 				CB9DA4592648274000459625 /* ja */,
+				CB0268BD28DB4DCF008BD9BF /* zh-Hans */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

@@ -1,0 +1,5 @@
+NSBluetoothAlwaysUsageDescription="应用程序将使用蓝牙来连接外部设备。";
+NSBluetoothPeripheralUsageDescription="应用程序将使用蓝牙来连接外部设备。";
+NSCameraUsageDescription="应用程序将使用相机来获取图像。";
+NSMicrophoneUsageDescription="应用程序将使用麦克风来获取声音。";
+NSSpeechRecognitionUsageDescription="应用程序将使用语音识别来识别您的声音。";

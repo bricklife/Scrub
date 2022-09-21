@@ -1,0 +1,41 @@
+/*
+  Localizable.strings
+  Scrub
+
+  Created by Shinichiro Oba on 2022/09/21.
+  
+*/
+"Done" = "完成";
+"Error" = "错误";
+"Close" = "关闭";
+"Settings" = "设置";
+
+"Invalid URL" = "无效链接";
+
+"How to Use" = "如何使用";
+"Please pair your Bluetooth device on Settings app before using this extension." = "请在使用插件之前，将您的蓝牙设备连接到设置应用程序上。";
+
+"Sorry" = "对不起";
+"This extension is not supported🙇🏻" = "暂不支持该插件🙇🏻";
+"This app can only open the official Scratch website or any Scratch Editor." = "此应用程序只能打开官方Scratch网站或任何Scratch编辑器。";
+"%@ is Not Allowed" = "%@不被允许";
+"Allow %@ access in Settings to use this function." = "允许%@路径在设置中来使用此功能。";
+
+"Set as Home" = "设为主页";
+"Open in Browser" = "在浏览器中打开";
+
+"Preferences" = "偏好设置";
+"Home" = "主页";
+"Scratch - Home" = "Scratch - 主页";
+"Scratch - Editor (Create New Project)" = "Scratch - 编辑器 (创建新项目)";
+"Scratch - My Stuff" = "Scratch - 我的项目";
+"Custom URL" = "自定义链接";
+"Local Documents Folder" = "本地文件夹";
+"Support" = "帮助";
+"Special Thanks" = "特别鸣谢";
+"Version" = "版本";
+
+"Scratch is a project of the Scratch Foundation, in collaboration with the Lifelong Kindergarten Group at the MIT Media Lab. It is available for free at https://scratch.mit.edu." = "Scratch是Scratch基金会与MIT媒体实验室终生幼儿园小组的合作项目。可以在https://scratch.mit.edu免费使用。";
+
+"This implementation of Scratch Link function is inspired by toio Do iPad app." = "Scratch Link功能灵感来自于 toio Do iPad应用程序。";
+"\"toio\" is a trademark or registered trademark of Sony Interactive Entertainment Inc." = "\"toio\"是索尼互动娱乐公司的商标或注册商标。";

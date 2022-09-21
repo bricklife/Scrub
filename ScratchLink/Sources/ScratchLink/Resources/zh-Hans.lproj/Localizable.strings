@@ -1,0 +1,11 @@
+/*
+  Localizable.strings
+  Scrub
+
+  Created by Shinichiro Oba on 2022/09/21.
+  
+*/
+"This session is unavailable" = "该会话不可用";
+"Bluetooth is powered off" = "蓝牙已关闭";
+"Bluetooth is unauthorized" = "蓝牙未授权";
+"Bluetooth is unsupported" = "不支持蓝牙";
