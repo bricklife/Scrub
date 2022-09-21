@@ -1,3 +1,6 @@
 [submodule "ScratchLink/Sources/ScratchLink/scratch-link"]
 	path = ScratchLink/Sources/ScratchLink/scratch-link
 	url = https://github.com/bricklife/scratch-link.git
+[submodule "WebMIDIKit/Sources/WebMIDIKit/WebMIDIAPIShimForiOS"]
+	path = WebMIDIKit/Sources/WebMIDIKit/WebMIDIAPIShimForiOS
+	url = https://github.com/mizuhiki/WebMIDIAPIShimForiOS.git
