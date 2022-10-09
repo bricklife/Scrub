@@ -1,28 +1,22 @@
-// swift-tools-version:5.3
+// swift-tools-version: 5.6
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
-    name: "ScratchWebKit",
-    defaultLocalization: "en",
+    name: "WebMIDIKit",
     platforms: [
         .iOS("14.5")
     ],
     products: [
         .library(
-            name: "ScratchWebKit",
-            targets: ["ScratchWebKit"]
+            name: "WebMIDIKit",
+            targets: ["WebMIDIKit"]
         ),
-    ],
-    dependencies: [
-        .package(path: "../ScratchLink"),
-        .package(path: "../WebMIDIKit"),
     ],
     targets: [
         .target(
-            name: "ScratchWebKit",
-            dependencies: ["ScratchLink", "WebMIDIKit"],
+            name: "WebMIDIKit",
             resources: [
                 .process("Resources"),
             ]

@@ -1,0 +1,95 @@
+class MIDIClient {
+    
+    private var client: MIDI.Client?
+    private var inputPort: MIDI.InputPort?
+    private var outputPort: MIDI.OutputPort?
+    
+    private var ports: [MIDI.Endpoint.Ref : MIDIPort] = [:]
+    
+    var messageReceivedHander: ((MIDI.UniqueID, [UInt8]) -> Void)?
+    var portAddedHander: ((MIDIPort) -> Void)?
+    var portRemovedHander: ((MIDIPort) -> Void)?
+    
+    func setup() throws {
+        self.client = try MIDI.Client(name: "WebMIDIClient") { [weak self] notification in
+            switch notification {
+            case .endpointAdded(let endpoint):
+                if let port = self?.ports[endpoint.ref] {
+                    port.state = .connected
+                    self?.portAddedHander?(port)
+                } else {
+                    let port = MIDIPort(endpoint: endpoint, state: .connected)
+                    if port.type == .input {
+                        try? self?.connectMIDIInput(port: port)
+                    }
+                    self?.ports[endpoint.ref] = port
+                    self?.portAddedHander?(port)
+                }
+                
+            case .endpointRemoved(let endpoint):
+                if let port = self?.ports[endpoint.ref] {
+                    port.state = .disconnected
+                    self?.portRemovedHander?(port)
+                } else {
+                    let port = MIDIPort(endpoint: endpoint, state: .disconnected)
+                    self?.ports[endpoint.ref] = port
+                    self?.portRemovedHander?(port)
+                }
+                
+            case .other:
+                break
+            }
+        }
+        
+        self.inputPort = try client?.createInputPort(name: "inputPort") { [weak self] (packetList, endpoint) in
+            guard let id = self?.ports[endpoint.ref]?.id else { return }
+            for packet in packetList {
+                self?.messageReceivedHander?(id, packet.data)
+            }
+        }
+        
+        self.outputPort = try client?.createOutputPort(name: "outputPort")
+    }
+    
+    func getMIDIPorts() -> (inputs: [MIDIPort], outputs: [MIDIPort]) {
+        var inputs = [MIDIPort]()
+        for src in MIDI.Endpoint.getSources() {
+            let port = MIDIPort(endpoint: src, state: .connected)
+            inputs.append(port)
+            
+            if ports.keys.contains(port.endpoint.ref) == false {
+                try? connectMIDIInput(port: port)
+                ports[port.endpoint.ref] = port
+            }
+        }
+        
+        var outputs = [MIDIPort]()
+        for dest in MIDI.Endpoint.getDestinations() {
+            let port = MIDIPort(endpoint: dest, state: .connected)
+            outputs.append(port)
+            
+            if ports.keys.contains(port.endpoint.ref) == false {
+                ports[port.endpoint.ref] = port
+            }
+        }
+        
+        return (inputs: inputs, outputs: outputs)
+    }
+    
+    private func connectMIDIInput(port: MIDIPort) throws {
+        try inputPort?.connect(source: port.endpoint)
+    }
+    
+    func sendMIDIMessage(id: MIDI.UniqueID, data: [UInt8]) throws {
+        guard let port = ports.values.first(where: { $0.id == id }) else { return }
+        
+        let packet = MIDI.Packet(data: data)
+        try outputPort?.send(packet: packet, to: port.endpoint)
+    }
+    
+    func clearMIDIOutput(id: MIDI.UniqueID) throws {
+        guard let port = ports.values.first(where: { $0.id == id }) else { return }
+        
+        try outputPort?.flush(destination: port.endpoint)
+    }
+}
