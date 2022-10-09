@@ -9,7 +9,6 @@ import UIKit
 import WebKit
 import Combine
 import ScratchLink
-import WebMIDIKit
 
 public enum ScratchWebViewError: Error {
     case forbiddenAccess(url: URL)
@@ -29,8 +28,6 @@ public class ScratchWebViewController: WebViewController {
     public weak var delegate: ScratchWebViewControllerDelegate?
     
     private let scratchLink = ScratchLink()
-    private let webMidi = WebMIDI()
-    
     private var downloadingUrl: URL? = nil
     
     private var cancellables: Set<AnyCancellable> = []
@@ -42,8 +39,6 @@ public class ScratchWebViewController: WebViewController {
         
         scratchLink.setup(webView: webView)
         scratchLink.delegate = self
-        
-        webMidi.setup(webView: webView)
     }
     
     required init?(coder: NSCoder) {

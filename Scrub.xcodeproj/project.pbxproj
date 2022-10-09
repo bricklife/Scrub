@@ -42,7 +42,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		CB0268BC28DB4B5E008BD9BF /* WebMIDIKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = WebMIDIKit; sourceTree = "<group>"; };
 		CB0268BD28DB4DCF008BD9BF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CB0268BE28DB4DCF008BD9BF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		CB0A07722629E4D4001EF560 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
@@ -90,7 +89,6 @@
 				CB3FBCEE2605D98B008FE5C2 /* Scrub */,
 				CB713FEB27749A79009C63E8 /* ScratchWebKit */,
 				CB6F7A3C2616E44E007C2230 /* ScratchLink */,
-				CB0268BC28DB4B5E008BD9BF /* WebMIDIKit */,
 				CB3FBCED2605D98B008FE5C2 /* Products */,
 				CBEDE1EA2605E3F30071628C /* Frameworks */,
 			);
