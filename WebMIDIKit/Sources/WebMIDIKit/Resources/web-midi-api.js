@@ -76,7 +76,7 @@ class MIDIPort extends EventTarget {
         }
     }
 
-    openDevice() { }
+    _openDevice() { }
 
     open() {
         if (this.connection == 'open') {
@@ -93,21 +93,21 @@ class MIDIPort extends EventTarget {
             return Promise.resolve(this);
         }
 
-        this.openDevice();
+        this._openDevice();
 
         this.connection = 'open';
         this.dispatchEvent(new MIDIConnectionEvent(this));
         return Promise.resolve(this);
     }
 
-    closeDevice() { }
+    _closeDevice() { }
 
     close() {
         if (this.connection == 'closed') {
             return Promise.resolve(this);
         }
 
-        this.closeDevice();
+        this._closeDevice();
 
         this.connection = 'closed`';
         this.dispatchEvent(new MIDIConnectionEvent(this));
@@ -156,7 +156,7 @@ class MIDIInput extends MIDIPort {
         }
     }
 
-    openDevice() {
+    _openDevice() {
         webkit.messageHandlers.connectMIDIInput.postMessage({ id: this.id });
     }
 
@@ -177,7 +177,7 @@ class MIDIOutput extends MIDIPort {
         return promise;
     }
 
-    closeDevice() {
+    _closeDevice() {
         // TODO: https://www.w3.org/TR/webmidi/#widl-MIDIPort-close-Promise-MIDIPort
         // 5. If the output port's .state is not "connected", clear all pending send data and skip to the next step. Clear any pending send data in the system with timestamps in the future, then finish sending any send messages with no timestamp or with a timestamp in the past or present, prior to proceeding to the next step.
     }
