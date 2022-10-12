@@ -62,18 +62,10 @@ enum MIDI {
             let result = MIDIInputPortCreateWithBlock(ref, name as CFString, &portRef, { pktlist, srcConnRefCon in
                 guard let srcConnRefCon = srcConnRefCon else { return }
                 let endpoint = Unmanaged<Endpoint>.fromOpaque(srcConnRefCon).takeUnretainedValue()
-                let packetList = pktlist.pointee
                 
-                var list = Packet.List()
-                
-                let n = packetList.numPackets
-                var packet = packetList.packet
-                for _ in 0 ..< n {
-                    let data = Array(MIDIPacket.ByteCollection(&packet))
-                    list.append(Packet(data: data))
-                    
-                    let packetPtr = MIDIPacketNext(&packet)
-                    packet = packetPtr.pointee
+                let list = pktlist.unsafeSequence().map { packetPtr -> Packet in
+                    let data = Array(packetPtr.bytes())
+                    return Packet(data: data)
                 }
                 
                 readBlock(list, endpoint)
