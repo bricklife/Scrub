@@ -46,6 +46,10 @@ public class WebMIDI: NSObject {
             }
         }
     }
+    
+    public func reset() {
+        try? midiClient.reset()
+    }
 }
 
 extension WebMIDI: WKScriptMessageHandler {

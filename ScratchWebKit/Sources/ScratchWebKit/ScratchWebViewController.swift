@@ -143,6 +143,7 @@ extension ScratchWebViewController: WKNavigationDelegate {
     
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         scratchLink.closeAllSessions()
+        webMidi.reset()
     }
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {

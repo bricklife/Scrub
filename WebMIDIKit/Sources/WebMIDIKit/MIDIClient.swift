@@ -5,6 +5,7 @@ class MIDIClient {
     private var outputPort: MIDI.OutputPort?
     
     private var ports: [MIDI.Endpoint.Ref : MIDIPort] = [:]
+    private var connectedPortIds: [MIDI.UniqueID] = []
     
     var messageReceivedHander: ((MIDI.UniqueID, [UInt8]) -> Void)?
     var portAddedHander: ((MIDIPort) -> Void)?
@@ -75,7 +76,10 @@ class MIDIClient {
     func connectMIDIInput(id: MIDI.UniqueID) throws {
         guard let port = ports.values.first(where: { $0.id == id }) else { return }
         
-        try inputPort?.connect(source: port.endpoint)
+        if !connectedPortIds.contains(port.id) {
+            try inputPort?.connect(source: port.endpoint)
+            connectedPortIds.append(port.id)
+        }
     }
     
     func sendMIDIMessage(id: MIDI.UniqueID, data: [UInt8]) throws {
@@ -89,5 +93,15 @@ class MIDIClient {
         guard let port = ports.values.first(where: { $0.id == id }) else { return }
         
         try outputPort?.flush(destination: port.endpoint)
+    }
+    
+    func reset() throws {
+        for port in ports.values {
+            if connectedPortIds.contains(port.id) {
+                try inputPort?.disconnect(source: port.endpoint)
+            }
+        }
+        ports = [:]
+        connectedPortIds = []
     }
 }

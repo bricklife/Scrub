@@ -109,6 +109,14 @@ enum MIDI {
             }
         }
         
+        func disconnect(source: Endpoint) throws {
+            guard source.type == .source else { throw Error.invalidType }
+            
+            let result = MIDIPortDisconnectSource(ref, source.ref)
+            guard result == noErr else {
+                throw Error.osStatus(result)
+            }
+        }
     }
     
     class OutputPort: Port {
@@ -158,7 +166,7 @@ enum MIDI {
             }
         }
     }
-
+    
     class Endpoint {
         typealias Ref = MIDIEndpointRef
         
