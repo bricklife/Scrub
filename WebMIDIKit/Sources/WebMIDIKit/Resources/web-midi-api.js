@@ -155,6 +155,11 @@ class MIDIInput extends MIDIPort {
             }
         }
     }
+
+    openDevice() {
+        webkit.messageHandlers.connectMIDIInput.postMessage({ id: this.id });
+    }
+
 }
 
 class MIDIOutput extends MIDIPort {

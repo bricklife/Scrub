@@ -19,9 +19,6 @@ class MIDIClient {
                     self?.portAddedHander?(port)
                 } else {
                     let port = MIDIPort(endpoint: endpoint, state: .connected)
-                    if port.type == .input {
-                        try? self?.connectMIDIInput(port: port)
-                    }
                     self?.ports[endpoint.ref] = port
                     self?.portAddedHander?(port)
                 }
@@ -58,7 +55,6 @@ class MIDIClient {
             inputs.append(port)
             
             if ports.keys.contains(port.endpoint.ref) == false {
-                try? connectMIDIInput(port: port)
                 ports[port.endpoint.ref] = port
             }
         }
@@ -76,7 +72,9 @@ class MIDIClient {
         return (inputs: inputs, outputs: outputs)
     }
     
-    private func connectMIDIInput(port: MIDIPort) throws {
+    func connectMIDIInput(id: MIDI.UniqueID) throws {
+        guard let port = ports.values.first(where: { $0.id == id }) else { return }
+        
         try inputPort?.connect(source: port.endpoint)
     }
     
