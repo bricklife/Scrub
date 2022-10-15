@@ -93,17 +93,17 @@ public class ScratchWebViewController: WebViewController {
     }
     
     private func didChangeUrl(_ url: URL) {
-        detectScratchEditor { [weak self] (isScratchEditor) in
-            self?.delegate?.decidePolicyFor(url: url, isScratchEditor: isScratchEditor) { (policy) in
+        detectScratchEditor { (isScratchEditor) in
+            self.delegate?.scratchWebViewController(self, decidePolicyFor: url, isScratchEditor: isScratchEditor) { (policy) in
                 switch policy {
                 case .allow:
-                    self?.webView.isUserInteractionEnabled = true
-                    self?.webView.alpha = 1.0
-                    self?.changeWebViewStyle(isScratchEditor: isScratchEditor)
+                    self.webView.isUserInteractionEnabled = true
+                    self.webView.alpha = 1.0
+                    self.changeWebViewStyle(isScratchEditor: isScratchEditor)
                 case .deny:
-                    self?.webView.isUserInteractionEnabled = false
-                    self?.webView.alpha = 0.4
-                    self?.delegate?.didFail(error: ScratchWebViewError.forbiddenAccess(url: url))
+                    self.webView.isUserInteractionEnabled = false
+                    self.webView.alpha = 0.4
+                    self.delegate?.scratchWebViewController(self, didFail: ScratchWebViewError.forbiddenAccess(url: url))
                 }
             }
         }
@@ -153,11 +153,11 @@ extension ScratchWebViewController: WKNavigationDelegate {
     }
     
     public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        delegate?.didFail(error: error)
+        delegate?.scratchWebViewController(self, didFail: error)
     }
     
     public func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        delegate?.didFail(error: error)
+        delegate?.scratchWebViewController(self, didFail: error)
     }
 }
 
@@ -175,27 +175,27 @@ extension ScratchWebViewController: WKDownloadDelegate {
     public func downloadDidFinish(_ download: WKDownload) {
         if let url = downloadingUrl {
             self.downloadingUrl = nil
-            delegate?.didDownloadFile(at: url)
+            delegate?.scratchWebViewController(self, didDownloadFileAt: url)
         }
     }
     
     public func download(_ download: WKDownload, didFailWithError error: Error, resumeData: Data?) {
-        delegate?.didFail(error: error)
+        delegate?.scratchWebViewController(self, didFail: error)
     }
 }
 
 extension ScratchWebViewController: ScratchLinkDelegate {
     
     public func canStartSession(type: SessionType) -> Bool {
-        return delegate?.canStartScratchLinkSession(type: type) ?? true
+        return delegate?.scratchWebViewController(self, canStartScratchLinkSessionType: type) ?? true
     }
     
     public func didStartSession(type: SessionType) {
-        delegate?.didStartScratchLinkSession(type: type)
+        delegate?.scratchWebViewController(self, didStartScratchLinkSessionType: type)
     }
     
     public func didFailStartingSession(type: SessionType, error: SessionError) {
-        delegate?.didFailStartingScratchLinkSession(type: type, error: error)
+        delegate?.scratchWebViewController(self, didFailStartingScratchLinkSession: type, error: error)
     }
 }
 
@@ -205,10 +205,10 @@ public enum WebFilterPolicy {
 }
 
 public protocol ScratchWebViewControllerDelegate: AnyObject {
-    func decidePolicyFor(url: URL, isScratchEditor: Bool, decisionHandler: @escaping (WebFilterPolicy) -> Void)
-    func didDownloadFile(at url: URL)
-    func didFail(error: Error)
-    func canStartScratchLinkSession(type: SessionType) -> Bool
-    func didStartScratchLinkSession(type: SessionType)
-    func didFailStartingScratchLinkSession(type: SessionType, error: SessionError)
+    func scratchWebViewController(_ viewController: ScratchWebViewController, decidePolicyFor url: URL, isScratchEditor: Bool, decisionHandler: @escaping (WebFilterPolicy) -> Void)
+    func scratchWebViewController(_ viewController: ScratchWebViewController, didDownloadFileAt url: URL)
+    func scratchWebViewController(_ viewController: ScratchWebViewController, didFail error: Error)
+    func scratchWebViewController(_ viewController: ScratchWebViewController, canStartScratchLinkSessionType type: SessionType) -> Bool
+    func scratchWebViewController(_ viewController: ScratchWebViewController, didStartScratchLinkSessionType type: SessionType)
+    func scratchWebViewController(_ viewController: ScratchWebViewController, didFailStartingScratchLinkSession type: SessionType, error: SessionError)
 }

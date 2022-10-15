@@ -111,25 +111,25 @@ extension WebView {
             parent.webViewController.$canGoForward.assign(to: &parent.viewModel.$canGoForward)
         }
         
-        func decidePolicyFor(url: URL, isScratchEditor: Bool, decisionHandler: @escaping (WebFilterPolicy) -> Void) {
-            #if DEBUG
+        func scratchWebViewController(_ viewController: ScratchWebViewController, decidePolicyFor url: URL, isScratchEditor: Bool, decisionHandler: @escaping (WebFilterPolicy) -> Void) {
+#if DEBUG
             decisionHandler(.allow)
-            #else
+#else
             if url.isScratchSite || url.isFileURL || isScratchEditor {
                 decisionHandler(.allow)
             } else {
                 decisionHandler(.deny)
             }
-            #endif
+#endif
         }
         
-        func didDownloadFile(at url: URL) {
+        func scratchWebViewController(_ viewController: ScratchWebViewController, didDownloadFileAt url: URL) {
             let vc = UIDocumentPickerViewController(forExporting: [url])
             vc.shouldShowFileExtensions = true
-            parent.webViewController.present(vc, animated: true)
+            viewController.present(vc, animated: true)
         }
         
-        func didFail(error: Error) {
+        func scratchWebViewController(_ viewController: ScratchWebViewController, didFail error: Error) {
             switch error as? ScratchWebViewError {
             case let .forbiddenAccess(url: url):
                 parent.alertController.showAlert(forbiddenAccess: Text("This app can only open the official Scratch website or any Scratch Editor."), url: url)
@@ -138,20 +138,20 @@ extension WebView {
             }
         }
         
-        func canStartScratchLinkSession(type: SessionType) -> Bool {
-            #if DEBUG
+        func scratchWebViewController(_ viewController: ScratchWebViewController, canStartScratchLinkSessionType type: SessionType) -> Bool {
+#if DEBUG
             return true
-            #else
+#else
             switch type {
             case .ble:
                 return true
             case .bt:
                 return false
             }
-            #endif
+#endif
         }
         
-        func didStartScratchLinkSession(type: SessionType) {
+        func scratchWebViewController(_ viewController: ScratchWebViewController, didStartScratchLinkSessionType type: SessionType) {
             if type == .bt, parent.viewModel.shouldShowBluetoothParingDialog {
                 parent.alertController.showAlert(howTo: Text("Please pair your Bluetooth device on Settings app before using this extension.")) { [weak self] in
                     self?.parent.viewModel.didShowBluetoothParingDialog()
@@ -159,7 +159,7 @@ extension WebView {
             }
         }
         
-        func didFailStartingScratchLinkSession(type: SessionType, error: SessionError) {
+        func scratchWebViewController(_ viewController: ScratchWebViewController, didFailStartingScratchLinkSession type: SessionType, error: SessionError) {
             switch error {
             case .unavailable:
                 self.parent.alertController.showAlert(sorry: Text("This extension is not supported🙇🏻"))
