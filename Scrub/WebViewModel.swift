@@ -24,20 +24,18 @@ extension WebViewError: LocalizedError {
 
 class WebViewModel: ObservableObject {
     
-    var preferences: Preferences?
-    
     @Published var url: URL? = nil
     @Published var isLoading: Bool = false
     @Published var estimatedProgress: Double = 0.0
     @Published var canGoBack: Bool = false
     @Published var canGoForward: Bool = false
     
-    private weak var webViewController: ScratchWebViewController?
+    private weak var webViewController: ScratchWebViewController!
+    private var preferences: Preferences!
+    
     private var didInitialLoad = false
     
     var home: URL? {
-        guard let preferences else { return nil}
-        
         switch preferences.home {
         case .scratchHome:
             return URL(string: "https://scratch.mit.edu/")
@@ -55,7 +53,7 @@ class WebViewModel: ObservableObject {
         }
     }
     
-    func setup(webViewController: ScratchWebViewController) {
+    func setup(webViewController: ScratchWebViewController, preferences: Preferences) {
         webViewController.$url.assign(to: &$url)
         webViewController.$isLoading.assign(to: &$isLoading)
         webViewController.$estimatedProgress.assign(to: &$estimatedProgress)
@@ -63,6 +61,7 @@ class WebViewModel: ObservableObject {
         webViewController.$canGoForward.assign(to: &$canGoForward)
         
         self.webViewController = webViewController
+        self.preferences = preferences
     }
     
     func initialLoad(lastUrl: URL?) throws {
@@ -82,37 +81,26 @@ class WebViewModel: ObservableObject {
         guard let url = home else {
             throw WebViewError.invalidUrl
         }
-        webViewController?.load(url: url)
+        webViewController.load(url: url)
     }
     
     func goBack() {
-        webViewController?.goBack()
+        webViewController.goBack()
     }
     
     func goForward() {
-        webViewController?.goForward()
+        webViewController.goForward()
     }
     
     func load(url: URL) {
-        webViewController?.load(url: url)
+        webViewController.load(url: url)
     }
     
     func reload() {
-        webViewController?.reload()
+        webViewController.reload()
     }
     
     func stopLoading() {
-        webViewController?.stopLoading()
-    }
-}
-
-extension WebViewModel {
-    
-    var shouldShowBluetoothParingDialog: Bool {
-        return preferences?.didShowBluetoothParingDialog == false
-    }
-    
-    func didShowBluetoothParingDialog() {
-        preferences?.didShowBluetoothParingDialog = true
+        webViewController.stopLoading()
     }
 }
