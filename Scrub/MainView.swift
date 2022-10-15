@@ -11,10 +11,11 @@ import SFUserFriendlySymbols
 struct MainView: View {
     
     @EnvironmentObject private var preferences: Preferences
-    @StateObject private var alertController = AlertController()
     
-    @StateObject private var webViewModel = WebViewModel()
     @SceneStorage("lastUrl") private var lastUrl: URL?
+    
+    @StateObject private var alertController = AlertController()
+    @StateObject private var webViewModel = WebViewModel()
     
     @State private var isShowingPreferences = false
     @State private var isShowingActivityView = false
