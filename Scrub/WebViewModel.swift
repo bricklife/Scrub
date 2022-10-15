@@ -66,7 +66,7 @@ class WebViewModel: ObservableObject {
     
     func initialLoad(lastUrl: URL?) throws {
         if didInitialLoad == false {
-            didInitialLoad = true
+            self.didInitialLoad = true
             if let lastUrl = lastUrl, lastUrl.scheme != "file" {
                 load(url: lastUrl)
             } else if let url = home {
