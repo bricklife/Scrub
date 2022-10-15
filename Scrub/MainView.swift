@@ -14,19 +14,19 @@ struct MainView: View {
     @StateObject private var alertController = AlertController()
     
     @StateObject private var webViewModel = WebViewModel()
-    @SceneStorage("lastUrl") private var url: URL?
+    @SceneStorage("lastUrl") private var lastUrl: URL?
     
     @State private var isShowingPreferences = false
     @State private var isShowingActivityView = false
     
     private var canShareUrl: Bool {
-        guard let url = url else { return false }
+        guard let url = webViewModel.url else { return false }
         return url.scheme == "http" || url.scheme == "https"
     }
     
     var body: some View {
         HStack(spacing: 0) {
-            WebView(viewModel: webViewModel, url: $url)
+            WebView(viewModel: webViewModel)
                 .environmentObject(alertController)
                 .edgesIgnoringSafeArea([.bottom, .horizontal])
             
@@ -41,22 +41,28 @@ struct MainView: View {
                 
                 ReloadAndStopButton(progress: webViewModel.estimatedProgress, isLoading: webViewModel.isLoading) {
                     if webViewModel.isLoading {
-                        webViewModel.apply(inputs: .stopLoading)
+                        webViewModel.stopLoading()
                     } else {
-                        webViewModel.apply(inputs: .reload)
+                        webViewModel.reload()
                     }
                 }
                 
                 Spacer()
                 
-                Button(action: { webViewModel.apply(inputs: .goHome) }) {
+                Button(action: {
+                    do {
+                        try webViewModel.goHome()
+                    } catch {
+                        alertController.showAlert(error: error)
+                    }
+                }) {
                     Image(symbol: .house)
                 }
-                Button(action: { webViewModel.apply(inputs: .goBack) }) {
+                Button(action: { webViewModel.goBack() }) {
                     Image(symbol: .chevronBackward)
                 }
                 .opacity(webViewModel.canGoBack ? 1.0 : 0.4)
-                Button(action: { webViewModel.apply(inputs: .goForward) }) {
+                Button(action: { webViewModel.goForward() }) {
                     Image(symbol: .chevronForward)
                 }
                 .opacity(webViewModel.canGoForward ? 1.0 : 0.4)
@@ -84,12 +90,18 @@ struct MainView: View {
             }
         }
         .sheet(isPresented: $isShowingActivityView) {
-            if let url = url {
+            if let url = webViewModel.url {
                 ActivityView(activityItems: [url])
             }
         }
         .alert(isPresented: alertController.isShowingAlert) {
             alertController.makeAlert()
+        }
+        .onAppear {
+            try? webViewModel.initialLoad(lastUrl: lastUrl)
+        }
+        .onChange(of: webViewModel.url) { newValue in
+            lastUrl = newValue
         }
     }
 }
