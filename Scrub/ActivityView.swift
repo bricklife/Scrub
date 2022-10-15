@@ -10,7 +10,7 @@ import SFUserFriendlySymbols
 
 struct ActivityView: UIViewControllerRepresentable {
     
-    let preferences: Preferences
+    @EnvironmentObject private var preferences: Preferences
     let activityItems: [Any]
     
     func makeUIViewController(context: Context) -> UIActivityViewController {

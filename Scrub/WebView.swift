@@ -41,6 +41,7 @@ struct WebView: UIViewControllerRepresentable {
     @ObservedObject var viewModel: WebViewModel
     @Binding var url: URL?
     
+    @EnvironmentObject private var preferences: Preferences
     @EnvironmentObject private var alertController: AlertController
     
     private let webViewController = ScratchWebViewController()
@@ -50,6 +51,8 @@ struct WebView: UIViewControllerRepresentable {
     }
     
     func makeUIViewController(context: Context) -> ScratchWebViewController {
+        viewModel.preferences = preferences
+        
         webViewController.delegate = context.coordinator
         
         if let url = url, url.scheme != "file" {

@@ -10,10 +10,10 @@ import SFUserFriendlySymbols
 
 struct MainView: View {
     
-    @ObservedObject private var preferences: Preferences
+    @EnvironmentObject private var preferences: Preferences
     @StateObject private var alertController = AlertController()
     
-    @StateObject private var webViewModel: WebViewModel
+    @StateObject private var webViewModel = WebViewModel()
     @SceneStorage("lastUrl") private var url: URL?
     
     @State private var isShowingPreferences = false
@@ -22,11 +22,6 @@ struct MainView: View {
     private var canShareUrl: Bool {
         guard let url = url else { return false }
         return url.scheme == "http" || url.scheme == "https"
-    }
-    
-    init(preferences: Preferences) {
-        self.preferences = preferences
-        self._webViewModel = StateObject(wrappedValue: WebViewModel(preferences: preferences))
     }
     
     var body: some View {
@@ -77,7 +72,7 @@ struct MainView: View {
         }
         .sheet(isPresented: $isShowingPreferences) {
             NavigationView {
-                PreferencesView(preferences: preferences)
+                PreferencesView()
                     .navigationTitle(Text("Preferences"))
                     .toolbar {
                         ToolbarItem(placement: .navigationBarTrailing){
@@ -90,7 +85,7 @@ struct MainView: View {
         }
         .sheet(isPresented: $isShowingActivityView) {
             if let url = url {
-                ActivityView(preferences: preferences, activityItems: [url])
+                ActivityView(activityItems: [url])
             }
         }
         .alert(isPresented: alertController.isShowingAlert) {
@@ -124,6 +119,7 @@ struct ReloadAndStopButton: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(preferences: Preferences())
+        MainView()
+            .environmentObject(Preferences())
     }
 }

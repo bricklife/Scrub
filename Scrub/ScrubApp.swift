@@ -16,7 +16,8 @@ struct ScrubApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView(preferences: preferences)
+            MainView()
+                .environmentObject(preferences)
         }
     }
 }

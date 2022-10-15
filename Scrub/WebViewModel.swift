@@ -19,6 +19,8 @@ class WebViewModel: ObservableObject {
         case stopLoading
     }
     
+    var preferences: Preferences?
+    
     let inputs: AnyPublisher<Inputs, Never>
     
     @Published var isLoading: Bool = false
@@ -26,17 +28,16 @@ class WebViewModel: ObservableObject {
     @Published var canGoBack: Bool = false
     @Published var canGoForward: Bool = false
     
-    private let preferences: Preferences
     private let inputsSubject: PassthroughSubject<Inputs, Never>
     
-    init(preferences: Preferences) {
-        self.preferences = preferences
-        
+    init() {
         self.inputsSubject = PassthroughSubject<Inputs, Never>()
         self.inputs = inputsSubject.eraseToAnyPublisher()
     }
     
     var home: URL? {
+        guard let preferences else { return nil}
+        
         switch preferences.home {
         case .scratchHome:
             return URL(string: "https://scratch.mit.edu/")
@@ -62,10 +63,10 @@ class WebViewModel: ObservableObject {
 extension WebViewModel {
     
     var shouldShowBluetoothParingDialog: Bool {
-        return !preferences.didShowBluetoothParingDialog
+        return preferences?.didShowBluetoothParingDialog == false
     }
     
     func didShowBluetoothParingDialog() {
-        preferences.didShowBluetoothParingDialog = true
+        preferences?.didShowBluetoothParingDialog = true
     }
 }
