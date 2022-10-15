@@ -10,19 +10,6 @@ import Combine
 import ScratchWebKit
 import ScratchLink
 
-extension URL {
-    var isScratchSite: Bool {
-        let normalizedHost = "." + (host ?? "")
-        let scratchHosts = [
-            ".scratch.mit.edu",
-            ".scratch-wiki.info",
-            ".scratchfoundation.org",
-            ".scratchjr.org",
-        ]
-        return scratchHosts.contains(where: normalizedHost.hasSuffix(_:))
-    }
-}
-
 struct WebView: UIViewControllerRepresentable {
     
     @ObservedObject var viewModel: WebViewModel

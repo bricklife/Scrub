@@ -19,11 +19,6 @@ struct MainView: View {
     @State private var isShowingPreferences = false
     @State private var isShowingActivityView = false
     
-    private var canShareUrl: Bool {
-        guard let url = webViewModel.url else { return false }
-        return url.scheme == "http" || url.scheme == "https"
-    }
-    
     var body: some View {
         HStack(spacing: 0) {
             WebView(viewModel: webViewModel)
@@ -70,6 +65,8 @@ extension MainView {
     
     func MenuBar() -> some View {
         VStack(spacing: 8) {
+            let canShareUrl = webViewModel.url?.canShare == true
+            
             Button(action: {
                 isShowingActivityView = true
             }) {

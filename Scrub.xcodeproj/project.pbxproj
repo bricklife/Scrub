@@ -10,6 +10,7 @@
 		CB0A07732629E4D4001EF560 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A07722629E4D4001EF560 /* Preferences.swift */; };
 		CB0A0777262DC19C001EF560 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A0776262DC19C001EF560 /* PreferencesView.swift */; };
 		CB1980C5265CEBF900FC9D3D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CB1980C3265CEBF900FC9D3D /* InfoPlist.strings */; };
+		CB19B7F428FAE92400C3C9A2 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19B7F328FAE92400C3C9A2 /* URL+Extension.swift */; };
 		CB1DAA51262D6EB0007F5531 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1DAA50262D6EB0007F5531 /* WebViewModel.swift */; };
 		CB2F32E62657B3690097ED27 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = CB2F32E52657B3690097ED27 /* index.html */; };
 		CB2F32EB2657CAFB0097ED27 /* LocalDocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F32EA2657CAFB0097ED27 /* LocalDocumentsManager.swift */; };
@@ -47,6 +48,7 @@
 		CB0A0776262DC19C001EF560 /* PreferencesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		CB1980C4265CEBF900FC9D3D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CB1980C6265CEC0100FC9D3D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CB19B7F328FAE92400C3C9A2 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		CB1DAA50262D6EB0007F5531 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		CB2BAA5328F2C14B004DB543 /* WebMIDIKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = WebMIDIKit; sourceTree = "<group>"; };
 		CB2F32E52657B3690097ED27 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				CB7D42DA2617096C005C86D0 /* ScrubApp.swift */,
 				CB0A07722629E4D4001EF560 /* Preferences.swift */,
 				CBF6C69C2779970000548AA8 /* ManagedAppConfig.swift */,
+				CB19B7F328FAE92400C3C9A2 /* URL+Extension.swift */,
 				CB7D42F8261709F4005C86D0 /* MainView.swift */,
 				CB3EE8D3266082D100005ECC /* AlertController.swift */,
 				CB7D42FA26170A9E005C86D0 /* WebView.swift */,
@@ -242,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB7D42FB26170A9E005C86D0 /* WebView.swift in Sources */,
+				CB19B7F428FAE92400C3C9A2 /* URL+Extension.swift in Sources */,
 				CB0A0777262DC19C001EF560 /* PreferencesView.swift in Sources */,
 				CB7D42F9261709F4005C86D0 /* MainView.swift in Sources */,
 				CB47F3BB2632DF5600C0A7ED /* CircleProgressView.swift in Sources */,
