@@ -7,34 +7,33 @@
 
 import Foundation
 import Combine
+import ScratchWebKit
+
+enum WebViewError: Error {
+    case invalidUrl
+}
+
+extension WebViewError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .invalidUrl:
+            return NSLocalizedString("Invalid URL", comment: "Invalid URL")
+        }
+    }
+}
 
 class WebViewModel: ObservableObject {
     
-    enum Inputs {
-        case goHome
-        case goBack
-        case goForward
-        case load(url: URL)
-        case reload
-        case stopLoading
-    }
-    
-    let inputs: AnyPublisher<Inputs, Never>
-    
+    @Published var url: URL? = nil
     @Published var isLoading: Bool = false
     @Published var estimatedProgress: Double = 0.0
     @Published var canGoBack: Bool = false
     @Published var canGoForward: Bool = false
     
-    private let preferences: Preferences
-    private let inputsSubject: PassthroughSubject<Inputs, Never>
+    private weak var webViewController: ScratchWebViewController!
+    private var preferences: Preferences!
     
-    init(preferences: Preferences) {
-        self.preferences = preferences
-        
-        self.inputsSubject = PassthroughSubject<Inputs, Never>()
-        self.inputs = inputsSubject.eraseToAnyPublisher()
-    }
+    private var didInitialLoad = false
     
     var home: URL? {
         switch preferences.home {
@@ -54,18 +53,54 @@ class WebViewModel: ObservableObject {
         }
     }
     
-    func apply(inputs: Inputs) {
-        inputsSubject.send(inputs)
+    func setup(webViewController: ScratchWebViewController, preferences: Preferences) {
+        webViewController.$url.assign(to: &$url)
+        webViewController.$isLoading.assign(to: &$isLoading)
+        webViewController.$estimatedProgress.assign(to: &$estimatedProgress)
+        webViewController.$canGoBack.assign(to: &$canGoBack)
+        webViewController.$canGoForward.assign(to: &$canGoForward)
+        
+        self.webViewController = webViewController
+        self.preferences = preferences
     }
-}
-
-extension WebViewModel {
     
-    var shouldShowBluetoothParingDialog: Bool {
-        return !preferences.didShowBluetoothParingDialog
+    func initialLoad(lastUrl: URL?) throws {
+        if didInitialLoad == false {
+            self.didInitialLoad = true
+            if let lastUrl = lastUrl, lastUrl.scheme != "file" {
+                load(url: lastUrl)
+            } else if let url = home {
+                load(url: url)
+            } else {
+                throw WebViewError.invalidUrl
+            }
+        }
     }
     
-    func didShowBluetoothParingDialog() {
-        preferences.didShowBluetoothParingDialog = true
+    func goHome() throws {
+        guard let url = home else {
+            throw WebViewError.invalidUrl
+        }
+        webViewController.load(url: url)
+    }
+    
+    func goBack() {
+        webViewController.goBack()
+    }
+    
+    func goForward() {
+        webViewController.goForward()
+    }
+    
+    func load(url: URL) {
+        webViewController.load(url: url)
+    }
+    
+    func reload() {
+        webViewController.reload()
+    }
+    
+    func stopLoading() {
+        webViewController.stopLoading()
     }
 }

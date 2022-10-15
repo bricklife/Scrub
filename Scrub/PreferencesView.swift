@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PreferencesView: View {
     
-    @ObservedObject var preferences: Preferences
+    @EnvironmentObject private var preferences: Preferences
     
     var body: some View {
         Form {
@@ -61,25 +61,25 @@ struct PreferencesView: View {
             
             // Support, Special Thanks
             Section {
-                NavigationLink("Support", destination:
-                                Form {
-                                    Section {
-                                        WebLink(title: Text("GitHub"), destination: URL(string: "https://github.com/bricklife/Scrub")!)
-                                        WebLink(title: Text("Twitter: @ooba"), destination: URL(string: "https://twitter.com/ooba")!)
-                                    }
-                                }
-                                .navigationTitle(Text("Support"))
-                )
-                NavigationLink("Special Thanks", destination:
-                                Form {
-                                    Section(header: Text("This implementation of Scratch Link function is inspired by toio Do iPad app."),
-                                            footer: Text("\"toio\" is a trademark or registered trademark of Sony Interactive Entertainment Inc.")) {
-                                        WebLink(title: Text("toio Do"), destination: URL(string: "https://toio.io/special/do/")!)
-                                    }
-                                    .textCase(nil)
-                                }
-                                .navigationTitle(Text("Special Thanks"))
-                )
+                NavigationLink("Support") {
+                    Form {
+                        Section {
+                            WebLink(title: Text("GitHub"), destination: URL(string: "https://github.com/bricklife/Scrub")!)
+                            WebLink(title: Text("Twitter: @ooba"), destination: URL(string: "https://twitter.com/ooba")!)
+                        }
+                    }
+                    .navigationTitle(Text("Support"))
+                }
+                NavigationLink("Special Thanks") {
+                    Form {
+                        Section(header: Text("This implementation of Scratch Link function is inspired by toio Do iPad app."),
+                                footer: Text("\"toio\" is a trademark or registered trademark of Sony Interactive Entertainment Inc.")) {
+                            WebLink(title: Text("toio Do"), destination: URL(string: "https://toio.io/special/do/")!)
+                        }
+                                .textCase(nil)
+                    }
+                    .navigationTitle(Text("Special Thanks"))
+                }
             }
             
             // Version
@@ -150,11 +150,11 @@ private struct URLTextField: View {
                 self.isEditing = isEditing
                 onEditingChanged(isEditing)
             })
-                .foregroundColor(.secondary)
-                .keyboardType(.URL)
-                .autocapitalization(.none)
-                .disableAutocorrection(true)
-                .disabled(disabled)
+            .foregroundColor(.secondary)
+            .keyboardType(.URL)
+            .autocapitalization(.none)
+            .disableAutocorrection(true)
+            .disabled(disabled)
             
             if isEditing && !text.isEmpty {
                 Button(action: {
@@ -186,6 +186,7 @@ private struct WebLink: View {
 
 struct PreferencesView_Previews: PreviewProvider {
     static var previews: some View {
-        PreferencesView(preferences: Preferences())
+        PreferencesView()
+            .environmentObject(Preferences())
     }
 }
