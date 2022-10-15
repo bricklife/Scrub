@@ -59,7 +59,9 @@ struct MainView: View {
             try? webViewModel.initialLoad(lastUrl: lastUrl)
         }
         .onChange(of: webViewModel.url) { newValue in
-            lastUrl = newValue
+            if let url = newValue {
+                lastUrl = url
+            }
         }
     }
 }
