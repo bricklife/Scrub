@@ -20,15 +20,13 @@ struct MainView: View {
     var body: some View {
         HStack(spacing: 0) {
             WebView(viewModel: viewModel.webViewModel)
-                .environmentObject(alertController)
                 .edgesIgnoringSafeArea([.bottom, .horizontal])
             
-            MenuBar()
-                .environmentObject(viewModel)
-                .environmentObject(alertController)
+            MenuBar(viewModel: viewModel)
                 .padding(4)
                 .edgesIgnoringSafeArea([.horizontal])
         }
+        .environmentObject(alertController)
         .sheet(isPresented: $viewModel.isShowingPreferences) {
             NavigationView {
                 PreferencesView()
@@ -64,7 +62,8 @@ struct MainView: View {
 
 struct MenuBar: View {
     
-    @EnvironmentObject private var viewModel: MainViewModel
+    @ObservedObject var viewModel: MainViewModel
+    
     @EnvironmentObject private var alertController: AlertController
     
     var body: some View {
