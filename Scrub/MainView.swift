@@ -32,7 +32,7 @@ struct MainView: View {
                 PreferencesView()
                     .navigationTitle(Text("Preferences"))
                     .toolbar {
-                        ToolbarItem(placement: .navigationBarTrailing){
+                        ToolbarItem(placement: .navigationBarTrailing) {
                             Button("Done") {
                                 viewModel.isShowingPreferences = false
                             }
@@ -70,9 +70,9 @@ struct MenuBar: View {
         VStack(spacing: 8) {
             let canShareUrl = viewModel.webViewModel.url?.isHTTPsURL == true
             
-            Button(action: {
+            Button {
                 viewModel.isShowingActivityView = true
-            }) {
+            } label: {
                 Image(symbol: .squareAndArrowUp)
             }
             .disabled(!canShareUrl)
@@ -88,27 +88,33 @@ struct MenuBar: View {
             
             Spacer()
             
-            Button(action: {
+            Button {
                 do {
                     try viewModel.goHome()
                 } catch {
                     alertController.showAlert(error: error)
                 }
-            }) {
+            } label: {
                 Image(symbol: .house)
             }
-            Button(action: { viewModel.goBack() }) {
+            Button {
+                viewModel.goBack()
+            } label: {
                 Image(symbol: .chevronBackward)
             }
             .opacity(viewModel.webViewModel.canGoBack ? 1.0 : 0.4)
-            Button(action: { viewModel.goForward() }) {
+            Button {
+                viewModel.goForward()
+            } label: {
                 Image(symbol: .chevronForward)
             }
             .opacity(viewModel.webViewModel.canGoForward ? 1.0 : 0.4)
             
             Spacer()
             
-            Button(action: { viewModel.isShowingPreferences = true }) {
+            Button {
+                viewModel.isShowingPreferences = true
+            } label: {
                 Image(symbol: .gear)
             }
         }

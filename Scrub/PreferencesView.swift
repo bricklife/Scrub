@@ -20,28 +20,28 @@ struct PreferencesView: View {
                     LockImage()
                 }
             }.font(.headline)) {
-                Button(action: {
+                Button {
                     closeKeyboard()
                     preferences.home = .scratchHome
-                }) {
+                } label: {
                     CheckmarkText(title: Text("Scratch - Home"), checked: preferences.home == .scratchHome)
                 }
-                Button(action: {
+                Button {
                     closeKeyboard()
                     preferences.home = .scratchEditor
-                }) {
+                } label: {
                     CheckmarkText(title: Text("Scratch - Editor (Create New Project)"), checked: preferences.home == .scratchEditor)
                 }
-                Button(action: {
+                Button {
                     closeKeyboard()
                     preferences.home = .scratchMyStuff
-                }) {
+                } label: {
                     CheckmarkText(title: Text("Scratch - My Stuff"), checked: preferences.home == .scratchMyStuff)
                 }
-                Button(action: {
+                Button {
                     closeKeyboard()
                     preferences.home = .customUrl
-                }) {
+                } label: {
                     VStack {
                         CheckmarkText(title: Text("Custom URL"), checked: preferences.home == .customUrl)
                         URLTextField(text: $preferences.customUrl, disabled: preferences.isCustomUrlLocked, onEditingChanged: { isEditing in
@@ -51,10 +51,10 @@ struct PreferencesView: View {
                         })
                     }
                 }
-                Button(action: {
+                Button {
                     closeKeyboard()
                     preferences.home = .documentsFolder
-                }) {
+                } label: {
                     CheckmarkText(title: Text("Local Documents Folder"), checked: preferences.home == .documentsFolder)
                 }
             }.disabled(preferences.isHomeLocked)
@@ -157,9 +157,9 @@ private struct URLTextField: View {
             .disabled(disabled)
             
             if isEditing && !text.isEmpty {
-                Button(action: {
+                Button {
                     text = ""
-                }) {
+                } label: {
                     Image(symbol: .xmarkCircleFill)
                         .foregroundColor(.secondary)
                 }
