@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 
+@MainActor
 class WebViewModel: ObservableObject {
     
     @Published var url: URL? = nil

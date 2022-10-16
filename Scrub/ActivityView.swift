@@ -58,11 +58,13 @@ class HomeActivity: UIActivity {
     }
     
     override func perform() {
-        if let url = url {
-            preferences.home = .customUrl
-            preferences.customUrl = url.absoluteString
+        Task { @MainActor in
+            if let url = url {
+                preferences.home = .customUrl
+                preferences.customUrl = url.absoluteString
+            }
+            activityDidFinish(true)
         }
-        activityDidFinish(true)
     }
 }
 

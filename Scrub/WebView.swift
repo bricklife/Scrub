@@ -35,6 +35,7 @@ struct WebView: UIViewControllerRepresentable {
 
 extension WebView {
     
+    @MainActor
     class Coordinator: NSObject, ScratchWebViewControllerDelegate {
         
         private let alertController: AlertController
@@ -62,21 +63,21 @@ extension WebView {
                 for await inputs in viewModel.inputsStream {
                     switch inputs {
                     case .load(url: let url):
-                        await viewController.load(url: url)
+                        viewController.load(url: url)
                     case .goBack:
-                        await viewController.goBack()
+                        viewController.goBack()
                     case .goForward:
-                        await viewController.goForward()
+                        viewController.goForward()
                     case .reload:
-                        await viewController.reload()
+                        viewController.reload()
                     case .stopLoading:
-                        await viewController.stopLoading()
+                        viewController.stopLoading()
                     }
                 }
             }
         }
         
-        func scratchWebViewController(_ viewController: ScratchWebViewController, decidePolicyFor url: URL, isScratchEditor: Bool, decisionHandler: @escaping (WebFilterPolicy) -> Void) {
+        nonisolated func scratchWebViewController(_ viewController: ScratchWebViewController, decidePolicyFor url: URL, isScratchEditor: Bool, decisionHandler: @escaping (WebFilterPolicy) -> Void) {
 #if DEBUG
             decisionHandler(.allow)
 #else
@@ -88,22 +89,26 @@ extension WebView {
 #endif
         }
         
-        func scratchWebViewController(_ viewController: ScratchWebViewController, didDownloadFileAt url: URL) {
-            let vc = UIDocumentPickerViewController(forExporting: [url])
-            vc.shouldShowFileExtensions = true
-            viewController.present(vc, animated: true)
-        }
-        
-        func scratchWebViewController(_ viewController: ScratchWebViewController, didFail error: Error) {
-            switch error as? ScratchWebViewError {
-            case let .forbiddenAccess(url: url):
-                alertController.showAlert(forbiddenAccess: Text("This app can only open the official Scratch website or any Scratch Editor."), url: url)
-            case .none:
-                alertController.showAlert(error: error)
+        nonisolated func scratchWebViewController(_ viewController: ScratchWebViewController, didDownloadFileAt url: URL) {
+            Task { @MainActor in
+                let vc = UIDocumentPickerViewController(forExporting: [url])
+                vc.shouldShowFileExtensions = true
+                viewController.present(vc, animated: true)
             }
         }
         
-        func scratchWebViewController(_ viewController: ScratchWebViewController, canStartScratchLinkSessionType type: SessionType) -> Bool {
+        nonisolated func scratchWebViewController(_ viewController: ScratchWebViewController, didFail error: Error) {
+            Task { @MainActor in
+                switch error as? ScratchWebViewError {
+                case let .forbiddenAccess(url: url):
+                    alertController.showAlert(forbiddenAccess: Text("This app can only open the official Scratch website or any Scratch Editor."), url: url)
+                case .none:
+                    alertController.showAlert(error: error)
+                }
+            }
+        }
+        
+        nonisolated func scratchWebViewController(_ viewController: ScratchWebViewController, canStartScratchLinkSessionType type: SessionType) -> Bool {
 #if DEBUG
             return true
 #else
@@ -116,26 +121,30 @@ extension WebView {
 #endif
         }
         
-        func scratchWebViewController(_ viewController: ScratchWebViewController, didStartScratchLinkSessionType type: SessionType) {
-            if type == .bt, !preferences.didShowBluetoothParingDialog {
-                alertController.showAlert(howTo: Text("Please pair your Bluetooth device on Settings app before using this extension.")) { [weak self] in
-                    self?.preferences.didShowBluetoothParingDialog = true
+        nonisolated func scratchWebViewController(_ viewController: ScratchWebViewController, didStartScratchLinkSessionType type: SessionType) {
+            Task { @MainActor in
+                if type == .bt, !preferences.didShowBluetoothParingDialog {
+                    alertController.showAlert(howTo: Text("Please pair your Bluetooth device on Settings app before using this extension.")) { [weak self] in
+                        self?.preferences.didShowBluetoothParingDialog = true
+                    }
                 }
             }
         }
         
-        func scratchWebViewController(_ viewController: ScratchWebViewController, didFailStartingScratchLinkSession type: SessionType, error: SessionError) {
-            switch error {
-            case .unavailable:
-                alertController.showAlert(sorry: Text("This extension is not supported🙇🏻"))
-            case .bluetoothIsPoweredOff:
-                alertController.showAlert(error: error)
-            case .bluetoothIsUnauthorized:
-                alertController.showAlert(unauthorized: Text("Bluetooth"))
-            case .bluetoothIsUnsupported:
-                alertController.showAlert(error: error)
-            case .other(error: let error):
-                alertController.showAlert(error: error)
+        nonisolated func scratchWebViewController(_ viewController: ScratchWebViewController, didFailStartingScratchLinkSession type: SessionType, error: SessionError) {
+            Task { @MainActor in
+                switch error {
+                case .unavailable:
+                    alertController.showAlert(sorry: Text("This extension is not supported🙇🏻"))
+                case .bluetoothIsPoweredOff:
+                    alertController.showAlert(error: error)
+                case .bluetoothIsUnauthorized:
+                    alertController.showAlert(unauthorized: Text("Bluetooth"))
+                case .bluetoothIsUnsupported:
+                    alertController.showAlert(error: error)
+                case .other(error: let error):
+                    alertController.showAlert(error: error)
+                }
             }
         }
     }

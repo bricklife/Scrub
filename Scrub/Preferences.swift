@@ -12,6 +12,7 @@ private let homeKey = "home"
 private let customUrlKey = "customUrl"
 private let didShowBluetoothParingDialogKey = "didShowBluetoothParingDialog"
 
+@MainActor
 class Preferences: ObservableObject {
     
     enum Home: String {
