@@ -53,10 +53,10 @@ extension WebView {
             viewController.$canGoBack.assign(to: &viewModel.$canGoBack)
             viewController.$canGoForward.assign(to: &viewModel.$canGoForward)
             
-            let inputsChannel = viewModel.inputsChannel
+            let inputChannel = viewModel.inputChannel
             Task {
-                for await inputs in inputsChannel {
-                    switch inputs {
+                for await input in inputChannel {
+                    switch input {
                     case .load(url: let url):
                         viewController.load(url: url)
                     case .goBack:

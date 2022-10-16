@@ -84,26 +84,26 @@ class MainViewModel: ObservableObject {
         guard let url = homeUrl else {
             throw MainViewModelError.invalidUrl
         }
-        webViewModel.apply(inputs: .load(url: url))
+        webViewModel.apply(input: .load(url: url))
     }
     
     func load(url: URL) {
-        webViewModel.apply(inputs: .load(url: url))
+        webViewModel.apply(input: .load(url: url))
     }
     
     func goBack() {
-        webViewModel.apply(inputs: .goBack)
+        webViewModel.apply(input: .goBack)
     }
     
     func goForward() {
-        webViewModel.apply(inputs: .goForward)
+        webViewModel.apply(input: .goForward)
     }
     
     func reload() {
-        webViewModel.apply(inputs: .reload)
+        webViewModel.apply(input: .reload)
     }
     
     func stopLoading() {
-        webViewModel.apply(inputs: .stopLoading)
+        webViewModel.apply(input: .stopLoading)
     }
 }

@@ -18,22 +18,22 @@ class WebViewModel: ObservableObject {
     @Published var canGoBack: Bool = false
     @Published var canGoForward: Bool = false
     
-    let inputsChannel = AsyncChannel<Inputs>()
+    let inputChannel = AsyncChannel<Input>()
     
     deinit {
-        inputsChannel.finish()
+        inputChannel.finish()
     }
     
-    func apply(inputs: Inputs) {
+    func apply(input: Input) {
         Task {
-            await inputsChannel.send(inputs)
+            await inputChannel.send(input)
         }
     }
 }
 
 extension WebViewModel {
     
-    enum Inputs {
+    enum Input {
         case load(url: URL)
         case goBack
         case goForward
