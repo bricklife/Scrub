@@ -41,15 +41,9 @@ extension WebView {
         private let alertController: AlertController
         private let preferences: Preferences
         
-        private var task: Task<(), Never>?
-        
         init(alertController: AlertController, preferences: Preferences) {
             self.alertController = alertController
             self.preferences = preferences
-        }
-        
-        deinit {
-            task?.cancel()
         }
         
         func bind(viewModel: WebViewModel, viewController: ScratchWebViewController) {
@@ -59,8 +53,8 @@ extension WebView {
             viewController.$canGoBack.assign(to: &viewModel.$canGoBack)
             viewController.$canGoForward.assign(to: &viewModel.$canGoForward)
             
-            self.task = Task {
-                for await inputs in viewModel.inputsStream {
+            Task {
+                for await inputs in viewModel.inputsChannel {
                     switch inputs {
                     case .load(url: let url):
                         viewController.load(url: url)

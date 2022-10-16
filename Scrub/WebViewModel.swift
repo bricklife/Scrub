@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import AsyncAlgorithms
 
 @MainActor
 class WebViewModel: ObservableObject {
@@ -17,17 +18,15 @@ class WebViewModel: ObservableObject {
     @Published var canGoBack: Bool = false
     @Published var canGoForward: Bool = false
     
-    private var continuation: AsyncStream<Inputs>.Continuation?
+    let inputsChannel = AsyncChannel<Inputs>()
     
-    var inputsStream: AsyncStream<Inputs> {
-        AsyncStream<Inputs> { continuation in
-            self.continuation = continuation
-        }
+    deinit {
+        inputsChannel.finish()
     }
     
     func apply(inputs: Inputs) {
         Task {
-            continuation?.yield(inputs)
+            await inputsChannel.send(inputs)
         }
     }
 }
