@@ -10,7 +10,6 @@ https://apps.apple.com/us/app/scrub-web-browser/id1569777095
 - Local HTML file loading
 - Web access filtering (only Release Build)
 - Web MIDI API (Beta)
-- ...
 
 ## Supported Devices
 - micro:bit
@@ -31,7 +30,6 @@ https://apps.apple.com/us/app/scrub-web-browser/id1569777095
 - Screen Scaling
 - Virtual Keyboard
 - Game Controller with Key Mapping
-- ...
 
 ## Special Thanks
 This implementation of Scratch Link function is inspired by [toio Do](https://toio.io/special/do/) iPad app. Special thanks to toio Do team!
