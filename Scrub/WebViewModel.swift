@@ -26,7 +26,9 @@ class WebViewModel: ObservableObject {
     }
     
     func apply(inputs: Inputs) {
-        continuation?.yield(inputs)
+        Task {
+            continuation?.yield(inputs)
+        }
     }
 }
 
