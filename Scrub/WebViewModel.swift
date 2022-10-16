@@ -7,7 +7,9 @@
 
 import Foundation
 import Combine
+import AsyncAlgorithms
 
+@MainActor
 class WebViewModel: ObservableObject {
     
     @Published var url: URL? = nil
@@ -16,26 +18,36 @@ class WebViewModel: ObservableObject {
     @Published var canGoBack: Bool = false
     @Published var canGoForward: Bool = false
     
-    private var continuation: AsyncStream<Inputs>.Continuation?
+    let inputChannel = AsyncChannel<Input>()
+    let eventChannel = AsyncChannel<Event>()
     
-    var inputsStream: AsyncStream<Inputs> {
-        AsyncStream<Inputs> { continuation in
-            self.continuation = continuation
-        }
+    deinit {
+        inputChannel.finish()
+        eventChannel.finish()
     }
     
-    func apply(inputs: Inputs) {
-        continuation?.yield(inputs)
+    func apply(input: Input) {
+        Task {
+            await inputChannel.send(input)
+        }
     }
 }
 
 extension WebViewModel {
     
-    enum Inputs {
+    enum Input {
         case load(url: URL)
         case goBack
         case goForward
         case reload
         case stopLoading
+    }
+    
+    enum Event {
+        case error(Error)
+        case forbiddenAccess(URL)
+        case openingBluetoothSession
+        case notSupportedExtension
+        case unauthorizedBluetooth
     }
 }

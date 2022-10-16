@@ -10,6 +10,8 @@
 		CB0A07732629E4D4001EF560 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A07722629E4D4001EF560 /* Preferences.swift */; };
 		CB0A0777262DC19C001EF560 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A0776262DC19C001EF560 /* PreferencesView.swift */; };
 		CB0DA92528FB7BC900BAE912 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0DA92428FB7BC900BAE912 /* MainViewModel.swift */; };
+		CB0DA94928FC0E5900BAE912 /* AsyncAlgorithms in Frameworks */ = {isa = PBXBuildFile; productRef = CB0DA94828FC0E5900BAE912 /* AsyncAlgorithms */; };
+		CB0DA94B28FC249A00BAE912 /* MainToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0DA94A28FC249A00BAE912 /* MainToolBar.swift */; };
 		CB1980C5265CEBF900FC9D3D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CB1980C3265CEBF900FC9D3D /* InfoPlist.strings */; };
 		CB19B7F428FAE92400C3C9A2 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19B7F328FAE92400C3C9A2 /* URL+Extension.swift */; };
 		CB1DAA51262D6EB0007F5531 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1DAA50262D6EB0007F5531 /* WebViewModel.swift */; };
@@ -48,6 +50,7 @@
 		CB0A07722629E4D4001EF560 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		CB0A0776262DC19C001EF560 /* PreferencesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		CB0DA92428FB7BC900BAE912 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		CB0DA94A28FC249A00BAE912 /* MainToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainToolBar.swift; sourceTree = "<group>"; };
 		CB1980C4265CEBF900FC9D3D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CB1980C6265CEC0100FC9D3D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CB19B7F328FAE92400C3C9A2 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
@@ -80,6 +83,7 @@
 			files = (
 				CB713FED27749B2A009C63E8 /* ScratchWebKit in Frameworks */,
 				CB485DC927A250D8003C9A68 /* SFUserFriendlySymbols in Frameworks */,
+				CB0DA94928FC0E5900BAE912 /* AsyncAlgorithms in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +126,7 @@
 				CBF6C69C2779970000548AA8 /* ManagedAppConfig.swift */,
 				CB19B7F328FAE92400C3C9A2 /* URL+Extension.swift */,
 				CB7D42F8261709F4005C86D0 /* MainView.swift */,
+				CB0DA94A28FC249A00BAE912 /* MainToolBar.swift */,
 				CB0DA92428FB7BC900BAE912 /* MainViewModel.swift */,
 				CB3EE8D3266082D100005ECC /* AlertController.swift */,
 				CB7D42FA26170A9E005C86D0 /* WebView.swift */,
@@ -184,6 +189,7 @@
 			packageProductDependencies = (
 				CB713FEC27749B2A009C63E8 /* ScratchWebKit */,
 				CB485DC827A250D8003C9A68 /* SFUserFriendlySymbols */,
+				CB0DA94828FC0E5900BAE912 /* AsyncAlgorithms */,
 			);
 			productName = Scrub;
 			productReference = CB3FBCEC2605D98B008FE5C2 /* Scrub.app */;
@@ -217,6 +223,7 @@
 			mainGroup = CB3FBCE32605D98B008FE5C2;
 			packageReferences = (
 				CB485DC727A250D8003C9A68 /* XCRemoteSwiftPackageReference "SFUserFriendlySymbols" */,
+				CB0DA94728FC0E5900BAE912 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */,
 			);
 			productRefGroup = CB3FBCED2605D98B008FE5C2 /* Products */;
 			projectDirPath = "";
@@ -259,6 +266,7 @@
 				CB52568F26419776009EE660 /* ActivityView.swift in Sources */,
 				CBF6C69D2779970000548AA8 /* ManagedAppConfig.swift in Sources */,
 				CB1DAA51262D6EB0007F5531 /* WebViewModel.swift in Sources */,
+				CB0DA94B28FC249A00BAE912 /* MainToolBar.swift in Sources */,
 				CB7D42DB2617096C005C86D0 /* ScrubApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -478,6 +486,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CB0DA94728FC0E5900BAE912 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-async-algorithms/";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		CB485DC727A250D8003C9A68 /* XCRemoteSwiftPackageReference "SFUserFriendlySymbols" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/littleossa/SFUserFriendlySymbols";
@@ -489,6 +505,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CB0DA94828FC0E5900BAE912 /* AsyncAlgorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CB0DA94728FC0E5900BAE912 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */;
+			productName = AsyncAlgorithms;
+		};
 		CB485DC827A250D8003C9A68 /* SFUserFriendlySymbols */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CB485DC727A250D8003C9A68 /* XCRemoteSwiftPackageReference "SFUserFriendlySymbols" */;

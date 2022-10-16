@@ -21,6 +21,7 @@ extension MainViewModelError: LocalizedError {
     }
 }
 
+@dynamicMemberLookup
 @MainActor
 class MainViewModel: ObservableObject {
     
@@ -40,11 +41,15 @@ class MainViewModel: ObservableObject {
         }.store(in: &cancellables)
     }
     
+    subscript<T>(dynamicMember keyPath: KeyPath<WebViewModel, T>) -> T {
+        webViewModel[keyPath: keyPath]
+    }
+    
     func set(preferences: Preferences) {
         self.preferences = preferences
     }
     
-    var home: URL? {
+    var homeUrl: URL? {
         switch preferences.home {
         case .scratchHome:
             return URL(string: "https://scratch.mit.edu/")
@@ -67,7 +72,7 @@ class MainViewModel: ObservableObject {
             self.didInitialLoad = true
             if let lastUrl = lastUrl, !lastUrl.isFileURL {
                 load(url: lastUrl)
-            } else if let url = home {
+            } else if let url = homeUrl {
                 load(url: url)
             } else {
                 throw MainViewModelError.invalidUrl
@@ -76,29 +81,29 @@ class MainViewModel: ObservableObject {
     }
     
     func goHome() throws {
-        guard let url = home else {
+        guard let url = homeUrl else {
             throw MainViewModelError.invalidUrl
         }
-        webViewModel.apply(inputs: .load(url: url))
+        webViewModel.apply(input: .load(url: url))
     }
     
     func load(url: URL) {
-        webViewModel.apply(inputs: .load(url: url))
+        webViewModel.apply(input: .load(url: url))
     }
     
     func goBack() {
-        webViewModel.apply(inputs: .goBack)
+        webViewModel.apply(input: .goBack)
     }
     
     func goForward() {
-        webViewModel.apply(inputs: .goForward)
+        webViewModel.apply(input: .goForward)
     }
     
     func reload() {
-        webViewModel.apply(inputs: .reload)
+        webViewModel.apply(input: .reload)
     }
     
     func stopLoading() {
-        webViewModel.apply(inputs: .stopLoading)
+        webViewModel.apply(input: .stopLoading)
     }
 }

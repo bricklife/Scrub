@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 class AlertController: ObservableObject {
     
     @Environment(\.openURL) private var openURL
