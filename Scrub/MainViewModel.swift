@@ -49,7 +49,7 @@ class MainViewModel: ObservableObject {
         self.preferences = preferences
     }
     
-    var home: URL? {
+    var homeUrl: URL? {
         switch preferences.home {
         case .scratchHome:
             return URL(string: "https://scratch.mit.edu/")
@@ -72,7 +72,7 @@ class MainViewModel: ObservableObject {
             self.didInitialLoad = true
             if let lastUrl = lastUrl, !lastUrl.isFileURL {
                 load(url: lastUrl)
-            } else if let url = home {
+            } else if let url = homeUrl {
                 load(url: url)
             } else {
                 throw MainViewModelError.invalidUrl
@@ -81,7 +81,7 @@ class MainViewModel: ObservableObject {
     }
     
     func goHome() throws {
-        guard let url = home else {
+        guard let url = homeUrl else {
             throw MainViewModelError.invalidUrl
         }
         webViewModel.apply(inputs: .load(url: url))
