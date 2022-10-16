@@ -53,10 +53,10 @@ class MainViewModel: ObservableObject {
         case .scratchMyStuff:
             return URL(string: "https://scratch.mit.edu/mystuff/")
         case .customUrl:
-            if let url = URL(string: preferences.customUrl), url.scheme == "http" || url.scheme == "https" {
-                return url
+            guard let url = URL(string: preferences.customUrl), url.isHTTPsURL else {
+                return nil
             }
-            return nil
+            return url
         case .documentsFolder:
             return LocalDocumentsManager.indexHtmlUrl
         }
@@ -65,7 +65,7 @@ class MainViewModel: ObservableObject {
     func initialLoad(lastUrl: URL?) throws {
         if didInitialLoad == false {
             self.didInitialLoad = true
-            if let lastUrl = lastUrl, lastUrl.scheme != "file" {
+            if let lastUrl = lastUrl, !lastUrl.isFileURL {
                 load(url: lastUrl)
             } else if let url = home {
                 load(url: url)

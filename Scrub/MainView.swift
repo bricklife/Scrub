@@ -68,7 +68,7 @@ struct MenuBar: View {
     
     var body: some View {
         VStack(spacing: 8) {
-            let canShareUrl = viewModel.webViewModel.url?.canShare == true
+            let canShareUrl = viewModel.webViewModel.url?.isHTTPsURL == true
             
             Button(action: {
                 viewModel.isShowingActivityView = true
