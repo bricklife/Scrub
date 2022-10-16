@@ -25,7 +25,7 @@ struct WebView: UIViewControllerRepresentable {
         let webViewController = ScratchWebViewController()
         webViewController.delegate = context.coordinator
         
-        viewModel.setup(webViewController: webViewController, preferences: preferences)
+        viewModel.setup(webViewController: webViewController)
         
         return webViewController
     }
@@ -40,7 +40,7 @@ extension WebView {
         
         private let alertController: AlertController
         private let preferences: Preferences
-
+        
         init(alertController: AlertController, preferences: Preferences) {
             self.alertController = alertController
             self.preferences = preferences

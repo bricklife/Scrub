@@ -9,19 +9,6 @@ import Foundation
 import Combine
 import ScratchWebKit
 
-enum WebViewError: Error {
-    case invalidUrl
-}
-
-extension WebViewError: LocalizedError {
-    var errorDescription: String? {
-        switch self {
-        case .invalidUrl:
-            return NSLocalizedString("Invalid URL", comment: "Invalid URL")
-        }
-    }
-}
-
 class WebViewModel: ObservableObject {
     
     @Published var url: URL? = nil
@@ -31,29 +18,8 @@ class WebViewModel: ObservableObject {
     @Published var canGoForward: Bool = false
     
     private weak var webViewController: ScratchWebViewController!
-    private var preferences: Preferences!
     
-    private var didInitialLoad = false
-    
-    var home: URL? {
-        switch preferences.home {
-        case .scratchHome:
-            return URL(string: "https://scratch.mit.edu/")
-        case .scratchEditor:
-            return URL(string: "https://scratch.mit.edu/projects/editor/")
-        case .scratchMyStuff:
-            return URL(string: "https://scratch.mit.edu/mystuff/")
-        case .customUrl:
-            if let url = URL(string: preferences.customUrl), url.scheme == "http" || url.scheme == "https" {
-                return url
-            }
-            return nil
-        case .documentsFolder:
-            return LocalDocumentsManager.indexHtmlUrl
-        }
-    }
-    
-    func setup(webViewController: ScratchWebViewController, preferences: Preferences) {
+    func setup(webViewController: ScratchWebViewController) {
         webViewController.$url.assign(to: &$url)
         webViewController.$isLoading.assign(to: &$isLoading)
         webViewController.$estimatedProgress.assign(to: &$estimatedProgress)
@@ -61,27 +27,6 @@ class WebViewModel: ObservableObject {
         webViewController.$canGoForward.assign(to: &$canGoForward)
         
         self.webViewController = webViewController
-        self.preferences = preferences
-    }
-    
-    func initialLoad(lastUrl: URL?) throws {
-        if didInitialLoad == false {
-            self.didInitialLoad = true
-            if let lastUrl = lastUrl, lastUrl.scheme != "file" {
-                load(url: lastUrl)
-            } else if let url = home {
-                load(url: url)
-            } else {
-                throw WebViewError.invalidUrl
-            }
-        }
-    }
-    
-    func goHome() throws {
-        guard let url = home else {
-            throw WebViewError.invalidUrl
-        }
-        webViewController.load(url: url)
     }
     
     func goBack() {
