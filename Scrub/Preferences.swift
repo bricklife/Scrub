@@ -44,7 +44,7 @@ class Preferences: ObservableObject {
         get {
             ManagedAppConfig.shared.string(forKey: customUrlKey)
             ?? UserDefaults.standard.string(forKey: customUrlKey)
-            ?? "http://"
+            ?? ""
         }
         set {
             if !isCustomUrlLocked {
