@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 import ScratchWebKit
 import ScratchLink
 
@@ -22,12 +21,12 @@ struct WebView: UIViewControllerRepresentable {
     }
     
     func makeUIViewController(context: Context) -> ScratchWebViewController {
-        let webViewController = ScratchWebViewController()
-        webViewController.delegate = context.coordinator
+        let viewController = ScratchWebViewController()
+        viewController.delegate = context.coordinator
         
-        viewModel.setup(webViewController: webViewController)
+        context.coordinator.bind(viewModel: viewModel, viewController: viewController)
         
-        return webViewController
+        return viewController
     }
     
     func updateUIViewController(_ uiViewController: ScratchWebViewController, context: Context) {
@@ -41,9 +40,40 @@ extension WebView {
         private let alertController: AlertController
         private let preferences: Preferences
         
+        private var task: Task<(), Never>?
+        
         init(alertController: AlertController, preferences: Preferences) {
             self.alertController = alertController
             self.preferences = preferences
+        }
+        
+        deinit {
+            task?.cancel()
+        }
+        
+        func bind(viewModel: WebViewModel, viewController: ScratchWebViewController) {
+            viewController.$url.assign(to: &viewModel.$url)
+            viewController.$isLoading.assign(to: &viewModel.$isLoading)
+            viewController.$estimatedProgress.assign(to: &viewModel.$estimatedProgress)
+            viewController.$canGoBack.assign(to: &viewModel.$canGoBack)
+            viewController.$canGoForward.assign(to: &viewModel.$canGoForward)
+            
+            self.task = Task {
+                for await inputs in viewModel.inputsStream {
+                    switch inputs {
+                    case .load(url: let url):
+                        await viewController.load(url: url)
+                    case .goBack:
+                        await viewController.goBack()
+                    case .goForward:
+                        await viewController.goForward()
+                    case .reload:
+                        await viewController.reload()
+                    case .stopLoading:
+                        await viewController.stopLoading()
+                    }
+                }
+            }
         }
         
         func scratchWebViewController(_ viewController: ScratchWebViewController, decidePolicyFor url: URL, isScratchEditor: Bool, decisionHandler: @escaping (WebFilterPolicy) -> Void) {

@@ -7,7 +7,6 @@
 
 import Foundation
 import Combine
-import ScratchWebKit
 
 class WebViewModel: ObservableObject {
     
@@ -17,35 +16,26 @@ class WebViewModel: ObservableObject {
     @Published var canGoBack: Bool = false
     @Published var canGoForward: Bool = false
     
-    private weak var webViewController: ScratchWebViewController!
+    private var continuation: AsyncStream<Inputs>.Continuation?
     
-    func setup(webViewController: ScratchWebViewController) {
-        webViewController.$url.assign(to: &$url)
-        webViewController.$isLoading.assign(to: &$isLoading)
-        webViewController.$estimatedProgress.assign(to: &$estimatedProgress)
-        webViewController.$canGoBack.assign(to: &$canGoBack)
-        webViewController.$canGoForward.assign(to: &$canGoForward)
-        
-        self.webViewController = webViewController
+    var inputsStream: AsyncStream<Inputs> {
+        AsyncStream<Inputs> { continuation in
+            self.continuation = continuation
+        }
     }
     
-    func goBack() {
-        webViewController.goBack()
+    func apply(inputs: Inputs) {
+        continuation?.yield(inputs)
     }
+}
+
+extension WebViewModel {
     
-    func goForward() {
-        webViewController.goForward()
-    }
-    
-    func load(url: URL) {
-        webViewController.load(url: url)
-    }
-    
-    func reload() {
-        webViewController.reload()
-    }
-    
-    func stopLoading() {
-        webViewController.stopLoading()
+    enum Inputs {
+        case load(url: URL)
+        case goBack
+        case goForward
+        case reload
+        case stopLoading
     }
 }
