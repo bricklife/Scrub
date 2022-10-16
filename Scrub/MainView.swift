@@ -41,7 +41,7 @@ struct MainView: View {
             }
         }
         .sheet(isPresented: $viewModel.isShowingActivityView) {
-            if let url = viewModel.webViewModel.url {
+            if let url = viewModel.url {
                 ActivityView(activityItems: [url])
             }
         }
@@ -52,7 +52,7 @@ struct MainView: View {
             viewModel.set(preferences: preferences)
             try? viewModel.initialLoad(lastUrl: lastUrl)
         }
-        .onChange(of: viewModel.webViewModel.url) { newValue in
+        .onChange(of: viewModel.url) { newValue in
             if let url = newValue {
                 lastUrl = url
             }
@@ -68,7 +68,7 @@ struct MenuBar: View {
     
     var body: some View {
         VStack(spacing: 8) {
-            let canShareUrl = viewModel.webViewModel.url?.isHTTPsURL == true
+            let canShareUrl = viewModel.url?.isHTTPsURL == true
             
             Button {
                 viewModel.isShowingActivityView = true
@@ -78,8 +78,8 @@ struct MenuBar: View {
             .disabled(!canShareUrl)
             .opacity(canShareUrl ? 1.0 : 0.4)
             
-            ReloadAndStopButton(progress: viewModel.webViewModel.estimatedProgress, isLoading: viewModel.webViewModel.isLoading) {
-                if viewModel.webViewModel.isLoading {
+            ReloadAndStopButton(progress: viewModel.estimatedProgress, isLoading: viewModel.isLoading) {
+                if viewModel.isLoading {
                     viewModel.stopLoading()
                 } else {
                     viewModel.reload()
@@ -102,13 +102,13 @@ struct MenuBar: View {
             } label: {
                 Image(symbol: .chevronBackward)
             }
-            .opacity(viewModel.webViewModel.canGoBack ? 1.0 : 0.4)
+            .opacity(viewModel.canGoBack ? 1.0 : 0.4)
             Button {
                 viewModel.goForward()
             } label: {
                 Image(symbol: .chevronForward)
             }
-            .opacity(viewModel.webViewModel.canGoForward ? 1.0 : 0.4)
+            .opacity(viewModel.canGoForward ? 1.0 : 0.4)
             
             Spacer()
             

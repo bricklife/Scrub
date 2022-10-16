@@ -21,6 +21,7 @@ extension MainViewModelError: LocalizedError {
     }
 }
 
+@dynamicMemberLookup
 @MainActor
 class MainViewModel: ObservableObject {
     
@@ -38,6 +39,10 @@ class MainViewModel: ObservableObject {
         webViewModel.objectWillChange.sink { [weak self] in
             self?.objectWillChange.send()
         }.store(in: &cancellables)
+    }
+    
+    subscript<T>(dynamicMember keyPath: KeyPath<WebViewModel, T>) -> T {
+        webViewModel[keyPath: keyPath]
     }
     
     func set(preferences: Preferences) {
