@@ -16,7 +16,7 @@ struct MainView: View {
     @StateObject private var viewModel = MainViewModel()
     @StateObject private var alertController = AlertController()
     
-    @State private var task: Task<(), Never>?
+    @State private var eventTask: Task<(), Never>?
     
     var body: some View {
         HStack(spacing: 0) {
@@ -50,9 +50,8 @@ struct MainView: View {
         }
         .onAppear {
             viewModel.set(preferences: preferences)
-            try? viewModel.initialLoad(lastUrl: lastUrl)
             
-            task = Task {
+            eventTask = Task {
                 for await event in viewModel.eventChannel {
                     switch event {
                     case .error(let error):
@@ -72,9 +71,11 @@ struct MainView: View {
                     }
                 }
             }
+            
+            try? viewModel.initialLoad(lastUrl: lastUrl)
         }
         .onDisappear {
-            task?.cancel()
+            eventTask?.cancel()
         }
         .onChange(of: viewModel.url) { newValue in
             if let url = newValue {
