@@ -14,37 +14,34 @@ struct MainView: View {
     
     @SceneStorage("lastUrl") private var lastUrl: URL?
     
+    @StateObject private var viewModel = MainViewModel()
     @StateObject private var alertController = AlertController()
-    @StateObject private var webViewModel = WebViewModel()
-    
-    @State private var isShowingPreferences = false
-    @State private var isShowingActivityView = false
     
     var body: some View {
         HStack(spacing: 0) {
-            WebView(viewModel: webViewModel)
-                .environmentObject(alertController)
+            WebView(viewModel: viewModel.webViewModel)
                 .edgesIgnoringSafeArea([.bottom, .horizontal])
             
-            MenuBar()
+            MenuBar(viewModel: viewModel)
                 .padding(4)
                 .edgesIgnoringSafeArea([.horizontal])
         }
-        .sheet(isPresented: $isShowingPreferences) {
+        .environmentObject(alertController)
+        .sheet(isPresented: $viewModel.isShowingPreferences) {
             NavigationView {
                 PreferencesView()
                     .navigationTitle(Text("Preferences"))
                     .toolbar {
-                        ToolbarItem(placement: .navigationBarTrailing){
+                        ToolbarItem(placement: .navigationBarTrailing) {
                             Button("Done") {
-                                isShowingPreferences = false
+                                viewModel.isShowingPreferences = false
                             }
                         }
                     }
             }
         }
-        .sheet(isPresented: $isShowingActivityView) {
-            if let url = webViewModel.url {
+        .sheet(isPresented: $viewModel.isShowingActivityView) {
+            if let url = viewModel.webViewModel.url {
                 ActivityView(activityItems: [url])
             }
         }
@@ -52,9 +49,10 @@ struct MainView: View {
             alertController.makeAlert()
         }
         .onAppear {
-            try? webViewModel.initialLoad(lastUrl: lastUrl)
+            viewModel.set(preferences: preferences)
+            try? viewModel.initialLoad(lastUrl: lastUrl)
         }
-        .onChange(of: webViewModel.url) { newValue in
+        .onChange(of: viewModel.webViewModel.url) { newValue in
             if let url = newValue {
                 lastUrl = url
             }
@@ -62,51 +60,61 @@ struct MainView: View {
     }
 }
 
-extension MainView {
+struct MenuBar: View {
     
-    func MenuBar() -> some View {
+    @ObservedObject var viewModel: MainViewModel
+    
+    @EnvironmentObject private var alertController: AlertController
+    
+    var body: some View {
         VStack(spacing: 8) {
-            let canShareUrl = webViewModel.url?.canShare == true
+            let canShareUrl = viewModel.webViewModel.url?.isHTTPsURL == true
             
-            Button(action: {
-                isShowingActivityView = true
-            }) {
+            Button {
+                viewModel.isShowingActivityView = true
+            } label: {
                 Image(symbol: .squareAndArrowUp)
             }
             .disabled(!canShareUrl)
             .opacity(canShareUrl ? 1.0 : 0.4)
             
-            ReloadAndStopButton(progress: webViewModel.estimatedProgress, isLoading: webViewModel.isLoading) {
-                if webViewModel.isLoading {
-                    webViewModel.stopLoading()
+            ReloadAndStopButton(progress: viewModel.webViewModel.estimatedProgress, isLoading: viewModel.webViewModel.isLoading) {
+                if viewModel.webViewModel.isLoading {
+                    viewModel.stopLoading()
                 } else {
-                    webViewModel.reload()
+                    viewModel.reload()
                 }
             }
             
             Spacer()
             
-            Button(action: {
+            Button {
                 do {
-                    try webViewModel.goHome()
+                    try viewModel.goHome()
                 } catch {
                     alertController.showAlert(error: error)
                 }
-            }) {
+            } label: {
                 Image(symbol: .house)
             }
-            Button(action: { webViewModel.goBack() }) {
+            Button {
+                viewModel.goBack()
+            } label: {
                 Image(symbol: .chevronBackward)
             }
-            .opacity(webViewModel.canGoBack ? 1.0 : 0.4)
-            Button(action: { webViewModel.goForward() }) {
+            .opacity(viewModel.webViewModel.canGoBack ? 1.0 : 0.4)
+            Button {
+                viewModel.goForward()
+            } label: {
                 Image(symbol: .chevronForward)
             }
-            .opacity(webViewModel.canGoForward ? 1.0 : 0.4)
+            .opacity(viewModel.webViewModel.canGoForward ? 1.0 : 0.4)
             
             Spacer()
             
-            Button(action: { isShowingPreferences = true }) {
+            Button {
+                viewModel.isShowingPreferences = true
+            } label: {
                 Image(symbol: .gear)
             }
         }

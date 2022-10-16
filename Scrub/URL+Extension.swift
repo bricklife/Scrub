@@ -20,7 +20,7 @@ extension URL {
         return scratchHosts.contains(where: normalizedHost.hasSuffix(_:))
     }
     
-    var canShare: Bool {
+    var isHTTPsURL: Bool {
         return scheme == "http" || scheme == "https"
     }
 }
