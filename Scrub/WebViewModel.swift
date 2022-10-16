@@ -19,9 +19,11 @@ class WebViewModel: ObservableObject {
     @Published var canGoForward: Bool = false
     
     let inputChannel = AsyncChannel<Input>()
+    let eventChannel = AsyncChannel<Event>()
     
     deinit {
         inputChannel.finish()
+        eventChannel.finish()
     }
     
     func apply(input: Input) {
@@ -39,5 +41,13 @@ extension WebViewModel {
         case goForward
         case reload
         case stopLoading
+    }
+    
+    enum Event {
+        case error(Error)
+        case forbiddenAccess(URL)
+        case openingBluetoothSession
+        case notSupportedExtension
+        case unauthorizedBluetooth
     }
 }

@@ -17,16 +17,18 @@ struct MainView: View {
     @StateObject private var viewModel = MainViewModel()
     @StateObject private var alertController = AlertController()
     
+    @State private var task: Task<(), Never>?
+    
     var body: some View {
         HStack(spacing: 0) {
             WebView(viewModel: viewModel.webViewModel)
                 .edgesIgnoringSafeArea([.bottom, .horizontal])
             
             MenuBar(viewModel: viewModel)
+                .environmentObject(alertController)
                 .padding(4)
                 .edgesIgnoringSafeArea([.horizontal])
         }
-        .environmentObject(alertController)
         .sheet(isPresented: $viewModel.isShowingPreferences) {
             NavigationView {
                 PreferencesView()
@@ -51,6 +53,30 @@ struct MainView: View {
         .onAppear {
             viewModel.set(preferences: preferences)
             try? viewModel.initialLoad(lastUrl: lastUrl)
+            
+            task = Task {
+                for await event in viewModel.eventChannel {
+                    switch event {
+                    case .error(let error):
+                        alertController.showAlert(error: error)
+                    case .forbiddenAccess(let url):
+                        alertController.showAlert(forbiddenAccess: Text("This app can only open the official Scratch website or any Scratch Editor."), url: url)
+                    case .openingBluetoothSession:
+                        if !preferences.didShowBluetoothParingDialog {
+                            alertController.showAlert(howTo: Text("Please pair your Bluetooth device on Settings app before using this extension.")) {
+                                preferences.didShowBluetoothParingDialog = true
+                            }
+                        }
+                    case .notSupportedExtension:
+                        alertController.showAlert(sorry: Text("This extension is not supported🙇🏻"))
+                    case .unauthorizedBluetooth:
+                        alertController.showAlert(unauthorized: Text("Bluetooth"))
+                    }
+                }
+            }
+        }
+        .onDisappear {
+            task?.cancel()
         }
         .onChange(of: viewModel.url) { newValue in
             if let url = newValue {
