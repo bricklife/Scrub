@@ -191,7 +191,7 @@ class MIDIOutput extends MIDIPort {
             this.open();
         }
 
-        webkit.messageHandlers.sendMIDIMessage.postMessage({ id: this.id, data: Array.from(data) });
+        webkit.messageHandlers.sendMIDIMessage.postMessage({ id: this.id, data: Array.from(data), timeStamp: timestamp, now: window.performance.now() });
     }
 
     clear() {
@@ -314,10 +314,13 @@ class WebMIDI extends EventTarget {
         }
     }
 
-    receiveMIDIMessage(id, data) {
+    receiveMIDIMessage(id, data, delay) {
         const event = new Event('receiveMIDIMessage');
         event.id = id;
         event.data = Uint8Array.from(data);
+        if (delay) {
+            event.timeStamp = window.performance.now() + delay;
+        }
         this.dispatchEvent(event);
     }
 }

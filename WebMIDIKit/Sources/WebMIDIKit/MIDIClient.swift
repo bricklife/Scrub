@@ -9,7 +9,7 @@ class MIDIClient {
     private var ports: [MIDI.Endpoint.Ref : MIDIPort] = [:]
     private var connectedPortIds: [MIDI.UniqueID] = []
     
-    var messageReceivedHander: ((MIDI.UniqueID, [UInt8]) -> Void)?
+    var messageReceivedHander: ((MIDI.UniqueID, [UInt8], MIDI.TimeStamp?) -> Void)?
     var portAddedHander: ((MIDIPort) -> Void)?
     var portRemovedHander: ((MIDIPort) -> Void)?
     
@@ -44,7 +44,8 @@ class MIDIClient {
         self.inputPort = try client?.createInputPort(name: "inputPort") { [weak self] (packetList, endpoint) in
             guard let id = self?.ports[endpoint.ref]?.id else { return }
             for packet in packetList {
-                self?.messageReceivedHander?(id, packet.data)
+                let delay = packet.timeStamp.map({ $0 - .now })
+                self?.messageReceivedHander?(id, packet.data, delay)
             }
         }
         
@@ -84,10 +85,11 @@ class MIDIClient {
         }
     }
     
-    func sendMIDIMessage(id: MIDI.UniqueID, data: [UInt8]) throws {
+    func sendMIDIMessage(id: MIDI.UniqueID, data: [UInt8], deltaMS: Double?) throws {
         guard let port = ports.values.first(where: { $0.id == id }) else { return }
         
-        let packet = MIDI.Packet(data: data)
+        let timeStamp = deltaMS.map({ MIDI.TimeStamp.now + MIDI.TimeStamp($0) })
+        let packet = MIDI.Packet(data: data, timeStamp: timeStamp)
         try outputPort?.send(packet: packet, to: port.endpoint)
     }
     

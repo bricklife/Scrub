@@ -40,10 +40,10 @@ public class WebMIDI: NSObject {
             }
         }
         
-        midiClient.messageReceivedHander = { [weak self] (id, data) in
+        midiClient.messageReceivedHander = { [weak self] (id, data, delay) in
             DispatchQueue.main.async {
                 let d = "[" + data.map({ String($0) }).joined(separator: ", ") + "]"
-                self?.webView?.evaluateJavaScript("WebMIDI.shared.receiveMIDIMessage('\(id)', \(d))")
+                self?.webView?.evaluateJavaScript("WebMIDI.shared.receiveMIDIMessage('\(id)', \(d), \(delay?.milliSeconds ?? 0))")
             }
         }
     }
@@ -73,7 +73,9 @@ extension WebMIDI: WKScriptMessageHandler {
         case .sendMIDIMessage:
             guard let id = (parameters["id"] as? String).flatMap({ MIDI.UniqueID($0) }) else { break }
             guard let data = parameters["data"] as? [UInt8] else { break }
-            try? midiClient.sendMIDIMessage(id: id, data: data)
+            guard let now = parameters["now"] as? Double else { break }
+            let timeStamp = parameters["timeStamp"] as? Double
+            try? midiClient.sendMIDIMessage(id: id, data: data, deltaMS: timeStamp.map({ $0 - now }))
             
         case .clearMIDIOutput:
             guard let id = (parameters["id"] as? String).flatMap({ MIDI.UniqueID($0) }) else { break }
