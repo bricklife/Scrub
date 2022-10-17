@@ -13,13 +13,21 @@ let package = Package(
             name: "WebMIDIKit",
             targets: ["WebMIDIKit"]
         ),
+        .library(
+            name: "MIDI",
+            targets: ["MIDI"]
+        ),
     ],
     targets: [
         .target(
             name: "WebMIDIKit",
+            dependencies: ["MIDI"],
             resources: [
                 .process("Resources"),
             ]
+        ),
+        .target(
+            name: "MIDI"
         ),
     ]
 )

@@ -1,4 +1,5 @@
 import WebKit
+import MIDI
 
 enum MessageName: String {
     case requestMIDIAccess

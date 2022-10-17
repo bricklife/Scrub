@@ -1,3 +1,5 @@
+import MIDI
+
 class MIDIClient {
     
     private var client: MIDI.Client?

@@ -1,3 +1,5 @@
+import MIDI
+
 enum MIDIPortType: String {
     case input
     case output
