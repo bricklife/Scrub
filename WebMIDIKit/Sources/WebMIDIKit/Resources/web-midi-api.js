@@ -171,8 +171,7 @@ class MIDIOutput extends MIDIPort {
     }
 
     _closeDevice() {
-        // TODO: https://www.w3.org/TR/webmidi/#widl-MIDIPort-close-Promise-MIDIPort
-        // 5. If the output port's .state is not "connected", clear all pending send data and skip to the next step. Clear any pending send data in the system with timestamps in the future, then finish sending any send messages with no timestamp or with a timestamp in the past or present, prior to proceeding to the next step.
+        this.clear();
     }
 
     send(data, timestamp = null) {
