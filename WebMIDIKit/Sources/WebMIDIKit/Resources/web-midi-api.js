@@ -170,13 +170,6 @@ class MIDIOutput extends MIDIPort {
         this.type = 'output';
     }
 
-    open() {
-        const promise = super.open();
-        // TODO: https://www.w3.org/TR/webmidi/#widl-MIDIPort-open-Promise-MIDIPort
-        // 9. If this port is an output port and has any pending data that is waiting to be sent, asynchronously begin sending that data.
-        return promise;
-    }
-
     _closeDevice() {
         // TODO: https://www.w3.org/TR/webmidi/#widl-MIDIPort-close-Promise-MIDIPort
         // 5. If the output port's .state is not "connected", clear all pending send data and skip to the next step. Clear any pending send data in the system with timestamps in the future, then finish sending any send messages with no timestamp or with a timestamp in the past or present, prior to proceeding to the next step.
