@@ -82,6 +82,14 @@ struct MainView: View {
                 lastUrl = url
             }
         }
+        .onOpenURL { url in
+            switch CustomUrlScheme(url: url) {
+            case .openUrl(let openingUrl):
+                viewModel.load(url: openingUrl)
+            case .none:
+                break
+            }
+        }
     }
 }
 
