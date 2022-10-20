@@ -15,10 +15,13 @@ extension CustomUrlScheme {
     
     init?(url: URL) {
         guard url.scheme == "scrub" else { return nil }
+        
         switch url.host {
-        case "open":
-            guard let openingUrl = url.query.flatMap(URL.init(string:)) else { return nil }
+        case "openUrl":
+            let urlString = [url.query, url.fragment].compactMap({ $0 }).joined(separator: "#")
+            guard let openingUrl = URL(string: urlString) else { return nil }
             self = .openUrl(openingUrl)
+            
         default:
             return nil
         }
