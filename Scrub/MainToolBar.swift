@@ -17,14 +17,17 @@ struct MainToolBar: View {
         VStack(spacing: 8) {
             let canShareUrl = viewModel.url?.isHTTPsURL == true
             
+            // Share
             Button {
                 viewModel.isShowingActivityView = true
             } label: {
                 Image(symbol: .squareAndArrowUp)
             }
+            .frame(width: 24, height: 24)
+            .hoverEffect()
             .disabled(!canShareUrl)
-            .opacity(canShareUrl ? 1.0 : 0.4)
             
+            // Reload and Stop
             ReloadAndStopButton(progress: viewModel.estimatedProgress, isLoading: viewModel.isLoading) {
                 if viewModel.isLoading {
                     viewModel.stopLoading()
@@ -32,9 +35,12 @@ struct MainToolBar: View {
                     viewModel.reload()
                 }
             }
+            .frame(width: 24, height: 24)
+            .hoverEffect()
             
             Spacer()
             
+            // Home
             Button {
                 do {
                     try viewModel.goHome()
@@ -44,26 +50,39 @@ struct MainToolBar: View {
             } label: {
                 Image(symbol: .house)
             }
+            .frame(width: 24, height: 24)
+            .hoverEffect()
+            
+            // Back
             Button {
                 viewModel.goBack()
             } label: {
                 Image(symbol: .chevronBackward)
             }
-            .opacity(viewModel.canGoBack ? 1.0 : 0.4)
+            .frame(width: 24, height: 24)
+            .hoverEffect()
+            .disabled(!viewModel.canGoBack)
+            
+            // Forward
             Button {
                 viewModel.goForward()
             } label: {
                 Image(symbol: .chevronForward)
             }
-            .opacity(viewModel.canGoForward ? 1.0 : 0.4)
+            .frame(width: 24, height: 24)
+            .hoverEffect()
+            .disabled(!viewModel.canGoForward)
             
             Spacer()
             
+            // Settings
             Button {
                 viewModel.isShowingPreferences = true
             } label: {
                 Image(symbol: .gear)
             }
+            .frame(width: 24, height: 24)
+            .hoverEffect()
         }
     }
 }
@@ -87,7 +106,6 @@ struct ReloadAndStopButton: View {
                 }
             }
         }
-        .frame(width: 24, height: 24)
     }
 }
 
