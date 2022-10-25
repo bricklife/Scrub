@@ -254,7 +254,7 @@ public struct TimeStamp {
     
     public init(_ milliSeconds: Double) {
         let value = milliSeconds * 1_000_000 * Double(Self.timebase.denom) / Double(Self.timebase.numer)
-        if value < Double(MIDITimeStamp.max) {
+        if Double(MIDITimeStamp.min)...Double(MIDITimeStamp.max) ~= value {
             self.coreMidiTimeStamp = MIDITimeStamp(value)
         } else {
             self.coreMidiTimeStamp = MIDITimeStamp(0)
