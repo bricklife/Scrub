@@ -1,5 +1,5 @@
-NSBluetoothAlwaysUsageDescription="App uses Bluetooth to communicate with external devices.";
-NSBluetoothPeripheralUsageDescription="App uses Bluetooth to communicate with external devices.";
-NSCameraUsageDescription="App uses the camera to get images.";
-NSMicrophoneUsageDescription="App uses the microphone to get sounds.";
-NSSpeechRecognitionUsageDescription="App uses Speech Recognition to recognize your voice.";
+NSBluetoothAlwaysUsageDescription="App uses Bluetooth to communicate with external devices on Scratch project.";
+NSBluetoothPeripheralUsageDescription="App uses Bluetooth to communicate with external devices on Scratch project.";
+NSCameraUsageDescription="App uses the camera for image uploading or video sensing on Scratch project.";
+NSMicrophoneUsageDescription="App uses the microphone for recording or loudness sensing on Scratch project.";
+NSSpeechRecognitionUsageDescription="App uses Speech Recognition to recognize your voice on Scratch project.";
