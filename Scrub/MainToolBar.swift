@@ -80,11 +80,18 @@ struct MainToolBar: View {
 
 private extension View {
     
+    @ViewBuilder
     func menuButtonStyle(enabled: Bool = true) -> some View {
-        self
-            .frame(width: 24, height: 24)
-            .hoverEffect()
-            .disabled(!enabled)
+        if #available(iOS 15.0, *) {
+            self
+                .frame(width: 24, height: 24)
+                .hoverEffect()
+                .disabled(!enabled)
+        } else {
+            self
+                .frame(width: 24, height: 24)
+                .opacity(enabled ? 1.0 : 0.4)
+        }
     }
 }
 
