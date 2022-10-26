@@ -85,7 +85,7 @@ class MIDIClient {
         }
     }
     
-    func sendMIDIMessage(id: MIDI.UniqueID, data: [UInt8], deltaMS: Double?) throws {
+    func sendMIDIMessage(id: MIDI.UniqueID, data: [UInt8], deltaMS: Double? = nil) throws {
         guard let port = ports.values.first(where: { $0.id == id }) else { return }
         
         let timeStamp = deltaMS.map({ MIDI.TimeStamp.now + MIDI.TimeStamp($0) })

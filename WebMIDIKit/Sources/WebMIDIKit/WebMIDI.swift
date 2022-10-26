@@ -74,8 +74,11 @@ extension WebMIDI: WKScriptMessageHandler {
             guard let id = (parameters["id"] as? String).flatMap({ MIDI.UniqueID($0) }) else { break }
             guard let data = parameters["data"] as? [UInt8] else { break }
             guard let now = parameters["now"] as? Double else { break }
-            let timeStamp = parameters["timeStamp"] as? Double
-            try? midiClient.sendMIDIMessage(id: id, data: data, deltaMS: timeStamp.map({ $0 - now }))
+            if let timeStamp = parameters["timeStamp"] as? Double, timeStamp > 0 {
+                try? midiClient.sendMIDIMessage(id: id, data: data, deltaMS: timeStamp - now)
+            } else {
+                try? midiClient.sendMIDIMessage(id: id, data: data)
+            }
             
         case .clearMIDIOutput:
             guard let id = (parameters["id"] as? String).flatMap({ MIDI.UniqueID($0) }) else { break }
