@@ -17,14 +17,15 @@ struct MainToolBar: View {
         VStack(spacing: 8) {
             let canShareUrl = viewModel.url?.isHTTPsURL == true
             
+            // Share
             Button {
                 viewModel.isShowingActivityView = true
             } label: {
                 Image(symbol: .squareAndArrowUp)
             }
-            .disabled(!canShareUrl)
-            .opacity(canShareUrl ? 1.0 : 0.4)
+            .menuButtonStyle(enabled: canShareUrl)
             
+            // Reload and Stop
             ReloadAndStopButton(progress: viewModel.estimatedProgress, isLoading: viewModel.isLoading) {
                 if viewModel.isLoading {
                     viewModel.stopLoading()
@@ -32,9 +33,11 @@ struct MainToolBar: View {
                     viewModel.reload()
                 }
             }
+            .menuButtonStyle()
             
             Spacer()
             
+            // Home
             Button {
                 do {
                     try viewModel.goHome()
@@ -44,50 +47,51 @@ struct MainToolBar: View {
             } label: {
                 Image(symbol: .house)
             }
+            .menuButtonStyle()
+            
+            // Back
             Button {
                 viewModel.goBack()
             } label: {
                 Image(symbol: .chevronBackward)
             }
-            .opacity(viewModel.canGoBack ? 1.0 : 0.4)
+            .menuButtonStyle(enabled: viewModel.canGoBack)
+            
+            // Forward
             Button {
                 viewModel.goForward()
             } label: {
                 Image(symbol: .chevronForward)
             }
-            .opacity(viewModel.canGoForward ? 1.0 : 0.4)
+            .menuButtonStyle(enabled: viewModel.canGoForward)
             
             Spacer()
             
+            // Preferences
             Button {
                 viewModel.isShowingPreferences = true
             } label: {
                 Image(symbol: .gear)
             }
+            .menuButtonStyle()
         }
     }
 }
 
-struct ReloadAndStopButton: View {
+private extension View {
     
-    let progress: Double
-    let isLoading: Bool
-    let action: () -> Void
-    
-    var body: some View {
-        ZStack {
-            CircleProgressView(progress: progress)
-                .opacity(isLoading ? 0.4 : 0.0)
-                .animation(.easeInOut(duration: 0.2))
-            Button(action: action) {
-                if isLoading {
-                    Image(symbol: .xmark)
-                } else {
-                    Image(symbol: .arrowClockwise)
-                }
-            }
+    @ViewBuilder
+    func menuButtonStyle(enabled: Bool = true) -> some View {
+        if #available(iOS 15.0, *) {
+            self
+                .frame(width: 24, height: 24)
+                .hoverEffect()
+                .disabled(!enabled)
+        } else {
+            self
+                .frame(width: 24, height: 24)
+                .opacity(enabled ? 1.0 : 0.4)
         }
-        .frame(width: 24, height: 24)
     }
 }
 

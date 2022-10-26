@@ -17,6 +17,7 @@
 		CB1DAA51262D6EB0007F5531 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1DAA50262D6EB0007F5531 /* WebViewModel.swift */; };
 		CB2F32E62657B3690097ED27 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = CB2F32E52657B3690097ED27 /* index.html */; };
 		CB2F32EB2657CAFB0097ED27 /* LocalDocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F32EA2657CAFB0097ED27 /* LocalDocumentsManager.swift */; };
+		CB38F043290820EF0009A1CF /* ReloadAndStopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB38F042290820EF0009A1CF /* ReloadAndStopButton.swift */; };
 		CB3EE8D4266082D100005ECC /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3EE8D3266082D100005ECC /* AlertController.swift */; };
 		CB3FBCF92605D98C008FE5C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */; };
 		CB47F3BB2632DF5600C0A7ED /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB47F3BA2632DF5600C0A7ED /* CircleProgressView.swift */; };
@@ -59,6 +60,7 @@
 		CB2BAA5328F2C14B004DB543 /* WebMIDIKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = WebMIDIKit; sourceTree = "<group>"; };
 		CB2F32E52657B3690097ED27 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		CB2F32EA2657CAFB0097ED27 /* LocalDocumentsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDocumentsManager.swift; sourceTree = "<group>"; };
+		CB38F042290820EF0009A1CF /* ReloadAndStopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReloadAndStopButton.swift; sourceTree = "<group>"; };
 		CB3EE8D3266082D100005ECC /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		CB3FBCEC2605D98B008FE5C2 /* Scrub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scrub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -129,13 +131,14 @@
 				CB19B7F328FAE92400C3C9A2 /* URL+Extension.swift */,
 				CBED6CCB28FE8FB400A6A0E5 /* CustomUrlScheme.swift */,
 				CB7D42F8261709F4005C86D0 /* MainView.swift */,
-				CB0DA94A28FC249A00BAE912 /* MainToolBar.swift */,
 				CB0DA92428FB7BC900BAE912 /* MainViewModel.swift */,
+				CB0DA94A28FC249A00BAE912 /* MainToolBar.swift */,
+				CB47F3BA2632DF5600C0A7ED /* CircleProgressView.swift */,
+				CB38F042290820EF0009A1CF /* ReloadAndStopButton.swift */,
 				CB3EE8D3266082D100005ECC /* AlertController.swift */,
 				CB7D42FA26170A9E005C86D0 /* WebView.swift */,
 				CB1DAA50262D6EB0007F5531 /* WebViewModel.swift */,
 				CB52568E26419776009EE660 /* ActivityView.swift */,
-				CB47F3BA2632DF5600C0A7ED /* CircleProgressView.swift */,
 				CB0A0776262DC19C001EF560 /* PreferencesView.swift */,
 				CB2F32EA2657CAFB0097ED27 /* LocalDocumentsManager.swift */,
 				CB9DA458264826F400459625 /* Localizable.strings */,
@@ -257,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB38F043290820EF0009A1CF /* ReloadAndStopButton.swift in Sources */,
 				CB7D42FB26170A9E005C86D0 /* WebView.swift in Sources */,
 				CB19B7F428FAE92400C3C9A2 /* URL+Extension.swift in Sources */,
 				CB0A0777262DC19C001EF560 /* PreferencesView.swift in Sources */,
