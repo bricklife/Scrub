@@ -23,9 +23,7 @@ struct MainToolBar: View {
             } label: {
                 Image(symbol: .squareAndArrowUp)
             }
-            .frame(width: 24, height: 24)
-            .hoverEffect()
-            .disabled(!canShareUrl)
+            .menuButtonStyle(enabled: canShareUrl)
             
             // Reload and Stop
             ReloadAndStopButton(progress: viewModel.estimatedProgress, isLoading: viewModel.isLoading) {
@@ -35,8 +33,7 @@ struct MainToolBar: View {
                     viewModel.reload()
                 }
             }
-            .frame(width: 24, height: 24)
-            .hoverEffect()
+            .menuButtonStyle()
             
             Spacer()
             
@@ -50,8 +47,7 @@ struct MainToolBar: View {
             } label: {
                 Image(symbol: .house)
             }
-            .frame(width: 24, height: 24)
-            .hoverEffect()
+            .menuButtonStyle()
             
             // Back
             Button {
@@ -59,9 +55,7 @@ struct MainToolBar: View {
             } label: {
                 Image(symbol: .chevronBackward)
             }
-            .frame(width: 24, height: 24)
-            .hoverEffect()
-            .disabled(!viewModel.canGoBack)
+            .menuButtonStyle(enabled: viewModel.canGoBack)
             
             // Forward
             Button {
@@ -69,9 +63,7 @@ struct MainToolBar: View {
             } label: {
                 Image(symbol: .chevronForward)
             }
-            .frame(width: 24, height: 24)
-            .hoverEffect()
-            .disabled(!viewModel.canGoForward)
+            .menuButtonStyle(enabled: viewModel.canGoForward)
             
             Spacer()
             
@@ -81,31 +73,18 @@ struct MainToolBar: View {
             } label: {
                 Image(symbol: .gear)
             }
-            .frame(width: 24, height: 24)
-            .hoverEffect()
+            .menuButtonStyle()
         }
     }
 }
 
-struct ReloadAndStopButton: View {
+private extension View {
     
-    let progress: Double
-    let isLoading: Bool
-    let action: () -> Void
-    
-    var body: some View {
-        ZStack {
-            CircleProgressView(progress: progress)
-                .opacity(isLoading ? 0.4 : 0.0)
-                .animation(.easeInOut(duration: 0.2))
-            Button(action: action) {
-                if isLoading {
-                    Image(symbol: .xmark)
-                } else {
-                    Image(symbol: .arrowClockwise)
-                }
-            }
-        }
+    func menuButtonStyle(enabled: Bool = true) -> some View {
+        self
+            .frame(width: 24, height: 24)
+            .hoverEffect()
+            .disabled(!enabled)
     }
 }
 
