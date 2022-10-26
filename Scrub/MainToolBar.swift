@@ -67,7 +67,7 @@ struct MainToolBar: View {
             
             Spacer()
             
-            // Settings
+            // Preferences
             Button {
                 viewModel.isShowingPreferences = true
             } label: {
