@@ -18,12 +18,13 @@ struct ReloadAndStopButton: View {
             CircleProgressView(progress: progress)
                 .opacity(isLoading ? 0.4 : 0.0)
                 .animation(.easeInOut(duration: 0.2))
-            Button(action: action) {
-                if isLoading {
-                    Image(symbol: .xmark)
-                } else {
-                    Image(symbol: .arrowClockwise)
-                }
+                .menuButtonStyle()
+            if isLoading {
+                MenuButton("Stop", symbol: .xmark, action: action)
+                    .keyboardShortcut(".")
+            } else {
+                MenuButton("Reload", symbol: .arrowClockwise, action: action)
+                    .keyboardShortcut("R")
             }
         }
     }
