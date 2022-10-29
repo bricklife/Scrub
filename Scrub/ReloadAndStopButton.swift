@@ -23,7 +23,7 @@ struct ReloadAndStopButton: View {
                 MenuButton("Stop", symbol: .xmark, action: action)
                     .keyboardShortcut(".")
             } else {
-                MenuButton("Reload", symbol: .arrowClockwise, action: action)
+                MenuButton("Reload Page", symbol: .arrowClockwise, action: action)
                     .keyboardShortcut("R")
             }
         }
