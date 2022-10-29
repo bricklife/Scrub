@@ -10,6 +10,13 @@
 "Close" = "关闭";
 "Settings" = "设置";
 
+"Reload Page" = "重新载入页面";
+"Stop" = "停止";
+"Home" = "主页";
+"Back" = "返回";
+"Forward" = "前进";
+"Preferences" = "偏好设置";
+
 "Invalid URL" = "无效链接";
 
 "How to Use" = "如何使用";
@@ -24,8 +31,6 @@
 "Set as Home" = "设为主页";
 "Open in Browser" = "在浏览器中打开";
 
-"Preferences" = "偏好设置";
-"Home" = "主页";
 "Scratch - Home" = "Scratch - 主页";
 "Scratch - Editor (Create New Project)" = "Scratch - 编辑器 (创建新项目)";
 "Scratch - My Stuff" = "Scratch - 我的项目";

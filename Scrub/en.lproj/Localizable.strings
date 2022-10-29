@@ -10,6 +10,13 @@
 "Close" = "Close";
 "Settings" = "Settings";
 
+"Reload Page" = "Reload Page";
+"Stop" = "Stop";
+"Home" = "Home";
+"Back" = "Back";
+"Forward" = "Forward";
+"Preferences" = "Preferences";
+
 "Invalid URL" = "Invalid URL";
 
 "How to Use" = "How to Use";
@@ -24,8 +31,6 @@
 "Set as Home" = "Set as Home";
 "Open in Browser" = "Open in Browser";
 
-"Preferences" = "Preferences";
-"Home" = "Home";
 "Scratch - Home" = "Scratch - Home";
 "Scratch - Editor (Create New Project)" = "Scratch - Editor (Create New Project)";
 "Scratch - My Stuff" = "Scratch - My Stuff";
