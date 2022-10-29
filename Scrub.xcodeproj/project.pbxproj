@@ -29,6 +29,7 @@
 		CB7D42F9261709F4005C86D0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D42F8261709F4005C86D0 /* MainView.swift */; };
 		CB7D42FB26170A9E005C86D0 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D42FA26170A9E005C86D0 /* WebView.swift */; };
 		CB9DA456264826F400459625 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CB9DA458264826F400459625 /* Localizable.strings */; };
+		CBB3A77F290A8F6A00B58088 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB3A77E290A8F6A00B58088 /* MenuButton.swift */; };
 		CBED6CCC28FE8FB400A6A0E5 /* CustomUrlScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBED6CCB28FE8FB400A6A0E5 /* CustomUrlScheme.swift */; };
 		CBF6C69D2779970000548AA8 /* ManagedAppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF6C69C2779970000548AA8 /* ManagedAppConfig.swift */; };
 /* End PBXBuildFile section */
@@ -74,6 +75,7 @@
 		CB7D42FA26170A9E005C86D0 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		CB9DA457264826F400459625 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CB9DA4592648274000459625 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CBB3A77E290A8F6A00B58088 /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		CBED6CCB28FE8FB400A6A0E5 /* CustomUrlScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUrlScheme.swift; sourceTree = "<group>"; };
 		CBF579B726686AEE00D35D6A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBF579B926686AEE00D35D6A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				CB7D42F8261709F4005C86D0 /* MainView.swift */,
 				CB0DA92428FB7BC900BAE912 /* MainViewModel.swift */,
 				CB0DA94A28FC249A00BAE912 /* MainToolBar.swift */,
+				CBB3A77E290A8F6A00B58088 /* MenuButton.swift */,
 				CB47F3BA2632DF5600C0A7ED /* CircleProgressView.swift */,
 				CB38F042290820EF0009A1CF /* ReloadAndStopButton.swift */,
 				CB3EE8D3266082D100005ECC /* AlertController.swift */,
@@ -269,6 +272,7 @@
 				CB0DA92528FB7BC900BAE912 /* MainViewModel.swift in Sources */,
 				CB0A07732629E4D4001EF560 /* Preferences.swift in Sources */,
 				CB2F32EB2657CAFB0097ED27 /* LocalDocumentsManager.swift in Sources */,
+				CBB3A77F290A8F6A00B58088 /* MenuButton.swift in Sources */,
 				CB3EE8D4266082D100005ECC /* AlertController.swift in Sources */,
 				CBED6CCC28FE8FB400A6A0E5 /* CustomUrlScheme.swift in Sources */,
 				CB52568F26419776009EE660 /* ActivityView.swift in Sources */,

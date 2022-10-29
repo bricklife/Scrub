@@ -10,6 +10,13 @@
 "Close" = "閉じる";
 "Settings" = "設定";
 
+"Reload Page" = "ページを再読み込み";
+"Stop" = "中止";
+"Home" = "ホーム";
+"Back" = "戻る";
+"Forward" = "進む";
+"Preferences" = "環境設定";
+
 "Invalid URL" = "不正なURLです";
 
 "How to Use" = "使い方";
@@ -24,8 +31,6 @@
 "Set as Home" = "ホームに設定する";
 "Open in Browser" = "ブラウザで開く";
 
-"Preferences" = "設定";
-"Home" = "ホーム";
 "Scratch - Home" = "Scratch - ホーム";
 "Scratch - Editor (Create New Project)" = "Scratch - エディタ (新しいプロジェクト)";
 "Scratch - My Stuff" = "Scratch - 私の作品";

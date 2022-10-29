@@ -17,15 +17,11 @@ struct MainToolBar: View {
         VStack(spacing: 8) {
             let canShareUrl = viewModel.url?.isHTTPsURL == true
             
-            // Share
-            Button {
+            MenuButton("Share", symbol: .squareAndArrowUp) {
                 viewModel.isShowingActivityView = true
-            } label: {
-                Image(symbol: .squareAndArrowUp)
             }
-            .menuButtonStyle(enabled: canShareUrl)
+            .enabled(canShareUrl)
             
-            // Reload and Stop
             ReloadAndStopButton(progress: viewModel.estimatedProgress, isLoading: viewModel.isLoading) {
                 if viewModel.isLoading {
                     viewModel.stopLoading()
@@ -33,47 +29,38 @@ struct MainToolBar: View {
                     viewModel.reload()
                 }
             }
-            .menuButtonStyle()
             
             Spacer()
             
-            // Home
-            Button {
+            MenuButton("Home", symbol: .house) {
                 do {
                     try viewModel.goHome()
                 } catch {
                     alertController.showAlert(error: error)
                 }
-            } label: {
-                Image(symbol: .house)
             }
-            .menuButtonStyle()
+            .keyboardShortcut("H", modifiers: [.command, .shift])
             
-            // Back
-            Button {
+            
+            MenuButton("Back", symbol: .chevronBackward) {
                 viewModel.goBack()
-            } label: {
-                Image(symbol: .chevronBackward)
             }
-            .menuButtonStyle(enabled: viewModel.canGoBack)
+            .enabled(viewModel.canGoBack)
+            .keyboardShortcut("[")
             
-            // Forward
-            Button {
+            MenuButton("Forward", symbol: .chevronForward) {
                 viewModel.goForward()
-            } label: {
-                Image(symbol: .chevronForward)
             }
-            .menuButtonStyle(enabled: viewModel.canGoForward)
+            .enabled(viewModel.canGoForward)
+            .keyboardShortcut("]")
             
             Spacer()
             
             // Preferences
-            Button {
+            MenuButton("Preferences", symbol: .gear) {
                 viewModel.isShowingPreferences = true
-            } label: {
-                Image(symbol: .gear)
             }
-            .menuButtonStyle()
+            .keyboardShortcut(",")
         }
     }
 }
@@ -81,15 +68,12 @@ struct MainToolBar: View {
 private extension View {
     
     @ViewBuilder
-    func menuButtonStyle(enabled: Bool = true) -> some View {
+    func enabled(_ enabled: Bool = true) -> some View {
         if #available(iOS 15.0, *) {
             self
-                .frame(width: 24, height: 24)
-                .hoverEffect()
                 .disabled(!enabled)
         } else {
             self
-                .frame(width: 24, height: 24)
                 .opacity(enabled ? 1.0 : 0.4)
         }
     }
