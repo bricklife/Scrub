@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 import Combine
-import ScratchLink
+import ScratchLinkKit
 import WebMIDIKit
 
 public enum ScratchWebViewError: Error {

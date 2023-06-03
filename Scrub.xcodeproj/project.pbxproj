@@ -68,8 +68,8 @@
 		CB47F3BA2632DF5600C0A7ED /* CircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		CB4D9409265772BA007C59AB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		CB52568E26419776009EE660 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
-		CB6F7A3C2616E44E007C2230 /* ScratchLink */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ScratchLink; sourceTree = "<group>"; };
 		CB713FEB27749A79009C63E8 /* ScratchWebKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ScratchWebKit; sourceTree = "<group>"; };
+		CB76A7382A2B2B97005CC57B /* ScratchLinkKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ScratchLinkKit; sourceTree = "<group>"; };
 		CB7D42DA2617096C005C86D0 /* ScrubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubApp.swift; sourceTree = "<group>"; };
 		CB7D42F8261709F4005C86D0 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CB7D42FA26170A9E005C86D0 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
@@ -99,8 +99,8 @@
 		CB2BAA5228F2C14B004DB543 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				CB76A7382A2B2B97005CC57B /* ScratchLinkKit */,
 				CB713FEB27749A79009C63E8 /* ScratchWebKit */,
-				CB6F7A3C2616E44E007C2230 /* ScratchLink */,
 				CB2BAA5328F2C14B004DB543 /* WebMIDIKit */,
 			);
 			name = Packages;

@@ -16,13 +16,13 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(path: "../ScratchLink"),
+        .package(path: "../ScratchLinkKit"),
         .package(path: "../WebMIDIKit"),
     ],
     targets: [
         .target(
             name: "ScratchWebKit",
-            dependencies: ["ScratchLink", "WebMIDIKit"],
+            dependencies: ["ScratchLinkKit", "WebMIDIKit"],
             resources: [
                 .process("Resources"),
             ]

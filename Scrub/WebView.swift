@@ -8,7 +8,7 @@
 import SwiftUI
 import AsyncAlgorithms
 import ScratchWebKit
-import ScratchLink
+import ScratchLinkKit
 
 struct WebView: UIViewControllerRepresentable {
     
