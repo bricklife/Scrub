@@ -129,6 +129,28 @@ public class ScratchWebViewController: WebViewController {
             webView.evaluateJavaScript("document.documentElement.style.webkitTouchCallout='inherit'")
         }
     }
+    
+    private func isEditingPage(completion: @escaping (Bool) -> Void) {
+        let condition = "typeof window.onbeforeunload === 'function' && window.onbeforeunload(new Event('beforeunload'))"
+        webView.evaluateJavaScript(condition) { value, _ in
+            completion((value as? Bool) == true)
+        }
+    }
+    
+    private func confirmLoadUrl(_ decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        let alertController = UIAlertController(title: "", message: NSLocalizedString("Are you sure you want to leave this page?", bundle: Bundle.module, comment: ""), preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Stay", bundle: Bundle.module, comment: ""), style: .cancel) { _ in
+            decisionHandler(.cancel)
+        }
+        let okAction = UIAlertAction(title: NSLocalizedString("Leave", bundle: Bundle.module, comment: ""), style: .default) { _ in
+            decisionHandler(.allow)
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        alertController.preferredAction = okAction
+        
+        present(alertController, animated: true)
+    }
 }
 
 extension ScratchWebViewController: WKNavigationDelegate {
@@ -137,7 +159,13 @@ extension ScratchWebViewController: WKNavigationDelegate {
         if navigationAction.shouldPerformDownload {
             decisionHandler(.download)
         } else {
-            decisionHandler(.allow)
+            isEditingPage { [weak self] isEditing in
+                if isEditing {
+                    self?.confirmLoadUrl(decisionHandler)
+                } else {
+                    decisionHandler(.allow)
+                }
+            }
         }
     }
     
