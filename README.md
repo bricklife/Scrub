@@ -10,6 +10,7 @@ https://apps.apple.com/us/app/scrub-web-browser/id1569777095
 - Local HTML file loading
 - Web access filtering (only Release Build)
 - Web MIDI API (Beta)
+- MDM (Managed App Configuration) → [Japanese Article](https://sites.google.com/view/kowaza/apple/scrub-web%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%82%A2%E3%83%97%E3%83%AA)
 
 ## Supported Devices
 - micro:bit
