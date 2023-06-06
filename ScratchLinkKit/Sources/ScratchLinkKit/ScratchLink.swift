@@ -44,20 +44,9 @@ extension SessionError: LocalizedError {
     }
 }
 
-public enum SessionType {
-    case ble
-    case bt
-    
-    init?(url: URL) {
-        switch url.lastPathComponent {
-        case "ble":
-            self = .ble
-        case "bt":
-            self = .bt
-        default:
-            return nil
-        }
-    }
+public enum SessionType: String, Codable {
+    case ble    = "BLE"
+    case bt     = "BT"
 }
 
 public class ScratchLink: NSObject {
@@ -65,7 +54,7 @@ public class ScratchLink: NSObject {
     private struct Message: Codable {
         let method: Method
         let socketId: Int
-        let url: URL?
+        let type: SessionType?
         let jsonrpc: String?
         
         enum Method: String, Codable {
@@ -87,7 +76,7 @@ public class ScratchLink: NSObject {
     private var cancellables: Set<AnyCancellable> = []
     
     public func setup(webView: WKWebView) {
-        let js = JavaScriptLoader.load(filename: "inject-scratch-link")
+        let js = JavaScriptLoader.load(filename: "inject")
         let script = WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
         webView.configuration.userContentController.addUserScript(script)
         webView.configuration.userContentController.add(self, name: "scratchLink")
@@ -114,8 +103,7 @@ extension ScratchLink: WKScriptMessageHandler {
         
         switch message.method {
         case .open:
-            guard let url = message.url else { break }
-            guard let type = SessionType(url: url) else { break }
+            guard let type = message.type else { break }
             
             if let canStart = delegate?.canStartSession(type: type), canStart == false {
                 delegate?.didFailStartingSession(type: type, error: .unavailable)
@@ -160,7 +148,7 @@ extension ScratchLink: WKScriptMessageHandler {
     private func open(socketId: Int, type: SessionType) throws {
         let webSocket = WebSocket() { [weak self] (message) in
             DispatchQueue.main.async {
-                let js = "ScratchLink.sockets.get(\(socketId)).handleMessage('" + message + "')"
+                let js = "ScratchLinkKit.coordinator.handleMessage(\(socketId), '\(message)')"
                 self?.webView?.evaluateJavaScript(js)
             }
         }
