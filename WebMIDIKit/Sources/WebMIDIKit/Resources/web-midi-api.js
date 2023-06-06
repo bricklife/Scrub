@@ -207,116 +207,117 @@ class MIDIConnectionEvent extends Event {
     }
 }
 
-class WebMIDI extends EventTarget {
+class WebMIDIKit {
 
-    static shared = new WebMIDI();
+    static coordinator = new class extends EventTarget {
 
-    #requestId = 0;
-    #requests = new Map();
+        #requestId = 0;
+        #requests = new Map();
 
-    requestMIDIAccess() {
-        const requestId = this.#requestId;
-        this.#requestId += 1;
+        requestMIDIAccess() {
+            const requestId = this.#requestId;
+            this.#requestId += 1;
 
-        const promise = new Promise((resolve) => {
-            this.#requests.set(requestId, resolve);
-        });
-        webkit.messageHandlers.requestMIDIAccess.postMessage({ requestId: requestId });
+            const promise = new Promise((resolve) => {
+                this.#requests.set(requestId, resolve);
+            });
+            webkit.messageHandlers.requestMIDIAccess.postMessage({ requestId: requestId });
 
-        return promise;
-    }
+            return promise;
+        }
 
-    responseMIDIAccess(requestId, inputs, outputs) {
-        const resolve = this.#requests.get(requestId);
-        if (resolve) {
-            this.#requests.delete(requestId);
+        responseMIDIAccess(requestId, inputs, outputs) {
+            const resolve = this.#requests.get(requestId);
+            if (resolve) {
+                this.#requests.delete(requestId);
 
-            const midiAccess = new MIDIAccess(true);
+                const midiAccess = new MIDIAccess(true);
 
-            for (const properties of inputs) {
-                const input = new MIDIInput(properties);
-                this.setupMIDIPort(input, midiAccess);
-                midiAccess.allPorts.set(input.id, input);
+                for (const properties of inputs) {
+                    const input = new MIDIInput(properties);
+                    this._setupMIDIPort(input, midiAccess);
+                    midiAccess.allPorts.set(input.id, input);
+                }
+                for (const properties of outputs) {
+                    const output = new MIDIOutput(properties);
+                    this._setupMIDIPort(output, midiAccess);
+                    midiAccess.allPorts.set(output.id, output);
+                }
+
+                const weakMidiAccess = new WeakRef(midiAccess);
+                this.addEventListener('receiveMIDIConnection', (event) => {
+                    const midiAccess = weakMidiAccess.deref();
+                    if (midiAccess === undefined) { return }
+                    let port = event.port;
+                    if (!midiAccess.allPorts.has(port.id)) {
+                        this._setupMIDIPort(port, midiAccess);
+                        midiAccess.allPorts.set(port.id, port);
+                        port.dispatchEvent(new MIDIConnectionEvent(port));
+                    }
+                });
+
+                resolve(midiAccess);
             }
-            for (const properties of outputs) {
-                const output = new MIDIOutput(properties);
-                this.setupMIDIPort(output, midiAccess);
-                midiAccess.allPorts.set(output.id, output);
-            }
+        }
 
+        _setupMIDIPort(port, midiAccess) {
             const weakMidiAccess = new WeakRef(midiAccess);
+            port.addEventListener('statechange', (event) => {
+                setTimeout(() => {
+                    weakMidiAccess.deref()?.dispatchEvent(event);
+                }, 0);
+            });
+
+            const weakPort = new WeakRef(port);
             this.addEventListener('receiveMIDIConnection', (event) => {
-                const midiAccess = weakMidiAccess.deref();
-                if (midiAccess === undefined) { return }
-                let port = event.port;
-                if (!midiAccess.allPorts.has(port.id)) {
-                    this.setupMIDIPort(port, midiAccess);
-                    midiAccess.allPorts.set(port.id, port);
+                const port = weakPort.deref();
+                if (port && port.id == event.port.id) {
+                    if (event.port.state == 'disconnected' && port.connection == 'open') {
+                        port.connection = 'pending';
+                    }
+                    if (event.port.state == 'connected' && port.connection == 'pending') {
+                        port.connection = 'open';
+                    }
+                    port.state = event.port.state;
                     port.dispatchEvent(new MIDIConnectionEvent(port));
                 }
             });
 
-            resolve(midiAccess);
-        }
-    }
-
-    setupMIDIPort(port, midiAccess) {
-        const weakMidiAccess = new WeakRef(midiAccess);
-        port.addEventListener('statechange', (event) => {
-            setTimeout(() => {
-                weakMidiAccess.deref()?.dispatchEvent(event);
-            }, 0);
-        });
-
-        const weakPort = new WeakRef(port);
-        this.addEventListener('receiveMIDIConnection', (event) => {
-            const port = weakPort.deref();
-            if (port && port.id == event.port.id) {
-                if (event.port.state == 'disconnected' && port.connection == 'open') {
-                    port.connection = 'pending';
-                }
-                if (event.port.state == 'connected' && port.connection == 'pending') {
-                    port.connection = 'open';
-                }
-                port.state = event.port.state;
-                port.dispatchEvent(new MIDIConnectionEvent(port));
+            if (port.type == 'input') {
+                this.addEventListener('receiveMIDIMessage', (event) => {
+                    const input = weakPort.deref();
+                    if (input && input.id == event.id && input.connection == 'open') {
+                        input.dispatchEvent(new MIDIMessageEvent(event.data));
+                    }
+                });
             }
-        });
-
-        if (port.type == 'input') {
-            this.addEventListener('receiveMIDIMessage', (event) => {
-                const input = weakPort.deref();
-                if (input && input.id == event.id && input.connection == 'open') {
-                    input.dispatchEvent(new MIDIMessageEvent(event.data));
-                }
-            });
         }
-    }
 
-    receiveMIDIConnection(properties) {
-        if (properties.type == 'input') {
-            const event = new Event('receiveMIDIConnection');
-            event.port = new MIDIInput(properties);
+        receiveMIDIConnection(properties) {
+            if (properties.type == 'input') {
+                const event = new Event('receiveMIDIConnection');
+                event.port = new MIDIInput(properties);
+                this.dispatchEvent(event);
+            }
+            if (properties.type == 'output') {
+                const event = new Event('receiveMIDIConnection');
+                event.port = new MIDIOutput(properties);
+                this.dispatchEvent(event);
+            }
+        }
+
+        receiveMIDIMessage(id, data, delay) {
+            const event = new Event('receiveMIDIMessage');
+            event.id = id;
+            event.data = Uint8Array.from(data);
+            if (delay) {
+                event.timeStamp = window.performance.now() + delay;
+            }
             this.dispatchEvent(event);
         }
-        if (properties.type == 'output') {
-            const event = new Event('receiveMIDIConnection');
-            event.port = new MIDIOutput(properties);
-            this.dispatchEvent(event);
-        }
-    }
-
-    receiveMIDIMessage(id, data, delay) {
-        const event = new Event('receiveMIDIMessage');
-        event.id = id;
-        event.data = Uint8Array.from(data);
-        if (delay) {
-            event.timeStamp = window.performance.now() + delay;
-        }
-        this.dispatchEvent(event);
-    }
+    }();
 }
 
 window.navigator.requestMIDIAccess = (options) => {
-    return WebMIDI.shared.requestMIDIAccess();
+    return WebMIDIKit.coordinator.requestMIDIAccess();
 };

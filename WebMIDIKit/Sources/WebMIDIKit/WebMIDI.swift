@@ -30,20 +30,20 @@ public class WebMIDI: NSObject {
         
         midiClient.portAddedHander = { [weak self] (port) in
             DispatchQueue.main.async {
-                self?.webView?.evaluateJavaScript("WebMIDI.shared.receiveMIDIConnection(\(port.jsString))")
+                self?.webView?.evaluateJavaScript("WebMIDIKit.coordinator.receiveMIDIConnection(\(port.jsString))")
             }
         }
         
         midiClient.portRemovedHander = { [weak self] (port) in
             DispatchQueue.main.async {
-                self?.webView?.evaluateJavaScript("WebMIDI.shared.receiveMIDIConnection(\(port.jsString))")
+                self?.webView?.evaluateJavaScript("WebMIDIKit.coordinator.receiveMIDIConnection(\(port.jsString))")
             }
         }
         
         midiClient.messageReceivedHander = { [weak self] (id, data, delay) in
             DispatchQueue.main.async {
                 let d = "[" + data.map({ String($0) }).joined(separator: ", ") + "]"
-                self?.webView?.evaluateJavaScript("WebMIDI.shared.receiveMIDIMessage('\(id)', \(d), \(delay?.milliSeconds ?? 0))")
+                self?.webView?.evaluateJavaScript("WebMIDIKit.coordinator.receiveMIDIMessage('\(id)', \(d), \(delay?.milliSeconds ?? 0))")
             }
         }
     }
@@ -64,7 +64,7 @@ extension WebMIDI: WKScriptMessageHandler {
             let ports = midiClient.getMIDIPorts()
             let inputs = "[" + ports.inputs.map(\.jsString).joined(separator: ", ") + "]"
             let outputs = "[" + ports.outputs.map(\.jsString).joined(separator: ", ") + "]"
-            webView?.evaluateJavaScript("WebMIDI.shared.responseMIDIAccess(\(requestId), \(inputs), \(outputs))")
+            webView?.evaluateJavaScript("WebMIDIKit.coordinator.responseMIDIAccess(\(requestId), \(inputs), \(outputs))")
             
         case .connectMIDIInput:
             guard let id = (parameters["id"] as? String).flatMap({ MIDI.UniqueID($0) }) else { break }
