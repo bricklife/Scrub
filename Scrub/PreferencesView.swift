@@ -59,27 +59,12 @@ struct PreferencesView: View {
                 }
             }.disabled(preferences.isHomeLocked)
             
-            // Support, Special Thanks
-            Section {
-                NavigationLink("Support") {
-                    Form {
-                        Section {
-                            WebLink(title: Text("GitHub"), destination: URL(string: "https://github.com/bricklife/Scrub")!)
-                            WebLink(title: Text("Twitter: @ooba"), destination: URL(string: "https://twitter.com/ooba")!)
-                        }
-                    }
-                    .navigationTitle(Text("Support"))
-                }
-                NavigationLink("Special Thanks") {
-                    Form {
-                        Section(header: Text("This implementation of Scratch Link function is inspired by toio Do iPad app."),
-                                footer: Text("\"toio\" is a trademark or registered trademark of Sony Interactive Entertainment Inc.")) {
-                            WebLink(title: Text("toio Do"), destination: URL(string: "https://toio.io/special/do/")!)
-                        }
-                                .textCase(nil)
-                    }
-                    .navigationTitle(Text("Special Thanks"))
-                }
+            // Support
+            Section(header: HStack {
+                Label("Support", systemImage: "message")
+            }.font(.headline)) {
+                WebLink(title: Text("GitHub"), destination: URL(string: "https://github.com/bricklife/Scrub")!)
+                WebLink(title: Text("Twitter: @ooba"), destination: URL(string: "https://twitter.com/ooba")!)
             }
             
             // Version
