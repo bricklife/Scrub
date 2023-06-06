@@ -15,7 +15,7 @@ public class WebMIDI: NSObject {
     private weak var webView: WKWebView?
     
     public func setup(webView: WKWebView) {
-        guard let filepath = Bundle.module.path(forResource: "web-midi-api", ofType: "js") else { return }
+        guard let filepath = Bundle.module.path(forResource: "inject", ofType: "js") else { return }
         guard let js = try? String(contentsOfFile: filepath) else { return }
         let script = WKUserScript(source: js, injectionTime: .atDocumentStart, forMainFrameOnly: true)
         webView.configuration.userContentController.addUserScript(script)
