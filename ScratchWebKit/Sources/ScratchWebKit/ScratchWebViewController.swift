@@ -111,8 +111,6 @@ public class ScratchWebViewController: WebViewController {
     
     private func detectScratchEditor(completion: @escaping (Bool) -> Void) {
         let condition = "document.getElementById('scratch-link-extension-script') != null"
-        + " || "
-        + "document.getElementsByClassName('blocklyToolboxDiv').length > 0"
         
         webView.evaluateJavaScript(condition) { (result, error) in
             let isScratchEditor = result as? Bool ?? false
