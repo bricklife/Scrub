@@ -9,3 +9,7 @@
 "Cancel" = "キャンセル";
 
 "Not allowed to access this URL" = "このURLへのアクセスは許可されていません";
+
+"Are you sure you want to leave this page?" = "このページから移動してもよいですか？";
+"Stay" = "移動しない";
+"Leave" = "移動する";
