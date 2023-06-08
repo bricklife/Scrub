@@ -63,8 +63,8 @@ struct PreferencesView: View {
             Section(header: HStack {
                 Label("Support", systemImage: "message")
             }.font(.headline)) {
-                WebLink(title: Text("GitHub"), destination: URL(string: "https://github.com/bricklife/Scrub")!)
-                WebLink(title: Text("Twitter: @ooba"), destination: URL(string: "https://twitter.com/ooba")!)
+                WebLink(title: Text("GitHub"), destination: URL(string: "https://github.com/tfabworks/Scrub")!)
+                WebLink(title: Text("Twitter: @TFabWorks"), destination: URL(string: "https://twitter.com/TFabWorks")!)
             }
             
             // Version
