@@ -11,13 +11,13 @@ import SFUserFriendlySymbols
 struct MenuButton: View {
     let titleKey: LocalizedStringKey
     let symbol: SFSymbols
-    let size: Size
+    let shape: Shape
     let action: () -> Void
     
-    init(_ titleKey: LocalizedStringKey, symbol: SFSymbols, size: Size = .normal, action: @escaping () -> Void) {
+    init(_ titleKey: LocalizedStringKey, symbol: SFSymbols, shape: Shape = .square, action: @escaping () -> Void) {
         self.titleKey = titleKey
         self.symbol = symbol
-        self.size = size
+        self.shape = shape
         self.action = action
     }
     
@@ -28,19 +28,19 @@ struct MenuButton: View {
                 Text(titleKey)
                     .frame(width: 0, height: 0)
                 Image(symbol: symbol)
-                    .font(.system(size: size.fontSize))
+                    .font(.system(size: shape.fontSize))
             }
         }
-        .frame(width: size.length, height: size.length)
+        .frame(for: shape)
         .hoverEffect()
     }
 }
 
 extension MenuButton {
     
-    enum Size {
-        case normal
-        case small
+    enum Shape {
+        case square
+        case circle
         
         var length: CGFloat {
             return 24
@@ -48,11 +48,19 @@ extension MenuButton {
         
         var fontSize: CGFloat {
             switch self {
-            case .normal:
+            case .square:
                 return 18
-            case .small:
+            case .circle:
                 return 14
             }
         }
+    }
+}
+
+extension View {
+    
+    @ViewBuilder
+    func frame(for shape: MenuButton.Shape) -> some View {
+        self.frame(width: shape.length, height: shape.length)
     }
 }
