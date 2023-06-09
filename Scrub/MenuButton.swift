@@ -36,14 +36,9 @@ extension View {
     
     @ViewBuilder
     func menuButtonStyle() -> some View {
-        if #available(iOS 15.0, *) {
-            self
-                .frame(width: 24, height: 24)
-                .hoverEffect()
-        } else {
-            self
-                .frame(width: 24, height: 24)
-        }
+        self
+            .frame(width: 24, height: 24)
+            .hoverEffect()
     }
 }
 

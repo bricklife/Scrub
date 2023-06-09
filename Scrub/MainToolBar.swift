@@ -74,13 +74,8 @@ private extension View {
     
     @ViewBuilder
     func enabled(_ enabled: Bool = true) -> some View {
-        if #available(iOS 15.0, *) {
-            self
-                .disabled(!enabled)
-        } else {
-            self
-                .opacity(enabled ? 1.0 : 0.4)
-        }
+        self
+            .disabled(!enabled)
     }
 }
 
