@@ -67,15 +67,7 @@ extension WebView {
         }
         
         nonisolated func scratchWebViewController(_ viewController: ScratchWebViewController, decidePolicyFor url: URL, isScratchEditor: Bool, decisionHandler: @escaping (WebFilterPolicy) -> Void) {
-#if DEBUG
             decisionHandler(.allow)
-#else
-            if url.isScratchSite || url.isFileURL || isScratchEditor {
-                decisionHandler(.allow)
-            } else {
-                decisionHandler(.deny)
-            }
-#endif
         }
         
         nonisolated func scratchWebViewController(_ viewController: ScratchWebViewController, didDownloadFileAt url: URL) {
