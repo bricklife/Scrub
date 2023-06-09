@@ -25,9 +25,7 @@ class Preferences: ObservableObject {
     
     var home: Home {
         get {
-            ManagedAppConfig.shared.rawRepresentable(forKey: homeKey)
-            ?? UserDefaults.standard.rawRepresentable(forKey: homeKey)
-            ?? .scratchEditor
+            UserDefaults.standard.rawRepresentable(forKey: homeKey) ?? .scratchEditor
         }
         set {
             if !isHomeLocked {
@@ -37,14 +35,12 @@ class Preferences: ObservableObject {
     }
     
     var isHomeLocked: Bool {
-        ManagedAppConfig.shared.isSet(forKey: homeKey)
+        return false
     }
     
     var customUrl: String {
         get {
-            ManagedAppConfig.shared.string(forKey: customUrlKey)
-            ?? UserDefaults.standard.string(forKey: customUrlKey)
-            ?? ""
+            UserDefaults.standard.string(forKey: customUrlKey) ?? ""
         }
         set {
             if !isCustomUrlLocked {
@@ -54,7 +50,7 @@ class Preferences: ObservableObject {
     }
     
     var isCustomUrlLocked: Bool {
-        ManagedAppConfig.shared.isSet(forKey: customUrlKey)
+        return false
     }
     
     var didShowBluetoothParingDialog: Bool {
@@ -63,25 +59,6 @@ class Preferences: ObservableObject {
         }
         set {
             UserDefaults.standard.setValue(newValue, forKey: didShowBluetoothParingDialogKey)
-        }
-    }
-    
-    init() {
-        migrate()
-        
-        NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: .main) { [weak self] _ in
-            self?.objectWillChange.send()
-        }
-    }
-    
-    private func migrate() {
-        if let value = UserDefaults.standard.string(forKey: "homeUrl") {
-            UserDefaults.standard.removeObject(forKey: "homeUrl")
-            if value == "custom" {
-                UserDefaults.standard.setValue(Home.customUrl.rawValue, forKey: homeKey)
-            } else {
-                UserDefaults.standard.setValue(value, forKey: homeKey)
-            }
         }
     }
 }
