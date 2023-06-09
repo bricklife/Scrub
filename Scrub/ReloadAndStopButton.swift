@@ -18,7 +18,7 @@ struct ReloadAndStopButton: View {
             CircleProgressView(progress: progress)
                 .frame(for: .circle)
                 .opacity(isLoading ? 0.4 : 0.0)
-                .animation(.easeInOut(duration: 0.2))
+                .animation(.easeInOut(duration: 0.2), value: progress)
             if isLoading {
                 MenuButton("Stop", symbol: .xmark, shape: .circle, action: action)
                     .keyboardShortcut(".")
