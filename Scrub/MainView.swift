@@ -19,13 +19,13 @@ struct MainView: View {
     @State private var eventTask: Task<(), Never>?
     
     var body: some View {
-        HStack(spacing: 0) {
-            WebView(viewModel: viewModel.webViewModel)
-                .edgesIgnoringSafeArea([.bottom, .horizontal])
-            
+        VStack(spacing: 0) {
             MainToolBar(viewModel: viewModel, alertController: alertController)
                 .padding(4)
                 .edgesIgnoringSafeArea([.horizontal])
+            
+            WebView(viewModel: viewModel.webViewModel)
+                .edgesIgnoringSafeArea([.bottom, .horizontal])
         }
         .sheet(isPresented: $viewModel.isShowingPreferences) {
             NavigationView {
