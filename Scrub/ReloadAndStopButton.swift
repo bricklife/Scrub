@@ -16,14 +16,14 @@ struct ReloadAndStopButton: View {
     var body: some View {
         ZStack {
             CircleProgressView(progress: progress)
+                .frame(width: MenuButton.Size.small.length, height: MenuButton.Size.small.length)
                 .opacity(isLoading ? 0.4 : 0.0)
                 .animation(.easeInOut(duration: 0.2))
-                .menuButtonStyle()
             if isLoading {
-                MenuButton("Stop", symbol: .xmark, action: action)
+                MenuButton("Stop", symbol: .xmark, size: .small, action: action)
                     .keyboardShortcut(".")
             } else {
-                MenuButton("Reload Page", symbol: .arrowClockwise, action: action)
+                MenuButton("Reload Page", symbol: .arrowClockwise, size: .small, action: action)
                     .keyboardShortcut("R")
             }
         }

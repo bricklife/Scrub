@@ -32,29 +32,35 @@ struct MainToolBar: View {
             .enabled(viewModel.canGoForward)
             .keyboardShortcut("]")
             
-            TextField("URL", text: $urlString, onCommit: {
-                if let url = URL(string: urlString) {
-                    viewModel.load(url: url)
-                    focused = false
+            HStack(spacing: 2) {
+                Spacer(minLength: 8)
+
+                TextField("URL", text: $urlString, onCommit: {
+                    if let url = URL(string: urlString) {
+                        viewModel.load(url: url)
+                        focused = false
+                    }
+                })
+                .keyboardType(.URL)
+                .submitLabel(.go)
+                .textInputAutocapitalization(.never)
+                .autocorrectionDisabled()
+                .font(.system(size: 12))
+                .focused($focused)
+                
+                ReloadAndStopButton(progress: viewModel.estimatedProgress, isLoading: viewModel.isLoading) {
+                    if viewModel.isLoading {
+                        viewModel.stopLoading()
+                    } else {
+                        viewModel.reload()
+                    }
                 }
-            })
-            .keyboardType(.URL)
-            .submitLabel(.go)
-            .textInputAutocapitalization(.never)
-            .autocorrectionDisabled()
-            .font(.system(size: 12))
-            .padding(.horizontal, 8)
+            }
             .frame(height: 24)
             .background(.primary.opacity(0.1))
-            .cornerRadius(8)
-            .focused($focused)
+            .cornerRadius(12)
             
-            ReloadAndStopButton(progress: viewModel.estimatedProgress, isLoading: viewModel.isLoading) {
-                if viewModel.isLoading {
-                    viewModel.stopLoading()
-                } else {
-                    viewModel.reload()
-                }
+            MenuButton("Bookmark", symbol: .book) {
             }
             
             MenuButton("Share", symbol: .squareAndArrowUp) {
