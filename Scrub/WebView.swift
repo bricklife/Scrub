@@ -39,11 +39,11 @@ extension WebView {
         private var eventChannel: AsyncChannel<WebViewModel.Event>?
         
         func bind(viewModel: WebViewModel, viewController: ScratchWebViewController) {
-            viewController.$url.assign(to: &viewModel.$url)
-            viewController.$isLoading.assign(to: &viewModel.$isLoading)
-            viewController.$estimatedProgress.assign(to: &viewModel.$estimatedProgress)
-            viewController.$canGoBack.assign(to: &viewModel.$canGoBack)
-            viewController.$canGoForward.assign(to: &viewModel.$canGoForward)
+            viewController.$url.receive(on: DispatchQueue.main).assign(to: &viewModel.$url)
+            viewController.$isLoading.receive(on: DispatchQueue.main).assign(to: &viewModel.$isLoading)
+            viewController.$estimatedProgress.receive(on: DispatchQueue.main).assign(to: &viewModel.$estimatedProgress)
+            viewController.$canGoBack.receive(on: DispatchQueue.main).assign(to: &viewModel.$canGoBack)
+            viewController.$canGoForward.receive(on: DispatchQueue.main).assign(to: &viewModel.$canGoForward)
             
             let inputChannel = viewModel.inputChannel
             Task {
