@@ -76,9 +76,8 @@
 		CB9DA457264826F400459625 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CB9DA4592648274000459625 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CBB3A77E290A8F6A00B58088 /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
+		CBE1921C2A3402DA00FD3A99 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBED6CCB28FE8FB400A6A0E5 /* CustomUrlScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUrlScheme.swift; sourceTree = "<group>"; };
-		CBF579B726686AEE00D35D6A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CBF579B926686AEE00D35D6A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBF6C69C2779970000548AA8 /* ManagedAppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedAppConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,8 +146,7 @@
 				CB9DA458264826F400459625 /* Localizable.strings */,
 				CB3FBCF82605D98C008FE5C2 /* Assets.xcassets */,
 				CB2F32E52657B3690097ED27 /* index.html */,
-				CBF579B826686AEE00D35D6A /* Debug */,
-				CBF579B626686AEE00D35D6A /* Release */,
+				CBE1921C2A3402DA00FD3A99 /* Info.plist */,
 				CB1980C3265CEBF900FC9D3D /* InfoPlist.strings */,
 				CB4D9409265772BA007C59AB /* Settings.bundle */,
 			);
@@ -160,22 +158,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		CBF579B626686AEE00D35D6A /* Release */ = {
-			isa = PBXGroup;
-			children = (
-				CBF579B726686AEE00D35D6A /* Info.plist */,
-			);
-			path = Release;
-			sourceTree = "<group>";
-		};
-		CBF579B826686AEE00D35D6A /* Debug */ = {
-			isa = PBXGroup;
-			children = (
-				CBF579B926686AEE00D35D6A /* Info.plist */,
-			);
-			path = Debug;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -436,7 +418,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = UV6TAX3ANB;
-				INFOPLIST_FILE = Scrub/Debug/Info.plist;
+				INFOPLIST_FILE = Scrub/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -460,7 +442,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = UV6TAX3ANB;
-				INFOPLIST_FILE = Scrub/Release/Info.plist;
+				INFOPLIST_FILE = Scrub/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
