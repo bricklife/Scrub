@@ -171,6 +171,7 @@
 				CB3FBCE92605D98B008FE5C2 /* Frameworks */,
 				CB3FBCEA2605D98B008FE5C2 /* Resources */,
 				CBEDE2022605E4D20071628C /* Embed Frameworks */,
+				CBE1921B2A3401E300FD3A99 /* Delete UISupportedExternalAccessoryProtocols */,
 			);
 			buildRules = (
 			);
@@ -239,6 +240,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CBE1921B2A3401E300FD3A99 /* Delete UISupportedExternalAccessoryProtocols */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Delete UISupportedExternalAccessoryProtocols";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ ${CONFIGURATION} = \"Release\" ]; then\n    /usr/libexec/PlistBuddy -c \"Delete :UISupportedExternalAccessoryProtocols\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CB3FBCE82605D98B008FE5C2 /* Sources */ = {
