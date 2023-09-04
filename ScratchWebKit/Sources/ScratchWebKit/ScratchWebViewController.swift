@@ -156,7 +156,7 @@ extension ScratchWebViewController: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.shouldPerformDownload {
             decisionHandler(.download)
-        } else {
+        } else if navigationAction.targetFrame?.isMainFrame == true {
             isEditingPage { [weak self] isEditing in
                 if isEditing {
                     self?.confirmLoadUrl(decisionHandler)
@@ -164,6 +164,8 @@ extension ScratchWebViewController: WKNavigationDelegate {
                     decisionHandler(.allow)
                 }
             }
+        } else {
+            decisionHandler(.allow)
         }
     }
     
