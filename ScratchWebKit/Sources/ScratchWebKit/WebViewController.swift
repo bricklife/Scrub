@@ -79,6 +79,12 @@ public class WebViewController: UIViewController {
             present(vc, animated: true)
         }
     }
+    
+    @objc func dismiss(_ sender : Any) {
+        dismiss(animated: true) { [weak self] in
+            self?.didClose?()
+        }
+    }
 }
 
 extension WebViewController {
@@ -112,20 +118,22 @@ extension WebViewController: WKUIDelegate {
         
         let newWebView = WKWebView(frame: webView.bounds, configuration: configuration)
         let vc = WebViewController(webView: newWebView)
-        vc.presentationController?.delegate = self
         vc.didClose = { [weak self] in
             self?.presentQueueingViewController()
         }
         
-        presentOrQueue(vc)
+        let nav = UINavigationController(rootViewController: vc)
+        vc.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(self.dismiss(_:)))
+        vc.navigationItem.largeTitleDisplayMode = .inline
+        
+        nav.presentationController?.delegate = self
+        presentOrQueue(nav)
         
         return newWebView
     }
     
     public func webViewDidClose(_ webView: WKWebView) {
-        dismiss(animated: true) { [weak self] in
-            self?.didClose?()
-        }
+        dismiss(webView)
     }
     
     public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
