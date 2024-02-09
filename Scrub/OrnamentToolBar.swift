@@ -5,6 +5,7 @@
 //  Created by Shinichiro Oba on 2024/02/09.
 //
 
+#if os(visionOS)
 import SwiftUI
 import SFUserFriendlySymbols
 
@@ -73,3 +74,4 @@ private extension View {
 #Preview {
     OrnamentToolBar(viewModel: MainViewModel(), alertController: AlertController())
 }
+#endif
