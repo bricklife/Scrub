@@ -87,11 +87,19 @@ struct MainView: View {
         .onDisappear {
             eventTask?.cancel()
         }
+#if (visionOS)
+        .onChange(of: viewModel.url) { _, newValue in
+            if let url = newValue {
+                lastUrl = url
+            }
+        }
+#else
         .onChange(of: viewModel.url) { newValue in
             if let url = newValue {
                 lastUrl = url
             }
         }
+#endif
         .onOpenURL { url in
             switch CustomUrlScheme(url: url) {
             case .openUrl(let openingUrl):
