@@ -15,6 +15,7 @@
 		CB1980C5265CEBF900FC9D3D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CB1980C3265CEBF900FC9D3D /* InfoPlist.strings */; };
 		CB19B7F428FAE92400C3C9A2 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19B7F328FAE92400C3C9A2 /* URL+Extension.swift */; };
 		CB1DAA51262D6EB0007F5531 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1DAA50262D6EB0007F5531 /* WebViewModel.swift */; };
+		CB266DB62B7662C60070A332 /* OrnamentToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB266DB52B7662C60070A332 /* OrnamentToolBar.swift */; };
 		CB2F32E62657B3690097ED27 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = CB2F32E52657B3690097ED27 /* index.html */; };
 		CB2F32EB2657CAFB0097ED27 /* LocalDocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F32EA2657CAFB0097ED27 /* LocalDocumentsManager.swift */; };
 		CB38F043290820EF0009A1CF /* ReloadAndStopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB38F042290820EF0009A1CF /* ReloadAndStopButton.swift */; };
@@ -58,6 +59,7 @@
 		CB1980C6265CEC0100FC9D3D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CB19B7F328FAE92400C3C9A2 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		CB1DAA50262D6EB0007F5531 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
+		CB266DB52B7662C60070A332 /* OrnamentToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrnamentToolBar.swift; sourceTree = "<group>"; };
 		CB2BAA5328F2C14B004DB543 /* WebMIDIKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = WebMIDIKit; sourceTree = "<group>"; };
 		CB2F32E52657B3690097ED27 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		CB2F32EA2657CAFB0097ED27 /* LocalDocumentsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDocumentsManager.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				CB7D42F8261709F4005C86D0 /* MainView.swift */,
 				CB0DA92428FB7BC900BAE912 /* MainViewModel.swift */,
 				CB0DA94A28FC249A00BAE912 /* MainToolBar.swift */,
+				CB266DB52B7662C60070A332 /* OrnamentToolBar.swift */,
 				CBB3A77E290A8F6A00B58088 /* MenuButton.swift */,
 				CB47F3BA2632DF5600C0A7ED /* CircleProgressView.swift */,
 				CB38F042290820EF0009A1CF /* ReloadAndStopButton.swift */,
@@ -275,6 +278,7 @@
 				CB7D42F9261709F4005C86D0 /* MainView.swift in Sources */,
 				CB47F3BB2632DF5600C0A7ED /* CircleProgressView.swift in Sources */,
 				CB0DA92528FB7BC900BAE912 /* MainViewModel.swift in Sources */,
+				CB266DB62B7662C60070A332 /* OrnamentToolBar.swift in Sources */,
 				CB0A07732629E4D4001EF560 /* Preferences.swift in Sources */,
 				CB2F32EB2657CAFB0097ED27 /* LocalDocumentsManager.swift in Sources */,
 				CBB3A77F290A8F6A00B58088 /* MenuButton.swift in Sources */,

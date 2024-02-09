@@ -20,12 +20,19 @@ struct MainView: View {
     
     var body: some View {
         HStack(spacing: 0) {
+#if os(visionOS)
+            WebView(viewModel: viewModel.webViewModel)
+            .ornament(attachmentAnchor: .scene(.top), contentAlignment: .bottom) {
+                OrnamentToolBar(viewModel: viewModel, alertController: alertController)
+            }
+#else
             WebView(viewModel: viewModel.webViewModel)
                 .edgesIgnoringSafeArea([.bottom, .horizontal])
             
             MainToolBar(viewModel: viewModel, alertController: alertController)
                 .padding(4)
                 .edgesIgnoringSafeArea([.horizontal])
+#endif
         }
         .sheet(isPresented: $viewModel.isShowingPreferences) {
             NavigationView {
