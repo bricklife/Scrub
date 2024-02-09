@@ -22,6 +22,9 @@ struct MainView: View {
         HStack(spacing: 0) {
 #if os(visionOS)
             WebView(viewModel: viewModel.webViewModel)
+            .glassBackgroundEffect(
+                in: RoundedRectangle(cornerRadius: 16, style: .continuous)
+            )
             .ornament(attachmentAnchor: .scene(.top), contentAlignment: .bottom) {
                 OrnamentToolBar(viewModel: viewModel, alertController: alertController)
             }

@@ -19,6 +19,10 @@ struct ScrubApp: App {
             MainView()
                 .environmentObject(preferences)
         }
+#if os(visionOS)
+        .windowStyle(.plain)
+        .defaultSize(width: 1280, height: 1024)
+#endif
     }
 }
 
