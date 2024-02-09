@@ -36,7 +36,7 @@ class MainViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     
     init() {
-        webViewModel.objectWillChange.sink { [weak self] in
+        webViewModel.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] in
             self?.objectWillChange.send()
         }.store(in: &cancellables)
     }

@@ -70,7 +70,9 @@ class Preferences: ObservableObject {
         migrate()
         
         NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: .main) { [weak self] _ in
-            self?.objectWillChange.send()
+            DispatchQueue.main.async { [weak self] in
+                self?.objectWillChange.send()
+            }
         }
     }
     
