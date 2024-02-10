@@ -20,12 +20,27 @@ struct MainView: View {
     
     var body: some View {
         HStack(spacing: 0) {
+#if os(visionOS)
+            VStack(spacing: 0) {
+                OrnamentToolBar(viewModel: viewModel, alertController: alertController)
+                    .frame(maxWidth: 800)
+                    .frame(depth: 16)
+                    .padding([.horizontal, .bottom], 24)
+                
+                WebView(viewModel: viewModel.webViewModel)
+                    .frame(minWidth: 600, maxWidth: .infinity, minHeight: 400, maxHeight: .infinity)
+                    .glassBackgroundEffect(
+                        in: RoundedRectangle(cornerRadius: 16)
+                    )
+            }
+#else
             WebView(viewModel: viewModel.webViewModel)
                 .edgesIgnoringSafeArea([.bottom, .horizontal])
             
             MainToolBar(viewModel: viewModel, alertController: alertController)
                 .padding(4)
                 .edgesIgnoringSafeArea([.horizontal])
+#endif
         }
         .sheet(isPresented: $viewModel.isShowingPreferences) {
             NavigationView {
@@ -77,11 +92,19 @@ struct MainView: View {
         .onDisappear {
             eventTask?.cancel()
         }
+#if os(visionOS)
+        .onChange(of: viewModel.url) { _, newValue in
+            if let url = newValue {
+                lastUrl = url
+            }
+        }
+#else
         .onChange(of: viewModel.url) { newValue in
             if let url = newValue {
                 lastUrl = url
             }
         }
+#endif
         .onOpenURL { url in
             switch CustomUrlScheme(url: url) {
             case .openUrl(let openingUrl):

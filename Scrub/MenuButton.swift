@@ -36,6 +36,9 @@ extension View {
     
     @ViewBuilder
     func menuButtonStyle() -> some View {
+#if os(visionOS)
+        frame(width: 44, height: 44)
+#else
         if #available(iOS 15.0, *) {
             self
                 .frame(width: 24, height: 24)
@@ -44,6 +47,7 @@ extension View {
             self
                 .frame(width: 24, height: 24)
         }
+#endif
     }
 }
 
