@@ -124,7 +124,6 @@ extension WebViewController: WKUIDelegate {
         
         let nav = UINavigationController(rootViewController: vc)
         vc.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(self.dismiss(_:)))
-        vc.navigationItem.largeTitleDisplayMode = .inline
         
         nav.presentationController?.delegate = self
         presentOrQueue(nav)
