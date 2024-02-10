@@ -87,7 +87,7 @@ struct MainView: View {
         .onDisappear {
             eventTask?.cancel()
         }
-#if (visionOS)
+#if os(visionOS)
         .onChange(of: viewModel.url) { _, newValue in
             if let url = newValue {
                 lastUrl = url
