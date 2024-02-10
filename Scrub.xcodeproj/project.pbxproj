@@ -248,6 +248,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		CBE1921B2A3401E300FD3A99 /* Delete UISupportedExternalAccessoryProtocols */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
