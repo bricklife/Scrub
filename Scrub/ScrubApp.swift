@@ -21,6 +21,7 @@ struct ScrubApp: App {
         }
 #if os(visionOS)
         .windowStyle(.plain)
+        .windowResizability(.contentSize)
         .defaultSize(width: 1280, height: 1024)
 #endif
     }

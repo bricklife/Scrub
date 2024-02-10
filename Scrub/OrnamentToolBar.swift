@@ -16,15 +16,6 @@ struct OrnamentToolBar: View {
     
     var body: some View {
         HStack(spacing: 16) {
-            MenuButton("Home", symbol: .house) {
-                do {
-                    try viewModel.goHome()
-                } catch {
-                    alertController.showAlert(error: error)
-                }
-            }
-            .keyboardShortcut("H", modifiers: [.command, .shift])
-            
             MenuButton("Back", symbol: .chevronBackward) {
                 viewModel.goBack()
             }
@@ -36,6 +27,20 @@ struct OrnamentToolBar: View {
             }
             .enabled(viewModel.canGoForward)
             .keyboardShortcut("]")
+            
+            MenuButton("Home", symbol: .house) {
+                do {
+                    try viewModel.goHome()
+                } catch {
+                    alertController.showAlert(error: error)
+                }
+            }
+            .keyboardShortcut("H", modifiers: [.command, .shift])
+            
+            Text(viewModel.url?.absoluteString ?? "")
+                .lineLimit(1)
+                .textSelection(.enabled)
+                .frame(maxWidth: .infinity)
             
             ReloadAndStopButton(progress: viewModel.estimatedProgress, isLoading: viewModel.isLoading) {
                 if viewModel.isLoading {
@@ -58,8 +63,10 @@ struct OrnamentToolBar: View {
             .keyboardShortcut(",")
         }
         .padding(10)
-        .glassBackgroundEffect(displayMode: .always)
-        Spacer(minLength: 24)
+        .fixedSize(horizontal: false, vertical: true)
+        .glassBackgroundEffect(
+            in: RoundedRectangle(cornerRadius: 32)
+        )
     }
 }
 

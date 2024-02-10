@@ -21,12 +21,17 @@ struct MainView: View {
     var body: some View {
         HStack(spacing: 0) {
 #if os(visionOS)
-            WebView(viewModel: viewModel.webViewModel)
-            .glassBackgroundEffect(
-                in: RoundedRectangle(cornerRadius: 16, style: .continuous)
-            )
-            .ornament(attachmentAnchor: .scene(.top), contentAlignment: .bottom) {
+            VStack(spacing: 0) {
                 OrnamentToolBar(viewModel: viewModel, alertController: alertController)
+                    .frame(maxWidth: 800)
+                    .frame(depth: 16)
+                    .padding([.horizontal, .bottom], 24)
+                
+                WebView(viewModel: viewModel.webViewModel)
+                    .frame(minWidth: 600, maxWidth: .infinity, minHeight: 400, maxHeight: .infinity)
+                    .glassBackgroundEffect(
+                        in: RoundedRectangle(cornerRadius: 16)
+                    )
             }
 #else
             WebView(viewModel: viewModel.webViewModel)
