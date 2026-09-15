@@ -61,6 +61,7 @@
 		CB1DAA50262D6EB0007F5531 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		CB266DB52B7662C60070A332 /* OrnamentToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrnamentToolBar.swift; sourceTree = "<group>"; };
 		CB2BAA5328F2C14B004DB543 /* WebMIDIKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = WebMIDIKit; sourceTree = "<group>"; };
+		CBF10A0128F2C14B004DB544 /* WebBluetoothKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = WebBluetoothKit; sourceTree = "<group>"; };
 		CB2F32E52657B3690097ED27 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		CB2F32EA2657CAFB0097ED27 /* LocalDocumentsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDocumentsManager.swift; sourceTree = "<group>"; };
 		CB38F042290820EF0009A1CF /* ReloadAndStopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReloadAndStopButton.swift; sourceTree = "<group>"; };
@@ -103,6 +104,7 @@
 				CB76A7382A2B2B97005CC57B /* ScratchLinkKit */,
 				CB713FEB27749A79009C63E8 /* ScratchWebKit */,
 				CB2BAA5328F2C14B004DB543 /* WebMIDIKit */,
+				CBF10A0128F2C14B004DB544 /* WebBluetoothKit */,
 			);
 			name = Packages;
 			sourceTree = "<group>";

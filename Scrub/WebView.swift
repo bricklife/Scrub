@@ -91,6 +91,10 @@ extension WebView {
                 switch error as? ScratchWebViewError {
                 case let .forbiddenAccess(url: url):
                     await eventChannel?.send(.forbiddenAccess(url))
+                case .bluetoothIsUnauthorized:
+                    await eventChannel?.send(.unauthorizedBluetooth)
+                case .bluetoothIsPoweredOff, .bluetoothIsUnsupported:
+                    await eventChannel?.send(.error(error))
                 case .none:
                     await eventChannel?.send(.error(error))
                 }

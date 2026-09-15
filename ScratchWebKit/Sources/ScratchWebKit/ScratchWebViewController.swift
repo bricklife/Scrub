@@ -10,9 +10,13 @@ import WebKit
 import Combine
 import ScratchLinkKit
 import WebMIDIKit
+import WebBluetoothKit
 
 public enum ScratchWebViewError: Error {
     case forbiddenAccess(url: URL)
+    case bluetoothIsPoweredOff
+    case bluetoothIsUnauthorized
+    case bluetoothIsUnsupported
 }
 
 extension ScratchWebViewError: LocalizedError {
@@ -20,6 +24,12 @@ extension ScratchWebViewError: LocalizedError {
         switch self {
         case .forbiddenAccess:
             return NSLocalizedString("Not allowed to access this URL", bundle: Bundle.module, comment: "Not allowed to access this URL")
+        case .bluetoothIsPoweredOff:
+            return NSLocalizedString("Bluetooth is powered off", bundle: Bundle.module, comment: "Bluetooth is powered off")
+        case .bluetoothIsUnauthorized:
+            return NSLocalizedString("Bluetooth is unauthorized", bundle: Bundle.module, comment: "Bluetooth is unauthorized")
+        case .bluetoothIsUnsupported:
+            return NSLocalizedString("Bluetooth is unsupported", bundle: Bundle.module, comment: "Bluetooth is unsupported")
         }
     }
 }
@@ -30,6 +40,7 @@ public class ScratchWebViewController: WebViewController {
     
     private let scratchLink = ScratchLink()
     private let webMidi = WebMIDI()
+    private let webBluetooth = WebBluetooth()
     
     private var downloadingUrl: URL? = nil
     
@@ -44,6 +55,9 @@ public class ScratchWebViewController: WebViewController {
         scratchLink.delegate = self
         
         webMidi.setup(webView: webView)
+        
+        webBluetooth.setup(webView: webView)
+        webBluetooth.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -176,6 +190,7 @@ extension ScratchWebViewController: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         scratchLink.closeAllSessions()
         webMidi.reset()
+        webBluetooth.reset()
     }
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -228,6 +243,22 @@ extension ScratchWebViewController: ScratchLinkDelegate {
     
     public func didFailStartingSession(type: SessionType, error: SessionError) {
         delegate?.scratchWebViewController(self, didFailStartingScratchLinkSession: type, error: error)
+    }
+}
+
+extension ScratchWebViewController: WebBluetoothDelegate {
+    
+    public func webBluetooth(_ webBluetooth: WebBluetooth, didFail error: WebBluetoothError) {
+        let mapped: ScratchWebViewError
+        switch error {
+        case .bluetoothIsPoweredOff:
+            mapped = .bluetoothIsPoweredOff
+        case .bluetoothIsUnauthorized:
+            mapped = .bluetoothIsUnauthorized
+        case .bluetoothIsUnsupported:
+            mapped = .bluetoothIsUnsupported
+        }
+        delegate?.scratchWebViewController(self, didFail: mapped)
     }
 }
 

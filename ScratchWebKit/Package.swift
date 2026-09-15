@@ -18,11 +18,12 @@ let package = Package(
     dependencies: [
         .package(path: "../ScratchLinkKit"),
         .package(path: "../WebMIDIKit"),
+        .package(path: "../WebBluetoothKit"),
     ],
     targets: [
         .target(
             name: "ScratchWebKit",
-            dependencies: ["ScratchLinkKit", "WebMIDIKit"],
+            dependencies: ["ScratchLinkKit", "WebMIDIKit", "WebBluetoothKit"],
             resources: [
                 .process("Resources"),
             ]
