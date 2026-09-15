@@ -1,9 +1,9 @@
 import CoreBluetooth
 import Foundation
 
-enum BluetoothUUID {
+public enum BluetoothUUID {
     
-    static func canonicalString(_ uuid: CBUUID) -> String {
+    public static func canonicalString(_ uuid: CBUUID) -> String {
         let s = uuid.uuidString.lowercased()
         switch s.count {
         case 4:
@@ -15,7 +15,7 @@ enum BluetoothUUID {
         }
     }
     
-    static func parse(_ value: Any) -> CBUUID? {
+    public static func parse(_ value: Any) -> CBUUID? {
         if let number = numberValue(value) {
             return CBUUID(string: String(format: "%08X", number))
         }
@@ -53,14 +53,14 @@ enum BluetoothUUID {
     }
 }
 
-enum GATTAccess {
+public enum GATTAccess {
     case read
     case write
 }
 
-enum GATTBlocklist {
+public enum GATTBlocklist {
     
-    static func isBlocked(_ uuid: CBUUID, access: GATTAccess) -> Bool {
+    public static func isBlocked(_ uuid: CBUUID, access: GATTAccess) -> Bool {
         guard let status = entries[BluetoothUUID.canonicalString(uuid)] else { return false }
         switch access {
         case .read:

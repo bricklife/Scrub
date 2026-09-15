@@ -183,6 +183,13 @@
         });
     }
 
+    function nativeError(error) {
+        if (error.name === 'TypeError') {
+            return new TypeError(error.message);
+        }
+        return new DOMException(error.message, error.name);
+    }
+
     function serializeOptions(options) {
         if (options == null) {
             return options;
@@ -255,11 +262,7 @@
             }
             this.#requests.delete(requestId);
             if (error) {
-                if (error.name === 'TypeError') {
-                    request.reject(new TypeError(error.message));
-                } else {
-                    request.reject(new DOMException(error.message, error.name));
-                }
+                request.reject(nativeError(error));
             } else {
                 request.resolve(result);
             }
@@ -522,6 +525,9 @@
 
     window.BluetoothUUID = BluetoothUUID;
     window.WebBluetoothKit = WebBluetoothKit;
+    WebBluetoothKit.toByteArray = toByteArray;
+    WebBluetoothKit.serializeOptions = serializeOptions;
+    WebBluetoothKit.nativeError = nativeError;
     Object.defineProperty(navigator, 'bluetooth', {
         configurable: true,
         enumerable: true,

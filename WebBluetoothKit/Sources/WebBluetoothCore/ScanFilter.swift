@@ -1,12 +1,18 @@
 import CoreBluetooth
 import Foundation
 
-struct Advertisement {
-    var name: String?
-    var serviceUUIDs: Set<CBUUID>
-    var manufacturerData: Data?
+public struct Advertisement {
+    public var name: String?
+    public var serviceUUIDs: Set<CBUUID>
+    public var manufacturerData: Data?
     
-    init(peripheral: CBPeripheral, advertisementData: [String: Any]) {
+    public init(name: String?, serviceUUIDs: Set<CBUUID>, manufacturerData: Data?) {
+        self.name = name
+        self.serviceUUIDs = serviceUUIDs
+        self.manufacturerData = manufacturerData
+    }
+    
+    public init(peripheral: CBPeripheral, advertisementData: [String: Any]) {
         let advertisedName = advertisementData[CBAdvertisementDataLocalNameKey] as? String
         self.name = advertisedName ?? peripheral.name
         
@@ -25,19 +31,37 @@ struct Advertisement {
     }
 }
 
-struct ManufacturerDataFilter {
-    let companyIdentifier: UInt16
-    let dataPrefix: [UInt8]
-    let mask: [UInt8]
+public struct ManufacturerDataFilter {
+    public let companyIdentifier: UInt16
+    public let dataPrefix: [UInt8]
+    public let mask: [UInt8]
+    
+    public init(companyIdentifier: UInt16, dataPrefix: [UInt8], mask: [UInt8]) {
+        self.companyIdentifier = companyIdentifier
+        self.dataPrefix = dataPrefix
+        self.mask = mask
+    }
 }
 
-struct ScanFilter {
-    var name: String?
-    var namePrefix: String?
-    var services: Set<CBUUID>?
-    var manufacturerData: [ManufacturerDataFilter]?
+public struct ScanFilter {
+    public var name: String?
+    public var namePrefix: String?
+    public var services: Set<CBUUID>?
+    public var manufacturerData: [ManufacturerDataFilter]?
     
-    var isEmpty: Bool {
+    public init(
+        name: String? = nil,
+        namePrefix: String? = nil,
+        services: Set<CBUUID>? = nil,
+        manufacturerData: [ManufacturerDataFilter]? = nil
+    ) {
+        self.name = name
+        self.namePrefix = namePrefix
+        self.services = services
+        self.manufacturerData = manufacturerData
+    }
+    
+    public var isEmpty: Bool {
         let hasName = !(name?.isEmpty ?? true)
         let hasPrefix = !(namePrefix?.isEmpty ?? true)
         let hasServices = !(services?.isEmpty ?? true)
@@ -45,7 +69,7 @@ struct ScanFilter {
         return !hasName && !hasPrefix && !hasServices && !hasManufacturer
     }
     
-    func matches(_ advertisement: Advertisement) -> Bool {
+    public func matches(_ advertisement: Advertisement) -> Bool {
         if let name = name {
             guard let advertisedName = advertisement.name, advertisedName == name else {
                 return false
@@ -93,12 +117,12 @@ struct ScanFilter {
     }
 }
 
-struct RequestDeviceOptions {
-    var filters: [ScanFilter]
-    var optionalServices: Set<CBUUID>
-    var acceptAllDevices: Bool
+public struct RequestDeviceOptions {
+    public var filters: [ScanFilter]
+    public var optionalServices: Set<CBUUID>
+    public var acceptAllDevices: Bool
     
-    var allowedServices: Set<CBUUID> {
+    public var allowedServices: Set<CBUUID> {
         var services = optionalServices
         for filter in filters {
             if let required = filter.services {
@@ -108,7 +132,7 @@ struct RequestDeviceOptions {
         return services
     }
     
-    var scanServiceUUIDs: [CBUUID]? {
+    public var scanServiceUUIDs: [CBUUID]? {
         if acceptAllDevices {
             return nil
         }
@@ -123,7 +147,7 @@ struct RequestDeviceOptions {
         return uuids.isEmpty ? nil : Array(uuids)
     }
     
-    static func parse(_ raw: Any?) throws -> RequestDeviceOptions {
+    public static func parse(_ raw: Any?) throws -> RequestDeviceOptions {
         guard let dictionary = raw as? [String: Any] else {
             throw DOMError.typeError("requestDevice() requires an options argument")
         }

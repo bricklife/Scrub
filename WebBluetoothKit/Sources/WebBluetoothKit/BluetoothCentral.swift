@@ -1,5 +1,7 @@
+#if os(iOS) || os(visionOS)
 import CoreBluetooth
 import UIKit
+import WebBluetoothCore
 
 struct BluetoothDeviceInfo {
     let id: String
@@ -834,3 +836,4 @@ extension BluetoothCentral: CBPeripheralDelegate {
         }
     }
 }
+#endif

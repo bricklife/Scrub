@@ -1,3 +1,4 @@
+#if os(iOS) || os(visionOS)
 import UIKit
 
 final class DeviceChooserViewController: UITableViewController {
@@ -96,3 +97,4 @@ final class DeviceChooserViewController: UITableViewController {
         dismiss(animated: true)
     }
 }
+#endif

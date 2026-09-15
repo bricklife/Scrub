@@ -1,5 +1,7 @@
+#if os(iOS) || os(visionOS)
 import UIKit
 import WebKit
+import WebBluetoothCore
 
 public enum WebBluetoothError: Error {
     case bluetoothIsPoweredOff
@@ -32,8 +34,8 @@ public class WebBluetooth: NSObject {
     private weak var webView: WKWebView?
     
     public func setup(webView: WKWebView) {
-        guard let filepath = Bundle.module.path(forResource: "inject", ofType: "js"),
-              let js = try? String(contentsOfFile: filepath) else { return }
+        let js = WebBluetoothJavaScript.injectSource
+        guard !js.isEmpty else { return }
         let script = WKUserScript(source: js, injectionTime: .atDocumentStart, forMainFrameOnly: true)
         webView.configuration.userContentController.addUserScript(script)
         webView.configuration.userContentController.add(self, name: "webBluetooth")
@@ -239,3 +241,4 @@ extension WebBluetooth: WKScriptMessageHandler {
         return nil
     }
 }
+#endif
