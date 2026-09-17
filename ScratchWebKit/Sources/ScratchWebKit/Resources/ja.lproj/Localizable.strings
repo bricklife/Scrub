@@ -9,6 +9,9 @@
 "Cancel" = "キャンセル";
 
 "Not allowed to access this URL" = "このURLへのアクセスは許可されていません";
+"Bluetooth is powered off" = "Bluetoothがオフになっています";
+"Bluetooth is unauthorized" = "Bluetoothが許可されていません";
+"Bluetooth is unsupported" = "Bluetoothがサポートされていません";
 
 "Are you sure you want to leave this page?" = "このページから移動してもよいですか？";
 "Stay" = "移動しない";
